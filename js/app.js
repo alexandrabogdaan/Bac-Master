@@ -5,9 +5,11 @@
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 
-menuToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("hidden");
-});
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("hidden");
+    });
+}
 
 
 // =====================
@@ -51,5 +53,13 @@ window.addEventListener("load", () => {
             el.style.opacity = "1";
             el.style.transform = "translateY(0)";
         }, index * 100);
+    });
+});
+
+// Toggle lesson list open/closed when card header is clicked
+const classHeaders = document.querySelectorAll('.class-card > h3');
+classHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+        header.parentElement.classList.toggle('open');
     });
 });
