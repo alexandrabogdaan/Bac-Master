@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Variabile - BAC Master</title>
 
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main lesson-page">
+
+        <!-- HEADER -->
+        <section class="lesson-header">
+            <h1>Variabile și tipuri de date</h1>
+            <p>Noțiuni fundamentale despre memorie, valori și reprezentarea datelor în calculator</p>
+        </section>
+
+        <!-- DEFINITIE VARIABILA -->
+        <section class="lesson-card">
+            <h2>Definiția variabilei</h2>
+
+            <p>
+                O variabilă este o zonă de memorie identificată printr-un nume,
+                în care se stochează o valoare ce poate fi modificată în timpul execuției programului.
+            </p>
+
+            <p>
+                Numele variabilei rămâne constant, dar valoarea se poate schimba.
+            </p>
+        </section>
+
+        <!-- MEMORIE SI BITI -->
+        <section class="lesson-card">
+            <h2>Memoria și reprezentarea în biți</h2>
+
+            <p>
+                Calculatorul stochează toate datele sub formă de biți (0 și 1).
+                Un bit reprezintă cea mai mică unitate de informație.
+            </p>
+
+            <p>
+                8 biți formează 1 byte (octet).
+            </p>
+
+            <ul>
+                <li>1 byte = 8 biți</li>
+                <li>1 KB = 1024 bytes</li>
+                <li>1 MB = 1024 KB</li>
+            </ul>
+
+            <p>
+                Fiecare tip de dată ocupă un număr diferit de bytes în memorie.
+            </p>
+        </section>
+
+        <!-- TIPURI DE DATE + MEMORIE -->
+        <section class="lesson-card">
+            <h2>Tipuri de date și memorie</h2>
+
+            <p>Fiecare tip de dată este stocat diferit în memorie:</p>
+
+            <ul>
+                <li><b>int</b> – 4 bytes (32 biți)</li>
+                <li><b>float</b> – 4 bytes (32 biți)</li>
+                <li><b>double</b> – 8 bytes (64 biți)</li>
+                <li><b>char</b> – 1 byte (8 biți)</li>
+                <li><b>bool</b> – 1 byte (în majoritatea compilatoarelor)</li>
+            </ul>
+
+            <p>
+                Această alocare permite calculatorului să reprezinte valori diferite în format binar.
+            </p>
+        </section>
+
+        <!-- INT EXPLICAT -->
+        <section class="lesson-card">
+            <h2>Tipul int (numere întregi)</h2>
+
+            <p>
+                Tipul <b>int</b> este reprezentat pe 32 de biți.
+            </p>
+
+            <p>
+                Un bit este folosit pentru semn (pozitiv/negativ), iar restul pentru valoare.
+            </p>
+
+            <p>
+                Interval aproximativ:
+            </p>
+
+            <pre>
+-2,147,483,648 până la 2,147,483,647
+            </pre>
+        </section>
+
+        <!-- FLOAT DOUBLE -->
+        <section class="lesson-card">
+            <h2>Tipuri reale (float și double)</h2>
+
+            <p>
+                Numerele reale sunt stocate în format cu virgulă mobilă (floating point).
+            </p>
+
+            <ul>
+                <li><b>float</b> – 32 biți (precizie mai mică)</li>
+                <li><b>double</b> – 64 biți (precizie mai mare)</li>
+            </ul>
+
+            <p>
+                Aceste tipuri nu stochează exact toate numerele reale, ci o aproximație.
+            </p>
+        </section>
+
+        <!-- CHAR -->
+        <section class="lesson-card">
+            <h2>Tipul char</h2>
+
+            <p>
+                Un caracter este stocat pe 8 biți (1 byte).
+                Fiecare caracter are un cod numeric (ASCII).
+            </p>
+
+            <pre>
+'A' = 65
+'a' = 97
+            </pre>
+
+            <p>
+                Astfel, caracterele sunt de fapt numere în memorie.
+            </p>
+        </section>
+
+        <!-- BOOL -->
+        <section class="lesson-card">
+            <h2>Tipul bool</h2>
+
+            <p>
+                Tipul boolean poate avea doar două valori:
+            </p>
+
+            <ul>
+                <li>true (1)</li>
+                <li>false (0)</li>
+            </ul>
+
+            <p>
+                Este folosit în condiții și decizii logice.
+            </p>
+        </section>
+
+        <!-- DECLARARE -->
+        <section class="lesson-card">
+            <h2>Declararea variabilelor</h2>
+
+            <p>
+                O variabilă trebuie declarată înainte de utilizare.
+            </p>
+
+            <pre>
+int a = 10;
+float x = 3.5;
+char c = 'A';
+bool ok = true;
+            </pre>
+        </section>
+
+        <!-- CONCLUZIE -->
+        <section class="lesson-card">
+            <h2>Concluzie</h2>
+
+            <p>
+                Variabilele sunt baza oricărui program.
+                Ele permit stocarea și manipularea datelor în memorie,
+                iar tipul lor determină modul de reprezentare în biți.
+            </p>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
