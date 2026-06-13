@@ -15,7 +15,7 @@ body {
 }
 
 /* =======================
-   LAYOUT
+   LAYOUT GENERAL
 ======================= */
 .container {
     display: flex;
@@ -135,14 +135,6 @@ body {
     max-width: 50%;
 }
 
-.badge {
-    background: rgba(124,92,255,0.2);
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    color: #b9a7ff;
-}
-
 .hero h1 {
     font-size: 32px;
     margin: 15px 0;
@@ -151,6 +143,14 @@ body {
 .hero p {
     color: #aaa;
     margin-bottom: 20px;
+}
+
+.badge {
+    background: rgba(124,92,255,0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #b9a7ff;
 }
 
 .hero-buttons a {
@@ -171,7 +171,6 @@ body {
     color: #4cc9f0;
 }
 
-/* HERO CODE */
 .hero-right pre {
     background: #0f1424;
     padding: 20px;
@@ -207,7 +206,7 @@ body {
 }
 
 /* =======================
-   MODULES (dashboard)
+   MODULES
 ======================= */
 .modules {
     display: grid;
@@ -238,13 +237,8 @@ body {
 }
 
 /* =======================
-   TEORIE PAGE (IMPORTANT FIX)
+   TEORIE GRID
 ======================= */
-
-.teorie-header {
-    margin-bottom: 30px;
-}
-
 .teorie-header h1 {
     font-size: 32px;
 }
@@ -271,19 +265,6 @@ body {
     background: #1a2340;
 }
 
-.class-card h2 {
-    margin-bottom: 15px;
-}
-
-.class-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.class-card li {
-    margin: 8px 0;
-}
-
 .class-card a {
     display: block;
     padding: 10px;
@@ -300,7 +281,117 @@ body {
 }
 
 /* =======================
-   FOOTER QUOTE
+   LESSON SYSTEM (FOCUS)
+======================= */
+
+.lesson-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.lesson-page {
+    flex: 1;
+    padding: 20px 30px;
+    max-width: 1000px;
+}
+
+/* HEADER LECȚIE */
+.lesson-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.lesson-header h1 {
+    font-size: 34px;
+}
+
+.lesson-header p {
+    color: #aaa;
+    font-size: 15px;
+}
+
+/* CARD LECȚIE */
+.lesson-card {
+    background: #11172a;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: 0.25s ease;
+}
+
+.lesson-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(124,92,255,0.25);
+}
+
+.lesson-card h2 {
+    color: #4cc9f0;
+    margin-bottom: 10px;
+}
+
+.lesson-card p,
+.lesson-card li {
+    color: #d6d6d6;
+    line-height: 1.6;
+}
+
+/* CODE DOAR ÎN LECȚII */
+.lesson-card pre {
+    background: #0f1424;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #7c5cff;
+    border: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px;
+    overflow-x: auto;
+}
+
+/* TOC */
+.toc {
+    width: 220px;
+    position: sticky;
+    top: 20px;
+    background: #11172a;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.toc a {
+    display: block;
+    padding: 8px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.toc a:hover {
+    background: #1a2340;
+    color: white;
+}
+
+/* NAV LECȚIE */
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 15px 20px;
+    background: #11172a;
+    border-radius: 12px;
+}
+
+.lesson-nav a {
+    color: #7c5cff;
+    text-decoration: none;
+}
+
+/* =======================
+   FOOTER
 ======================= */
 .quote-footer {
     margin-top: 40px;
@@ -332,124 +423,16 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .lesson-layout {
+        flex-direction: column;
+    }
+
+    .toc {
+        width: 100%;
+        position: relative;
+    }
+
     .topbar input {
         width: 150px;
-    }
-
-    .sidebar {
-        transition: transform 0.3s ease;
-    }
-}
-/* =========================
-   PAGINA LECȚIE (GENERAL)
-========================= */
-
-.lesson-page {
-    padding: 20px 40px;
-}
-
-/* HEADER LECȚIE */
-.lesson-header {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.lesson-header h1 {
-    font-size: 34px;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.lesson-header p {
-    color: #aaa;
-    font-size: 15px;
-    max-width: 700px;
-}
-
-/* =========================
-   CARDURI DE TEORIE
-========================= */
-
-.lesson-card {
-    background: #11172a;
-    padding: 20px 22px;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    transition: 0.25s ease;
-    border: 1px solid rgba(255,255,255,0.04);
-}
-
-.lesson-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(124,92,255,0.25);
-}
-
-.lesson-card h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #4cc9f0;
-}
-
-.lesson-card p {
-    color: #d6d6d6;
-    line-height: 1.6;
-    font-size: 14.5px;
-}
-
-.lesson-card ul,
-.lesson-card ol {
-    margin-left: 18px;
-    margin-top: 10px;
-    color: #d6d6d6;
-}
-
-.lesson-card li {
-    margin-bottom: 6px;
-}
-
-/* =========================
-   COD BOX
-========================= */
-
-pre {
-    background: #0f1424;
-    padding: 15px;
-    border-radius: 10px;
-    overflow-x: auto;
-    margin-top: 10px;
-    color: #7c5cff;
-    border: 1px solid rgba(255,255,255,0.05);
-    font-size: 13.5px;
-}
-
-/* =========================
-   EFECT DE LECTURĂ (FOCUS MODE)
-========================= */
-
-.lesson-page {
-    max-width: 1000px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-    .lesson-page {
-        padding: 15px;
-    }
-
-    .lesson-header h1 {
-        font-size: 26px;
-    }
-
-    .lesson-card {
-        padding: 15px;
-    }
-
-    pre {
-        font-size: 12px;
     }
 }
