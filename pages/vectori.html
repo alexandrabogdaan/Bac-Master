@@ -30,7 +30,7 @@
         <!-- HEADER -->
         <section class="lesson-header">
             <h1>Tablouri unidimensionale; Vectori</h1>
-            <p>Noțiuni fundamentale despre declararea si utilizarea vectorilor</p>
+            <p>Noțiuni fundamentale despre declararea și utilizarea vectorilor</p>
         </section>
 
         <!-- DEFINITIE VARIABILA -->
@@ -38,7 +38,7 @@
             <h2>Definiția vectorului</h2>
 
             <p>
-                Un tablou unidimensional se declara in C++ astfel:
+                Un tablou unidimensional se declară în C++ astfel:
                 
             </p>
 
@@ -59,15 +59,15 @@
 
 
         <section class="lesson-card">
-            <h2>Observatie!</h2>
+            <h2>Observație!</h2>
 
             <ul>
 
             <li>
-                Elementele unui tablou declarat global sunt initializate cu 0! Daca tabloul este delarat local, valorile sunt initializate cu valori aleatorii
+                Elementele unui tablou declarat global sunt inițializate cu 0! Dacă tabloul este declarat local, valorile sunt inițializate cu valori aleatorii
             </li>
             <li> 
-                Primul element al unui tablor este indexat de la 0
+                Primul element al unui tablou este indexat de la 0
             </li>
         </ul>
 
@@ -77,7 +77,7 @@
         <section class="lesson-card">
             <h2>Referirea unui element</h2>
 
-            <p>Referirea unui element se face prin indexul său în interiorul tabloului:Referirea unui element se face prin operatorul de indexare, [], care are prioritate maximă</p>
+            <p>Referirea unui element se face prin indexul său în interiorul tabloului: Referirea unui element se face prin operatorul de indexare, [], care are prioritate maximă</p>
             <br>
             <p>De exemplu:</p>
             <ul>
@@ -90,13 +90,13 @@
                 <b>X</b> este tabloul, iar <b>0,5,i</b> sunt indicii. Indici trebuie să fie întregi și să se încadreze în dimensiunea tabloului.
             </p>
             <br> 
-            <p>Un element al tabloului referint prin indice este tratat ca o variabila oarecare de tipul stabilit la declarare</p>
+            <p>Un element al tabloului referit prin indice este tratat ca o variabilă oarecare de tipul stabilit la declarare</p>
             <pre>
         int X[10];
         X[0] = 17;
 
         cout << X[0]; // 17
-        cout << X[0] +5; // 22
+        cout << X[0] + 5; // 22
         cout << X[0] / 5; // 3
             </pre>
         </section>
@@ -122,9 +122,9 @@
             <p>Exemplu:</p>
             <pre>
                 int X[100], n;
-                    //unde n este numarul de elemente efectiv utilizate in tablou
-                for(int i = 0 ; i < n ; i ++) // de la 0 la n-1!! in ordine crescatoare
-                    X[i] = 1; //initializam toate elementele cu valoarea 1
+                    //unde n este numărul de elemente efectiv utilizate în tablou
+                for(int i = 0 ; i < n ; i ++) // de la 0 la n-1!! în ordine crescătoare
+                    X[i] = 1; //inițializăm toate elementele cu valoarea 1
             </pre>
         </section>
 
@@ -133,11 +133,11 @@
             <h2>Citirea unui vector</h2>
 
             <p>
-                In majoritatea cazurilor, citirea <b>NU</b> se poate face asa:
+                În majoritatea cazurilor, citirea <b>NU</b> se poate face așa:
             </p>
             <pre> cin>>X; </pre>
             <br>
-            <p> Aceasta va da eroare de sintaxa. In schimb, elementele tabloului pot fi citite in felul urmator:</p>
+            <p> Aceasta va da eroare de sintaxă. În schimb, elementele tabloului pot fi citite în felul următor:</p>
 
             <pre>
                 int X[100], n;
@@ -150,15 +150,15 @@
 
         <!-- BOOL -->
         <section class="lesson-card">
-            <h2>Afisarea unui vector</h2>
+            <h2>Afișarea unui vector</h2>
 
             <p>
-                La fel ca la citire, afisarea unui vector <b>NU</b> se poate face asa:
+                La fel ca la citire, afișarea unui vector <b>NU</b> se poate face așa:
             </p>
             <pre> cout<< X; </pre>
-            <p> Totusi, acest lucuru nu va duce la eroare de sintaxa, ci va afisa adresa de memorie a primului element ex. 0x7ffc9711bcd0</p>
+            <p> Totuși, acest lucru nu va duce la eroare de sintaxă, ci va afișa adresa de memorie a primului element ex. 0x7ffc9711bcd0</p>
             <br>
-            <p> Afisarea corecta:</p>
+            <p> Afișarea corectă:</p>
             <pre>
                 for(int i = 0 ; i < n ; i ++)
                 cout << X[i] << ' ';
@@ -188,7 +188,7 @@
 
         <!-- CONCLUZIE -->
         <section class="lesson-card">
-            <h2>Inițializarea unui elementelor unui vector</h2>
+            <h2>Inițializarea elementelor unui vector</h2>
 
             <p>
                 La declararea tabloului este posibil să inițializăm elementele sale:
@@ -201,9 +201,9 @@
             <br>
             <p> A va avea 4 elemente, A[0] = 10, A[1] = 20, A[2] = 30, A[3] = 40</p>
             <br>
-            <p>B va avea 10 elemente, B[0] = 10, B[1] = 20, B[2] = 30, B[3] = 40, restul elementelor vor fi initializate cu 0</p>
+            <p>B va avea 10 elemente, B[0] = 10, B[1] = 20, B[2] = 30, B[3] = 40, restul elementelor vor fi inițializate cu 0</p>
             <br>
-            <p>C va avea 10 elemente, toate initializate cu 0 <b> INAFARA DE C[0]</b> </p>
+            <p>C va avea 10 elemente, toate inițializate cu 0 <b> ÎNAFĂRĂ DE C[0]</b> </p>
         </section>
 
     </main>
