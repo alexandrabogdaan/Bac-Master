@@ -113,9 +113,19 @@ body {
 }
 
 .profile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(90deg, #7c5cff, #4cc9f0);
     padding: 8px 12px;
     border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    min-width: 90px;
+}
+
+.profile:hover {
+    opacity: 0.9;
 }
 
 /* =======================
@@ -401,6 +411,8 @@ body {
     text-align: center;
     color: #aaa;
 }
+
+
 
 /* =======================
    RESPONSIVE
