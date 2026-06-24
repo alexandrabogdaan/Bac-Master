@@ -99,6 +99,18 @@
             color: #4cc9f0;
         }
 
+        .mode-toggle {
+            display: inline-block;
+            background: transparent;
+            color: #7c5cff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .register-only { display: none; }
+
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
@@ -117,7 +129,7 @@
         <div class="profile-card">
             <h1>Profil Elev</h1>
             <p>Autentifică-te pentru a accesa progresul și setările tale personale.</p>
-            <form action="/auth-endpoint" method="POST">
+            <form id="authForm" action="/auth-endpoint" method="POST">
                 <div class="form-group">
                     <label for="username">Nume de utilizator</label>
                     <input type="text" id="username" name="username" placeholder="Introduceți numele de utilizator" required>
@@ -126,12 +138,60 @@
                     <label for="password">Parolă</label>
                     <input type="password" id="password" name="password" placeholder="Introduceți parola" required>
                 </div>
+                <div class="form-group register-only">
+                    <label for="confirmPassword">Confirmă parola</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmă parola">
+                </div>
                 <div class="button-group">
-                    <button type="submit" name="action" value="login" class="button-primary">Loghează-te</button>
-                    <button type="submit" name="action" value="register" class="button-secondary">Înregistrează-te</button>
+                    <button type="submit" id="submitBtn" name="action" value="login" class="button-primary">Loghează-te</button>
+                    <div style="text-align:center">
+                        <button type="button" id="toggleMode" class="mode-toggle">Creează cont nou</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </body>
+    <script>
+        (function(){
+            const toggle = document.getElementById('toggleMode');
+            const registerOnly = document.querySelectorAll('.register-only');
+            const submitBtn = document.getElementById('submitBtn');
+            const heading = document.querySelector('.profile-card h1');
+            const parag = document.querySelector('.profile-card p');
+            let mode = 'login';
+            function setMode(m){
+                mode = m;
+                if(mode==='login'){
+                    heading.textContent = 'Profil Elev';
+                    parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
+                    submitBtn.textContent = 'Loghează-te';
+                    submitBtn.value = 'login';
+                    registerOnly.forEach(el=>el.style.display='none');
+                    document.getElementById('confirmPassword').required = false;
+                    toggle.textContent = 'Creează cont nou';
+                } else {
+                    heading.textContent = 'Creează cont';
+                    parag.textContent = 'Completează formularul pentru a crea un cont nou.';
+                    submitBtn.textContent = 'Înregistrează-te';
+                    submitBtn.value = 'register';
+                    registerOnly.forEach(el=>el.style.display='block');
+                    document.getElementById('confirmPassword').required = true;
+                    toggle.textContent = 'Am deja cont';
+                }
+            }
+            toggle.addEventListener('click', ()=> setMode(mode==='login' ? 'register' : 'login'));
+            setMode('login');
+            document.getElementById('authForm').addEventListener('submit', function(e){
+                if(submitBtn.value==='register'){
+                    const pw = document.getElementById('password').value;
+                    const cpw = document.getElementById('confirmPassword').value;
+                    if(pw !== cpw){
+                        e.preventDefault();
+                        alert('Parolele nu se potrivesc.');
+                    }
+                }
+            });
+        })();
+    </script>
 </html>
