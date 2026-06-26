@@ -1,9 +1,207 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Variabile - BAC Master</title>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main lesson-page">
+
+        <!-- HEADER -->
+        <section class="lesson-header">
+            <h1>Subprograme</h1>
+            <p>Noțiuni fundamentale despre declararea și utilizarea subprogramelor</p>
+        </section>
+
+        <!-- DEFINITIE VARIABILA -->
+        <section class="lesson-card">
+            <h2>Definiția subprogramului</h2>
+
+            <p>
+                Un subprogram este o colecție de tipuri de date, variabile, instrucțiuni care îndeplinesc o anumită sarcină (calcule, citiri, afișări), atunci când este apelat (folosit) de un program sau de un alt subprogram. 
+            <br>
+            <br>
+             <b>Un subprogram se declară în C++ astfel:</b>
+            </p>
+            <br>
+            <p> 
+                tipulFunctiei numeleFunctiei(parametrii);
+            </p>
+            
+            <ul>
+            <li>
+                Ex1: int suma(int a, int b);
+
+            </li>
+            <li>
+
+                Ex2: bool estePar(int n);
+            </li>
+            </ul>
+        </section>
+
+
+        <section class="lesson-card">
+            <h2>Observație!</h2>
+
+            
+
+            <p>
+                O funcție trebuie și <b><u>definită</u></b>, nu doar declarată!
+                <br>
+                <br>
+                Definirea unei funcții se face astfel:
+            </p>
+            <pre> 
+            int suma(int a, int b);
+            {
+                  return a + b;
+            }
+            </pre>
+
+        </section>
+
+
+        <section class="lesson-card">
+            <h2>Folosirea acestora</h2>
+
+            <p>Exemplu de implementare:</p>
+            <br>
+            <p>Observație, în acest caz, vom avea o eroare de compilare:</p>
+            <pre>
+#include <iostream>
+using namespace std;
+
+int main()
+        {
+        suma(5,10);
+        return 0;
+        }
+
+int suma(int a, int b)
+        {
+        return a + b;
+        }
+            </pre>
+
+        <p> Acest lucru este pentru că noi doar am definit funcția <b>după ce am apelat-o</b>, deci compilatorul nu știe ce este suma(5,10) și va da eroare. </p>
+        <br>
+        <br>
+        <p> Cazul <b><u>corect</u></b> este urmatorul:</p>
+        <pre>
+#include <iostream>
+using namespace std;
+
+<b>int suma(int a, int b);</b>
+
+int main()
+        {
+        suma(5,10);
+        return 0;
+        }
+
+int suma(int a, int b)
+        {
+        return a + b;
+        }
+        </pre>
+    
+    </section>
+
+ 
+        <section class="lesson-card">
+            <h2>Stocarea funcțiilor în memorie</h2>
+
+            <p>
+                Funcțiile folosesc memoria de pe <b><u>Stiva (stack)</u></b>
+            </p>
+        </section>
+
+
+        <section class="lesson-card">
+            <h2>Anatomia unei functii</h2>
+
+            <p>Antetul acesteia este:</p>
+            <pre>
+            tipulFunctiei numeleFunctiei(parametrii);
+            ex. <b>int suma (int a, int b)</b>
+            </pre>
+
+            <br>
+            <p>Corpul unei functii este:</p>
+            <pre>
+            {
+                return a+b;
+            }
+            </pre>
+
+            <br>
+            <p>Cand folosim o functie intr-un program, spunem: <b><u>apelam functia:</u></b></p>
+            <pre>
+int main()
+        {
+         cout<< suma(5,10); // Afiseaza 15
+        }
+            </pre>
+        </section>
+
+       
+        <section class="lesson-card">
+            <h2>Particularitati:</h2>
+
+            <p> Funcțiile care nu returnează o valoare au tipul de returnare: <b><u>void</u></b></p>
+            <pre>
+                void afisarePar(int a)
+                {
+                    if(a % 2 == 0)
+                        cout << a << ' ';   
+                } //Afișează numărul dacă este par
+            </pre>
+            <br>
+            <br>
+            <p>Transmiterea prin referință:</p>
+            <br>
+            <p>Atunci când dorim ca o funcție să poată modifica direct valoarea unei variabile din afara ei (din main sau din altă funcție), folosim transmiterea prin referință. Spre deosebire de transmiterea prin valoare (unde funcția primește doar o copie a datelor), prin referință funcția lucrează direct cu variabila originală. Pentru a realiza acest lucru, în antetul funcției adăugăm simbolul & (amperand) înaintea numelui parametrului.</p>
+            <pre>
+void dubleaza(int &x) // x este transmis prin referință
+    {
+    x = x * 2; // Modificarea afectează direct variabila din apel
+    }
+
+int main()
+    {   
+    int numar = 10;
+    dubleaza(numar);
+    cout << numar; // Va afișa 20, deoarece 'numar' a fost modificat direct!
+    }   
+            </pre>
+
+        </section>
+
+
+    </main>
+
+</div>
 
 </body>
 </html>
