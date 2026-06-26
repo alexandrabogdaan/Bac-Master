@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Recursivitate - BAC Master</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main lesson-page">
+
+        <!-- HEADER -->
+        <section class="lesson-header">
+            <h1>Recursivitate</h1>
+            <p>Noțiuni fundamentale despre recursivitate în programare</p>
+        </section>
+
+        <!-- DEFINITIE VARIABILA -->
+        <section class="lesson-card">
+            <h2>Definiția recursivității</h2>
+
+            <p>
+                Recursivitatea este o tehnică de programare în care un subprogram se apelează pe sine însuși. 
+                <br>
+                <br>
+                <b><u>FIECARE FUNCȚIE RECURSIVĂ TREBUIE SĂ AIBĂ UN CAZ DE BAZĂ</u></b>
+            <br>
+            <br>
+             <b>Exemple de recursivitate:</b>
+            </p>
+            <br>
+            <ul> 
+                <li>Factorialul unui număr</li>
+
+                <li>Ridicarea la putere a unui număr</li>
+
+                <li>Șirul lui Fibonacci</li>
+            </ul>
+        </section>
+
+
+        <section class="lesson-card">
+            <h2>Exemplu în C++:</h2>
+
+            
+
+            <p>
+                Scriem o funcție C++ care returnează factorialul unui număr natural transmis ca parametru. Varianta nerecursivă (iterativă) este următoarea:
+            </p>
+            <pre> 
+
+int factorial(int n)
+    {
+    if(n == 0)
+        return 1; //cazul de bază
+    else
+        return n * factorial(n-1);
+    }
+            </pre>
+
+        </section>
+
+
+        
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Siruri - BAC Master</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main lesson-page">
+
+        <!-- HEADER -->
+        <section class="lesson-header">
+            <h1>Siruri de caractere</h1>
+            <p>Noțiuni fundamentale despre siruri de caractere în programare</p>
+        </section>
+
+        <!-- DEFINITIE VARIABILA -->
+        <section class="lesson-card">
+            <h2>Despre Siruri de Caractere</h2>
+
+            <p>
+                Vom discuta despre sirurile de caractere reprezentate ca tablouri unidimensionale de caractere în C++. Un sir de caractere este o secvență de caractere stocată într-un tablou de tip char, terminată cu caracterul nul '\0'.
+                <br>
+                '\0' este un caracter special care indică sfârșitul sirului, reprezentat cu codul ASCII 0 si numit caracter <u><b>null.</b></u>
+            </p>
+
+            <p>
+                Numele variabilei rămâne constant, dar valoarea se poate schimba.
+            </p>
+        </section>
+
+        <!-- MEMORIE SI BITI -->
+        <section class="lesson-card">
+            <h2>Declararea unui șir de caractere</h2>
+
+            <p>
+                Un sir de caractere poate fi declarat astfel:
+            </p>
+
+            <pre>
+            char sir[20];
+            </pre>
+
+            <br>
+            <br>
+            <p>
+                Acest sir de charactere poate stoca pana la 20 de caractere de la 0-19 (index), dupa ultimul caracter fiind memorat caracteru; '\0'.
+            </p>
+
+            <br>
+            <br>
+            <p>La declararea unui sir, acesta poate fi initializat, precum:</p>
+            <pre>
+            char sir[20] = "Salut!"; // primele 6 caractere sunt 'S', 'a', 'l', 'u', 't', '!', iar al 7-lea este '\0'
+
+            char t[] = "Salut!"; // dimensiunea sirului este determinata automat de compilator, in acest caz 7 (6 caractere + '\0')
+
+            char v[6]={ 'S', 'a', 'l', 'u', 't', '\0' }; // initializare caracter cu caracter
+
+            char a[]={'S', 'a', 'l', 'u', 't', '\0'}; //se aloca automat 7 caractere pentru sir
+            </pre>
+        </section>
+
+        <!-- TIPURI DE DATE + MEMORIE -->
+        <section class="lesson-card">
+            <h2>Afisarea si citirea unui sir</h2>
+            
+            <p>
+                Afisarea se poate face cu operatorul <b><u>'<<'</u></b>
+            </p>
+            <pre>
+            cout << sir ;
+            </pre>
+            <br>
+            <br>
+            <p>
+                Citirea se poate face cu operatorul <b><u>'>>'</u></b>
+            </p>
+            <pre>
+            cin >> sir;
+            </pre>
+            <p><b><u>!OBSERVATIE</u></b>, in acest mod, nu se pot citi șiruri de caractere care conțin spații.</p>
+            <br>
+            <p>
+                Pentru a citi un sir de caractere care contine spatii, se poate folosi functia <b><u>cin.getline()</u></b>:
+            </p>
+            <pre>
+            getline (char* sir, int lungimea_sirului); //Se vor citi caractere pana la intalnirea lui '\n' sau pana cand se atinge lungimea maxima
+            </pre>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Exemplu practic:</h2>
+
+            <p>
+                Scriem un program C++;
+            </p>
+            <pre>
+#include <iostream>
+using namespace std;
+int main()
+    {
+    char nume1[31], nume2[31];
+
+    cout << "Cum te cheama? (nume, prenume) ";
+    cin.getline(nume1, 31);
+
+    cout << "Cum il cheama pe prietenul tau? ";
+    cin.getline(nume2 , 31);
+
+    cout << "Te numesti " << nume1 << endl; //afiseaza numele introdus de utilizator
+    cout << "Esti prieten cu " << nume2 << endl; //afiseaza numele prietenului
+    return 0;
+    }
+            </pre>
+        </section>
+
+        <!-- FLOAT DOUBLE -->
+        <section class="lesson-card">
+            <h2>Referirea unui caracter din șir. Parcurgerea unui șir de caractere</h2>
+
+            <p>
+                Sirurile de caractere sunt, de fapt, tablouri unidimensionale de caractere. Referirea unui caracter din sir se face cu operatorul '[]'.
+            </p>
+
+            <pre>
+            char sir[20] = "Salut!";
+            cout << sir[0]; //afiseaza 'S'
+            cout << sir[1]; //afiseaza 'a'
+            sir[1]='b'; //modifica al doilea caracter din sir, astfel sirul devine "Sblut!"
+            cout<< sir; //afiseaza "Sblut!"
+            </pre>
+        </section>
+
+        <!-- CHAR -->
+        <section class="lesson-card">
+            <h2>Functii cu siruri de caractere</h2>
+
+            <p>
+                Determinarea lungii unui sir: <b><u>strlen(const char* str)</u></b>
+            </p>
+            <pre>
+            cout << strlen("Salut!"); // 6
+            char sir[10]="Acasa";
+            cout << strlen(sir); // 5
+            cout << strlen(sir + 2); //3
+            </pre>
+            <br>
+            <br>
+            <p>
+                Copierea unui sir din alt sir: <b><u>strcpy(char* dest, const char* src)</u></b> mai intai sirul destinatie, apoi cel sursa.
+            </p>
+            <pre>
+            char sir[21], t[21] = "Salut!";
+            strcpy(sir , "Acasa!");
+            cout << sir; // Acasa!
+            strcpy(sir , t);
+            cout << sir; // Salut!
+            strcpy(sir , t + 2);
+            cout << sir; // lut!
+            strcpy(sir + 2 , t);
+            cout << sir; // luSalut!
+            </pre>
+
+        </section>
+
+        <!-- BOOL -->
+        <section class="lesson-card">
+            <h2>Tipul bool</h2>
+
+            <p>
+                Tipul boolean poate avea doar două valori:
+            </p>
+
+            <ul>
+                <li>true (1)</li>
+                <li>false (0)</li>
+            </ul>
+
+            <p>
+                Este folosit în condiții și decizii logice.
+            </p>
+        </section>
+
+        <!-- DECLARARE -->
+        <section class="lesson-card">
+            <h2>Declararea variabilelor</h2>
+
+            <p>
+                O variabilă trebuie declarată înainte de utilizare.
+            </p>
+
+            <pre>
+int a = 10;
+float x = 3.5;
+char c = 'A';
+bool ok = true;
+            </pre>
+        </section>
+
+        <!-- CONCLUZIE -->
+        <section class="lesson-card">
+            <h2>Concluzie</h2>
+
+            <p>
+                Variabilele sunt baza oricărui program.
+                Ele permit stocarea și manipularea datelor în memorie,
+                iar tipul lor determină modul de reprezentare în biți.
+            </p>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
