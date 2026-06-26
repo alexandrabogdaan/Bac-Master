@@ -174,61 +174,128 @@ int main()
             char sir[21], t[21] = "Salut!";
             strcpy(sir , "Acasa!");
             cout << sir; // Acasa!
+
             strcpy(sir , t);
             cout << sir; // Salut!
+
             strcpy(sir , t + 2);
             cout << sir; // lut!
+
             strcpy(sir + 2 , t);
             cout << sir; // luSalut!
             </pre>
+            <br>
+            <br>
+            <p>Concatenarea a doua siruri: <b><u>strcat(char* dest, const char* src)</u></b></p>
+            <pre>
+            char sir[21]="Salut!", t[21] = "Acasa!";
+            strcat(sir , t);
+            cout << sir; // Salut!Acasa!
 
+            strcat(sir , t + 2);
+            cout << sir; // Salut!Acasa!asa!   
+            </pre>
+            <br>
+            <br>
+            <p>Cautarea unui caracter pana la prima aparitie <b><u>char *strchr( char * str, char ch );</u></b></p>
+            <br>
+            <p>Functia returneaza <b><u>NULL</u></b> daca nu apare caracterul cautat in sir</p>
+            <pre>
+            char sir[21]="Salut!";
+            char *p = strchr(sir , 'a');
+            cout << p; // alut!    
+
+
+
+            char ch = 'i';
+            if(strchr("aeiou" , ch) != NULL)
+            {
+                cout << "DA";
+            }
+            else
+            {
+                cout << "NU";
+            }
+                //se va afisa DA
+            </pre>
+            <br>
+            <br>
+            <p>Cautarea unui sir in alt sir pana la prima aparitie <b><u>char *strstr( char * str, char * str2 );</u></b></p>
+            <pre>
+            char sir[21]="Salut!";
+            char *p = strstr(sir , "alu");
+            cout << p; // alut!   
+            </pre>
+            <p><b><u>OBSERVATIE!</u></b> Pentru orice șir S, apelul strstr(S, "") returnează întotdeauna pointerul către începutul șirului S (adică valoarea lui S).</p>
+            <br>
+            <br>
+            <p>Compararea lexicografica a doua siruri se face cu <b><u>int strcmp( char * s, char * t );</u></b></p>
+            <ul>
+                <li>Returneaza 0 daca sirurile sunt egale</li>
+                <li>Returneaza un numar negativ daca primul sir este mai mic decat al doilea</li>
+                <li>Returneaza un numar pozitiv daca primul sir este mai mare decat al doilea</li>
+            </ul>
+            <pre>
+            char sir[21]="abur", t[21]="abecedar";
+            if(strcmp(sir , t) < 0)
+            {
+                cout << "Da";
+            }
+            else
+            {
+                cout << "Nu";
+            }
+                // se va afisa Nu; cuvantul "abur" este lexicografic dupa "abecedar"    
+            </pre>
+            <br>
+            <br>
+            <p>Extragerea dintr-un sir de caractere câte un subșir (cuvânt) delimitat de caractere din șirul sep se face astfel: <b><u>char *strtok( char *str, const char *sep );</u></b></p>
+            <pre>
+            char sep[]=" .,";
+            char * p = strtok(sir , sep); //primul apel are ca parametri șirul din care se face extragerea și șirul separatorilor
+            while(p != NULL)
+            {
+                cout << p << endl;
+                p = strtok(NULL , sep); //la următoarele apeluri primul parametru este NULL.
+            }
+
+            //Secvența de mai jos extrage dintr-un șir sir cuvintele (separate prin caractere din mulțimea {' ', ',', '.'}
+            </pre>
+       
         </section>
 
         <!-- BOOL -->
         <section class="lesson-card">
-            <h2>Tipul bool</h2>
+            <h2>Eliminarea si Inserarea unui caracter in siruri</h2>
 
             <p>
-                Tipul boolean poate avea doar două valori:
+                <b><u></u>Eliminarea:</u></b>
             </p>
-
-            <ul>
-                <li>true (1)</li>
-                <li>false (0)</li>
-            </ul>
-
-            <p>
-                Este folosit în condiții și decizii logice.
-            </p>
-        </section>
-
-        <!-- DECLARARE -->
-        <section class="lesson-card">
-            <h2>Declararea variabilelor</h2>
-
-            <p>
-                O variabilă trebuie declarată înainte de utilizare.
-            </p>
-
             <pre>
-int a = 10;
-float x = 3.5;
-char c = 'A';
-bool ok = true;
+            char sir[256], t[256];
+            int x; //pozitia caracterului care se doreste a fi eliminat
+            // ...
+            //eliminarea
+            strcpy(t , sir + x + 1);
+            strcpy(sir + x , t);    
+            </pre>
+            <br>
+            <br>
+            <p>
+                <b><u>Inserarea:</u></b>
+            </p>
+            <pre>
+            char sir[256], t[256];
+            int x;
+            // ...
+            //inserarea
+            strcpy(t , sir + x);
+            strcpy(sir + x + 1 , t);
+            sir[x] = 'A'; // echivalent, *(sir+x) = 'A';    
             </pre>
         </section>
 
-        <!-- CONCLUZIE -->
-        <section class="lesson-card">
-            <h2>Concluzie</h2>
-
-            <p>
-                Variabilele sunt baza oricărui program.
-                Ele permit stocarea și manipularea datelor în memorie,
-                iar tipul lor determină modul de reprezentare în biți.
-            </p>
-        </section>
-
+        
     </main>
 
 </div>
