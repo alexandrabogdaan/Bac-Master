@@ -6,6 +6,56 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Corecție pentru listele care ieșeau din casete */
+        .class-card ul {
+            list-style: none; /* Elimină punctele standard bulversate de margini */
+            padding: 0;       /* Resetează padding-ul care scotea elementele în afară */
+            margin: 15px 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;        /* Spațiu egal între elementele listei */
+        }
+
+        .class-card li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Transformă link-urile în rânduri interactive, curate și aliniate */
+        .class-card li a {
+            display: block;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Efect de hover modern adaptat pentru Dark Mode */
+        .class-card li a:hover {
+            background: rgba(56, 189, 248, 0.08);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            transform: translateX(4px); /* Subtil efect de deplasare la dreapta */
+        }
+
+        /* Ajustări pentru titlurile cardurilor pentru un aspect premium */
+        .class-card h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,15 +78,14 @@
     <main class="main">
 
         <div class="teorie-header">
-            <h1>📘 Teorie Informatica</h1>
+            <h1>📘 Teorie Informatică</h1>
             <p>Alege clasa și începe să înveți structurat</p>
         </div>
 
         <div class="clase-grid">
 
-            <!-- IX -->
             <div class="class-card">
-                <h2>📘 Clasa a IX-a</h2>
+                <h2 style="color: #60a5fa;"><i class="fa-solid fa-book"></i> Clasa a IX-a</h2>
                 <ul>
                   <li><a href="variabile.html">Variabile și tipuri de date</a></li>
                   <li><a href="structuridecontrol.html">Structuri de control</a></li>
@@ -48,9 +97,8 @@
                 </ul>
             </div>
 
-            <!-- X -->
             <div class="class-card">
-                <h2>📗 Clasa a X-a</h2>
+                <h2 style="color: #34d399;"><i class="fa-solid fa-bookmark"></i> Clasa a X-a</h2>
                 <ul>
                  <li><a href="subprograme.html">Subprograme și modularizare</a></li>
                  <li><a href="recursivitate.html">Recursivitate</a></li>
@@ -59,9 +107,8 @@
                 </ul>
             </div>
 
-            <!-- XI -->
             <div class="class-card">
-                <h2>Clasa a XI-a</h2>
+                <h2 style="color: #a855f7;"><i class="fa-solid fa-graduation-cap"></i> Clasa a XI-a</h2>
                 <ul>
                  <li><a href="backtracking.html">Metoda Backtracking</a></li>
                  <li><a href="greedy.html">Metoda Greedy</a></li>
