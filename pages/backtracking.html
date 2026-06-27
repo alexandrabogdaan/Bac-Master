@@ -33,7 +33,7 @@
         <section class="lesson-card">
             <h2>Introducere intuitivă</h2>
             <p>
-                Imaginează-ți că ești într-un labirint necunoscut și încerci să găsești ieșirea. Mergi înainte pe o potecă până când dai de un perete. Ce faci? Nu te blochezi acolo, ci te întorci la ultima intersecție și încerci o altă variantă. 
+                Imaginează-ți că ești într-un labirint necunoscut și încerci să găsești ieșirea. Mergi înainte pe o potecă până când dai de un perete. Ce definiție aplici? Nu te blochezi acolo, ci te întorci la ultima intersecție și încerci o altă variantă. 
             </p>
             <p>
                 Exact asta face și metoda <b>Backtracking</b> (în traducere: <i>„revenire pe drumul parcurs”</i>). Este o metodă algoritmică de parcurgere sistematică a tuturor soluțiilor posibile ale unei probleme. Ea construiește soluția pas cu pas, iar dacă la un moment dat constată că direcția aleasă nu poate duce la un rezultat corect, abandonează acea ramură și se întoarce înapoi pentru a încerca altceva.
@@ -55,32 +55,34 @@
         <section class="lesson-card">
             <h2>Tipuri de generări clasice la BAC</h2>
             <p>Pentru a rezolva rapid problemele grilă, trebuie să identifici ce structură combinatorică folosește enunțul:</p>
-            <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
-                <thead>
-                    <tr style="background-color: #f2f2f2;">
-                        <th style="padding: 8px;">Tipul generării</th>
-                        <th style="padding: 8px;">Regulă principală</th>
-                        <th style="padding: 8px;">Exemplu pentru {1, 2, 3}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 8px;"><b>Permutări</b></td>
-                        <td style="padding: 8px;">Se folosesc TOATE elementele, contează ordinea, cifrele nu se repetă.</td>
-                        <td style="padding: 8px;">(1,2,3), (1,3,2), (2,1,3)...</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 8px;"><b>Aranjamente</b></td>
-                        <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente din cele <i>n</i>, contează ordinea.</td>
-                        <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,1)...</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 8px;"><b>Combinări</b></td>
-                        <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente, ORDINEA NU CONTEAZĂ (sunt mereu în ordine strict crescătoare).</td>
-                        <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,3)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto;">
+                <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2; color: #111111;">
+                            <th style="padding: 8px;">Tipul generării</th>
+                            <th style="padding: 8px;">Regulă principală</th>
+                            <th style="padding: 8px;">Exemplu pentru {1, 2, 3}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px;"><b>Permutări</b></td>
+                            <td style="padding: 8px;">Se folosesc TOATE elementele, contează ordinea, cifrele nu se repetă.</td>
+                            <td style="padding: 8px;">(1,2,3), (1,3,2), (2,1,3)...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Aranjamente</b></td>
+                            <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente din cele <i>n</i>, contează ordinea.</td>
+                            <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,1)...</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Combinări</b></td>
+                            <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente, ORDINEA NU CONTEAZĂ (sunt mereu în ordine strict crescătoare).</td>
+                            <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section class="lesson-card">
@@ -106,7 +108,7 @@ void back(int k)
 
         <section class="lesson-card">
             <h2>Termeni importanți</h2>
-            <ul>
+            <ul style="padding-left: 25px; margin-left: 5px;">
                 <li><b>Condiții externe:</b> Mulțimea valorilor pe care le poate lua fiecare element x[k] în mod brut (de exemplu: cifre de la 0 la 9).</li>
                 <li><b>Condiții interne:</b> Filtrele logice care verifică dacă elementul ales păstrează soluția validă (de exemplu: x[k] să fie distinct de elementele anterioare).</li>
                 <li><b>Soluție finală:</b> Momentul în care vectorul este complet completat și îndeplinește criteriul problemei.</li>
@@ -128,9 +130,9 @@ void back(int k)
             <p>
                 Problema împarte vectorul soluție în două zone distincte: primele 3 poziții conțin numerele pare {2, 4, 6}, iar ultimele 3 poziții conțin numerele impare {1, 3, 5}.
             </p>
-            <ul>
+            <ul style="padding-left: 25px; margin-left: 5px;">
                 <li>Observăm că în primele 6 soluții oferite de enunț, prefixul format din cifrele pare rămâne complet blocat pe valoarea <code>(2, 4, 6)</code>.</li>
-                <li>În acest timp, sufixul format din cifre impare rulează prin toate cele 6 permutări posibile ale mulțimii {1, 3, 5} (adică 3! = 6 posibilități), ajungând la ultima sa variantă lexicografică, adică <code>(5, 3, 1)</code>.</li>
+                <li>În acest timp, sufixul format din cifre impare rulează prin toate cele 6 permutări posibile ale mulțimii {1, 3, 5}, ajungând la ultima sa variantă lexicografică, adică <code>(5, 3, 1)</code>.</li>
                 <li>Odată ce ramura numerelor impare s-a epuizat, algoritmul face <b>backtrack</b> la primele trei poziții pentru a modifica prefixul de numere pare.</li>
                 <li>Următoarea permutare lexicografică a mulțimii {2, 4, 6} după <code>(2, 4, 6)</code> este <b>(2, 6, 4)</b> (cifra 4 crește la următoarea valoare pară disponibilă, adică 6).</li>
                 <li>După stabilirea noului prefix, zona numerelor impare se resetează de la început, reluând prima permutare în ordine lexicografică: <code>(1, 3, 5)</code>.</li>
@@ -150,15 +152,15 @@ void back(int k)
 
             <p><b>Explicație pas cu pas:</b></p>
             <p>
-                Algoritmul generează numerele în ordine lexicografică strictă (exact ca într-un dicționar sau ordonare crescătoare). Să urmărim generarea ramurilor:
+                Algoritmul generează numerele în ordine lexicografică strictă (ordonare crescătoare). Să urmărim generarea ramurilor:
             </p>
-            <ul>
+            <ul style="padding-left: 25px; margin-left: 5px;">
                 <li><b>Soluția 1:</b> 1023 (Suma: 1+0+2+3 = 6)</li>
                 <li><b>Soluția 2:</b> 1032 (Suma: 1+0+3+2 = 6)</li>
                 <li><b>Soluția 3:</b> 105 (Suma: 1+0+5 = 6) &rarr; s-a încheiat ramura numerelor care încep cu prefixul <code>10...</code></li>
                 <li>Algoritmul avansează la următorul prefix posibil, adică <code>12...</code></li>
                 <li><b>Soluția 4:</b> 1203 (Suma: 1+2+0+3 = 6)</li>
-                <li><b>Soluția 5:</b> După 1203, algoritmul încearcă să modifice ultima poziție, dar nu mai sunt cifre valide. Face backtrack la lungimea de 3 cifre cu prefixul <code>12</code>. Următoarea cifră mai mare decât 0 este 3, obținându-se numărul <b>123</b> (Suma: 1+2+3 = 6). Aceasta este a 5-a soluție!</li>
+                <li><b>Soluția 5:</b> După 1203, algoritmul face backtrack la lungimea de 3 cifre cu prefixul <code>12</code>. Următoarea cifră mai mare decât 0 este 3, obținându-se numărul <b>123</b> (Suma: 1+2+3 = 6).</li>
                 <li><b>Soluția 6:</b> Ramura prefixului <code>12</code> fiind complet epuizată, algoritmul trece la prefixul următor, <code>13...</code>. Prima combinație validă de cifre distincte care adunate dau 6 este <b>1302</b> (Suma: 1+3+0+2 = 6).</li>
             </ul>
 
@@ -175,15 +177,15 @@ void back(int k)
 
             <p><b>Explicație pas cu pas:</b></p>
             <p>
-                Deoarece enunțul nu menționează că cifrele trebuie să fie distincte, înseamnă că elementele din mulțimea {1, 3, 5, 7, 9} se pot repeta în cadrul aceluiași număr. Generăm numerele crescător, pas cu pas:
+                Deoarece enunțul nu menționează că cifrele trebuie să fie distincte, înseamnă că elementele din mulțimea {1, 3, 5, 7, 9} se pot repeta. Generăm numerele crescător, pas cu pas:
             </p>
-            <ol>
+            <ol style="padding-left: 25px; margin-left: 5px;">
                 <li><b>Soluția 1:</b> 111</li>
                 <li><b>Soluția 2:</b> 113</li>
                 <li><b>Soluția 3:</b> 115</li>
                 <li><b>Soluția 4:</b> 117</li>
                 <li><b>Soluția 5:</b> 119</li>
-                <li><b>Soluția 6:</b> După ce ultima cifră a ajuns la valoarea maximă din mulțime (9), algoritmul face backtrack la poziția a doua. Cifra 1 de pe poziția a doua este înlocuită cu următoarea cifră impară, adică 3, iar ultima poziție se resetează la valoarea de pornire (1). Obținem numărul <b>131</b>.</li>
+                <li><b>Soluția 6:</b> După ce ultima cifră a ajuns la valoarea maximă (9), algoritmul face backtrack la poziția a doua. Cifra 1 de pe poziția a doua este înlocuită cu următoarea cifră impară (3), iar ultima poziție se resetează la valoarea de pornire (1). Obținem numărul <b>131</b>.</li>
             </ol>
 
             <p><b>Răspuns corect:</b> 131</p>
