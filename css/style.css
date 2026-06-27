@@ -17,7 +17,7 @@
 }
 
 /* Când JavaScript adaugă clasa .light-mode pe body, culorile se schimbă automat */
-body.light-mode {
+.light-mode {
     --bg: #f8fafc;                  /* Gri ultra-deschis spre alb */
     --surface: #f1f5f9;             /* Gri deschis pentru sidebar/TOC */
     --card: #ffffff;                /* Carduri complet albe */
