@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Arbori și Structuri Arborescente - Clasa a XI-a</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <main class="main lesson-page">
+
+        <section class="lesson-header">
+            <h1>Arbori (Structuri Arborescente)</h1>
+            <p>Tot ce trebuie să știi pentru BAC: Concepte, Vectorul de Tați și Arbori Binari</p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>1. Ce este un Arbore cu Rădăcină?</h2>
+            <p>
+                Un <b>arbore cu rădăcină</b> este un caz particular de graf neorientat, conex și aciclic, în care un nod special este desemnat ca fiind <b>rădăcină</b>. Rădăcina stabilește o ierarhie clară de tip „părinte-copil” în întreaga structură.
+            </p>
+            
+            
+
+            <p><b>Vocabularul obligatoriu pentru examen:</b></p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Rădăcină:</b> Nodul situat pe cel mai înalt nivel ierarhic (singurul nod care nu are un părinte).</li>
+                <li><b>Tată (Părinte):</b> Dacă există o muchie între nodul <i>u</i> și nodul <i>v</i>, iar <i>u</i> se află pe un nivel mai apropiat de rădăcină, atunci <code>u = tatăl lui v</code>.</li>
+                <li><b>Fiu (Copil):</b> În exemplul anterior, <code>v = fiul lui u</code>.</li>
+                <li><b>Frunză (Nod terminal):</b> Un nod care **nu are niciun fiu** (gradul său în ierarhie este 0).</li>
+                <li><b>Frați:</b> Nodurile care au același tată.</li>
+                <li><b>Ascendenți (Strămoși):</b> Toate nodurile aflate pe drumul unic de la un nod dat până la rădăcină.</li>
+                <li><b>Descendenți:</b> Toate nodurile care se află în subarborii generați de fiii unui nod dat.</li>
+                <li><b>Înălțimea arborelui:</b> Numărul maxim de muchii de la rădăcină până la cea mai îndepărtată frunză (sau numărul maxim de niveluri minus 1).</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>2. Reprezentarea în Memorie. Vectorul de Tați (T)</h2>
+            <p>
+                La BAC, cea mai importantă metodă de reprezentare a unui arbore cu rădăcină este <b>Vectorul de Tați</b> (notat de regulă cu <code>T</code>).
+            </p>
+            <p>
+                Este un vector cu <code>n</code> elemente (unde <code>n</code> este numărul de noduri), definit astfel:
+                <br>&bull; <code>T[i] = tatăl nodului i</code>
+                <br>&bull; <code>T[i] = 0</code>, dacă nodul <code>i</code> este chiar <b>rădăcina</b> arborelui.
+            </p>
+
+            <p><b>Exemplu practic:</b> Să presupunem că avem un arbore cu 7 noduri, unde rădăcina este nodul <b>4</b>. Structura lui este reprezentată de următorul vector de tați:</p>
+            
+            <div style="overflow-x: auto;">
+                <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: center;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2; color: #111111;">
+                            <th style="padding: 8px; width: 14%;">Nodul (i)</th>
+                            <th style="padding: 8px;">1</th>
+                            <th style="padding: 8px;">2</th>
+                            <th style="padding: 8px;">3</th>
+                            <th style="padding: 8px; background-color: #e2f0d9;">4</th>
+                            <th style="padding: 8px;">5</th>
+                            <th style="padding: 8px;">6</th>
+                            <th style="padding: 8px;">7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px;"><b>T[i]</b></td>
+                            <td style="padding: 8px;">4</td>
+                            <td style="padding: 8px;">1</td>
+                            <td style="padding: 8px;">1</td>
+                            <td style="padding: 8px; background-color: #e2f0d9; font-weight: bold;">0</td>
+                            <td style="padding: 8px;">4</td>
+                            <td style="padding: 8px;">5</td>
+                            <td style="padding: 8px;">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="lesson-card">
+            <h2>3. Cum rezolvi rapid întrebările grilă cu Vectorul de Tați</h2>
+            <p>Pe baza tabelului de mai sus, la Subiectul I se cer instantaneu următoarele proprietăți. Iată algoritmii logici rapizi:</p>
+            
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Cum găsești rădăcina?</b><br>
+                    Cauți poziția pe care se află valoarea <b>0</b>. În tabel, <code>T[4] = 0</code>, deci rădăcina este <b>4</b>.
+                </li>
+                <li><b>Cum găsești frunzele (nodurile terminale)?</b><br>
+                    Frunzele sunt nodurile care **NU apar deloc ca tați** în vectorul <code>T</code>. <br>
+                    <i>Analiză:</i> Valorile din vectorul <code>T</code> sunt: 4, 1, 0, 5. Numerele de la 1 la 7 care lipsesc cu desăvârșire sunt: <b>2, 3, 6, 7</b>. Acestea sunt frunzele arborelui!
+                </li>
+                <li><b>Cum găsești fiii unui nod x?</b><br>
+                    Sunt toate indicile <code>i</code> pentru care <code>T[i] == x</code>. <br>
+                    De exemplu, cine sunt fiii lui 4? Căutam unde apare valoarea 4 în vector. Apare pe pozițiile 1 și 5. Deci fiii lui 4 sunt <b>1 și 5</b>.
+                </li>
+                <li><b>Cum determini numărul de muchii?</b><br>
+                    Orice arbore cu <code>n</code> noduri are exact <b>n - 1 muchii</b>. Pentru exemplul nostru cu 7 noduri, numărul de muchii este mereu 6.
+                </li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>4. Arbori Binari (Structură specială)</h2>
+            <p>
+                Un <b>arbore binar</b> este un arbore cu rădăcină în care **fiecare nod poate avea maximum doi fii**: un fiu stâng și un fiu drept. Un nod poate avea 0, 1 sau 2 fii.
+            </p>
+
+            
+
+            <p><b>Metode de Parcurgere a Arborilor Binari (Subiect Clasificabil):</b></p>
+            <p>Parcurgerea reprezintă vizitarea fiecărui nod o singură dată. Există 3 strategii fundamentale bazate pe poziția Rădăcinii față de Subarborele Stâng (S) și Subarborele Drept (D):</p>
+            
+            <ol style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Preordine (RSD - Rădăcină, Stânga, Dreapta):</b> Se vizitează mai întâi rădăcina, apoi se parcurge recursiv subarborele stâng, apoi cel drept.</li>
+                <li><b>Inordine (SRD - Stânga, Rădăcină, Dreapta):</b> Se parcurge întâi subarborele stâng, se vizitează rădăcina, iar la final se parcurge subarborele drept.</li>
+                <li><b>Postordine (SDR - Stânga, Dreapta, Rădăcină):</b> Se parcurge mai întâi subarborele stâng, apoi cel drept, iar rădăcina este vizitată ultima.</li>
+            </ol>
+
+            <p><b>Exemplu rapid de parcurgere:</b> Pentru un arbore cu rădăcina 1, fiul stâng 2 (care are la rândul lui fiul stâng 4) și fiul drept 3:</p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Preordine (RSD):</b> 1, 2, 4, 3</li>
+                <li><b>Inordine (SRD):</b> 4, 2, 1, 3</li>
+                <li><b>Postordine (SDR):</b> 4, 2, 3, 1</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>5. Cum se declară un Arbore Binar în C++</h2>
+            <p>Dacă ai nevoie de o alocare dinamică la Subiectul al III-lea, se folosesc structurile cu pointeri către nodul stâng și drept:</p>
+<pre>
+struct Nod {
+    int info;
+    Nod *stâng;  // Pointer către fiul stâng
+    Nod *drept;  // Pointer către fiul drept
+};
+
+// Implementarea recursivă a parcurgerii în INORDINE (SRD)
+void inordine(Nod *r) {
+    if (r != NULL) {
+        inordine(r->stâng);  // S
+        cout << r->info << " ";  // R
+        inordine(r->drept);  // D
+    }
+}
+</pre>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Sfat pentru examenul de BAC</h2>
+            <p>
+                Când primești la Subiectul I un exercițiu cu un vector de tați, cel mai sigur mod de a nu greși este <b>să desenezi arborele pe ciornă</b>. Porniți de la nodul care are valoarea 0 (rădăcina), apoi căutați în tabel nodurile care îl au ca tată, desenându-le dedubtul său, nivel cu nivel. Vizualizarea grafică te va ajuta să răspunzi corect la orice întrebare legată de frunze, înălțime sau număr de descendenți.
+            </p>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
