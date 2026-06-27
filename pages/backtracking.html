@@ -10,7 +10,6 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
@@ -26,50 +25,79 @@
 
     <main class="main lesson-page">
 
-        <!-- HEADER -->
         <section class="lesson-header">
             <h1>Metoda Backtracking</h1>
-            <p>Teorie + probleme BAC rezolvate corect</p>
+            <p>Teorie completă + probleme de BAC explicate pas cu pas</p>
         </section>
 
-        <!-- TEORIE -->
         <section class="lesson-card">
-            <h2>Definiție</h2>
-
+            <h2>Introducere intuitivă</h2>
             <p>
-                Metoda backtracking este o metodă de parcurgere sistematică a tuturor soluțiilor posibile ale unei probleme,
-                construind soluția pas cu pas și renunțând la variantele care nu respectă condițiile impuse.
+                Imaginează-ți că ești într-un labirint necunoscut și încerci să găsești ieșirea. Mergi înainte pe o potecă până când dai de un perete. Ce faci? Nu te blochezi acolo, ci te întorci la ultima intersecție și încerci o altă variantă. 
+            </p>
+            <p>
+                Exact asta face și metoda <b>Backtracking</b> (în traducere: <i>„revenire pe drumul parcurs”</i>). Este o metodă algoritmică de parcurgere sistematică a tuturor soluțiilor posibile ale unei probleme. Ea construiește soluția pas cu pas, iar dacă la un moment dat constată că direcția aleasă nu poate duce la un rezultat corect, abandonează acea ramură și se întoarce înapoi pentru a încerca altceva.
             </p>
         </section>
 
         <section class="lesson-card">
-            <h2>Ideea metodei</h2>
-
+            <h2>Definiție și Ideea Metodei</h2>
             <p>
-                Se construiește un vector soluție <b>x[] = (x[1], x[2], ..., x[n])</b>, unde fiecare element
-                x[k] ia valori dintr-o mulțime de valori posibile.
+                Se construiește un vector soluție <b>x[] = (x[1], x[2], ..., x[n])</b>, unde fiecare element 
+                x[k] primește valori dintr-o mulțime specifică de elemente disponibile.
             </p>
-
             <p>
-                La fiecare pas:
-                alegem o valoare → verificăm → continuăm sau revenim.
+                <b>Mecanismul de bază la fiecare pas (k):</b><br>
+                Alegem o valoare pentru x[k] &rarr; Verificăm dacă este validă parțial &rarr; Dacă da, continuăm la pasul următor (k+1); dacă nu, încercăm următoarea valoare disponibilă sau revenim la pasul anterior (k-1).
             </p>
         </section>
 
         <section class="lesson-card">
-            <h2>Schemă generală</h2>
+            <h2>Tipuri de generări clasice la BAC</h2>
+            <p>Pentru a rezolva rapid problemele grilă, trebuie să identifici ce structură combinatorică folosește enunțul:</p>
+            <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="padding: 8px;">Tipul generării</th>
+                        <th style="padding: 8px;">Regulă principală</th>
+                        <th style="padding: 8px;">Exemplu pentru {1, 2, 3}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 8px;"><b>Permutări</b></td>
+                        <td style="padding: 8px;">Se folosesc TOATE elementele, contează ordinea, cifrele nu se repetă.</td>
+                        <td style="padding: 8px;">(1,2,3), (1,3,2), (2,1,3)...</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px;"><b>Aranjamente</b></td>
+                        <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente din cele <i>n</i>, contează ordinea.</td>
+                        <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,1)...</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px;"><b>Combinări</b></td>
+                        <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente, ORDINEA NU CONTEAZĂ (sunt mereu în ordine strict crescătoare).</td>
+                        <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,3)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
+        <section class="lesson-card">
+            <h2>Schemă generală (Implementare recursivă)</h2>
 <pre>
 void back(int k)
 {
-    for(i=A;i<=B;i++)
+    for(int i = A; i <= B; i++) // parcurgem valorile posibile
     {
-        x[k]=i;
+        x[k] = i; // selectăm valoarea
 
-        if(ok(k))
+        if(ok(k)) // condiția internă (validare parțială)
         {
-            if(solutie(k)) afis(k);
-            else back(k+1);
+            if(solutie(k)) 
+                afis(k); // am ajuns la o soluție finală
+            else 
+                back(k+1); // trecem la pasul următor
         }
     }
 }
@@ -78,27 +106,16 @@ void back(int k)
 
         <section class="lesson-card">
             <h2>Termeni importanți</h2>
-
             <ul>
-                <li><b>Condiții externe:</b> valorile posibile pentru x[k]</li>
-                <li><b>Condiții interne:</b> verificarea validității parțiale</li>
-                <li><b>Soluție finală:</b> vector complet corect</li>
+                <li><b>Condiții externe:</b> Mulțimea valorilor pe care le poate lua fiecare element x[k] în mod brut (de exemplu: cifre de la 0 la 9).</li>
+                <li><b>Condiții interne:</b> Filtrele logice care verifică dacă elementul ales păstrează soluția validă (de exemplu: x[k] să fie distinct de elementele anterioare).</li>
+                <li><b>Soluție finală:</b> Momentul în care vectorul este complet completat și îndeplinește criteriul problemei.</li>
             </ul>
         </section>
 
         <section class="lesson-card">
-            <h2>Schema de reținut</h2>
-
-            <p><b>Backtracking = alegere → verificare → revenire</b></p>
-        </section>
-
-        <!-- EXERCITII BAC -->
-
-        <section class="lesson-card">
             <h2>Exercițiul 1 (BAC 2025)</h2>
-
             <p><b>Enunț:</b></p>
-
             <p>
                 Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate
                 {1, 2, 3, 4, 5, 6}; pentru fiecare permutare, pe primele trei poziții sunt doar valori pare,
@@ -107,65 +124,76 @@ void back(int k)
                 Indicați a șaptea soluție generată.
             </p>
 
-            <p><b>Rezolvare:</b></p>
-
+            <p><b>Explicație pas cu pas:</b></p>
             <p>
-                Primele trei poziții rămân fixe (2,4,6), iar ultimele 3 sunt permutări ale numerelor impare.
-                După epuizarea permutărilor impare, algoritmul modifică prefixul.
+                Problema împarte vectorul soluție în două zone distincte: primele 3 poziții conțin numerele pare {2, 4, 6}, iar ultimele 3 poziții conțin numerele impare {1, 3, 5}.
             </p>
+            <ul>
+                <li>Observăm că în primele 6 soluții oferite de enunț, prefixul format din cifrele pare rămâne complet blocat pe valoarea <code>(2, 4, 6)</code>.</li>
+                <li>În acest timp, sufixul format din cifre impare rulează prin toate cele 6 permutări posibile ale mulțimii {1, 3, 5} (adică 3! = 6 posibilități), ajungând la ultima sa variantă lexicografică, adică <code>(5, 3, 1)</code>.</li>
+                <li>Odată ce ramura numerelor impare s-a epuizat, algoritmul face <b>backtrack</b> la primele trei poziții pentru a modifica prefixul de numere pare.</li>
+                <li>Următoarea permutare lexicografică a mulțimii {2, 4, 6} după <code>(2, 4, 6)</code> este <b>(2, 6, 4)</b> (cifra 4 crește la următoarea valoare pară disponibilă, adică 6).</li>
+                <li>După stabilirea noului prefix, zona numerelor impare se resetează de la început, reluând prima permutare în ordine lexicografică: <code>(1, 3, 5)</code>.</li>
+            </ul>
 
-            <p><b>Răspuns:</b> (4,2,6,1,3,5)</p>
+            <p><b>Răspuns corect:</b> (2, 6, 4, 1, 3, 5)</p>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 2 (BAC 2024)</h2>
-
             <p><b>Enunț:</b></p>
-
             <p>
                 Utilizând metoda backtracking se generează toate numerele formate din cifre distincte,
                 cifre a căror sumă este 6. Primele patru soluții generate sunt, în această ordine:
                 1023, 1032, 105, 1203. Indicați cea de a șasea soluție generată.
             </p>
 
-            <p><b>Rezolvare:</b></p>
-
+            <p><b>Explicație pas cu pas:</b></p>
             <p>
-                Se generează numerele în ordine lexicografică a construcției backtracking.
-                După 1203 continuă ramurile valide până la următoarea soluție.
+                Algoritmul generează numerele în ordine lexicografică strictă (exact ca într-un dicționar sau ordonare crescătoare). Să urmărim generarea ramurilor:
             </p>
+            <ul>
+                <li><b>Soluția 1:</b> 1023 (Suma: 1+0+2+3 = 6)</li>
+                <li><b>Soluția 2:</b> 1032 (Suma: 1+0+3+2 = 6)</li>
+                <li><b>Soluția 3:</b> 105 (Suma: 1+0+5 = 6) &rarr; s-a încheiat ramura numerelor care încep cu prefixul <code>10...</code></li>
+                <li>Algoritmul avansează la următorul prefix posibil, adică <code>12...</code></li>
+                <li><b>Soluția 4:</b> 1203 (Suma: 1+2+0+3 = 6)</li>
+                <li><b>Soluția 5:</b> După 1203, algoritmul încearcă să modifice ultima poziție, dar nu mai sunt cifre valide. Face backtrack la lungimea de 3 cifre cu prefixul <code>12</code>. Următoarea cifră mai mare decât 0 este 3, obținându-se numărul <b>123</b> (Suma: 1+2+3 = 6). Aceasta este a 5-a soluție!</li>
+                <li><b>Soluția 6:</b> Ramura prefixului <code>12</code> fiind complet epuizată, algoritmul trece la prefixul următor, <code>13...</code>. Prima combinație validă de cifre distincte care adunate dau 6 este <b>1302</b> (Suma: 1+3+0+2 = 6).</li>
+            </ul>
 
-            <p><b>Răspuns:</b> 123</p>
+            <p><b>Răspuns corect:</b> 1302</p>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 3 (BAC 2021)</h2>
-
             <p><b>Enunț:</b></p>
-
             <p>
                 Se generează toate numerele de 3 cifre formate doar din cifre impare (1, 3, 5, 7, 9),
-                utilizând metoda backtracking. Primele soluții generate sunt în ordine de parcurgere.
-                Se cere a șasea soluție generată.
+                utilizând metoda backtracking. Se cere a șasea soluție generată.
             </p>
 
-            <p><b>Rezolvare:</b></p>
-
+            <p><b>Explicație pas cu pas:</b></p>
             <p>
-                Se construiesc toate combinațiile de 3 cifre din mulțimea {1,3,5,7,9}, în ordine crescătoare.
-                Se numără soluțiile până la poziția cerută.
+                Deoarece enunțul nu menționează că cifrele trebuie să fie distincte, înseamnă că elementele din mulțimea {1, 3, 5, 7, 9} se pot repeta în cadrul aceluiași număr. Generăm numerele crescător, pas cu pas:
             </p>
+            <ol>
+                <li><b>Soluția 1:</b> 111</li>
+                <li><b>Soluția 2:</b> 113</li>
+                <li><b>Soluția 3:</b> 115</li>
+                <li><b>Soluția 4:</b> 117</li>
+                <li><b>Soluția 5:</b> 119</li>
+                <li><b>Soluția 6:</b> După ce ultima cifră a ajuns la valoarea maximă din mulțime (9), algoritmul face backtrack la poziția a doua. Cifra 1 de pe poziția a doua este înlocuită cu următoarea cifră impară, adică 3, iar ultima poziție se resetează la valoarea de pornire (1). Obținem numărul <b>131</b>.</li>
+            </ol>
 
-            <p><b>Răspuns:</b> 135
-            </p>
+            <p><b>Răspuns corect:</b> 131</p>
         </section>
 
         <section class="lesson-card">
-            <h2>Concluzie</h2>
-
+            <h2>Concluzie pentru examen</h2>
             <p>
-                La BAC, backtracking nu se rezolvă prin implementare completă, ci prin analiza ordinii de generare
-                a soluțiilor și înțelegerea restricțiilor.
+                La BAC, problemele de backtracking de la subiectul I nu cer să scrii cod complet, ci să înțelegi 
+                <b>ordinea lexicografică</b> și modul în care se modifică elementele de la dreapta la stânga în momentul unei reveniri (backtrack). Regula de aur: <i>Schimbă ultima poziție; dacă s-a epuizat, mergi cu un pas la stânga, mărește valoarea și o ia de la capăt!</i>
             </p>
         </section>
 
