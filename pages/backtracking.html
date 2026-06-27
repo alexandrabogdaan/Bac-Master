@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Backtracking - Teorie și BAC</title>
+    <title>Metoda Backtracking - Clasa a XI-a</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -24,40 +24,35 @@
         </nav>
     </aside>
 
-    <!-- MAIN -->
     <main class="main lesson-page">
 
         <!-- HEADER -->
         <section class="lesson-header">
             <h1>Metoda Backtracking</h1>
-            <p>Teorie + aplicații pentru examenul de Bacalaureat</p>
+            <p>Teorie + probleme BAC rezolvate corect</p>
         </section>
 
         <!-- TEORIE -->
         <section class="lesson-card">
-            <h2>Ce este backtracking?</h2>
+            <h2>Definiție</h2>
 
             <p>
-                Backtracking este o metodă de rezolvare a problemelor în care se construiește
-                soluția pas cu pas, iar dacă o alegere nu este validă, se revine la pasul anterior
-                și se încearcă altă variantă.
-            </p>
-
-            <p>
-                Metoda este folosită pentru generarea tuturor soluțiilor posibile ale unei probleme.
+                Metoda backtracking este o metodă de parcurgere sistematică a tuturor soluțiilor posibile ale unei probleme,
+                construind soluția pas cu pas și renunțând la variantele care nu respectă condițiile impuse.
             </p>
         </section>
 
         <section class="lesson-card">
-            <h2>Ideea de bază</h2>
+            <h2>Ideea metodei</h2>
 
             <p>
-                Soluția unei probleme este reprezentată sub forma unui vector:
-                <b>x[] = (x[1], x[2], ..., x[n])</b>.
+                Se construiește un vector soluție <b>x[] = (x[1], x[2], ..., x[n])</b>, unde fiecare element
+                x[k] ia valori dintr-o mulțime de valori posibile.
             </p>
 
             <p>
-                Fiecare element x[k] ia valori dintr-o mulțime de valori posibile.
+                La fiecare pas:
+                alegem o valoare → verificăm → continuăm sau revenim.
             </p>
         </section>
 
@@ -82,129 +77,95 @@ void back(int k)
         </section>
 
         <section class="lesson-card">
-            <h2>Noțiuni importante</h2>
+            <h2>Termeni importanți</h2>
 
             <ul>
                 <li><b>Condiții externe:</b> valorile posibile pentru x[k]</li>
-                <li><b>Condiții interne:</b> validarea alegerii curente</li>
-                <li><b>Soluție finală:</b> vector complet valid</li>
+                <li><b>Condiții interne:</b> verificarea validității parțiale</li>
+                <li><b>Soluție finală:</b> vector complet corect</li>
             </ul>
         </section>
 
         <section class="lesson-card">
-            <h2>Regula de bază</h2>
+            <h2>Schema de reținut</h2>
 
-            <p>
-                Backtracking = alegere + verificare + revenire.
-            </p>
-        </section>
-
-        <!-- APLICAȚII BAC -->
-        <section class="lesson-card">
-            <h2>Aplicații la Bacalaureat</h2>
-
-            <p>
-                La BAC, problemele de backtracking NU cer rularea completă a algoritmului,
-                ci doar înțelegerea ordinii de generare a soluțiilor.
-            </p>
-        </section>
-
-        <section class="lesson-card">
-            <h2>Schema de rezolvare la BAC</h2>
-
-            <ul>
-                <li>1. Identifici tipul problemei (permutări / numere / combinări)</li>
-                <li>2. Observi mulțimea de valori</li>
-                <li>3. Identifici restricțiile (par/impar, poziții fixe, sumă etc.)</li>
-                <li>4. Determini ordinea de generare</li>
-                <li>5. Cauți soluția cerută (a k-a / ultima)</li>
-            </ul>
-        </section>
-
-        <section class="lesson-card">
-            <h2>Regulă importantă</h2>
-
-            <p>
-                NU se construiește complet arborele backtracking.
-                Se urmărește doar ordinea de apariție a soluțiilor.
-            </p>
+            <p><b>Backtracking = alegere → verificare → revenire</b></p>
         </section>
 
         <!-- EXERCITII BAC -->
+
         <section class="lesson-card">
             <h2>Exercițiul 1 (BAC 2025)</h2>
 
-            <p>
-                Se generează permutări ale mulțimii {1,2,3,4,5,6}, astfel încât:
-                primele 3 poziții sunt pare, ultimele 3 sunt impare.
-            </p>
-
-<pre>
-(2,4,6,1,3,5)
-(2,4,6,1,5,3)
-(2,4,6,3,1,5)
-(2,4,6,3,5,1)
-(2,4,6,5,1,3)
-(2,4,6,5,3,1)
-</pre>
+            <p><b>Enunț:</b></p>
 
             <p>
-                A 7-a permutare este:
-                <b>(4,2,6,1,3,5)</b>
+                Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate
+                {1, 2, 3, 4, 5, 6}; pentru fiecare permutare, pe primele trei poziții sunt doar valori pare,
+                iar pe ultimele trei poziții sunt doar valori impare. Primele șase soluții generate sunt:
+                (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1).
+                Indicați a șaptea soluție generată.
             </p>
+
+            <p><b>Rezolvare:</b></p>
+
+            <p>
+                Primele trei poziții rămân fixe (2,4,6), iar ultimele 3 sunt permutări ale numerelor impare.
+                După epuizarea permutărilor impare, algoritmul modifică prefixul.
+            </p>
+
+            <p><b>Răspuns:</b> (4,2,6,1,3,5)</p>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 2 (BAC 2024)</h2>
 
-            <p>
-                Se generează numere cu cifre distincte astfel încât suma cifrelor să fie 6.
-            </p>
-
-<pre>
-1023
-1032
-105
-1203
-</pre>
+            <p><b>Enunț:</b></p>
 
             <p>
-                A 6-a soluție este:
-                <b>123</b>
+                Utilizând metoda backtracking se generează toate numerele formate din cifre distincte,
+                cifre a căror sumă este 6. Primele patru soluții generate sunt, în această ordine:
+                1023, 1032, 105, 1203. Indicați cea de a șasea soluție generată.
             </p>
+
+            <p><b>Rezolvare:</b></p>
+
+            <p>
+                Se generează numerele în ordine lexicografică a construcției backtracking.
+                După 1203 continuă ramurile valide până la următoarea soluție.
+            </p>
+
+            <p><b>Răspuns:</b> 123</p>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 3 (BAC 2021)</h2>
 
+            <p><b>Enunț:</b></p>
+
             <p>
-                Se generează numere cu cifre distincte astfel încât suma cifrelor să fie 6.
+                Se generează toate numerele de 3 cifre formate doar din cifre impare (1, 3, 5, 7, 9),
+                utilizând metoda backtracking. Primele soluții generate sunt în ordine de parcurgere.
+                Se cere a șasea soluție generată.
             </p>
 
-<pre>
-1023
-1032
-105
-1203
-</pre>
+            <p><b>Rezolvare:</b></p>
 
             <p>
-                A 6-a soluție este:
-                <b>132</b>
+                Se construiesc toate combinațiile de 3 cifre din mulțimea {1,3,5,7,9}, în ordine crescătoare.
+                Se numără soluțiile până la poziția cerută.
+            </p>
+
+            <p><b>Răspuns:</b> 135
             </p>
         </section>
 
-        <!-- CONCLUZIE -->
         <section class="lesson-card">
             <h2>Concluzie</h2>
 
             <p>
-                Backtracking la BAC nu înseamnă implementare completă,
-                ci înțelegerea ordinii de generare a soluțiilor.
-            </p>
-
-            <p>
-                Cheia: tip problemă + restricții + ordine lexicografică.
+                La BAC, backtracking nu se rezolvă prin implementare completă, ci prin analiza ordinii de generare
+                a soluțiilor și înțelegerea restricțiilor.
             </p>
         </section>
 
