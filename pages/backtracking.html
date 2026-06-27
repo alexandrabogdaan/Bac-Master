@@ -2,8 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Backtracking - Clasa a XI-a</title>
-
+    <title>Backtracking - Teorie și BAC</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -31,113 +30,48 @@
         <!-- HEADER -->
         <section class="lesson-header">
             <h1>Metoda Backtracking</h1>
-            <p>Algoritmi de căutare sistematică a tuturor soluțiilor posibile.</p>
+            <p>Teorie + aplicații pentru examenul de Bacalaureat</p>
         </section>
 
-        <!-- INTRODUCERE -->
+        <!-- TEORIE -->
         <section class="lesson-card">
             <h2>Ce este backtracking?</h2>
 
             <p>
-                Backtracking este o metodă de rezolvare a problemelor care constă în
-                generarea tuturor soluțiilor posibile, construite pas cu pas, și eliminarea
-                celor care nu respectă condițiile problemei.
+                Backtracking este o metodă de rezolvare a problemelor în care se construiește
+                soluția pas cu pas, iar dacă o alegere nu este validă, se revine la pasul anterior
+                și se încearcă altă variantă.
             </p>
 
             <p>
-                Algoritmul explorează toate variantele posibile, dar renunță (face „backtrack”)
-                atunci când o soluție parțială devine invalidă.
+                Metoda este folosită pentru generarea tuturor soluțiilor posibile ale unei probleme.
             </p>
         </section>
 
-        <!-- IDEEA -->
         <section class="lesson-card">
-            <h2>Ideea algoritmului</h2>
+            <h2>Ideea de bază</h2>
 
             <p>
-                Backtracking construiește soluția treptat, alegând pe rând valori dintr-un set.
-                Dacă la un moment dat o alegere nu este validă, algoritmul revine la pasul anterior
-                și încearcă altă variantă.
+                Soluția unei probleme este reprezentată sub forma unui vector:
+                <b>x[] = (x[1], x[2], ..., x[n])</b>.
             </p>
 
             <p>
-                Este similar cu explorarea unui arbore de soluții.
+                Fiecare element x[k] ia valori dintr-o mulțime de valori posibile.
             </p>
         </section>
 
-        <!-- APLICAȚII -->
         <section class="lesson-card">
-            <h2>Aplicații ale backtracking-ului</h2>
-
-            <ul>
-                <li>generarea permutărilor</li>
-                <li>problema reginelor (N-Queens)</li>
-                <li>aranjamente și combinații</li>
-                <li>probleme de tip sudoku</li>
-                <li>probleme de parcurgere a grafurilor</li>
-            </ul>
-        </section>
-
-        <!-- EXEMPLU SIMPLU -->
-        <section class="lesson-card">
-            <h2>Exemplu simplu - generarea numerelor</h2>
-
-            <p>
-                Se generează toate numerele de 2 cifre folosind cifrele 1, 2 și 3.
-            </p>
-
-            <pre>
-#include <iostream>
-using namespace std;
-
-int x[10];
-
-void afis(int k)
-{
-    int i;
-    for (i=1; i<=k; i++)
-        cout<<x[i]<<" ";
-    cout<<endl;
-}
-void bkt(int k)
-{
-    int i;
-    for (i=1; i<=3; i++)
-    {
-        x[k]=i;
-        if (k==2) afis(k);
-            else bkt(k+1);
-    }
-}
-int main()
-{
-    bkt(1);
-    return 0;
-}
-            </pre>
-
-        </section>
-
-    </main>
-</div>
-                <!-- BACKTRACKING - SCHEMĂ GENERALĂ -->
-        <section class="lesson-card">
-            <h2>Schemă generală Backtracking</h2>
-
-            <p>
-                Majoritatea problemelor de backtracking pot fi rezolvate folosind o structură recursivă generală.
-            </p>
+            <h2>Schemă generală</h2>
 
 <pre>
-int x[100];
-
 void back(int k)
 {
-    for(i=1;i<=n;i++)
+    for(i=A;i<=B;i++)
     {
         x[k]=i;
 
-        if(valid(k))
+        if(ok(k))
         {
             if(solutie(k)) afis(k);
             else back(k+1);
@@ -145,182 +79,137 @@ void back(int k)
     }
 }
 </pre>
+        </section>
 
-            <p>
-                Unde:
-            </p>
+        <section class="lesson-card">
+            <h2>Noțiuni importante</h2>
 
             <ul>
-                <li><b>valid(k)</b> verifică dacă alegerea este corectă</li>
-                <li><b>solutie(k)</b> verifică dacă am ajuns la o soluție completă</li>
+                <li><b>Condiții externe:</b> valorile posibile pentru x[k]</li>
+                <li><b>Condiții interne:</b> validarea alegerii curente</li>
+                <li><b>Soluție finală:</b> vector complet valid</li>
             </ul>
         </section>
 
-        <!-- PERMUTĂRI -->
         <section class="lesson-card">
-            <h2>Generarea permutărilor</h2>
+            <h2>Regula de bază</h2>
 
             <p>
-                Permutările unui set de n elemente reprezintă toate ordonările posibile ale acestora.
+                Backtracking = alegere + verificare + revenire.
+            </p>
+        </section>
+
+        <!-- APLICAȚII BAC -->
+        <section class="lesson-card">
+            <h2>Aplicații la Bacalaureat</h2>
+
+            <p>
+                La BAC, problemele de backtracking NU cer rularea completă a algoritmului,
+                ci doar înțelegerea ordinii de generare a soluțiilor.
+            </p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Schema de rezolvare la BAC</h2>
+
+            <ul>
+                <li>1. Identifici tipul problemei (permutări / numere / combinări)</li>
+                <li>2. Observi mulțimea de valori</li>
+                <li>3. Identifici restricțiile (par/impar, poziții fixe, sumă etc.)</li>
+                <li>4. Determini ordinea de generare</li>
+                <li>5. Cauți soluția cerută (a k-a / ultima)</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Regulă importantă</h2>
+
+            <p>
+                NU se construiește complet arborele backtracking.
+                Se urmărește doar ordinea de apariție a soluțiilor.
+            </p>
+        </section>
+
+        <!-- EXERCITII BAC -->
+        <section class="lesson-card">
+            <h2>Exercițiul 1 (BAC 2025)</h2>
+
+            <p>
+                Se generează permutări ale mulțimii {1,2,3,4,5,6}, astfel încât:
+                primele 3 poziții sunt pare, ultimele 3 sunt impare.
             </p>
 
 <pre>
-int x[10], f[10], n=3;
-
-void back(int k)
-{
-    for(i=1;i<=n;i++)
-    {
-        if(f[i]==0)
-        {
-            x[k]=i;
-            f[i]=1;
-
-            if(k==n) afis(k);
-            else back(k+1);
-
-            f[i]=0;
-        }
-    }
-}
+(2,4,6,1,3,5)
+(2,4,6,1,5,3)
+(2,4,6,3,1,5)
+(2,4,6,3,5,1)
+(2,4,6,5,1,3)
+(2,4,6,5,3,1)
 </pre>
 
             <p>
-                Vectorul <b>f</b> marchează elementele deja folosite.
-            </p>
-        </section>        <!-- PROBLEME TIP BAC -->
-        <section class="lesson-card">
-            <h2>Probleme tip BAC</h2>
-
-            <p>
-                În problemele de backtracking de la BAC, cel mai des se cer:
-            </p>
-
-            <ul>
-                <li>generarea tuturor permutărilor</li>
-                <li>generarea combinațiilor</li>
-                <li>aranjamente cu condiții</li>
-                <li>numere cu cifre date</li>
-            </ul>
-
-            <p>
-                Ideea este mereu aceeași: construim soluția pas cu pas și verificăm condițiile.
+                A 7-a permutare este:
+                <b>(4,2,6,1,3,5)</b>
             </p>
         </section>
 
-        <!-- EXEMPLU BAC -->
         <section class="lesson-card">
-            <h2>Exemplu tip BAC - numere cu cifre impare</h2>
+            <h2>Exercițiul 2 (BAC 2024)</h2>
 
             <p>
-                Se generează toate numerele de 3 cifre formate doar din cifre impare (1, 3, 5, 7, 9).
+                Se generează numere cu cifre distincte astfel încât suma cifrelor să fie 6.
             </p>
 
 <pre>
-int x[10];
-
-void afis(int k)
-{
-    for(i=1;i<=k;i++)
-        cout<<x[i];
-    cout<<endl;
-}
-
-void back(int k)
-{
-    for(i=1;i<=5;i++)
-    {
-        x[k]=2*i-1;
-
-        if(k==3) afis(k);
-        else back(k+1);
-    }
-}
-
-int main()
-{
-    back(1);
-    return 0;
-}
+1023
+1032
+105
+1203
 </pre>
-        </section>
 
-        <!-- GREȘELI FRECVENTE -->
-        <section class="lesson-card">
-            <h2>Greșeli frecvente</h2>
-
-            <ul>
-                <li>uitarea condiției de oprire (if(k==n))</li>
-                <li>neutilizarea validării în probleme mai complexe</li>
-                <li>folosirea incorectă a vectorului de frecvență</li>
-                <li>confuzia între permutări și combinații</li>
-            </ul>
-        </section>
-
-        <!-- SCHEMĂ DE REȚINUT -->
-        <section class="lesson-card">
-            <h2>Schema de reținut - Backtracking</h2>
-
-            <p><b>1. Ideea de bază:</b></p>
             <p>
-                Construim soluția pas cu pas și revenim dacă o alegere nu este bună.
+                A 6-a soluție este:
+                <b>123</b>
+            </p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Exercițiul 3 (BAC 2021)</h2>
+
+            <p>
+                Se generează numere cu cifre distincte astfel încât suma cifrelor să fie 6.
             </p>
 
-            <p><b>2. Structura generală:</b></p>
-
 <pre>
-void back(int k)
-{
-    for(i=1;i<=n;i++)
-    {
-        x[k]=i;
-
-        if(valid(k))
-        {
-            if(solutie(k)) afis(k);
-            else back(k+1);
-        }
-    }
-}
+1023
+1032
+105
+1203
 </pre>
 
-            <p><b>3. Tipuri importante:</b></p>
-
-            <ul>
-                <li>Permutări → toate elementele o singură dată</li>
-                <li>Combinații → alegere fără ordine</li>
-                <li>Aranjamente → alegere cu ordine</li>
-            </ul>
-
-            <p><b>4. Ideea-cheie:</b></p>
             <p>
-                Backtracking = încercare + verificare + revenire
+                A 6-a soluție este:
+                <b>132</b>
+            </p>
+        </section>
+
+        <!-- CONCLUZIE -->
+        <section class="lesson-card">
+            <h2>Concluzie</h2>
+
+            <p>
+                Backtracking la BAC nu înseamnă implementare completă,
+                ci înțelegerea ordinii de generare a soluțiilor.
+            </p>
+
+            <p>
+                Cheia: tip problemă + restricții + ordine lexicografică.
             </p>
         </section>
 
     </main>
 </div>
-        <!-- COMBINAȚII -->
-        <section class="lesson-card">
-            <h2>Generarea combinațiilor</h2>
-<pre>
-int x[10], n=5, k=3;
-void back(int p)
-{
-    for(i=x[p-1]+1;i<=n;i++)
-    {
-        x[p]=i;
-
-        if(p==k) afis(p);
-        else back(p+1);
-    }
-}
-</pre>
-
-            <p>
-                Se generează combinațiile de <b>k</b> elemente dintr-un set de <b>n</b>.
-            </p>
-        </section>
 
 </body>
 </html>
