@@ -5,6 +5,41 @@
     <title>Setări - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Stil simplu pentru butonul de toggle */
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Schimbăm aspectul butonului când suntem în Light Mode */
+        body.light-mode .theme-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a202c;
+        }
+        body.light-mode .theme-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
@@ -27,13 +62,61 @@
         <h1>⚙️ Setări</h1>
 
         <div class="module-card">
-            <h3>Tema</h3>
-            <p>Dark mode activ</p>
+            <h3>Tema Interfeței</h3>
+            <p id="theme-status">Dark mode activ</p>
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fa-solid fa-sun"></i> Schimbă Tema
+            </button>
         </div>
 
     </main>
 
 </div>
 
+<script>
+    // Selectăm elementele necesare
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeStatus = document.getElementById('theme-status');
+    const icon = themeToggleBtn.querySelector('i');
+
+    // Funcție pentru a actualiza textul și pictograma în funcție de starea curentă
+    function updateUI(isLight) {
+        if (isLight) {
+            themeStatus.textContent = 'Light mode activ';
+            icon.className = 'fa-solid fa-moon'; // Afișăm luna când ești pe light ca să poți trece pe dark
+        } else {
+            themeStatus.textContent = 'Dark mode activ';
+            icon.className = 'fa-solid fa-sun'; // Afișăm soarele când ești pe dark ca să poți trece pe light
+        }
+    }
+
+    // Verificăm dacă utilizatorul a salvat anterior o preferință în browser
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+        updateUI(true);
+    } else {
+        updateUI(false);
+    }
+
+    // Ascultăm evenimentul de click pe buton
+    themeToggleBtn.addEventListener('click', () => {
+        // Schimbăm clasa pe elementul body
+        document.body.classList.toggle('light-mode');
+        
+        // Verificăm noua stare
+        const isLightActive = document.body.classList.contains('light-mode');
+        
+        // Salvăm starea în localStorage pentru a fi reținută pe tot site-ul
+        if (isLightActive) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        // Actualizăm interfața butonului
+        updateUI(isLightActive);
+    });
+</script>
 </body>
 </html>
