@@ -1,3 +1,10 @@
+Ah, ai perfectă dreptate! M-a furat valul cu sintaxa de matematică și am uitat că browserul nu știe să traducă simbolurile de dolar (`$`) în mod nativ fără o librărie specială (cum e MathJax). Din cauza asta, în loc să apară puteri sau indici, textul se vedea brut și destul de urât.
+
+Am curățat complet codul de semnele de dolar și am folosit taguri native de HTML (`<sup>` pentru exponenți și `<i>` pentru variabile). Acum totul se va randa curat, elegant și perfect lizibil direct în pagină.
+
+Iată codul HTML final și corectat:
+
+```html
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -36,10 +43,10 @@
                 Metoda Greedy (<i>„lacomă”</i>) este o metodă parțială de optimizare care poate fi utilizată în rezolvarea problemelor de următorul tip:
             </p>
             <p style="background-color: rgba(255,255,255,0.05); padding: 15px; border-left: 4px solid #007bff; margin-left: 5px;">
-                <b>Modelul matematic:</b> Se dă o mulțime $A$. Să se determine o submulțime $B$ a lui $A$ ($B \subseteq A$) astfel încât să fie îndeplinite anumite condiții specifice, depinzând de problema propriu-zisă.
+                <b>Modelul matematic:</b> Se dă o mulțime <i>A</i>. Să se determine o submulțime <i>B</i> a lui <i>A</i> (<i>B</i> &sube; <i>A</i>) astfel încât să fie îndeplinite anumite condiții specifice, depinzând de problema propriu-zisă.
             </p>
             <p>
-                Altfel spus, pornim de la o mulțime vidă și adăugăm în mod repetat în submulțimea soluție $B$ elemente din $A$ până când acest lucru nu mai este posibil.
+                Altfel spus, pornim de la o mulțime vidă și adăugăm în mod repetat în submulțimea soluție <i>B</i> elemente din <i>A</i> până când acest lucru nu mai este posibil.
             </p>
         </section>
 
@@ -62,16 +69,16 @@ Execută
     SfârșitDacă
 Cât timp terminat = FALSE
 </pre>
-            <p><i>Observație privind codul:</i> În practică, pentru majoritatea problemelor, algoritmul parcurge elementele mulțimii $A$ deja sortate anterior după un criteriu bine stabilit.</p>
+            <p><i>Observație privind codul:</i> În practică, pentru majoritatea problemelor, algoritmul parcurge elementele mulțimii <i>A</i> deja sortate anterior după un criteriu bine stabilit.</p>
         </section>
 
         <section class="lesson-card">
             <h2>Observații Critice și Caracteristici</h2>
             <ul style="padding-left: 25px; margin-left: 5px;">
-                <li><b>Optimul Local:</b> Stabilirea elementului care va fi adăugat în soluția $B$ se face alegându-l pe cel mai bun din acel moment. Din acest motiv metoda se numește <i>Greedy</i> (lacomă).</li>
-                <li><b>Irevocabilitate:</b> După adăugarea în soluția $B$ a unui anumit element, acesta va rămâne în soluție până la final. <b>Nu există un mecanism de revenire</b> (backtrack) la un pas anterior!</li>
-                <li><b>Corectitudine relativă:</b> Alegerea optimului local nu duce întotdeauna la cea mai bună soluție globală. Metoda Greedy <b>nu este întotdeauna corectă</b> pentru orice problemă. Schema sa este destul de vagă și nu poate fi standardizată printr-un șablon rigid de cod.</li>
-                <li><b>Eficiență computațională:</b> Complexitatea metodei este de regulă polinomială &ndash; $O(n^k)$, unde $k$ este o constantă (cel mai adesea determinată de algoritmul de sortare utilizat inițial, de exemplu $O(n \log n)$).</li>
+                <li><b>Optimul Local:</b> Stabilirea elementului care va fi adăugat în soluția <i>B</i> se face alegându-l pe cel mai bun din acel moment. Din acest motiv metoda se numește <i>Greedy</i> (lacomă).</li>
+                <li><b>Irevocabilitate:</b> După adăugarea în soluția <i>B</i> a unui anumit element, acesta va rămâne în soluție până la final. <b>Nu există un mecanism de revenire</b> (backtrack) la un pas anterior!</li>
+                <li><b>Corectitudine relativă:</b> Alegerea optimului local nu duce întotdeauna la cea mai bună soluție globală. Metoda Greedy <b>nu este întotdeauna corectă</b> pentru orice problemă. Schema sa este destul de văgă și nu poate fi standardizată printr-un șablon rigid de cod.</li>
+                <li><b>Eficiență computațională:</b> Complexitatea metodei este de regulă polinomială &ndash; <b>O(n<sup>k</sup>)</b>, unde <b>k</b> este o constantă (cel mai adesea determinată de algoritmul de sortare utilizat inițial, de exemplu <b>O(n log n)</b>).</li>
             </ul>
         </section>
 
@@ -134,8 +141,8 @@ Cât timp terminat = FALSE
                         </tr>
                         <tr>
                             <td style="padding: 8px;"><b>Timp de rulare</b></td>
-                            <td style="padding: 8px;">Exponențial (Foarte lent: $O(2^n)$ sau $O(n!)$)</td>
-                            <td style="padding: 8px;">Polinomial (Foarte rapid: de regulă $O(n \log n)$)</td>
+                            <td style="padding: 8px;">Exponențial (Foarte lent: O(2<sup>n</sup>) sau O(n!))</td>
+                            <td style="padding: 8px;">Polinomial (Foarte rapid: de regulă O(n log n))</td>
                         </tr>
                     </tbody>
                 </table>
