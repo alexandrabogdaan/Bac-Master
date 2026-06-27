@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Teoria Grafurilor - Clasa a XI-a</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <main class="main lesson-page">
+
+        <section class="lesson-header">
+            <h1>Teoria Grafurilor</h1>
+            <p>Ghidul complet pentru BAC: Grafuri neorientate, orientate, arbori și reprezentări</p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>1. Grafuri Neorientate. Noțiuni de bază</h2>
+            <p>
+                Un <b>graf neorientat</b> este o pereche ordonată de mulțimi <i>G = (V, M)</i>, unde:
+            </p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>V</b> este o mulțime finită și nevidă de elemente numite <b>vârfuri</b> (sau noduri).</li>
+                <li><b>M</b> este o mulțime de perechi neordonate de elemente distincte din <i>V</i>, numite <b>muchii</b>. O muchie între nodurile <i>u</i> și <i>v</i> se notează [u, v].</li>
+            </ul>
+            
+            
+
+            <p><b>Gradele nodurilor și Teoreme Fundamentale (Foarte importante pentru grilă!):</b></p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Gradul unui nod <i>v</i> (notat d(v)):</b> reprezintă numărul de muchii care trec prin acel nod.</li>
+                <li><b>Nod izolat:</b> un nod care are gradul 0 (nu are nicio muchie).</li>
+                <li><b>Nod terminal:</b> un nod care are gradul 1.</li>
+                <li><b>Teorema celor două strângeri de mână:</b> Suma gradelor tuturor nodurilor dintr-un graf neorientat este egală cu <b>dublul numărului de muchii</b>: <br>
+                    <span style="background-color: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 4px; display: inline-block; margin-top: 5px;">
+                        &sum; d(v) = 2 &bull; m
+                    </span>
+                </li>
+                <li><b>Consecință directă:</b> În orice graf neorientat, numărul de noduri cu <b>grad impar</b> este întotdeauna un <b>număr par</b>.</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>2. Tipuri Speciale de Grafuri Neorientate</h2>
+            <p>La BAC vei întâlni des probleme care cer proprietăți ale anumitor structuri standard:</p>
+            
+            <div style="overflow-x: auto;">
+                <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2; color: #111111;">
+                            <th style="padding: 8px;">Tip Graf</th>
+                            <th style="padding: 8px;">Definiție și Proprietăți la BAC</th>
+                            <th style="padding: 8px;">Formulă număr muchii</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px;"><b>Graf Complet (K<sub>n</sub>)</b></td>
+                            <td style="padding: 8px;">Există muchie între oricare două noduri distincte. Fiecare nod are gradul <i>n - 1</i>.</td>
+                            <td style="padding: 8px;"><b>n &bull; (n - 1) / 2</b></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Graf Bipartit</b></td>
+                            <td style="padding: 8px;">Nodurile pot fi împărțite în două mulțimi disjuncte X și Y, astfel încât orice muchie are un capăt în X și celălalt în Y (nu există muchii între noduri din aceeași mulțime).</td>
+                            <td style="padding: 8px;">Maxim: <b>p &bull; q</b> <br>(unde p=|X|, q=|Y|)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Graf Bipartit Complet</b></td>
+                            <td style="padding: 8px;">Un graf bipartit în care fiecare nod din X este legat de toate nodurile din Y.</td>
+                            <td style="padding: 8px;">Exact: <b>p &bull; q</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top: 15px;"><b>Modificări de structură (Diferențe subtile):</b></p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Graf Parțial:</b> Se păstrează <b>TOATE nodurile</b>, dar se elimină zero sau mai multe muchii.</li>
+                <li><b>Subgraf:</b> Se elimină una sau mai multe noduri, și <b>automat</b> se șterg toate muchiile care aveau un capăt în nodurile eliminate.</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>3. Lanțuri, Cicluri și Conexitate</h2>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Lanț:</b> O succesiune de noduri în care oricare două noduri consecutive sunt adiacente (legate prin muchie).
+                    <ul style="padding-left: 20px;">
+                        <li><i>Lanț elementar:</i> conține doar noduri distincte.</li>
+                        <li><i>Lanț simplu:</i> conține doar muchii distincte.</li>
+                    </ul>
+                </li>
+                <li><b>Ciclu:</b> Un lanț în care primul nod coincide cu ultimul nod.
+                    <ul style="padding-left: 20px;">
+                        <li><i>Ciclu elementar:</i> toate nodurile sunt distincte (cu excepția primului și ultimului).</li>
+                    </ul>
+                </li>
+                <li><b>Graf Conex:</b> Un graf în care între oricare două noduri distincte există cel puțin un lanț.</li>
+                <li><b>Componentă conexă:</b> Un subgraf conex maximal (nu mai poate fi extins prin adăugarea altor noduri fără să-și piardă conexitatea).</li>
+                <li><b>Număr minim de muchii ca un graf cu <i>n</i> noduri să fie conex:</b> <b>n - 1</b> muchii.</li>
+                <li><b>Număr maxim de muchii pe care le poate avea un graf cu <i>n</i> noduri fără a fi conex:</b> Se izolează un nod, iar celelalte <i>n-1</i> noduri formează un graf complet: <b>(n - 1) &bull; (n - 2) / 2</b> muchii. Dacă mai adaugi o singură muchie, graful devine obligatoriu conex!</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>4. Arbori (Subiect extrem de frecvent)</h2>
+            <p>
+                Un <b>arbore</b> este un graf neorientat, <b>conex și aciclic</b> (fără cicluri).
+            </p>
+            <p><b>Proprietăți fundamentale ale arborilor cu <i>n</i> noduri:</b></p>
+            <ol style="padding-left: 25px; margin-left: 5px;">
+                <li>Are exact <b>n - 1 muchii</b> (Dacă un graf are <i>n</i> noduri și <i>n-1</i> muchii și este conex, atunci e arbore).</li>
+                <li>Între oricare două noduri distincte există un <b>lanț elementar unic</b>.</li>
+                <li>Orice arbore cu cel puțin 2 noduri conține <b>cel puțin două noduri terminale</b> (frunze, cu gradul 1).</li>
+                <li>Dacă se mai adaugă o muchie oarecare, se formează exact un ciclu elementar.</li>
+            </ol>
+        </section>
+
+        <section class="lesson-card">
+            <h2>5. Grafuri Orientate</h2>
+            <p>
+                Un <b>graf orientat</b> este o pereche ordonată de mulțimi <i>G = (V, A)</i>, unde legăturile dintre noduri au un sens stabil numit <b>arc</b>. Un arc pornește de la nodul <i>u</i> (extremitate inițială) și ajunge în nodul <i>v</i> (extremitate finală), notat (u, v).
+            </p>
+            <p><b>Gradele în grafuri orientate:</b></p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Gradul exterior (d<sup>+</sup>(v)):</b> numărul de arce care <i>pleacă</i> din nodul <i>v</i>.</li>
+                <li><b>Gradul interior (d<sup>-</sup>(v)):</b> numărul de arce care <i>intră</i> în nodul <i>v</i>.</li>
+                <li><b>Teoremă:</b> Suma gradelor exterioare este egală cu suma gradelor interioare și este egală cu numărul total de arce (m):<br>
+                    <span style="background-color: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 4px; display: inline-block; margin-top: 5px;">
+                        &sum; d<sup>+</sup>(v) = &sum; d<sup>-</sup>(v) = m
+                    </span>
+                </li>
+            </ul>
+            <p><b>Conexitate specifică:</b></p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li>Un graf orientat este <b>tare conex</b> dacă pentru oricare două noduri distincte <i>u</i> și <i>v</i>, există atât drum de la <i>u</i> la <i>v</i>, cât și drum de la <i>v</i> la <i>u</i>.</li>
+                <li>Numărul maxim de arce într-un graf orientat cu <i>n</i> noduri fără circuite este <b>n &bull; (n - 1) / 2</b>.</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>6. Reprezentarea Grafurilor în C++</h2>
+            <p>La problema de cod (subiectul III), va trebui să știi să stochezi graful în memorie.</p>
+
+            <h3>A. Matricea de adiacență</h3>
+            <p>O matrice pătratică <code>A</code> de dimensiune <i>(n+1) x (n+1)</i>, unde:</p>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><code>A[i][j] = 1</code>, dacă există muchie/arc între nodul <code>i</code> și nodul <code>j</code>.</li>
+                <li><code>A[i][j] = 0</code>, în caz contrar.</li>
+                <li><b>La grafuri neorientate:</b> matricea este <b>simetrică</b> față de diagonala principală (<code>A[i][j] == A[j][i]</code>). Elementele de pe diagonala principală sunt întotdeauna 0.</li>
+            </ul>
+
+            
+
+<pre>
+// Citirea unui graf neorientat cu matrice de adiacență
+int n, m, u, v;
+int A[100][100];
+
+cin >> n >> m;
+for(int i = 1; i <= m; i++) {
+    cin >> u >> v;
+    A[u][v] = 1;
+    A[v][u] = 1; // Doar la grafuri neorientate!
+}
+</pre>
+
+            <h3>B. Liste de adiacență (Eficiente ca memorie)</h3>
+            <p>Se folosește un vector de liste (din STL - <code>std::vector</code>). Economisește spațiu când graful are puține muchii.</p>
+<pre>
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; L[100]; // Un vector de vectori
+int n, m, u, v;
+
+cin >> n >> m;
+for(int i = 1; i <= m; i++) {
+    cin >> u >> v;
+    L[u].push_back(v);
+    L[v].push_back(u); // Doar la grafuri neorientate!
+}
+</pre>
+        </section>
+
+        <section class="lesson-card">
+            <h2>7. Algoritmi de Parcurgere (BFS și DFS)</h2>
+            
+            <div style="margin-top: 15px; border-left: 3px solid #007bff; padding-left: 15px;">
+                <h3>Parcurgerea în lățime (BFS - Breadth-First Search)</h3>
+                <p><b>Mecanism:</b> Se folosește o <b>coadă (queue)</b>. Se vizitează nodul de start, apoi vecinii lui, apoi vecinii vecinilor și așa mai departe (nivel cu nivel).</p>
+                <p><b>Aplicație la BAC:</b> Este algoritmul ideal pentru determinarea <b>drumului minim</b> (ca număr de muchii) de la un nod la altul.</p>
+            </div>
+
+            <div style="margin-top: 15px; border-left: 3px solid #28a745; padding-left: 15px;">
+                <h3>Parcurgerea în adâncime (DFS - Depth-First Search)</h3>
+                <p><b>Mecanism:</b> Se folosește o abordare <b>recursivă (sau o stivă)</b>. Se înaintează pe o cale cât mai adânc posibil până când se lovește un nod fără vecini nevizitați, moment în care se întoarce (backtrack).</p>
+                <p><b>Aplicație la BAC:</b> Determinarea componentelor conexe, verificarea conexității grafului sau detectarea ciclurilor.</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
