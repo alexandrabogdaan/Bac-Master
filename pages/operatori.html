@@ -2,12 +2,134 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Operatori - BAC Master</title>
+    <title>Operatori C++ - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Operatori C++ */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta introductivă / definiție */
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri categorii de operatori */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #38bdf8;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list {
+            padding-left: 20px;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* Secțiune observație / capcană frecventă */
+        .note-section {
+            background: rgba(168, 85, 247, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-left: 4px solid #a855f7;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: #e2e8f0;
+        }
+        .note-section b {
+            color: #c084fc;
+        }
+
+        .warning-section {
+            background: rgba(244, 63, 94, 0.02);
+            border: 1px solid rgba(244, 63, 94, 0.15);
+            border-left: 4px solid #f43f5e;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: #e2e8f0;
+        }
+        .warning-section b {
+            color: #fb7185;
+        }
+
+        /* Tabel comparativ complet adaptat pentru Dark Mode */
+        .dark-table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            border: 1px solid #2d3748; 
+            text-align: left;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark-table th {
+            background-color: #2d3748; 
+            color: #38bdf8; 
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 2px solid #4a5568;
+        }
+        .dark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2d3748;
+            border-right: 1px solid #2d3748;
+            line-height: 1.5;
+        }
+        .dark-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dark-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .dark-table td code, .dark-table th code {
+            color: #fbbf24;
+        }
+    </style>
 </head>
 
-    <!-- SIDEBAR -->
+<body>
+
+<div class="container">
+
     <aside class="sidebar">
         <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
@@ -21,5 +143,314 @@
         </nav>
     </aside>
 
-    
+    <main class="main lesson-page">
+
+        <section class="lesson-header">
+            <h1>Operatori în C++</h1>
+            <p>Tipurile de operatori, ordinea priorităților și capcanele frecvente de la BAC</p>
+        </section>
+
+        <!-- INTRODUCERE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-square-root-variable"></i> Ce este un operator?</h2>
+            <div class="info-box">
+                <p style="margin: 0;">
+                    Un operator este un simbol care indică o operație (de calcul, de comparare, de atribuire
+                    etc.) ce trebuie efectuată asupra unuia sau mai multor <b>operanzi</b>. În funcție de
+                    numărul operanzilor, operatorii pot fi <b>unari</b> (un singur operand), <b>binari</b>
+                    (doi operanzi) sau <b>ternari</b> (trei operanzi).
+                </p>
+            </div>
+        </section>
+
+        <!-- ARITMETICI -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> Operatori aritmetici</h2>
+            <p>Se folosesc pentru efectuarea calculelor matematice de bază.</p>
+
+            <div style="overflow-x: auto;">
+                <table class="dark-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Semnificație</th>
+                            <th>Exemplu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>+</code></td><td>Adunare</td><td><code>5 + 3</code> &rarr; 8</td></tr>
+                        <tr><td><code>-</code></td><td>Scădere</td><td><code>5 - 3</code> &rarr; 2</td></tr>
+                        <tr><td><code>*</code></td><td>Înmulțire</td><td><code>5 * 3</code> &rarr; 15</td></tr>
+                        <tr><td><code>/</code></td><td>Împărțire</td><td><code>7 / 2</code> &rarr; 3 (între întregi)</td></tr>
+                        <tr><td><code>%</code></td><td>Restul împărțirii (modulo)</td><td><code>7 % 2</code> &rarr; 1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-section">
+                <b><i class="fa-solid fa-triangle-exclamation"></i> Capcană frecventă:</b> Operatorul
+                <code style="color: #fbbf24;">/</code> are comportament diferit în funcție de tipul
+                operanzilor! Între două numere <b>întregi</b>, rezultatul este trunchiat (partea
+                fracționară se elimină): <code>7 / 2</code> &rarr; <b>3</b>, nu 3.5. Pentru rezultat
+                cu zecimale, cel puțin un operand trebuie să fie <code>float</code>/<code>double</code>:
+                <code>7.0 / 2</code> &rarr; <b>3.5</b>.
+            </div>
+
+            <p style="margin-top: 15px;">Operatorul <code>%</code> (modulo) se aplică <b>doar numerelor întregi</b> și este folosit frecvent pentru a testa paritatea unui număr:</p>
+<pre>
+if (n % 2 == 0)
+    cout << "n este par";
+else
+    cout << "n este impar";
+</pre>
+        </section>
+
+        <!-- ATRIBUIRE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-equals" style="color: #f59e0b;"></i> Operatori de atribuire</h2>
+            <p>Operatorii de atribuire combinată sunt prescurtări utile, des folosite la BAC pentru a "păcăli" la nivel de citire a codului.</p>
+
+            <div style="overflow-x: auto;">
+                <table class="dark-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Echivalent cu</th>
+                            <th>Exemplu (x = 10)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>=</code></td><td>atribuire simplă</td><td><code>x = 5;</code> &rarr; x devine 5</td></tr>
+                        <tr><td><code>+=</code></td><td><code>x = x + val</code></td><td><code>x += 3;</code> &rarr; x devine 13</td></tr>
+                        <tr><td><code>-=</code></td><td><code>x = x - val</code></td><td><code>x -= 3;</code> &rarr; x devine 7</td></tr>
+                        <tr><td><code>*=</code></td><td><code>x = x * val</code></td><td><code>x *= 2;</code> &rarr; x devine 20</td></tr>
+                        <tr><td><code>/=</code></td><td><code>x = x / val</code></td><td><code>x /= 2;</code> &rarr; x devine 5</td></tr>
+                        <tr><td><code>%=</code></td><td><code>x = x % val</code></td><td><code>x %= 3;</code> &rarr; x devine 1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- INCREMENTARE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-arrow-up-9-1" style="color: #a855f7;"></i> Operatori de incrementare/decrementare</h2>
+            <p>
+                Operatorii <code>++</code> și <code>--</code> măresc, respectiv micșorează valoarea unei
+                variabile cu 1. Poziția lor (înainte sau după variabilă) schimbă <b>momentul</b> în care
+                modificarea are efect.
+            </p>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-arrow-left"></i> Preincrementare: <code>++x</code></h3>
+                    <p style="margin: 0;">Valoarea lui <b>x</b> este mărită <b>înainte</b> de a fi folosită în expresie.</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #f43f5e;">
+                    <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-right"></i> Postincrementare: <code>x++</code></h3>
+                    <p style="margin: 0;">Valoarea lui <b>x</b> este folosită întâi în expresie, apoi este mărită.</p>
+                </div>
+            </div>
+
+<pre>
+int x = 5;
+
+cout << ++x; // afișează 6 (x devine 6, apoi se afișează)
+cout << x;   // afișează 6
+
+int y = 5;
+
+cout << y++; // afișează 5 (se afișează 5, apoi y devine 6)
+cout << y;   // afișează 6
+</pre>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Diferența dintre
+                <code style="color: #fbbf24;">++x</code> și <code style="color: #fbbf24;">x++</code> este vizibilă
+                doar atunci când operatorul este folosit <b>într-o expresie</b> (de exemplu, în <code>cout</code>
+                sau ca parametru). Folosit izolat, pe o linie separată, efectul final este identic.
+            </div>
+        </section>
+
+        <!-- RELATIONALI SI LOGICI -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-code-compare" style="color: #10b981;"></i> Operatori relaționali și logici</h2>
+            <p>Sunt folosiți pentru a construi condiții (expresii cu valoare de adevăr: <code>true</code>/<code>false</code>, reprezentate intern prin 1/0).</p>
+
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-scale-balanced"></i> Operatori relaționali</h3>
+                    <ul class="feature-list" style="font-size: 0.95rem;">
+                        <li><code>==</code> &ndash; egal</li>
+                        <li><code>!=</code> &ndash; diferit</li>
+                        <li><code>&lt;</code> &ndash; mai mic</li>
+                        <li><code>&gt;</code> &ndash; mai mare</li>
+                        <li><code>&lt;=</code> &ndash; mai mic sau egal</li>
+                        <li><code>&gt;=</code> &ndash; mai mare sau egal</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="border-left-color: #a855f7;">
+                    <h3 style="color: #c084fc;"><i class="fa-solid fa-link"></i> Operatori logici</h3>
+                    <ul class="feature-list" style="font-size: 0.95rem;">
+                        <li><code>&amp;&amp;</code> &ndash; ȘI (AND): adevărat doar dacă <b>ambele</b> condiții sunt adevărate</li>
+                        <li><code>||</code> &ndash; SAU (OR): adevărat dacă <b>cel puțin una</b> dintre condiții este adevărată</li>
+                        <li><code>!</code> &ndash; NEGAȚIE (NOT): inversează valoarea de adevăr</li>
+                    </ul>
+                </div>
+            </div>
+
+<pre>
+int n = 7;
+
+if (n > 0 && n % 2 == 1)
+    cout << "n este pozitiv si impar";
+
+if (n < 0 || n == 0)
+    cout << "n este negativ sau nul";
+
+cout << !(n > 10); // 1 (adevarat), pentru ca n > 10 este fals
+</pre>
+
+            <div class="warning-section">
+                <b><i class="fa-solid fa-triangle-exclamation"></i> Capcană frecventă:</b> Nu confunda
+                operatorul de <b>egalitate</b> <code style="color: #fbbf24;">==</code> cu operatorul de
+                <b>atribuire</b> <code style="color: #fbbf24;">=</code>! Scrierea <code>if (n = 5)</code>
+                în loc de <code>if (n == 5)</code> este o greșeală clasică, care atribuie valoarea 5
+                variabilei n, în loc să o compare.
+            </div>
+        </section>
+
+        <!-- PRIORITATEA OPERATORILOR -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-sort-amount-down" style="color: #facc15;"></i> Ordinea (prioritatea) operatorilor</h2>
+            <p>
+                Atunci când o expresie conține mai mulți operatori, evaluarea respectă o ordine de priorități,
+                similară cu cea din matematică. De la cea mai mare prioritate (se evaluează primul) la cea mai mică:
+            </p>
+
+            <div style="overflow-x: auto;">
+                <table class="dark-table" border="1">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Nivel</th>
+                            <th style="width: 45%;">Operatori</th>
+                            <th style="width: 45%;">Tip</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>1</b></td>
+                            <td><code>()</code></td>
+                            <td>Paranteze (cea mai mare prioritate)</td>
+                        </tr>
+                        <tr>
+                            <td><b>2</b></td>
+                            <td><code>++</code> <code>--</code> <code>!</code></td>
+                            <td>Unari (incrementare, negație)</td>
+                        </tr>
+                        <tr>
+                            <td><b>3</b></td>
+                            <td><code>*</code> <code>/</code> <code>%</code></td>
+                            <td>Înmulțire, împărțire, rest</td>
+                        </tr>
+                        <tr>
+                            <td><b>4</b></td>
+                            <td><code>+</code> <code>-</code></td>
+                            <td>Adunare, scădere</td>
+                        </tr>
+                        <tr>
+                            <td><b>5</b></td>
+                            <td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+                            <td>Relaționali de ordine</td>
+                        </tr>
+                        <tr>
+                            <td><b>6</b></td>
+                            <td><code>==</code> <code>!=</code></td>
+                            <td>Relaționali de (in)egalitate</td>
+                        </tr>
+                        <tr>
+                            <td><b>7</b></td>
+                            <td><code>&amp;&amp;</code></td>
+                            <td>ȘI logic</td>
+                        </tr>
+                        <tr>
+                            <td><b>8</b></td>
+                            <td><code>||</code></td>
+                            <td>SAU logic</td>
+                        </tr>
+                        <tr>
+                            <td><b>9</b></td>
+                            <td><code>=</code> <code>+=</code> <code>-=</code> ...</td>
+                            <td>Atribuire (cea mai mică prioritate)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Operatorii
+                <code style="color: #fbbf24;">*</code>, <code style="color: #fbbf24;">/</code>,
+                <code style="color: #fbbf24;">%</code> au prioritate mai mare decât
+                <code style="color: #fbbf24;">+</code> și <code style="color: #fbbf24;">-</code>, exact ca
+                în matematică. Folosirea parantezelor este cea mai sigură metodă de a evita confuziile
+                la evaluarea expresiilor complexe.
+            </div>
+
+<pre>
+int rezultat = 2 + 3 * 4;     // 14, nu 20 (inmultirea se face prima)
+int rezultat2 = (2 + 3) * 4;  // 20, parantezele schimba ordinea
+
+bool test = 5 > 3 && 2 == 2;  // se evalueaza intai 5 > 3 si 2 == 2, apoi &&
+</pre>
+        </section>
+
+        <!-- TERNAR -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-shuffle" style="color: #f43f5e;"></i> Operatorul ternar <code>?:</code></h2>
+            <p>
+                Operatorul ternar este singurul operator din C++ cu <b>trei</b> operanzi. Este o variantă
+                compactă a structurii <code>if-else</code>, utilă atunci când dorim să atribuim o valoare
+                în funcție de o condiție, pe o singură linie.
+            </p>
+
+            <div class="info-box" style="border-left-color: #f43f5e;">
+                <b style="color: #fb7185;">Sintaxă:</b><br>
+                <code style="font-size: 1.05rem;">condiție ? valoare_daca_adevarat : valoare_daca_fals</code>
+            </div>
+
+<pre>
+int a = 7, b = 12;
+
+int maxim = (a > b) ? a : b;
+cout << maxim; // 12
+
+// echivalent cu:
+int maxim2;
+if (a > b)
+    maxim2 = a;
+else
+    maxim2 = b;
+</pre>
+        </section>
+
+        <!-- SIZEOF -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-ruler-combined" style="color: #38bdf8;"></i> Operatorul <code>sizeof</code></h2>
+            <p>
+                Operatorul <code>sizeof</code> returnează numărul de octeți (bytes) ocupați în memorie de
+                un tip de date sau de o variabilă.
+            </p>
+<pre>
+cout << sizeof(int);    // de regula 4 (octeti)
+cout << sizeof(char);   // 1
+cout << sizeof(double); // de regula 8
+
+int v[10];
+cout << sizeof(v);      // 40 (10 elemente x 4 octeti)
+</pre>
+        </section>
+
+    </main>
+</div>
+
+</body>
 </html>

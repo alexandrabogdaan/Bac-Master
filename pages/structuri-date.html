@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Stiva și Coada - BAC Master</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Stiva și Coada */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta introductivă / definiție */
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri de caracteristici / operații */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #38bdf8;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list {
+            padding-left: 20px;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* Card funcție / operație specifică structurii */
+        .func-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #a855f7;
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .func-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: #c084fc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .func-card code {
+            color: #fbbf24;
+        }
+
+        /* Secțiune analogie / observație vizuală */
+        .note-section {
+            background: rgba(168, 85, 247, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-left: 4px solid #a855f7;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: #e2e8f0;
+        }
+        .note-section b {
+            color: #c084fc;
+        }
+
+        /* Secțiune aplicații practice */
+        .problem-section {
+            background: rgba(16, 185, 129, 0.02);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        .problem-section h3 {
+            color: #34d399;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Vizualizare animată simplă tip "cutii" pentru Stivă/Coadă */
+        .visual-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+            font-family: monospace;
+        }
+        .visual-box {
+            background: #1a202c;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            min-width: 36px;
+            text-align: center;
+        }
+        .visual-row.queue .visual-box {
+            border-color: #34d399;
+            color: #34d399;
+        }
+        .visual-label {
+            color: #a0aec0;
+            font-size: 0.85rem;
+            font-family: inherit;
+        }
+
+        /* Tabel comparativ complet adaptat pentru Dark Mode */
+        .dark-table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            border: 1px solid #2d3748; 
+            text-align: left;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark-table th {
+            background-color: #2d3748; 
+            color: #38bdf8; 
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 2px solid #4a5568;
+        }
+        .dark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2d3748;
+            border-right: 1px solid #2d3748;
+            line-height: 1.5;
+        }
+        .dark-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dark-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <main class="main lesson-page">
+
+        <section class="lesson-header">
+            <h1>Stiva și Coada</h1>
+            <p>Structuri de date liniare fundamentale: principii, operații și implementare în C++</p>
+        </section>
+
+        <!-- INTRODUCERE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-layer-group"></i> Ce sunt structurile liniare de date?</h2>
+            <div class="info-box">
+                <p style="margin: 0;">
+                    Stiva și Coada sunt două structuri de date <b>liniare</b>, în care elementele sunt organizate
+                    într-o anumită ordine, dar accesul la ele este restricționat: nu putem accesa direct un
+                    element din mijlocul structurii, ci doar prin extremitățile ei, respectând o regulă fixă
+                    de inserare și extragere.
+                </p>
+            </div>
+            <p>
+                Diferența esențială dintre cele două structuri este <b>ordinea în care elementele sunt extrase</b>:
+                la Stivă, ultimul element introdus este primul extras, iar la Coadă, primul element introdus
+                este primul extras.
+            </p>
+        </section>
+
+        <!-- STIVA -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> Stiva (Stack)</h2>
+
+            <div class="note-section" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.03);">
+                <i class="fa-solid fa-utensils" style="color: #38bdf8; margin-right: 5px;"></i>
+                Imaginează-ți o stivă de farfurii. Poți pune o farfurie nouă doar pe deasupra stivei, și poți
+                lua tot doar farfuria de pe deasupra &ndash; nu poți scoate o farfurie din mijloc fără să dai jos
+                toate cele de pe ea.
+            </div>
+
+            <p>
+                Stiva este o structură de tip <b>LIFO</b> (<i>Last In, First Out</i> &ndash; ultimul intrat, primul scos).
+                Elementul adăugat cel mai recent este mereu primul care va fi eliminat.
+            </p>
+
+            <div class="visual-row">
+                <div class="visual-box">10</div>
+                <div class="visual-box">25</div>
+                <div class="visual-box">7</div>
+                <div class="visual-box" style="border-color:#facc15; color:#facc15;">99 &larr;</div>
+                <span class="visual-label">vârful stivei (TOP) &ndash; aici se introduce și se elimină</span>
+            </div>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Operațiile fundamentale</h3>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-arrow-down"></i> push(x)</h3>
+                    <p style="margin: 0;">Adaugă elementul <b>x</b> în vârful stivei. Devine noul element accesibil.</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #f43f5e;">
+                    <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-up"></i> pop()</h3>
+                    <p style="margin: 0;">Elimină și returnează elementul din vârful stivei (ultimul introdus).</p>
+                </div>
+            </div>
+            <div class="grid-2" style="margin-top: 0;">
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-eye"></i> top() / peek()</h3>
+                    <p style="margin: 0;">Returnează elementul din vârf, fără a-l elimina din stivă.</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #eab308;">
+                    <h3 style="color: #facc15;"><i class="fa-solid fa-circle-question"></i> empty()</h3>
+                    <p style="margin: 0;">Verifică dacă stiva este vidă (nu mai are niciun element).</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare în C++ (cu &lt;stack&gt;)</h3>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main()
+{
+    stack&lt;int&gt; s;
+
+    s.push(10);
+    s.push(25);
+    s.push(7);
+
+    cout << s.top(); // afișează 7 (ultimul introdus)
+
+    s.pop();         // se elimină 7
+
+    cout << s.top(); // afișează 25
+
+    cout << s.empty(); // 0 (stiva NU este vidă)
+    cout << s.size();  // 2 (numărul de elemente rămase)
+
+    return 0;
+}
+</pre>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare manuală (cu vector/tablou)</h3>
+            <p>
+                La BAC, o stivă poate fi simulată simplu cu un tablou și o variabilă care reține poziția vârfului:
+            </p>
+<pre>
+int st[100], varf = -1; // varf = -1 inseamna stiva vida
+
+void push(int x)
+{
+    varf++;
+    st[varf] = x;
+}
+
+int pop()
+{
+    int x = st[varf];
+    varf--;
+    return x;
+}
+
+bool empty()
+{
+    return varf == -1;
+}
+</pre>
+        </section>
+
+        <!-- COADA -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-people-line" style="color: #34d399;"></i> Coada (Queue)</h2>
+
+            <div class="note-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.03);">
+                <i class="fa-solid fa-people-line" style="color: #34d399; margin-right: 5px;"></i>
+                Imaginează-ți o coadă la magazin. Persoana care a venit prima este servită prima, iar cei
+                noi se așază mereu la capătul cozii, nu pot trece în față.
+            </div>
+
+            <p>
+                Coada este o structură de tip <b>FIFO</b> (<i>First In, First Out</i> &ndash; primul intrat, primul scos).
+                Elementele sunt extrase exact în ordinea în care au fost introduse.
+            </p>
+
+            <div class="visual-row queue">
+                <div class="visual-box" style="border-color:#facc15; color:#facc15;">10 &larr;</div>
+                <div class="visual-box">25</div>
+                <div class="visual-box">7</div>
+                <div class="visual-box">99</div>
+                <span class="visual-label">capul cozii (FRONT) &ndash; aici se elimină; la celălalt capăt (REAR) se introduce</span>
+            </div>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Operațiile fundamentale</h3>
+
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #34d399;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-arrow-right-to-bracket"></i> push(x) / enqueue(x)</h3>
+                    <p style="margin: 0;">Adaugă elementul <b>x</b> la coada structurii (capătul REAR).</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #f43f5e;">
+                    <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-right-from-bracket"></i> pop() / dequeue()</h3>
+                    <p style="margin: 0;">Elimină și returnează elementul din capul cozii (capătul FRONT), cel mai vechi introdus.</p>
+                </div>
+            </div>
+            <div class="grid-2" style="margin-top: 0;">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-eye"></i> front()</h3>
+                    <p style="margin: 0;">Returnează elementul din capul cozii, fără a-l elimina.</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #eab308;">
+                    <h3 style="color: #facc15;"><i class="fa-solid fa-circle-question"></i> empty()</h3>
+                    <p style="margin: 0;">Verifică dacă coada este vidă (nu mai are niciun element).</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare în C++ (cu &lt;queue&gt;)</h3>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main()
+{
+    queue&lt;int&gt; q;
+
+    q.push(10);
+    q.push(25);
+    q.push(7);
+
+    cout << q.front(); // afișează 10 (primul introdus)
+
+    q.pop();           // se elimină 10
+
+    cout << q.front(); // afișează 25
+
+    cout << q.empty(); // 0 (coada NU este vidă)
+    cout << q.size();  // 2 (numărul de elemente rămase)
+
+    return 0;
+}
+</pre>
+
+            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare manuală (cu vector/tablou circular)</h3>
+            <p>
+                La BAC, o coadă simplă poate fi simulată cu un tablou și două variabile, <code>prim</code> și <code>ultim</code>:
+            </p>
+<pre>
+int c[100], prim = 0, ultim = -1; 
+// coada vida: prim > ultim
+
+void push(int x)
+{
+    ultim++;
+    c[ultim] = x;
+}
+
+int pop()
+{
+    int x = c[prim];
+    prim++;
+    return x;
+}
+
+bool empty()
+{
+    return prim > ultim;
+}
+</pre>
+        </section>
+
+        <!-- COMPARATIE -->
+        <section class="lesson-card">
+            <h2>Rezumat rapid: Stivă vs. Coadă</h2>
+
+            <div style="overflow-x: auto;">
+                <table class="dark-table" border="1">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Criteriu</th>
+                            <th style="width: 40%;">Stivă (Stack)</th>
+                            <th style="width: 40%;">Coadă (Queue)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Principiu</b></td>
+                            <td style="color: #38bdf8; font-weight: bold;">LIFO &ndash; ultimul intrat, primul scos</td>
+                            <td style="color: #34d399; font-weight: bold;">FIFO &ndash; primul intrat, primul scos</td>
+                        </tr>
+                        <tr>
+                            <td><b>Capete de lucru</b></td>
+                            <td>Un singur capăt (vârful / TOP), folosit atât pentru inserare cât și pentru extragere.</td>
+                            <td>Două capete: unul pentru inserare (REAR), altul pentru extragere (FRONT).</td>
+                        </tr>
+                        <tr>
+                            <td><b>Operații de bază</b></td>
+                            <td><code>push()</code>, <code>pop()</code>, <code>top()</code>, <code>empty()</code></td>
+                            <td><code>push()</code>/<code>enqueue()</code>, <code>pop()</code>/<code>dequeue()</code>, <code>front()</code>, <code>empty()</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>Header C++</b></td>
+                            <td><code>&lt;stack&gt;</code></td>
+                            <td><code>&lt;queue&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><b>Analogie</b></td>
+                            <td>Stivă de farfurii / cărți</td>
+                            <td>Coadă la magazin / casierie</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- APLICATII -->
+        <section class="lesson-card">
+            <h2>Aplicații practice frecvente la BAC</h2>
+
+            <div class="problem-section">
+                <h3><i class="fa-solid fa-layer-group"></i> Aplicații ale Stivei</h3>
+                <ul style="padding-left: 25px; margin: 0; line-height: 1.7;">
+                    <li>Verificarea corectitudinii parantezelor într-o expresie (paranteze echilibrate).</li>
+                    <li>Evaluarea expresiilor aritmetice (notație poloneză / postfixată).</li>
+                    <li>Implementarea funcției <b>recursivitate</b> (Stiva de Apeluri &ndash; <i>Call Stack</i>).</li>
+                    <li>Funcția "Undo" dintr-un editor de text sau parcurgerea istoricului unui browser.</li>
+                </ul>
+            </div>
+
+            <div class="problem-section" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.02); margin-top: 15px;">
+                <h3 style="color: #60a5fa;"><i class="fa-solid fa-people-line"></i> Aplicații ale Cozii</h3>
+                <ul style="padding-left: 25px; margin: 0; line-height: 1.7;">
+                    <li>Gestionarea proceselor într-un sistem de operare (rând de așteptare la procesor).</li>
+                    <li>Parcurgerea în lățime a unui graf (<b>BFS</b> &ndash; Breadth-First Search).</li>
+                    <li>Sisteme de tip "primul venit, primul servit" (cozi la imprimantă, ghișeu etc.).</li>
+                    <li>Simularea unui buffer de date care se transmit în ordinea sosirii.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONCLUZIE -->
+        <section class="lesson-card">
+            <h2>Concluzie pentru examen</h2>
+            <div class="info-box" style="border-left-color: #eab308; background-color: rgba(234, 179, 8, 0.03);">
+                <p style="margin: 0; line-height: 1.6;">
+                    <b style="color: #facc15;"><i class="fa-solid fa-star"></i> Regula de aur la BAC:</b><br>
+                    Citește mereu cu atenție ordinea operațiilor din enunț. Dacă ultimul element introdus este
+                    primul cerut/extras &rarr; ai de-a face cu o <b style="color: #38bdf8;">Stivă (LIFO)</b>.
+                    Dacă primul element introdus este primul cerut/extras &rarr; ai de-a face cu o
+                    <b style="color: #34d399;">Coadă (FIFO)</b>.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

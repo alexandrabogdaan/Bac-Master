@@ -2,9 +2,119 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Algoritmi - BAC Master</title>
+    <title>Algoritmi de Bază - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Algoritmi de Bază */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #38bdf8;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Secțiune algoritm individual */
+        .algo-section {
+            background: rgba(59, 130, 246, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+        .algo-section h3 {
+            color: #60a5fa;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .note-section {
+            background: rgba(168, 85, 247, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-left: 4px solid #a855f7;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: #e2e8f0;
+        }
+        .note-section b {
+            color: #c084fc;
+        }
+
+        /* Tabel comparativ complet adaptat pentru Dark Mode */
+        .dark-table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            border: 1px solid #2d3748; 
+            text-align: left;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark-table th {
+            background-color: #2d3748; 
+            color: #38bdf8; 
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 2px solid #4a5568;
+        }
+        .dark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2d3748;
+            border-right: 1px solid #2d3748;
+            line-height: 1.5;
+        }
+        .dark-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dark-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .dark-table td code {
+            color: #fbbf24;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,42 +122,386 @@
 <div class="container">
 
     <aside class="sidebar">
-        <a style="text-decoration:none" href="../index.html" class="logo">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
         </a>
 
         <nav>
-            <a href="../index.html">🏠 Acasă</a>
-            <a href="teorie.html">📘 Teorie</a>
-            <a href="algoritmi.html">💻 Algoritmi</a>
-            <a href="teste.html">📝 Teste</a>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
         </nav>
     </aside>
 
-    <main class="main">
+    <main class="main lesson-page">
 
-        <h1>💻 Algoritmi</h1>
+        <section class="lesson-header">
+            <h1>Algoritmi de Bază</h1>
+            <p>Algoritmii clasici pe numere și tablouri, frecvent ceruți la BAC</p>
+        </section>
 
-        <div class="module-card">
-            <h3>Sortare</h3>
-            <pre>
-for(i=1;i<=n;i++)
-  for(j=i+1;j<=n;j++)
-    if(a[i]>a[j]) swap(a[i],a[j]);
-            </pre>
-        </div>
+        <!-- INTRODUCERE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-diagram-project"></i> De ce sunt importanți?</h2>
+            <div class="info-box">
+                <p style="margin: 0;">
+                    Algoritmii de bază sunt blocurile fundamentale din care sunt construite probleme mai
+                    complexe la BAC. Stăpânirea lor (verificarea numerelor prime, determinarea divizorilor,
+                    cmmdc/cmmmc, sortare, căutare) este esențială, deoarece apar atât ca subprobleme în
+                    exerciții ample, cât și direct, ca întrebări de tip "ce afișează codul?".
+                </p>
+            </div>
+        </section>
 
-        <div class="module-card">
-            <h3>Căutare liniară</h3>
-            <pre>
-for(i=1;i<=n;i++)
-  if(a[i]==x)
-    cout << i;
-            </pre>
-        </div>
+        <!-- NUMERE PRIME -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> Verificarea unui număr prim</h2>
+            <div class="algo-section">
+                <h3><i class="fa-solid fa-magnifying-glass"></i> Definiție</h3>
+                <p style="margin: 0;">
+                    Un număr natural <b>n &gt; 1</b> este <b>prim</b> dacă are exact doi divizori naturali:
+                    1 și el însuși. Numărul 1 <b>nu</b> este considerat prim.
+                </p>
+            </div>
+
+            <p style="margin-top: 15px;">
+                Pentru a verifica dacă <b>n</b> este prim, este suficient să căutăm divizori doar până la
+                <b>&radic;n</b> (rădăcina pătrată), nu până la n &ndash; aceasta reduce semnificativ timpul de execuție.
+            </p>
+
+<pre>
+bool estePrim(int n)
+{
+    if (n < 2)
+        return false;
+
+    for (int d = 2; d * d <= n; d++)
+        if (n % d == 0)
+            return false; // am gasit un divizor -> nu e prim
+
+    return true; // nu am gasit niciun divizor -> e prim
+}
+</pre>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Condiția
+                <code style="color: #fbbf24;">d * d &lt;= n</code> este echivalentă cu <code style="color: #fbbf24;">d &lt;= &radic;n</code>,
+                dar evită utilizarea funcției <code>sqrt()</code> și eventualele erori de rotunjire la numere zecimale.
+            </div>
+        </section>
+
+        <!-- DIVIZORI -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-list-ol" style="color: #a855f7;"></i> Determinarea divizorilor unui număr</h2>
+            <p>
+                Pentru a afișa toți divizorii unui număr <b>n</b>, parcurgem toate valorile de la 1 la n și
+                verificăm care dintre ele împart exact pe n.
+            </p>
+
+<pre>
+void afiseazaDivizori(int n)
+{
+    for (int d = 1; d <= n; d++)
+        if (n % d == 0)
+            cout << d << " ";
+}
+</pre>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Optimizare:</b> Divizorii unui
+                număr apar în <b>perechi</b> (d și n/d). Putem parcurge doar până la &radic;n și afișa ambii divizori
+                din pereche, reducând complexitatea de la O(n) la O(&radic;n):
+            </div>
+
+<pre>
+void afiseazaDivizoriOptim(int n)
+{
+    for (int d = 1; d * d <= n; d++)
+    {
+        if (n % d == 0)
+        {
+            cout << d << " ";
+            if (d != n / d)
+                cout << n / d << " ";
+        }
+    }
+}
+</pre>
+        </section>
+
+        <!-- CMMDC SI CMMMC -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> CMMDC și CMMMC</h2>
+
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-circle-minus"></i> CMMDC</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Cel Mai Mare Divizor Comun a două numere este cel mai mare număr care le împarte exact pe ambele.
+                    </p>
+                </div>
+                <div class="feature-card" style="border-left-color: #f59e0b;">
+                    <h3 style="color: #fbbf24;"><i class="fa-solid fa-circle-plus"></i> CMMMC</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Cel Mai Mic Multiplu Comun a două numere este cel mai mic număr divizibil cu ambele.
+                    </p>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;">
+                CMMDC se calculează eficient cu <b>algoritmul lui Euclid</b>, bazat pe proprietatea:
+                <code>cmmdc(a, b) = cmmdc(b, a % b)</code>, până când restul devine 0.
+            </p>
+
+<pre>
+int cmmdc(int a, int b)
+{
+    while (b != 0)
+    {
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
+</pre>
+
+            <p>
+                CMMMC se obține folosind formula: <code>cmmmc(a, b) = (a * b) / cmmdc(a, b)</code>
+            </p>
+
+<pre>
+int cmmmc(int a, int b)
+{
+    return (a * b) / cmmdc(a, b);
+}
+</pre>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Varianta recursivă
+                a algoritmului lui Euclid este la fel de des cerută la BAC:
+                <code style="color: #fbbf24;">cmmdc(a, b) = (b == 0) ? a : cmmdc(b, a % b)</code>
+            </div>
+        </section>
+
+        <!-- NUMERE PERFECTE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-star" style="color: #facc15;"></i> Numere perfecte</h2>
+            <div class="algo-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.02);">
+                <h3 style="color: #facc15;"><i class="fa-solid fa-gem"></i> Definiție</h3>
+                <p style="margin: 0;">
+                    Un număr natural este <b>perfect</b> dacă este egal cu suma divizorilor săi proprii
+                    (toți divizorii, exceptând numărul însuși). Exemplu: <b>6</b> = 1 + 2 + 3.
+                </p>
+            </div>
+
+<pre>
+bool estePerfect(int n)
+{
+    int suma = 0;
+
+    for (int d = 1; d < n; d++)
+        if (n % d == 0)
+            suma += d;
+
+    return suma == n;
+}
+</pre>
+        </section>
+
+        <!-- FIBONACCI -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-infinity" style="color: #f43f5e;"></i> Șirul lui Fibonacci</h2>
+            <p>
+                Șirul lui Fibonacci este definit astfel: primii doi termeni sunt 1 și 1 (sau 0 și 1, în funcție
+                de convenție), iar fiecare termen următor este suma celor doi termeni anteriori.
+            </p>
+
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-arrows-rotate"></i> Variantă iterativă (recomandată)</h3>
+<pre style="margin: 0;">
+int fibonacci(int n)
+{
+    int a = 1, b = 1, c;
+
+    if (n <= 2)
+        return 1;
+
+    for (int i = 3; i <= n; i++)
+    {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
+</pre>
+                </div>
+                <div class="feature-card" style="border-left-color: #fb7185;">
+                    <h3 style="color: #fb7185;"><i class="fa-solid fa-code-branch"></i> Variantă recursivă (lentă)</h3>
+<pre style="margin: 0;">
+int fibonacci(int n)
+{
+    if (n <= 2)
+        return 1;
+    return fibonacci(n-1) 
+         + fibonacci(n-2);
+}
+</pre>
+                </div>
+            </div>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Varianta
+                recursivă este elegantă, dar ineficientă pentru valori mari ale lui n, deoarece recalculează
+                de multe ori aceiași termeni (complexitate exponențială). Varianta iterativă este preferată
+                în practică.
+            </div>
+        </section>
+
+        <!-- SORTARE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> Algoritmi de sortare</h2>
+            <p>
+                Sortarea înseamnă rearanjarea elementelor unui tablou în ordine crescătoare sau descrescătoare.
+                La BAC, cel mai frecvent cerut este algoritmul <b>Bubble Sort</b>, datorită simplității sale.
+            </p>
+
+            <div class="algo-section">
+                <h3><i class="fa-solid fa-water"></i> Bubble Sort (Metoda Bulelor)</h3>
+                <p style="margin: 0;">
+                    Se compară perechi de elemente vecine și se interschimbă dacă nu sunt în ordinea corectă.
+                    Procesul se repetă până când tabloul este complet sortat (nicio interschimbare la o
+                    parcurgere completă).
+                </p>
+            </div>
+
+<pre>
+void bubbleSort(int v[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - 1 - i; j++)
+            if (v[j] > v[j + 1])
+            {
+                int aux = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = aux;
+            }
+}
+</pre>
+
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> La fiecare
+                parcurgere completă (valoarea lui <b>i</b>), cel mai mare element rămas "se ridică" la
+                poziția corectă din dreapta &ndash; de aici și denumirea de "bule". Complexitatea este
+                <b>O(n<sup>2</sup>)</b> în cazul general.
+            </div>
+        </section>
+
+        <!-- CAUTARE -->
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-magnifying-glass" style="color: #10b981;"></i> Algoritmi de căutare</h2>
+
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-list"></i> Căutarea secvențială (liniară)</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Se parcurge tabloul element cu element, comparându-l cu valoarea căutată. Funcționează
+                        pe orice tablou, indiferent dacă este sortat sau nu. Complexitate: O(n).
+                    </p>
+                </div>
+                <div class="feature-card" style="border-left-color: #a855f7;">
+                    <h3 style="color: #c084fc;"><i class="fa-solid fa-arrows-split-up-and-left"></i> Căutarea binară</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Funcționează <b>doar pe tablouri sortate</b>. La fiecare pas se compară elementul din
+                        mijloc cu valoarea căutată și se elimină jumătate din interval. Complexitate: O(log n).
+                    </p>
+                </div>
+            </div>
+
+<pre>
+// Cautare secventiala
+int cautareSecventiala(int v[], int n, int x)
+{
+    for (int i = 0; i < n; i++)
+        if (v[i] == x)
+            return i; // pozitia gasita
+
+    return -1; // nu a fost gasit
+}
+</pre>
+
+<pre>
+// Cautare binara (tabloul TREBUIE sa fie sortat crescator)
+int cautareBinara(int v[], int st, int dr, int x)
+{
+    while (st <= dr)
+    {
+        int mij = (st + dr) / 2;
+
+        if (v[mij] == x)
+            return mij;
+        else if (v[mij] < x)
+            st = mij + 1;
+        else
+            dr = mij - 1;
+    }
+    return -1; // nu a fost gasit
+}
+</pre>
+        </section>
+
+        <!-- TABEL COMPARATIV -->
+        <section class="lesson-card">
+            <h2>Rezumat: complexități de timp</h2>
+            <div style="overflow-x: auto;">
+                <table class="dark-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Algoritm</th>
+                            <th>Complexitate</th>
+                            <th>Observație</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Verificare număr prim</td>
+                            <td style="color: #38bdf8; font-weight: bold;">O(&radic;n)</td>
+                            <td>Cu optimizarea d*d &lt;= n</td>
+                        </tr>
+                        <tr>
+                            <td>Determinare divizori</td>
+                            <td style="color: #38bdf8; font-weight: bold;">O(&radic;n)</td>
+                            <td>Parcurgere în perechi (d, n/d)</td>
+                        </tr>
+                        <tr>
+                            <td>CMMDC (Euclid)</td>
+                            <td style="color: #10b981; font-weight: bold;">O(log(min(a,b)))</td>
+                            <td>Extrem de rapid</td>
+                        </tr>
+                        <tr>
+                            <td>Bubble Sort</td>
+                            <td style="color: #f43f5e; font-weight: bold;">O(n<sup>2</sup>)</td>
+                            <td>Acceptabil pentru tablouri mici</td>
+                        </tr>
+                        <tr>
+                            <td>Căutare secvențială</td>
+                            <td style="color: #f59e0b; font-weight: bold;">O(n)</td>
+                            <td>Nu necesită tablou sortat</td>
+                        </tr>
+                        <tr>
+                            <td>Căutare binară</td>
+                            <td style="color: #10b981; font-weight: bold;">O(log n)</td>
+                            <td>Necesită tablou sortat</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
     </main>
-
 </div>
 
 </body>
