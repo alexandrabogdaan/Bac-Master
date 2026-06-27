@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Siruri - BAC Master</title>
+    <title>Șiruri de caractere - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -30,274 +30,412 @@
 
         <!-- HEADER -->
         <section class="lesson-header">
-            <h1>Siruri de caractere</h1>
-            <p>Noțiuni fundamentale despre siruri de caractere în programare</p>
+            <h1>Șiruri de caractere</h1>
+            <p>Noțiuni fundamentale despre șirurile de caractere în C++.</p>
         </section>
 
-        <!-- DEFINITIE VARIABILA -->
+        <!-- INTRODUCERE -->
         <section class="lesson-card">
-            <h2>Despre Siruri de Caractere</h2>
+            <h2>Despre șirurile de caractere</h2>
 
             <p>
-                Vom discuta despre sirurile de caractere reprezentate ca tablouri unidimensionale de caractere în C++. Un sir de caractere este o secvență de caractere stocată într-un tablou de tip char, terminată cu caracterul nul '\0'.
-                <br>
-                '\0' este un caracter special care indică sfârșitul sirului, reprezentat cu codul ASCII 0 si numit caracter <u><b>null.</b></u>
+                În C++, șirurile de caractere sunt reprezentate ca tablouri unidimensionale
+                de elemente de tip <b>char</b>. Un șir de caractere este o succesiune de
+                caractere memorată într-un tablou de tip <b>char</b>, terminată obligatoriu
+                cu caracterul nul <b>'\0'</b>.
             </p>
 
             <p>
-                Numele variabilei rămâne constant, dar valoarea se poate schimba.
+                Caracterul <b>'\0'</b> are codul ASCII <b>0</b> și marchează sfârșitul
+                șirului. Funcțiile din biblioteca <b>&lt;cstring&gt;</b> utilizează acest
+                caracter pentru a determina unde se termină șirul.
             </p>
         </section>
 
-        <!-- MEMORIE SI BITI -->
+        <!-- DECLARAREA -->
         <section class="lesson-card">
             <h2>Declararea unui șir de caractere</h2>
 
             <p>
-                Un sir de caractere poate fi declarat astfel:
+                Un șir de caractere poate fi declarat astfel:
             </p>
 
             <pre>
-            char sir[20];
+char sir[20];
             </pre>
 
-            <br>
-            <br>
             <p>
-                Acest sir de charactere poate stoca pana la 20 de caractere de la 0-19 (index), dupa ultimul caracter fiind memorat caracteru; '\0'.
+                În acest exemplu sunt alocate 20 de poziții, indexate de la
+                <b>0</b> la <b>19</b>. Deoarece ultimul caracter trebuie să fie
+                <b>'\0'</b>, șirul poate conține maximum <b>19 caractere utile</b>.
             </p>
 
-            <br>
-            <br>
-            <p>La declararea unui sir, acesta poate fi initializat, precum:</p>
-            <pre>
-            char sir[20] = "Salut!"; // primele 6 caractere sunt 'S', 'a', 'l', 'u', 't', '!', iar al 7-lea este '\0'
-
-            char t[] = "Salut!"; // dimensiunea sirului este determinata automat de compilator, in acest caz 7 (6 caractere + '\0')
-
-            char v[6]={ 'S', 'a', 'l', 'u', 't', '\0' }; // initializare caracter cu caracter
-
-            char a[]={'S', 'a', 'l', 'u', 't', '\0'}; //se aloca automat 7 caractere pentru sir
-            </pre>
-        </section>
-
-        <!-- TIPURI DE DATE + MEMORIE -->
-        <section class="lesson-card">
-            <h2>Afisarea si citirea unui sir</h2>
-            
             <p>
-                Afisarea se poate face cu operatorul <b><u>'<<'</u></b>
+                La declarare, un șir poate fi inițializat în mai multe moduri:
             </p>
+
             <pre>
-            cout << sir ;
-            </pre>
-            <br>
-            <br>
-            <p>
-                Citirea se poate face cu operatorul <b><u>'>>'</u></b>
-            </p>
-            <pre>
-            cin >> sir;
-            </pre>
-            <p><b><u>!OBSERVATIE</u></b>, in acest mod, nu se pot citi șiruri de caractere care conțin spații.</p>
-            <br>
-            <p>
-                Pentru a citi un sir de caractere care contine spatii, se poate folosi functia <b><u>cin.getline()</u></b>:
-            </p>
-            <pre>
-            getline (char* sir, int lungimea_sirului); //Se vor citi caractere pana la intalnirea lui '\n' sau pana cand se atinge lungimea maxima
+char sir[20] = "Salut!";
+// primele 6 poziții conțin caracterele 'S', 'a', 'l', 'u', 't', '!',
+// iar următoarea poziție conține caracterul '\0'
+
+char t[] = "Salut!";
+// dimensiunea tabloului este determinată automat de compilator
+// (6 caractere + '\0' = 7 elemente)
+
+char v[6] = {'S', 'a', 'l', 'u', 't', '\0'};
+// inițializare caracter cu caracter
+
+char a[] = {'S', 'a', 'l', 'u', 't', '\0'};
+// dimensiunea tabloului este determinată automat
             </pre>
         </section>
 
+        <!-- CITIRE ȘI AFIȘARE -->
         <section class="lesson-card">
-            <h2>Exemplu practic:</h2>
+            <h2>Afișarea și citirea unui șir</h2>
 
             <p>
-                Scriem un program C++;
+                Afișarea unui șir se poate realiza cu operatorul
+                <b><u>&lt;&lt;</u></b>.
             </p>
+
             <pre>
-#include <iostream>
+cout << sir;
+            </pre>
+
+            <p>
+                Citirea unui șir fără spații se poate realiza cu operatorul
+                <b><u>&gt;&gt;</u></b>.
+            </p>
+
+            <pre>
+cin >> sir;
+            </pre>
+
+            <p>
+                <b>Observație:</b> În acest mod pot fi citite doar cuvinte.
+                Citirea se oprește la primul spațiu întâlnit.
+            </p>
+
+            <p>
+                Pentru citirea unui șir care conține spații se utilizează
+                funcția <b><u>cin.getline()</u></b>.
+            </p>
+
+            <pre>
+cin.getline(sir, lungimea_sirului);
+// Se citesc caractere până la apăsarea tastei Enter
+// sau până la atingerea lungimii maxime specificate.
+            </pre>
+        </section>
+
+        <!-- EXEMPLU -->
+        <section class="lesson-card">
+            <h2>Exemplu practic</h2>
+
+            <p>
+                Programul de mai jos citește numele utilizatorului și numele
+                unui prieten, apoi le afișează pe ecran.
+            </p>
+
+            <pre>
+#include &lt;iostream&gt;
 using namespace std;
+
 int main()
-    {
+{
     char nume1[31], nume2[31];
 
-    cout << "Cum te cheama? (nume, prenume) ";
+    cout << "Cum te cheamă? (nume și prenume): ";
     cin.getline(nume1, 31);
 
-    cout << "Cum il cheama pe prietenul tau? ";
-    cin.getline(nume2 , 31);
+    cout << "Cum îl cheamă pe prietenul tău? ";
+    cin.getline(nume2, 31);
 
-    cout << "Te numesti " << nume1 << endl; //afiseaza numele introdus de utilizator
-    cout << "Esti prieten cu " << nume2 << endl; //afiseaza numele prietenului
+    cout << "Te numești " << nume1 << endl;
+    cout << "Ești prieten cu " << nume2 << endl;
+
     return 0;
-    }
+}
             </pre>
-        </section>
-
-        <!-- FLOAT DOUBLE -->
+        </section>         <!-- REFERIREA UNUI CARACTER -->
         <section class="lesson-card">
             <h2>Referirea unui caracter din șir. Parcurgerea unui șir de caractere</h2>
 
             <p>
-                Sirurile de caractere sunt, de fapt, tablouri unidimensionale de caractere. Referirea unui caracter din sir se face cu operatorul '[]'.
+                Șirurile de caractere sunt, de fapt, tablouri unidimensionale de
+                caractere. Fiecare caracter poate fi accesat prin intermediul
+                operatorului <b><u>[]</u></b>.
+            </p>
+
+            <p>
+                Indexarea începe de la <b>0</b>, astfel încât primul caracter se află
+                pe poziția <b>0</b>, al doilea pe poziția <b>1</b> și așa mai departe.
             </p>
 
             <pre>
-            char sir[20] = "Salut!";
-            cout << sir[0]; //afiseaza 'S'
-            cout << sir[1]; //afiseaza 'a'
-            sir[1]='b'; //modifica al doilea caracter din sir, astfel sirul devine "Sblut!"
-            cout<< sir; //afiseaza "Sblut!"
+char sir[20] = "Salut!";
+
+cout << sir[0]; // afișează 'S'
+cout << sir[1]; // afișează 'a'
+
+sir[1] = 'b';   // șirul devine "Sblut!"
+
+cout << sir;    // afișează Sblut!
             </pre>
         </section>
 
-        <!-- CHAR -->
+        <!-- FUNCȚII -->
         <section class="lesson-card">
-            <h2>Functii cu siruri de caractere</h2>
+            <h2>Funcții pentru șiruri de caractere</h2>
 
             <p>
-                Determinarea lungii unui sir: <b><u>strlen(const char* str)</u></b>
+                Majoritatea funcțiilor pentru șiruri de caractere se găsesc în
+                biblioteca <b>&lt;cstring&gt;</b>.
             </p>
-            <pre>
-            cout << strlen("Salut!"); // 6
-            char sir[10]="Acasa";
-            cout << strlen(sir); // 5
-            cout << strlen(sir + 2); //3
-            </pre>
-            <br>
-            <br>
+
+            <h3>Determinarea lungimii unui șir - <code>strlen()</code></h3>
+
             <p>
-                Copierea unui sir din alt sir: <b><u>strcpy(char* dest, const char* src)</u></b> mai intai sirul destinatie, apoi cel sursa.
+                Funcția <b>strlen(const char* str)</b> returnează numărul de
+                caractere din șir, fără a lua în considerare caracterul
+                <b>'\0'</b>.
             </p>
+
             <pre>
-            char sir[21], t[21] = "Salut!";
-            strcpy(sir , "Acasa!");
-            cout << sir; // Acasa!
+cout << strlen("Salut!"); // 6
 
-            strcpy(sir , t);
-            cout << sir; // Salut!
+char sir[10] = "Acasa";
 
-            strcpy(sir , t + 2);
-            cout << sir; // lut!
-
-            strcpy(sir + 2 , t);
-            cout << sir; // luSalut!
+cout << strlen(sir);      // 5
+cout << strlen(sir + 2);  // 3
             </pre>
+
             <br>
-            <br>
-            <p>Concatenarea a doua siruri: <b><u>strcat(char* dest, const char* src)</u></b></p>
+
+            <h3>Copierea unui șir - <code>strcpy()</code></h3>
+
+            <p>
+                Funcția <b>strcpy(char* dest, const char* src)</b> copiază
+                conținutul șirului <b>src</b> în șirul <b>dest</b>.
+            </p>
+
+            <p>
+                Primul parametru reprezintă șirul destinație, iar al doilea
+                reprezintă șirul sursă.
+            </p>
+
             <pre>
-            char sir[21]="Salut!", t[21] = "Acasa!";
-            strcat(sir , t);
-            cout << sir; // Salut!Acasa!
+char sir[21], t[21] = "Salut!";
 
-            strcat(sir , t + 2);
-            cout << sir; // Salut!Acasa!asa!   
+strcpy(sir, "Acasa!");
+cout << sir; // Acasa!
+
+strcpy(sir, t);
+cout << sir; // Salut!
+
+strcpy(sir, t + 2);
+cout << sir; // lut!
+
+strcpy(sir + 2, t);
+cout << sir; // luSalut!
             </pre>
+
             <br>
-            <br>
-            <p>Cautarea unui caracter pana la prima aparitie <b><u>char *strchr( char * str, char ch );</u></b></p>
-            <br>
-            <p>Functia returneaza <b><u>NULL</u></b> daca nu apare caracterul cautat in sir</p>
+
+            <h3>Concatenarea șirurilor - <code>strcat()</code></h3>
+
+            <p>
+                Funcția <b>strcat(char* dest, const char* src)</b> adaugă
+                șirul <b>src</b> la sfârșitul șirului <b>dest</b>.
+            </p>
+
+            <p>
+                Șirul destinație trebuie să aibă suficient spațiu liber pentru
+                a memora rezultatul concatenării.
+            </p>
+
             <pre>
-            char sir[21]="Salut!";
-            char *p = strchr(sir , 'a');
-            cout << p; // alut!    
+char sir[21] = "Salut!";
+char t[21] = "Acasa!";
 
+strcat(sir, t);
+cout << sir; // Salut!Acasa!
 
-
-            char ch = 'i';
-            if(strchr("aeiou" , ch) != NULL)
-            {
-                cout << "DA";
-            }
-            else
-            {
-                cout << "NU";
-            }
-                //se va afisa DA
+strcat(sir, t + 2);
+cout << sir; // Salut!Acasa!asa!
             </pre>
+
             <br>
-            <br>
-            <p>Cautarea unui sir in alt sir pana la prima aparitie <b><u>char *strstr( char * str, char * str2 );</u></b></p>
+
+            <h3>Căutarea unui caracter - <code>strchr()</code></h3>
+
+            <p>
+                Funcția <b>strchr(char* str, char ch)</b> caută prima apariție
+                a caracterului <b>ch</b> în șirul <b>str</b>.
+            </p>
+
+            <p>
+                Dacă acesta există, funcția returnează un pointer către prima
+                apariție. În caz contrar, returnează <b>NULL</b>.
+            </p>
+
             <pre>
-            char sir[21]="Salut!";
-            char *p = strstr(sir , "alu");
-            cout << p; // alut!   
+char sir[21] = "Salut!";
+
+char *p = strchr(sir, 'a');
+
+cout << p; // alut!
+
+char ch = 'i';
+
+if (strchr("aeiou", ch) != NULL)
+{
+    cout << "DA";
+}
+else
+{
+    cout << "NU";
+}
+
+// Se va afișa DA.
             </pre>
-            <p><b><u>OBSERVATIE!</u></b> Pentru orice șir S, apelul strstr(S, "") returnează întotdeauna pointerul către începutul șirului S (adică valoarea lui S).</p>
+
             <br>
-            <br>
-            <p>Compararea lexicografica a doua siruri se face cu <b><u>int strcmp( char * s, char * t );</u></b></p>
+
+            <h3>Căutarea unui șir într-un alt șir - <code>strstr()</code></h3>
+
+            <p>
+                Funcția <b>strstr(char* str, char* str2)</b> caută prima apariție
+                a șirului <b>str2</b> în șirul <b>str</b>.
+            </p>
+
+            <p>
+                Dacă șirul este găsit, funcția returnează un pointer către prima
+                apariție. În caz contrar, returnează <b>NULL</b>.
+            </p>
+
+            <pre>
+char sir[21] = "Salut!";
+
+char *p = strstr(sir, "alu");
+
+cout << p; // alut!
+            </pre>
+
+            <p>
+                <b>Observație:</b> Pentru orice șir <b>S</b>, apelul
+                <code>strstr(S, "")</code> returnează întotdeauna adresa de început
+                a șirului <b>S</b>.
+            </p>
+        </section>         <!-- COMPARAREA ȘIRURILOR -->
+        <section class="lesson-card">
+            <h2>Compararea șirurilor - <code>strcmp()</code></h2>
+
+            <p>
+                Funcția <b>strcmp(char* s, char* t)</b> compară lexicografic două șiruri de caractere.
+            </p>
+
             <ul>
-                <li>Returneaza 0 daca sirurile sunt egale</li>
-                <li>Returneaza un numar negativ daca primul sir este mai mic decat al doilea</li>
-                <li>Returneaza un numar pozitiv daca primul sir este mai mare decat al doilea</li>
+                <li>Returnează <b>0</b> dacă șirurile sunt identice.</li>
+                <li>Returnează o valoare negativă dacă primul șir este lexicografic mai mic.</li>
+                <li>Returnează o valoare pozitivă dacă primul șir este lexicografic mai mare.</li>
             </ul>
-            <pre>
-            char sir[21]="abur", t[21]="abecedar";
-            if(strcmp(sir , t) < 0)
-            {
-                cout << "Da";
-            }
-            else
-            {
-                cout << "Nu";
-            }
-                // se va afisa Nu; cuvantul "abur" este lexicografic dupa "abecedar"    
-            </pre>
-            <br>
-            <br>
-            <p>Extragerea dintr-un sir de caractere câte un subșir (cuvânt) delimitat de caractere din șirul sep se face astfel: <b><u>char *strtok( char *str, const char *sep );</u></b></p>
-            <pre>
-            char sep[]=" .,";
-            char * p = strtok(sir , sep); //primul apel are ca parametri șirul din care se face extragerea și șirul separatorilor
-            while(p != NULL)
-            {
-                cout << p << endl;
-                p = strtok(NULL , sep); //la următoarele apeluri primul parametru este NULL.
-            }
 
-            //Secvența de mai jos extrage dintr-un șir sir cuvintele (separate prin caractere din mulțimea {' ', ',', '.'}
+            <pre>
+char s1[20] = "ana";
+char s2[20] = "ana";
+char s3[20] = "andrei";
+
+cout << strcmp(s1, s2); // 0
+cout << strcmp(s1, s3); // negativ
+cout << strcmp(s3, s1); // pozitiv
             </pre>
-       
         </section>
 
-        <!-- BOOL -->
+        <!-- TOKENIZAREA ȘIRURILOR -->
         <section class="lesson-card">
-            <h2>Eliminarea si Inserarea unui caracter in siruri</h2>
+            <h2>Funcția strtok()</h2>
 
             <p>
-                <b><u></u>Eliminarea:</u></b>
+                Funcția <b>strtok(char* str, const char* sep)</b> împarte un șir în subșiruri (tokeni),
+                folosind caracterele din <b>sep</b> drept delimitatori.
             </p>
-            <pre>
-            char sir[256], t[256];
-            int x; //pozitia caracterului care se doreste a fi eliminat
-            // ...
-            //eliminarea
-            strcpy(t , sir + x + 1);
-            strcpy(sir + x , t);    
-            </pre>
-            <br>
-            <br>
+
             <p>
-                <b><u>Inserarea:</u></b>
+                La primul apel se transmite șirul inițial, iar la următoarele apeluri se transmite <b>NULL</b>.
             </p>
+
+            <p>
+                <b>Important:</b> Funcția modifică șirul original, înlocuind delimitatorii cu caracterul <b>'\0'</b>.
+            </p>
+
             <pre>
-            char sir[256], t[256];
-            int x;
-            // ...
-            //inserarea
-            strcpy(t , sir + x);
-            strcpy(sir + x + 1 , t);
-            sir[x] = 'A'; // echivalent, *(sir+x) = 'A';    
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    char s[100] = "ana are mere";
+
+    char *p = strtok(s, " ");
+
+    while (p != NULL)
+    {
+        cout << p << endl;
+        p = strtok(NULL, " ");
+    }
+
+    return 0;
+}
             </pre>
         </section>
 
-        
-    </main>
+        <!-- ELIMINAREA ȘI INSERAREA -->
+        <section class="lesson-card">
+            <h2>Eliminarea și inserarea unui caracter într-un șir</h2>
 
+            <h3>Eliminarea unui caracter</h3>
+
+            <p>
+                Pentru eliminarea caracterului aflat pe poziția <b>x</b>, toate caracterele
+                situate după acesta sunt deplasate cu o poziție spre stânga.
+            </p>
+
+            <pre>
+char s[20] = "informatica";
+int x = 3;
+
+for (int i = x; i < strlen(s); i++)
+    s[i] = s[i + 1];
+
+cout << s;
+            </pre>
+
+            <h3>Inserarea unui caracter</h3>
+
+            <p>
+                Pentru inserarea unui caracter pe poziția <b>x</b>, toate caracterele
+                începând de la acea poziție sunt deplasate cu o poziție spre dreapta,
+                apoi se inserează caracterul dorit.
+            </p>
+
+            <pre>
+char s[30] = "infoatica";
+int x = 4;
+
+for (int i = strlen(s); i >= x; i--)
+    s[i + 1] = s[i];
+
+s[x] = 'r';
+
+cout << s;
+            </pre>
+        </section>
+
+    </main>
 </div>
 
 </body>
