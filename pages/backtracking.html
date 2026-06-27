@@ -4,6 +4,102 @@
     <meta charset="UTF-8">
     <title>Metoda Backtracking - Clasa a XI-a</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Backtracking */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta introductivă tip Labirint/Sfat */
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #a855f7; /* Violet pentru Backtracking */
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri terminologie */
+        .term-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #38bdf8;
+        }
+        .term-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Secțiuni Exerciții de BAC */
+        .bac-section {
+            background: rgba(168, 85, 247, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-left: 4px solid #a855f7;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+        .bac-section h3 {
+            color: #c084fc;
+            margin-top: 0;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tabel combinatorică adaptat complet pentru Dark Mode */
+        .dark-table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            border: 1px solid #2d3748; 
+            text-align: left;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark-table th {
+            background-color: #2d3748; 
+            color: #38bdf8; 
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 2px solid #4a5568;
+        }
+        .dark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2d3748;
+            border-right: 1px solid #2d3748;
+            line-height: 1.5;
+        }
+        .dark-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dark-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+    </style>
 </head>
 
 <body>
@@ -32,9 +128,10 @@
 
         <section class="lesson-card">
             <h2>Introducere intuitivă</h2>
-            <p>
-                Imaginează-ți că ești într-un labirint necunoscut și încerci să găsești ieșirea. Mergi înainte pe o potecă până când dai de un perete. Ce definiție aplici? Nu te blochezi acolo, ci te întorci la ultima intersecție și încerci o altă variantă. 
-            </p>
+            <div class="info-box">
+                <i class="fa-solid fa-map-signs" style="color: #c084fc; font-size: 1.2rem; margin-right: 5px;"></i> 
+                Imaginează-ți că ești într-un labirint necunoscut și încerci să găsești ieșirea. Mergi înainte pe o potecă până când dai de un perete. Ce faci? Nu te blochezi acolo, ci te întorci la ultima intersecție și încerci o altă variantă. 
+            </div>
             <p>
                 Exact asta face și metoda <b>Backtracking</b> (în traducere: <i>„revenire pe drumul parcurs”</i>). Este o metodă algoritmică de parcurgere sistematică a tuturor soluțiilor posibile ale unei probleme. Ea construiește soluția pas cu pas, iar dacă la un moment dat constată că direcția aleasă nu poate duce la un rezultat corect, abandonează acea ramură și se întoarce înapoi pentru a încerca altceva.
             </p>
@@ -44,41 +141,43 @@
             <h2>Definiție și Ideea Metodei</h2>
             <p>
                 Se construiește un vector soluție <b>x[] = (x[1], x[2], ..., x[n])</b>, unde fiecare element 
-                x[k] primește valori dintr-o mulțime specifică de elemente disponibile.
+                <code>x[k]</code> primește valori dintr-o mulțime specifică de elemente disponibile.
             </p>
-            <p>
-                <b>Mecanismul de bază la fiecare pas (k):</b><br>
+            
+            <div class="info-box" style="border-left-color: #38bdf8; background-color: rgba(56, 189, 248, 0.03);">
+                <b style="color: #38bdf8;"><i class="fa-solid fa-gears"></i> Mecanismul de bază la fiecare pas (k):</b><br>
                 Alegem o valoare pentru x[k] &rarr; Verificăm dacă este validă parțial &rarr; Dacă da, continuăm la pasul următor (k+1); dacă nu, încercăm următoarea valoare disponibilă sau revenim la pasul anterior (k-1).
-            </p>
+            </div>
         </section>
 
         <section class="lesson-card">
             <h2>Tipuri de generări clasice la BAC</h2>
             <p>Pentru a rezolva rapid problemele grilă, trebuie să identifici ce structură combinatorică folosește enunțul:</p>
+            
             <div style="overflow-x: auto;">
-                <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
+                <table class="dark-table" border="1">
                     <thead>
-                        <tr style="background-color: #f2f2f2; color: #111111;">
-                            <th style="padding: 8px;">Tipul generării</th>
-                            <th style="padding: 8px;">Regulă principală</th>
-                            <th style="padding: 8px;">Exemplu pentru {1, 2, 3}</th>
+                        <tr>
+                            <th style="width: 25%;">Tipul generării</th>
+                            <th style="width: 50%;">Regulă principală</th>
+                            <th style="width: 25%;">Exemplu pentru {1, 2, 3}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 8px;"><b>Permutări</b></td>
-                            <td style="padding: 8px;">Se folosesc TOATE elementele, contează ordinea, cifrele nu se repetă.</td>
-                            <td style="padding: 8px;">(1,2,3), (1,3,2), (2,1,3)...</td>
+                            <td><b>Permutări</b></td>
+                            <td>Se folosesc TOATE elementele, contează ordinea, cifrele nu se repetă.</td>
+                            <td style="color: #38bdf8;">(1,2,3), (1,3,2), (2,1,3)...</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px;"><b>Aranjamente</b></td>
-                            <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente din cele <i>n</i>, contează ordinea.</td>
-                            <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,1)...</td>
+                            <td><b>Aranjamente</b></td>
+                            <td>Se folosesc doar <i>k</i> elemente din cele <i>n</i>, contează ordinea.</td>
+                            <td style="color: #38bdf8;">De câte 2: (1,2), (1,3), (2,1)...</td>
                         </tr>
                         <tr>
-                            <td style="padding: 8px;"><b>Combinări</b></td>
-                            <td style="padding: 8px;">Se folosesc doar <i>k</i> elemente, ORDINEA NU CONTEAZĂ (sunt mereu în ordine strict crescătoare).</td>
-                            <td style="padding: 8px;">De câte 2: (1,2), (1,3), (2,3)</td>
+                            <td><b>Combinări</b></td>
+                            <td>Se folosesc doar <i>k</i> elemente, <b>ORDINEA NU CONTEAZĂ</b> (sunt mereu în ordine strict crescătoare).</td>
+                            <td style="color: #10b981; font-weight: bold;">De câte 2: (1,2), (1,3), (2,3)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -108,29 +207,40 @@ void back(int k)
 
         <section class="lesson-card">
             <h2>Termeni importanți</h2>
-            <ul style="padding-left: 25px; margin-left: 5px;">
-                <li><b>Condiții externe:</b> Mulțimea valorilor pe care le poate lua fiecare element x[k] în mod brut (de exemplu: cifre de la 0 la 9).</li>
-                <li><b>Condiții interne:</b> Filtrele logice care verifică dacă elementul ales păstrează soluția validă (de exemplu: x[k] să fie distinct de elementele anterioare).</li>
-                <li><b>Soluție finală:</b> Momentul în care vectorul este complet completat și îndeplinește criteriul problemei.</li>
-            </ul>
+            <div class="grid-2">
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-folder-open"></i> Condiții externe</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">Mulțimea valorilor pe care le poate lua fiecare element x[k] în mod brut (de exemplu: cifre de la 0 la 9).</p>
+                </div>
+                <div class="term-card" style="border-left-color: #10b981;">
+                    <h3><i class="fa-solid fa-filter"></i> Condiții interne</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">Filtrele logice care verifică dacă elementul ales păstrează soluția validă (de exemplu: x[k] să fie distinct de elementele anterioare).</p>
+                </div>
+            </div>
+            <div class="term-card" style="border-left-color: #a855f7; margin-top: 10px;">
+                <h3><i class="fa-solid fa-square-check"></i> Soluție finală</h3>
+                <p style="margin: 0; font-size: 0.95rem;">Momentul în care vectorul este completat integral și îndeplinește toate criteriile cerute în problema de examen.</p>
+            </div>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 1 (BAC 2025)</h2>
-            <p><b>Enunț:</b></p>
-            <p>
-                Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate
-                {1, 2, 3, 4, 5, 6}; pentru fiecare permutare, pe primele trei poziții sunt doar valori pare,
-                iar pe ultimele trei poziții sunt doar valori impare. Primele șase soluții generate sunt:
-                (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1).
-                Indicați a șaptea soluție generată.
-            </p>
+            <div class="bac-section">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Enunț:</h3>
+                <p style="margin: 0; line-height: 1.6;">
+                    Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate
+                    {1, 2, 3, 4, 5, 6}; pentru fiecare permutare, pe primele trei poziții sunt doar valori pare,
+                    iar pe ultimele trei poziții sunt doar valori impare. Primele șase soluții generate sunt:
+                    (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1).
+                    Indicați a șaptea soluție generată.
+                </p>
+            </div>
 
-            <p><b>Explicație pas cu pas:</b></p>
+            <p style="margin-top: 20px;"><b>Explicație pas cu pas:</b></p>
             <p>
                 Problema împarte vectorul soluție în două zone distincte: primele 3 poziții conțin numerele pare {2, 4, 6}, iar ultimele 3 poziții conțin numerele impare {1, 3, 5}.
             </p>
-            <ul style="padding-left: 25px; margin-left: 5px;">
+            <ul style="padding-left: 25px; margin-left: 5px; line-height: 1.6;">
                 <li>Observăm că în primele 6 soluții oferite de enunț, prefixul format din cifrele pare rămâne complet blocat pe valoarea <code>(2, 4, 6)</code>.</li>
                 <li>În acest timp, sufixul format din cifre impare rulează prin toate cele 6 permutări posibile ale mulțimii {1, 3, 5}, ajungând la ultima sa variantă lexicografică, adică <code>(5, 3, 1)</code>.</li>
                 <li>Odată ce ramura numerelor impare s-a epuizat, algoritmul face <b>backtrack</b> la primele trei poziții pentru a modifica prefixul de numere pare.</li>
@@ -138,48 +248,56 @@ void back(int k)
                 <li>După stabilirea noului prefix, zona numerelor impare se resetează de la început, reluând prima permutare în ordine lexicografică: <code>(1, 3, 5)</code>.</li>
             </ul>
 
-            <p><b>Răspuns corect:</b> (2, 6, 4, 1, 3, 5)</p>
+            <div class="info-box" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.03);">
+                <b style="color: #34d399;"><i class="fa-solid fa-key"></i> Răspuns corect:</b> <span style="font-family: monospace; font-size: 1.1rem; color: #34d399;">(2, 6, 4, 1, 3, 5)</span>
+            </div>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 2 (BAC 2024)</h2>
-            <p><b>Enunț:</b></p>
-            <p>
-                Utilizând metoda backtracking se generează toate numerele formate din cifre distincte,
-                cifre a căror sumă este 6. Primele patru soluții generate sunt, în această ordine:
-                1023, 1032, 105, 1203. Indicați cea de a șasea soluție generată.
-            </p>
+            <div class="bac-section" style="border-left-color: #3b82f6; background-color: rgba(59, 130, 246, 0.02);">
+                <h3 style="color: #60a5fa;"><i class="fa-solid fa-graduation-cap"></i> Enunț:</h3>
+                <p style="margin: 0; line-height: 1.6;">
+                    Utilizând metoda backtracking se generează toate numerele formate din cifre distincte,
+                    cifre a căror sumă este 6. Primele patru soluții generate sunt, în această ordine:
+                    1023, 1032, 105, 1203. Indicați cea de a șasea soluție generată.
+                </p>
+            </div>
 
-            <p><b>Explicație pas cu pas:</b></p>
+            <p style="margin-top: 20px;"><b>Explicație pas cu pas:</b></p>
             <p>
                 Algoritmul generează numerele în ordine lexicografică strictă (ordonare crescătoare). Să urmărim generarea ramurilor:
             </p>
-            <ul style="padding-left: 25px; margin-left: 5px;">
-                <li><b>Soluția 1:</b> 1023 (Suma: 1+0+2+3 = 6)</li>
-                <li><b>Soluția 2:</b> 1032 (Suma: 1+0+3+2 = 6)</li>
-                <li><b>Soluția 3:</b> 105 (Suma: 1+0+5 = 6) &rarr; s-a încheiat ramura numerelor care încep cu prefixul <code>10...</code></li>
+            <ul style="padding-left: 25px; margin-left: 5px; line-height: 1.6;">
+                <li><b>Soluția 1:</b> 1023 <small style="color: #a0aec0;">(Suma: 1+0+2+3 = 6)</small></li>
+                <li><b>Soluția 2:</b> 1032 <small style="color: #a0aec0;">(Suma: 1+0+3+2 = 6)</small></li>
+                <li><b>Soluția 3:</b> 105 <small style="color: #a0aec0;">(Suma: 1+0+5 = 6)</small> &rarr; s-a încheiat ramura numerelor cu prefixul <code>10...</code></li>
                 <li>Algoritmul avansează la următorul prefix posibil, adică <code>12...</code></li>
-                <li><b>Soluția 4:</b> 1203 (Suma: 1+2+0+3 = 6)</li>
-                <li><b>Soluția 5:</b> După 1203, algoritmul face backtrack la lungimea de 3 cifre cu prefixul <code>12</code>. Următoarea cifră mai mare decât 0 este 3, obținându-se numărul <b>123</b> (Suma: 1+2+3 = 6).</li>
-                <li><b>Soluția 6:</b> Ramura prefixului <code>12</code> fiind complet epuizată, algoritmul trece la prefixul următor, <code>13...</code>. Prima combinație validă de cifre distincte care adunate dau 6 este <b>1302</b> (Suma: 1+3+0+2 = 6).</li>
+                <li><b>Soluția 4:</b> 1203 <small style="color: #a0aec0;">(Suma: 1+2+0+3 = 6)</small></li>
+                <li><b>Soluția 5:</b> După 1203, se face backtrack la lungimea de 3 cifre cu prefixul <code>12</code>. Următoarea cifră mai mare decât 0 este 3, obținându-se numărul <b>123</b> <small style="color: #a0aec0;">(Suma: 1+2+3 = 6)</small>.</li>
+                <li><b>Soluția 6:</b> Ramura prefixului <code>12</code> fiind complet epuizată, algoritmul trece la prefixul următor, <code>13...</code>. Prima combinație validă de cifre distincte care adunate dau 6 este <b>1302</b> <small style="color: #a0aec0;">(Suma: 1+3+0+2 = 6)</small>.</li>
             </ul>
 
-            <p><b>Răspuns corect:</b> 1302</p>
+            <div class="info-box" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.03);">
+                <b style="color: #34d399;"><i class="fa-solid fa-key"></i> Răspuns corect:</b> <span style="font-family: monospace; font-size: 1.1rem; color: #34d399;">1302</span>
+            </div>
         </section>
 
         <section class="lesson-card">
             <h2>Exercițiul 3 (BAC 2021)</h2>
-            <p><b>Enunț:</b></p>
-            <p>
-                Se generează toate numerele de 3 cifre formate doar din cifre impare (1, 3, 5, 7, 9),
-                utilizând metoda backtracking. Se cere a șasea soluție generată.
-            </p>
+            <div class="bac-section" style="border-left-color: #eab308; background-color: rgba(234, 179, 8, 0.02);">
+                <h3 style="color: #facc15;"><i class="fa-solid fa-graduation-cap"></i> Enunț:</h3>
+                <p style="margin: 0; line-height: 1.6;">
+                    Se generează toate numerele de 3 cifre formate doar din cifre impare (1, 3, 5, 7, 9),
+                    utilizând metoda backtracking. Se cere a șasea soluție generată.
+                </p>
+            </div>
 
-            <p><b>Explicație pas cu pas:</b></p>
+            <p style="margin-top: 20px;"><b>Explicație pas cu pas:</b></p>
             <p>
                 Deoarece enunțul nu menționează că cifrele trebuie să fie distincte, înseamnă că elementele din mulțimea {1, 3, 5, 7, 9} se pot repeta. Generăm numerele crescător, pas cu pas:
             </p>
-            <ol style="padding-left: 25px; margin-left: 5px;">
+            <ol style="padding-left: 25px; margin-left: 5px; line-height: 1.6;">
                 <li><b>Soluția 1:</b> 111</li>
                 <li><b>Soluția 2:</b> 113</li>
                 <li><b>Soluția 3:</b> 115</li>
@@ -188,15 +306,19 @@ void back(int k)
                 <li><b>Soluția 6:</b> După ce ultima cifră a ajuns la valoarea maximă (9), algoritmul face backtrack la poziția a doua. Cifra 1 de pe poziția a doua este înlocuită cu următoarea cifră impară (3), iar ultima poziție se resetează la valoarea de pornire (1). Obținem numărul <b>131</b>.</li>
             </ol>
 
-            <p><b>Răspuns corect:</b> 131</p>
+            <div class="info-box" style="border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.03);">
+                <b style="color: #34d399;"><i class="fa-solid fa-key"></i> Răspuns corect:</b> <span style="font-family: monospace; font-size: 1.1rem; color: #34d399;">131</span>
+            </div>
         </section>
 
         <section class="lesson-card">
             <h2>Concluzie pentru examen</h2>
-            <p>
-                La BAC, problemele de backtracking de la subiectul I nu cer să scrii cod complet, ci să înțelegi 
-                <b>ordinea lexicografică</b> și modul în care se modifică elementele de la dreapta la stânga în momentul unei reveniri (backtrack). Regula de aur: <i>Schimbă ultima poziție; dacă s-a epuizat, mergi cu un pas la stânga, mărește valoarea și o ia de la capăt!</i>
-            </p>
+            <div class="info-box" style="border-left-color: #eab308; background-color: rgba(234, 179, 8, 0.03);">
+                <p style="margin: 0; line-height: 1.6;">
+                    <b style="color: #facc15;"><i class="fa-solid fa-star"></i> Regula de aur la BAC:</b><br>
+                    La Subiectul I nu ți se cere să scrii cod complet, ci să înțelegi <b>ordinea lexicografică</b> și mecanismul de revenire. Modifică mereu ultima poziție de la dreapta; dacă s-a epuizat valoarea ei maximă, mergi cu un pas la stânga, mărește acea valoare și reia generarea de la capăt pentru restul pozițiilor!
+                </p>
+            </div>
         </section>
 
     </main>
