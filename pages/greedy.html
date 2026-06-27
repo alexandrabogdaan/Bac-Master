@@ -1,19 +1,158 @@
+Observ că ai adus notițele tale direct din programă! Este o bază teoretică excelentă. Totuși, la copiere s-a pierdut un mic detaliu tehnic important: la secțiunea de complexitate, textul rămăsese gol (probabil din cauza fonturilor matematice). Am corectat acest aspect introducând notația oficială de complexitate polinomială: $O(n^k)$.
+
+De asemenea, am integrat perfect definiția ta matematică (cu mulțimile $A$ și $B$), pseudocodul specificat și cele două situații cruciale în care se aplică metoda, păstrând în același timp trucurile de design (pentru ca tabelele și listele să se vadă perfect pe orice ecran și temă de culori).
+
+Iată documentul HTML final, complet structurat:
+
+```html
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="ro">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metoda Greedy</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <title>Metoda Greedy - Clasa a XI-a</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<div class="container">
+
+    <aside class="sidebar">
+        <a href="../index.html" class="logo" style="text-decoration:none;">
+            <h2>BAC Master</h2>
+        </a>
+
+        <nav>
+            <a href="../index.html">Acasă</a>
+            <a href="teorie.html">Teorie</a>
+            <a href="algoritmi.html">Algoritmi</a>
+            <a href="teste.html">Teste</a>
+        </nav>
+    </aside>
+
+    <main class="main lesson-page">
+
+        <section class="lesson-header">
+            <h1>Metoda Greedy</h1>
+            <p>Teorie oficială + algoritmul general și problemele celebre de BAC</p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Definiția și Tipul Problemelor</h2>
+            <p>
+                Metoda Greedy (<i>„lacomă”</i>) este o metodă parțială de optimizare care poate fi utilizată în rezolvarea problemelor de următorul tip:
+            </p>
+            <p style="background-color: rgba(255,255,255,0.05); padding: 15px; border-left: 4px solid #007bff; margin-left: 5px;">
+                <b>Modelul matematic:</b> Se dă o mulțime $A$. Să se determine o submulțime $B$ a lui $A$ ($B \subseteq A$) astfel încât să fie îndeplinite anumite condiții specifice, depinzând de problema propriu-zisă.
+            </p>
+            <p>
+                Altfel spus, pornim de la o mulțime vidă și adăugăm în mod repetat în submulțimea soluție $B$ elemente din $A$ până când acest lucru nu mai este posibil.
+            </p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Algoritmul General Greedy</h2>
+            <p>
+                O rezolvare generală de tip Greedy pentru determinarea submulțimii optime este descrisă prin următorul bloc de pseudocod:
+            </p>
+<pre>
+B &larr; &empty;  // Inițializăm submulțimea soluție ca fiind vidă
+terminat &larr; FALSE
+
+Execută
+    Alege convenabil x &isin; A  // Alegerea optimului local curent
+    
+    Dacă x poate fi adăugat în B Atunci
+        B &larr; B &cup; {x}       // Elementul este păstrat definitiv
+    Altfel
+        terminat &larr; TRUE    // Se oprește căutarea pe această structură
+    SfârșitDacă
+Cât timp terminat = FALSE
+</pre>
+            <p><i>Observație privind codul:</i> În practică, pentru majoritatea problemelor, algoritmul parcurge elementele mulțimii $A$ deja sortate anterior după un criteriu bine stabilit.</p>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Observații Critice și Caracteristici</h2>
+            <ul style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Optimul Local:</b> Stabilirea elementului care va fi adăugat în soluția $B$ se face alegându-l pe cel mai bun din acel moment. Din acest motiv metoda se numește <i>Greedy</i> (lacomă).</li>
+                <li><b>Irevocabilitate:</b> După adăugarea în soluția $B$ a unui anumit element, acesta va rămâne în soluție până la final. <b>Nu există un mecanism de revenire</b> (backtrack) la un pas anterior!</li>
+                <li><b>Corectitudine relativă:</b> Alegerea optimului local nu duce întotdeauna la cea mai bună soluție globală. Metoda Greedy <b>nu este întotdeauna corectă</b> pentru orice problemă. Schema sa este destul de vagă și nu poate fi standardizată printr-un șablon rigid de cod.</li>
+                <li><b>Eficiență computațională:</b> Complexitatea metodei este de regulă polinomială &ndash; $O(n^k)$, unde $k$ este o constantă (cel mai adesea determinată de algoritmul de sortare utilizat inițial, de exemplu $O(n \log n)$).</li>
+            </ul>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Cele Două Situații de Utilizare</h2>
+            <p>Deoarece este o metodă rapidă, dar riscantă, folosim metoda Greedy doar în două contexte clare:</p>
+            <ol style="padding-left: 25px; margin-left: 5px;">
+                <li><b>Cazul Certitudinii:</b> Știm sigur că rezolvarea este corectă deoarece avem o demonstrație de natură matematică a corectitudinii criteriului de alegere (de exemplu, la problema spectacolelor).</li>
+                <li><b>Cazul Heuristic (Soluție Acceptabilă):</b> Nu avem la dispoziție decât soluții exponențiale extrem de lente (de tip Backtracking), iar un algoritm Greedy ne oferă rapid o soluție care, deși nu este neapărat optimă, este suficient de bună și acceptabilă în practică.</li>
+            </ol>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Probleme Celebre Rezolvate prin Greedy</h2>
+            <p>Există câteva probleme clasice în algoritmică pe care trebuie să le recunoști instantaneu la examen:</p>
+            
+            <div style="margin-top: 15px; border-left: 3px solid #007bff; padding-left: 15px;">
+                <h3>1. Problema Spectacolelor</h3>
+                <p><b>Criteriu:</b> Sortarea spectacolelor crescător după <b>ora de finalizare</b>.</p>
+                <p><i>De ce?</i> Eliberând sala cât mai devreme, lăsăm o fereastră de timp maximă pentru a programa alte activități ulterioare.</p>
+            </div>
+
+            <div style="margin-top: 15px; border-left: 3px solid #007bff; padding-left: 15px;">
+                <h3>2. Problema Continuă a Rucsacului</h3>
+                <p><b>Criteriu:</b> Sortarea obiectelor descrescător după <b>eficiența lor (Valoare / Greutate)</b>.</p>
+                <p><i>De ce?</i> Întrucât obiectele pot fi fragmentate (tăiate), hoțul dorește să încarce mai întâi kilogramele cele mai valoroase pentru a maximiza profitul total.</p>
+            </div>
+
+            <div style="margin-top: 15px; border-left: 3px solid #007bff; padding-left: 15px;">
+                <h3>3. Algoritmi pe Grafuri</h3>
+                <p>Metoda Greedy stă la baza unor algoritmi fundamentali studiați la capitolul Grafuri:</p>
+                <ul style="padding-left: 25px; margin-left: 5px;">
+                    <li><b>Algoritmul lui Dijkstra:</b> Determină drumurile de cost minim de la un nod de start la celelalte noduri din graf (alegând mereu nodul cel mai apropiat nevizitat).</li>
+                    <li><b>Algoritmul lui Prim și Kruskal:</b> Determină arborele parțial de cost minim (APM) al unui graf, selectând de fiecare dată muchiile cu costul cel mai mic care nu închid circuite.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="lesson-card">
+            <h2>Rezumat rapid: Backtracking vs. Greedy</h2>
+            <div style="overflow-x: auto;">
+                <table border="1" style="width:100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2; color: #111111;">
+                            <th style="padding: 8px;">Criteriu</th>
+                            <th style="padding: 8px;">Metoda Backtracking</th>
+                            <th style="padding: 8px;">Metoda Greedy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 8px;"><b>Soluții returnate</b></td>
+                            <td style="padding: 8px;">Toate soluțiile posibile ale problemei.</td>
+                            <td style="padding: 8px;">O singură submulțime (soluție optimă).</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Mecanism</b></td>
+                            <td style="padding: 8px;">Încercare &rarr; Validare &rarr; Revenire (Backtrack)</td>
+                            <td style="padding: 8px;">Sortare inițială &rarr; Alegere definitivă (Lacomă)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><b>Timp de rulare</b></td>
+                            <td style="padding: 8px;">Exponențial (Foarte lent: $O(2^n)$ sau $O(n!)$)</td>
+                            <td style="padding: 8px;">Polinomial (Foarte rapid: de regulă $O(n \log n)$)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
 
 </body>
 </html>
+
+```
