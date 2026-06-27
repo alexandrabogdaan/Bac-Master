@@ -5,8 +5,100 @@
     <title>Subprograme - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Subprograme */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta introductivă / definiție */
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri de caracteristici / observații */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #38bdf8;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list {
+            padding-left: 20px;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* Secțiune de eroare / avertisment */
+        .warning-section {
+            background: rgba(244, 63, 94, 0.02);
+            border: 1px solid rgba(244, 63, 94, 0.15);
+            border-left: 4px solid #f43f5e;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        .warning-section h3 {
+            color: #fb7185;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Secțiune corectă / succes */
+        .success-section {
+            background: rgba(16, 185, 129, 0.02);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        .success-section h3 {
+            color: #34d399;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        pre b {
+            color: #38bdf8;
+        }
+    </style>
 </head>
 
+<body>
 <div class="container">
 
     <!-- SIDEBAR -->
@@ -33,52 +125,46 @@
             <p>Noțiuni fundamentale despre declararea și utilizarea subprogramelor</p>
         </section>
 
-        <!-- DEFINITIE VARIABILA -->
+        <!-- DEFINITIE -->
         <section class="lesson-card">
-            <h2>Definiția subprogramului</h2>
+            <h2><i class="fa-solid fa-code"></i> Definiția subprogramului</h2>
 
-            <p>
-                Un subprogram este o colecție de tipuri de date, variabile, instrucțiuni care îndeplinesc o anumită sarcină (calcule, citiri, afișări), atunci când este apelat (folosit) de un program sau de un alt subprogram. 
-            <br>
-            <br>
-             <b>Un subprogram se declară în C++ astfel:</b>
-            </p>
-            <br>
-            <p> 
-                tipulFunctiei numeleFunctiei(parametrii);
-            </p>
-            
-            <ul>
-            <li>
-                Ex1: int suma(int a, int b);
+            <div class="info-box">
+                <p style="margin: 0 0 10px 0;">
+                    Un subprogram este o colecție de tipuri de date, variabile, instrucțiuni care îndeplinesc o anumită sarcină (calcule, citiri, afișări), atunci când este apelat (folosit) de un program sau de un alt subprogram.
+                </p>
+                <p style="margin: 0;">
+                    <b style="color: #60a5fa;">Un subprogram se declară în C++ astfel:</b>
+                </p>
+                <p style="margin: 5px 0 0 0; font-family: monospace; color: #e2e8f0;">
+                    tipulFunctiei numeleFunctiei(parametrii);
+                </p>
+            </div>
 
-            </li>
-            <li>
-
-                Ex2: bool estePar(int n);
-            </li>
-            </ul>
+            <div class="feature-card">
+                <h3><i class="fa-solid fa-list-check"></i> Exemple</h3>
+                <ul class="feature-list">
+                    <li>Ex1: <code>int suma(int a, int b);</code></li>
+                    <li>Ex2: <code>bool estePar(int n);</code></li>
+                </ul>
+            </div>
         </section>
 
 
         <section class="lesson-card">
             <h2>Observație!</h2>
 
-            
-
             <p>
-                O funcție trebuie și <b><u>definită</u></b>, nu doar declarată!
-                <br>
-                <br>
+                O funcție trebuie și <b>definită</b>, nu doar declarată!
+                <br><br>
                 Definirea unei funcții se face astfel:
             </p>
-            <pre> 
-            int suma(int a, int b);
-            {
-                  return a + b;
-            }
-            </pre>
-
+<pre>
+int suma(int a, int b);
+{
+      return a + b;
+}
+</pre>
         </section>
 
 
@@ -86,10 +172,12 @@
             <h2>Folosirea acestora</h2>
 
             <p>Exemplu de implementare:</p>
-            <br>
-            <p>Observație, în acest caz, vom avea o eroare de compilare:</p>
-            <pre>
-#include <iostream>
+
+            <div class="warning-section">
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> Atenție: eroare de compilare</h3>
+                <p style="margin: 0 0 10px 0;">În acest caz, vom avea o eroare de compilare:</p>
+<pre>
+#include &lt;iostream&gt;
 using namespace std;
 
 int main()
@@ -102,14 +190,16 @@ int suma(int a, int b)
         {
         return a + b;
         }
-            </pre>
+</pre>
+                <p style="margin: 10px 0 0 0; color: #a0aec0;">
+                    Acest lucru este pentru că noi doar am definit funcția <b>după ce am apelat-o</b>, deci compilatorul nu știe ce este suma(5,10) și va da eroare.
+                </p>
+            </div>
 
-        <p> Acest lucru este pentru că noi doar am definit funcția <b>după ce am apelat-o</b>, deci compilatorul nu știe ce este suma(5,10) și va da eroare. </p>
-        <br>
-        <br>
-        <p> Cazul <b><u>corect</u></b> este urmatorul:</p>
-        <pre>
-#include <iostream>
+            <div class="success-section">
+                <h3><i class="fa-solid fa-circle-check"></i> Cazul corect</h3>
+<pre>
+#include &lt;iostream&gt;
 using namespace std;
 
 <b>int suma(int a, int b);</b>
@@ -124,65 +214,79 @@ int suma(int a, int b)
         {
         return a + b;
         }
-        </pre>
-    
-    </section>
+</pre>
+            </div>
+        </section>
 
- 
+
         <section class="lesson-card">
             <h2>Stocarea funcțiilor în memorie</h2>
 
-            <p>
-                Funcțiile folosesc memoria de pe <b><u>Stiva (stack)</u></b>
-            </p>
+            <div class="info-box" style="border-left-color: #a855f7;">
+                <p style="margin: 0;">
+                    Funcțiile folosesc memoria de pe <b style="color: #c084fc;">Stiva (stack)</b>
+                </p>
+            </div>
         </section>
 
 
         <section class="lesson-card">
-            <h2>Anatomia unei functii</h2>
+            <h2>Anatomia unei funcții</h2>
 
             <p>Antetul acesteia este:</p>
-            <pre>
-            tipulFunctiei numeleFunctiei(parametrii);
-            ex. <b>int suma (int a, int b)</b>
-            </pre>
+<pre>
+tipulFunctiei numeleFunctiei(parametrii);
+ex. <b>int suma (int a, int b)</b>
+</pre>
 
-            <br>
-            <p>Corpul unei functii este:</p>
-            <pre>
-            {
-                return a+b;
-            }
-            </pre>
+            <p>Corpul unei funcții este:</p>
+<pre>
+{
+    return a+b;
+}
+</pre>
 
-            <br>
-            <p>Cand folosim o functie intr-un program, spunem: <b><u>apelam functia:</u></b></p>
-            <pre>
+            <p>Când folosim o funcție într-un program, spunem: <b>apelăm funcția:</b></p>
+<pre>
 int main()
         {
-         cout<< suma(5,10); // Afiseaza 15
+         cout&lt;&lt; suma(5,10); // Afiseaza 15
         }
-            </pre>
+</pre>
         </section>
 
-       
-        <section class="lesson-card">
-            <h2>Particularitati:</h2>
 
-            <p> Funcțiile care nu returnează o valoare au tipul de returnare: <b><u>void</u></b></p>
-            <pre>
-                void afisarePar(int a)
-                {
-                    if(a % 2 == 0)
-                        cout << a << ' ';   
-                } //Afișează numărul dacă este par
-            </pre>
-            <br>
-            <br>
-            <p>Transmiterea prin referință:</p>
-            <br>
-            <p>Atunci când dorim ca o funcție să poată modifica direct valoarea unei variabile din afara ei (din main sau din altă funcție), folosim transmiterea prin referință. Spre deosebire de transmiterea prin valoare (unde funcția primește doar o copie a datelor), prin referință funcția lucrează direct cu variabila originală. Pentru a realiza acest lucru, în antetul funcției adăugăm simbolul & (amperand) înaintea numelui parametrului.</p>
-            <pre>
+        <section class="lesson-card">
+            <h2>Particularități</h2>
+
+            <div class="feature-card" style="border-left-color: #f59e0b;">
+                <h3 style="color: #fbbf24;"><i class="fa-solid fa-circle-info"></i> Funcții fără valoare returnată</h3>
+                <p style="margin: 0;">Funcțiile care nu returnează o valoare au tipul de returnare: <b>void</b></p>
+            </div>
+<pre>
+void afisarePar(int a)
+{
+    if(a % 2 == 0)
+        cout << a << ' ';   
+} //Afișează numărul dacă este par
+</pre>
+
+            <div class="grid-2" style="margin-top: 20px;">
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transmiterea prin referință</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Atunci când dorim ca o funcție să poată modifica direct valoarea unei variabile din afara ei (din main sau din altă funcție), folosim transmiterea prin referință.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-copy"></i> Diferența față de transmiterea prin valoare</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Spre deosebire de transmiterea prin valoare (unde funcția primește doar o copie a datelor), prin referință funcția lucrează direct cu variabila originală. Adăugăm simbolul <b>&amp;</b> (amperand) înaintea numelui parametrului.
+                    </p>
+                </div>
+            </div>
+
+<pre>
 void dubleaza(int &x) // x este transmis prin referință
     {
     x = x * 2; // Modificarea afectează direct variabila din apel
@@ -194,8 +298,7 @@ int main()
     dubleaza(numar);
     cout << numar; // Va afișa 20, deoarece 'numar' a fost modificat direct!
     }   
-            </pre>
-
+</pre>
         </section>
 
 

@@ -5,6 +5,69 @@
     <title>Șiruri de caractere - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii Șiruri */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta introductivă / definiție */
+        .info-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri de funcții cstring */
+        .func-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #38bdf8;
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .func-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .func-card code {
+            color: #fbbf24;
+        }
+
+        /* Secțiune observație */
+        .note-section {
+            background: rgba(168, 85, 247, 0.02);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-left: 4px solid #a855f7;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: #e2e8f0;
+        }
+        .note-section b {
+            color: #c084fc;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,20 +99,22 @@
 
         <!-- INTRODUCERE -->
         <section class="lesson-card">
-            <h2>Despre șirurile de caractere</h2>
+            <h2><i class="fa-solid fa-font"></i> Despre șirurile de caractere</h2>
 
-            <p>
-                În C++, șirurile de caractere sunt reprezentate ca tablouri unidimensionale
-                de elemente de tip <b>char</b>. Un șir de caractere este o succesiune de
-                caractere memorată într-un tablou de tip <b>char</b>, terminată obligatoriu
-                cu caracterul nul <b>'\0'</b>.
-            </p>
+            <div class="info-box">
+                <p style="margin: 0 0 10px 0;">
+                    În C++, șirurile de caractere sunt reprezentate ca tablouri unidimensionale
+                    de elemente de tip <b>char</b>. Un șir de caractere este o succesiune de
+                    caractere memorată într-un tablou de tip <b>char</b>, terminată obligatoriu
+                    cu caracterul nul <b>'\0'</b>.
+                </p>
 
-            <p>
-                Caracterul <b>'\0'</b> are codul ASCII <b>0</b> și marchează sfârșitul
-                șirului. Funcțiile din biblioteca <b>&lt;cstring&gt;</b> utilizează acest
-                caracter pentru a determina unde se termină șirul.
-            </p>
+                <p style="margin: 0;">
+                    Caracterul <b>'\0'</b> are codul ASCII <b>0</b> și marchează sfârșitul
+                    șirului. Funcțiile din biblioteca <b>&lt;cstring&gt;</b> utilizează acest
+                    caracter pentru a determina unde se termină șirul.
+                </p>
+            </div>
         </section>
 
         <!-- DECLARAREA -->
@@ -60,9 +125,9 @@
                 Un șir de caractere poate fi declarat astfel:
             </p>
 
-            <pre>
+<pre>
 char sir[20];
-            </pre>
+</pre>
 
             <p>
                 În acest exemplu sunt alocate 20 de poziții, indexate de la
@@ -74,7 +139,7 @@ char sir[20];
                 La declarare, un șir poate fi inițializat în mai multe moduri:
             </p>
 
-            <pre>
+<pre>
 char sir[20] = "Salut!";
 // primele 6 poziții conțin caracterele 'S', 'a', 'l', 'u', 't', '!',
 // iar următoarea poziție conține caracterul '\0'
@@ -88,7 +153,7 @@ char v[6] = {'S', 'a', 'l', 'u', 't', '\0'};
 
 char a[] = {'S', 'a', 'l', 'u', 't', '\0'};
 // dimensiunea tabloului este determinată automat
-            </pre>
+</pre>
         </section>
 
         <!-- CITIRE ȘI AFIȘARE -->
@@ -100,34 +165,34 @@ char a[] = {'S', 'a', 'l', 'u', 't', '\0'};
                 <b><u>&lt;&lt;</u></b>.
             </p>
 
-            <pre>
+<pre>
 cout << sir;
-            </pre>
+</pre>
 
             <p>
                 Citirea unui șir fără spații se poate realiza cu operatorul
                 <b><u>&gt;&gt;</u></b>.
             </p>
 
-            <pre>
+<pre>
 cin >> sir;
-            </pre>
+</pre>
 
-            <p>
-                <b>Observație:</b> În acest mod pot fi citite doar cuvinte.
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> În acest mod pot fi citite doar cuvinte.
                 Citirea se oprește la primul spațiu întâlnit.
-            </p>
+            </div>
 
-            <p>
+            <p style="margin-top: 15px;">
                 Pentru citirea unui șir care conține spații se utilizează
                 funcția <b><u>cin.getline()</u></b>.
             </p>
 
-            <pre>
+<pre>
 cin.getline(sir, lungimea_sirului);
 // Se citesc caractere până la apăsarea tastei Enter
 // sau până la atingerea lungimii maxime specificate.
-            </pre>
+</pre>
         </section>
 
         <!-- EXEMPLU -->
@@ -139,7 +204,7 @@ cin.getline(sir, lungimea_sirului);
                 unui prieten, apoi le afișează pe ecran.
             </p>
 
-            <pre>
+<pre>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -158,8 +223,10 @@ int main()
 
     return 0;
 }
-            </pre>
-        </section>         <!-- REFERIREA UNUI CARACTER -->
+</pre>
+        </section>
+
+        <!-- REFERIREA UNUI CARACTER -->
         <section class="lesson-card">
             <h2>Referirea unui caracter din șir. Parcurgerea unui șir de caractere</h2>
 
@@ -174,7 +241,7 @@ int main()
                 pe poziția <b>0</b>, al doilea pe poziția <b>1</b> și așa mai departe.
             </p>
 
-            <pre>
+<pre>
 char sir[20] = "Salut!";
 
 cout << sir[0]; // afișează 'S'
@@ -183,7 +250,7 @@ cout << sir[1]; // afișează 'a'
 sir[1] = 'b';   // șirul devine "Sblut!"
 
 cout << sir;    // afișează Sblut!
-            </pre>
+</pre>
         </section>
 
         <!-- FUNCȚII -->
@@ -195,38 +262,33 @@ cout << sir;    // afișează Sblut!
                 biblioteca <b>&lt;cstring&gt;</b>.
             </p>
 
-            <h3>Determinarea lungimii unui șir - <code>strlen()</code></h3>
+            <div class="func-card">
+                <h3><i class="fa-solid fa-ruler"></i> Determinarea lungimii unui șir &ndash; <code>strlen()</code></h3>
+                <p style="margin: 0;">
+                    Funcția <b>strlen(const char* str)</b> returnează numărul de
+                    caractere din șir, fără a lua în considerare caracterul
+                    <b>'\0'</b>.
+                </p>
+            </div>
 
-            <p>
-                Funcția <b>strlen(const char* str)</b> returnează numărul de
-                caractere din șir, fără a lua în considerare caracterul
-                <b>'\0'</b>.
-            </p>
-
-            <pre>
+<pre>
 cout << strlen("Salut!"); // 6
 
 char sir[10] = "Acasa";
 
 cout << strlen(sir);      // 5
 cout << strlen(sir + 2);  // 3
-            </pre>
+</pre>
 
-            <br>
+            <div class="func-card" style="border-left-color: #10b981;">
+                <h3 style="color: #34d399;"><i class="fa-solid fa-copy"></i> Copierea unui șir &ndash; <code>strcpy()</code></h3>
+                <p style="margin: 0;">
+                    Funcția <b>strcpy(char* dest, const char* src)</b> copiază
+                    conținutul șirului <b>src</b> în șirul <b>dest</b>. Primul parametru reprezintă șirul destinație, iar al doilea reprezintă șirul sursă.
+                </p>
+            </div>
 
-            <h3>Copierea unui șir - <code>strcpy()</code></h3>
-
-            <p>
-                Funcția <b>strcpy(char* dest, const char* src)</b> copiază
-                conținutul șirului <b>src</b> în șirul <b>dest</b>.
-            </p>
-
-            <p>
-                Primul parametru reprezintă șirul destinație, iar al doilea
-                reprezintă șirul sursă.
-            </p>
-
-            <pre>
+<pre>
 char sir[21], t[21] = "Salut!";
 
 strcpy(sir, "Acasa!");
@@ -240,23 +302,17 @@ cout << sir; // lut!
 
 strcpy(sir + 2, t);
 cout << sir; // luSalut!
-            </pre>
+</pre>
 
-            <br>
+            <div class="func-card" style="border-left-color: #a855f7;">
+                <h3 style="color: #c084fc;"><i class="fa-solid fa-link"></i> Concatenarea șirurilor &ndash; <code>strcat()</code></h3>
+                <p style="margin: 0;">
+                    Funcția <b>strcat(char* dest, const char* src)</b> adaugă
+                    șirul <b>src</b> la sfârșitul șirului <b>dest</b>. Șirul destinație trebuie să aibă suficient spațiu liber pentru a memora rezultatul concatenării.
+                </p>
+            </div>
 
-            <h3>Concatenarea șirurilor - <code>strcat()</code></h3>
-
-            <p>
-                Funcția <b>strcat(char* dest, const char* src)</b> adaugă
-                șirul <b>src</b> la sfârșitul șirului <b>dest</b>.
-            </p>
-
-            <p>
-                Șirul destinație trebuie să aibă suficient spațiu liber pentru
-                a memora rezultatul concatenării.
-            </p>
-
-            <pre>
+<pre>
 char sir[21] = "Salut!";
 char t[21] = "Acasa!";
 
@@ -265,23 +321,17 @@ cout << sir; // Salut!Acasa!
 
 strcat(sir, t + 2);
 cout << sir; // Salut!Acasa!asa!
-            </pre>
+</pre>
 
-            <br>
+            <div class="func-card" style="border-left-color: #f59e0b;">
+                <h3 style="color: #fbbf24;"><i class="fa-solid fa-magnifying-glass"></i> Căutarea unui caracter &ndash; <code>strchr()</code></h3>
+                <p style="margin: 0;">
+                    Funcția <b>strchr(char* str, char ch)</b> caută prima apariție
+                    a caracterului <b>ch</b> în șirul <b>str</b>. Dacă acesta există, funcția returnează un pointer către prima apariție. În caz contrar, returnează <b>NULL</b>.
+                </p>
+            </div>
 
-            <h3>Căutarea unui caracter - <code>strchr()</code></h3>
-
-            <p>
-                Funcția <b>strchr(char* str, char ch)</b> caută prima apariție
-                a caracterului <b>ch</b> în șirul <b>str</b>.
-            </p>
-
-            <p>
-                Dacă acesta există, funcția returnează un pointer către prima
-                apariție. În caz contrar, returnează <b>NULL</b>.
-            </p>
-
-            <pre>
+<pre>
 char sir[21] = "Salut!";
 
 char *p = strchr(sir, 'a');
@@ -300,50 +350,49 @@ else
 }
 
 // Se va afișa DA.
-            </pre>
+</pre>
 
-            <br>
+            <div class="func-card" style="border-left-color: #f43f5e;">
+                <h3 style="color: #fb7185;"><i class="fa-solid fa-magnifying-glass-plus"></i> Căutarea unui șir într-un alt șir &ndash; <code>strstr()</code></h3>
+                <p style="margin: 0;">
+                    Funcția <b>strstr(char* str, char* str2)</b> caută prima apariție
+                    a șirului <b>str2</b> în șirul <b>str</b>. Dacă șirul este găsit, funcția returnează un pointer către prima apariție. În caz contrar, returnează <b>NULL</b>.
+                </p>
+            </div>
 
-            <h3>Căutarea unui șir într-un alt șir - <code>strstr()</code></h3>
-
-            <p>
-                Funcția <b>strstr(char* str, char* str2)</b> caută prima apariție
-                a șirului <b>str2</b> în șirul <b>str</b>.
-            </p>
-
-            <p>
-                Dacă șirul este găsit, funcția returnează un pointer către prima
-                apariție. În caz contrar, returnează <b>NULL</b>.
-            </p>
-
-            <pre>
+<pre>
 char sir[21] = "Salut!";
 
 char *p = strstr(sir, "alu");
 
 cout << p; // alut!
-            </pre>
+</pre>
 
-            <p>
-                <b>Observație:</b> Pentru orice șir <b>S</b>, apelul
-                <code>strstr(S, "")</code> returnează întotdeauna adresa de început
+            <div class="note-section">
+                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Pentru orice șir <b>S</b>, apelul
+                <code style="color: #fbbf24;">strstr(S, "")</code> returnează întotdeauna adresa de început
                 a șirului <b>S</b>.
-            </p>
-        </section>         <!-- COMPARAREA ȘIRURILOR -->
+            </div>
+        </section>
+
+        <!-- COMPARAREA ȘIRURILOR -->
         <section class="lesson-card">
-            <h2>Compararea șirurilor - <code>strcmp()</code></h2>
+            <h2>Compararea șirurilor &ndash; <code>strcmp()</code></h2>
 
-            <p>
-                Funcția <b>strcmp(char* s, char* t)</b> compară lexicografic două șiruri de caractere.
-            </p>
+            <div class="func-card">
+                <h3><i class="fa-solid fa-scale-balanced"></i> Funcția strcmp()</h3>
+                <p style="margin: 0;">
+                    Funcția <b>strcmp(char* s, char* t)</b> compară lexicografic două șiruri de caractere.
+                </p>
+            </div>
 
-            <ul>
-                <li>Returnează <b>0</b> dacă șirurile sunt identice.</li>
-                <li>Returnează o valoare negativă dacă primul șir este lexicografic mai mic.</li>
-                <li>Returnează o valoare pozitivă dacă primul șir este lexicografic mai mare.</li>
+            <ul style="padding-left: 25px; line-height: 1.8;">
+                <li>Returnează <b style="color: #38bdf8;">0</b> dacă șirurile sunt identice.</li>
+                <li>Returnează o valoare <b style="color: #f43f5e;">negativă</b> dacă primul șir este lexicografic mai mic.</li>
+                <li>Returnează o valoare <b style="color: #10b981;">pozitivă</b> dacă primul șir este lexicografic mai mare.</li>
             </ul>
 
-            <pre>
+<pre>
 char s1[20] = "ana";
 char s2[20] = "ana";
 char s3[20] = "andrei";
@@ -351,27 +400,26 @@ char s3[20] = "andrei";
 cout << strcmp(s1, s2); // 0
 cout << strcmp(s1, s3); // negativ
 cout << strcmp(s3, s1); // pozitiv
-            </pre>
+</pre>
         </section>
 
         <!-- TOKENIZAREA ȘIRURILOR -->
         <section class="lesson-card">
             <h2>Funcția strtok()</h2>
 
-            <p>
-                Funcția <b>strtok(char* str, const char* sep)</b> împarte un șir în subșiruri (tokeni),
-                folosind caracterele din <b>sep</b> drept delimitatori.
-            </p>
+            <div class="func-card" style="border-left-color: #10b981;">
+                <h3 style="color: #34d399;"><i class="fa-solid fa-scissors"></i> Tokenizarea unui șir</h3>
+                <p style="margin: 0;">
+                    Funcția <b>strtok(char* str, const char* sep)</b> împarte un șir în subșiruri (tokeni),
+                    folosind caracterele din <b>sep</b> drept delimitatori. La primul apel se transmite șirul inițial, iar la următoarele apeluri se transmite <b>NULL</b>.
+                </p>
+            </div>
 
-            <p>
-                La primul apel se transmite șirul inițial, iar la următoarele apeluri se transmite <b>NULL</b>.
-            </p>
+            <div class="note-section" style="border-left-color: #f43f5e; background: rgba(244, 63, 94, 0.02);">
+                <b style="color: #fb7185;"><i class="fa-solid fa-triangle-exclamation"></i> Important:</b> Funcția modifică șirul original, înlocuind delimitatorii cu caracterul <b>'\0'</b>.
+            </div>
 
-            <p>
-                <b>Important:</b> Funcția modifică șirul original, înlocuind delimitatorii cu caracterul <b>'\0'</b>.
-            </p>
-
-            <pre>
+<pre>
 #include &lt;cstring&gt;
 #include &lt;iostream&gt;
 using namespace std;
@@ -390,21 +438,32 @@ int main()
 
     return 0;
 }
-            </pre>
+</pre>
         </section>
 
         <!-- ELIMINAREA ȘI INSERAREA -->
         <section class="lesson-card">
             <h2>Eliminarea și inserarea unui caracter într-un șir</h2>
 
-            <h3>Eliminarea unui caracter</h3>
+            <div class="grid-2">
+                <div class="func-card" style="margin: 0;">
+                    <h3><i class="fa-solid fa-eraser"></i> Eliminarea unui caracter</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Pentru eliminarea caracterului aflat pe poziția <b>x</b>, toate caracterele
+                        situate după acesta sunt deplasate cu o poziție spre stânga.
+                    </p>
+                </div>
+                <div class="func-card" style="margin: 0; border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-plus"></i> Inserarea unui caracter</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        Pentru inserarea unui caracter pe poziția <b>x</b>, toate caracterele
+                        începând de la acea poziție sunt deplasate cu o poziție spre dreapta,
+                        apoi se inserează caracterul dorit.
+                    </p>
+                </div>
+            </div>
 
-            <p>
-                Pentru eliminarea caracterului aflat pe poziția <b>x</b>, toate caracterele
-                situate după acesta sunt deplasate cu o poziție spre stânga.
-            </p>
-
-            <pre>
+<pre>
 char s[20] = "informatica";
 int x = 3;
 
@@ -412,17 +471,9 @@ for (int i = x; i < strlen(s); i++)
     s[i] = s[i + 1];
 
 cout << s;
-            </pre>
+</pre>
 
-            <h3>Inserarea unui caracter</h3>
-
-            <p>
-                Pentru inserarea unui caracter pe poziția <b>x</b>, toate caracterele
-                începând de la acea poziție sunt deplasate cu o poziție spre dreapta,
-                apoi se inserează caracterul dorit.
-            </p>
-
-            <pre>
+<pre>
 char s[30] = "infoatica";
 int x = 4;
 
@@ -432,7 +483,7 @@ for (int i = strlen(s); i >= x; i--)
 s[x] = 'r';
 
 cout << s;
-            </pre>
+</pre>
         </section>
 
     </main>
