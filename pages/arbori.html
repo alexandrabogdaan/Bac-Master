@@ -43,7 +43,7 @@
                 <li><b>Rădăcină:</b> Nodul situat pe cel mai înalt nivel ierarhic (singurul nod care nu are un părinte).</li>
                 <li><b>Tată (Părinte):</b> Dacă există o muchie între nodul <i>u</i> și nodul <i>v</i>, iar <i>u</i> se află pe un nivel mai apropiat de rădăcină, atunci <code>u = tatăl lui v</code>.</li>
                 <li><b>Fiu (Copil):</b> În exemplul anterior, <code>v = fiul lui u</code>.</li>
-                <li><b>Frunză (Nod terminal):</b> Un nod care **nu are niciun fiu** (gradul său în ierarhie este 0).</li>
+                <li><b>Frunză (Nod terminal):</b> Un nod care <b>nu are niciun fiu</b> (gradul său în ierarhie este 0).</li>
                 <li><b>Frați:</b> Nodurile care au același tată.</li>
                 <li><b>Ascendenți (Strămoși):</b> Toate nodurile aflate pe drumul unic de la un nod dat până la rădăcină.</li>
                 <li><b>Descendenți:</b> Toate nodurile care se află în subarborii generați de fiii unui nod dat.</li>
@@ -103,7 +103,7 @@
                     Cauți poziția pe care se află valoarea <b>0</b>. În tabel, <code>T[4] = 0</code>, deci rădăcina este <b>4</b>.
                 </li>
                 <li><b>Cum găsești frunzele (nodurile terminale)?</b><br>
-                    Frunzele sunt nodurile care **NU apar deloc ca tați** în vectorul <code>T</code>. <br>
+                    Frunzele sunt nodurile care <b>NU apar deloc ca tați</b> în vectorul <code>T</code>. <br>
                     <i>Analiză:</i> Valorile din vectorul <code>T</code> sunt: 4, 1, 0, 5. Numerele de la 1 la 7 care lipsesc cu desăvârșire sunt: <b>2, 3, 6, 7</b>. Acestea sunt frunzele arborelui!
                 </li>
                 <li><b>Cum găsești fiii unui nod x?</b><br>
@@ -165,7 +165,7 @@ void inordine(Nod *r) {
         <section class="lesson-card">
             <h2>Sfat pentru examenul de BAC</h2>
             <p>
-                Când primești la Subiectul I un exercițiu cu un vector de tați, cel mai sigur mod de a nu greși este <b>să desenezi arborele pe ciornă</b>. Porniți de la nodul care are valoarea 0 (rădăcina), apoi căutați în tabel nodurile care îl au ca tată, desenându-le dedubtul său, nivel cu nivel. Vizualizarea grafică te va ajuta să răspunzi corect la orice întrebare legată de frunze, înălțime sau număr de descendenți.
+                Când primești la Subiectul I un exercițiu cu un vector de tați, cel mai sigur mod de a nu greși este <b>să desenezi arborele pe ciornă</b>. Porniți de la nodul care are valoarea 0 (rădăcina), apoi căutați în tabel nodurile care îl au ca tată, desenându-le dedesubtul său, nivel cu nivel. Vizualizarea grafică te va ajuta să răspunzi corect la orice întrebare legată de frunze, înălțime sau număr de descendenți.
             </p>
         </section>
 
