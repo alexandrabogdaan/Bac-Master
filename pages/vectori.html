@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Aplicare font Courier New pentru toate blocurile de cod */
+        pre, code {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+
         /* Stiluri specifice pentru tema Dark Mode a paginii de Vectori */
         .grid-2 {
             display: grid;
@@ -236,7 +241,7 @@ for(int i = 0 ; i &lt; n ; i++)
                 <h3><i class="fa-solid fa-circle-nodes"></i> Cum procedăm dacă vrem indexare de la 1?</h3>
                 <p>1. Celula <code>X[0]</code> va fi lăsată neutilizată în memorie.</p>
                 <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i = 1 ; i &lt;= n ; i++)</code>.</p>
-                <p>3. <b>Atenție la dimensionare:</b> Dacă enunțul specifică o dimensiune maximă de <b>n &le; 100</b> elemente, tabloul va fi declarat obligatoriu de dimensiune cel puțin <code>101</code> pentru a evita depășirea de memorie (out of bounds) la accesarea lui <code>X[100]</code>.</p>
+                <p>3. <b>Atenție la dimensionare:</b> Dacă enunțul specifică o dimensiune maximă de <b>n &le; 100</b> elemente, tabloul vai fi declarat obligatoriu de dimensiune cel puțin <code>101</code> pentru a evita depășirea de memorie (out of bounds) la accesarea lui <code>X[100]</code>.</p>
 <pre>
 int X[101]; // Alocă celule de la 0 la 100. Celula X[100] devine astfel accesibilă!
 </pre>
