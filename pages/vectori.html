@@ -2,14 +2,109 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Variabile - BAC Master</title>
+    <title>Tablouri Unidimensionale - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Stiluri specifice pentru tema Dark Mode a paginii de Vectori */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* Caseta definițiilor matematice și structurilor cheie */
+        .math-box {
+            background-color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Carduri de caracteristici și observații */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Secțiuni speciale pentru operații fundamentale (Citire, Afișare, Indexare) */
+        .problem-section {
+            background: rgba(59, 130, 246, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        .problem-section h3 {
+            color: #60a5fa;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tabel comparativ pentru inițializări */
+        .dark-table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            border: 1px solid #2d3748; 
+            text-align: left;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dark-table th {
+            background-color: #2d3748; 
+            color: #38bdf8; 
+            padding: 12px;
+            font-weight: bold;
+            border-bottom: 2px solid #4a5568;
+        }
+        .dark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2d3748;
+            border-right: 1px solid #2d3748;
+            line-height: 1.5;
+        }
+        .dark-table tr:last-child td {
+            border-bottom: none;
+        }
+        .dark-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+    </style>
 </head>
+
+<body>
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
@@ -23,191 +118,162 @@
         </nav>
     </aside>
 
-
-    <!-- MAIN -->
     <main class="main lesson-page">
 
-        <!-- HEADER -->
         <section class="lesson-header">
             <h1>Tablouri unidimensionale; Vectori</h1>
-            <p>Noțiuni fundamentale despre declararea și utilizarea vectorilor</p>
+            <p>Noțiuni fundamentale despre declararea, alocarea și utilizarea vectorilor în C++</p>
         </section>
 
-        <!-- DEFINITIE VARIABILA -->
         <section class="lesson-card">
-            <h2>Definiția vectorului</h2>
-
+            <h2>Definiția și declararea vectorului</h2>
             <p>
-                Un tablou unidimensional se declară în C++ astfel:
-                
-            </p>
-
-            <p> 
-                tipDeDate denumire[Dimensiune];
+                Un tablou unidimensional (vector) reprezintă o colecție de variabile de același tip, memorate într-o zonă continuă de memorie.
             </p>
             
+            <div class="math-box">
+                <b style="color: #60a5fa;"><i class="fa-solid fa-code"></i> Sintaxa generală:</b><br>
+                <code>tipDeDate denumire[DimensiuneFizică];</code>
+            </div>
 
-            <p>
-                Ex1: int X[10];
-
-            </p>
-            <p>
-
-                Ex2: int n,X[10],m,Y[100];
-            </p>
+            <p>Exemple de declarări corecte:</p>
+<pre>
+int X[10];                 // Un vector capabil să rețină maxim 10 numere întregi
+int n, X[10], m, Y[100];   // Declarare multiplă (variabile simple și vectori)
+</pre>
         </section>
-
 
         <section class="lesson-card">
-            <h2>Observație!</h2>
-
-            <ul>
-
-            <li>
-                Elementele unui tablou declarat global sunt inițializate cu 0! Dacă tabloul este declarat local, valorile sunt inițializate cu valori aleatorii
-            </li>
-            <li> 
-                Primul element al unui tablou este indexat de la 0
-            </li>
-        </ul>
-
+            <h2>Observații Critice și Comportament Memorie</h2>
+            
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3 style="color: #f59e0b;"><i class="fa-solid fa-globe"></i> Alocare Globală vs. Locală</h3>
+                    <p style="margin: 0;">Elementele unui tablou declarat <b>global</b> sunt inițializate automat cu <b>0</b>. Dacă tabloul este declarat <b>local</b> (în interiorul `main`), elementele vor conține inițial <b>valori aleatorii</b> (reziduuri din memorie).</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #38bdf8;"><i class="fa-solid fa-list-ol"></i> Indexare nativă de la 0</h3>
+                    <p style="margin: 0;">În limbajul C++, indexarea elementelor se face în mod nativ începând de la poziția <b>0</b>. Un vector cu <code>N</code> elemente va avea indicii cuprinși între <code>0</code> și <code>N - 1</code>.</p>
+                </div>
+            </div>
         </section>
 
-        <!-- TIPURI DE DATE + MEMORIE -->
         <section class="lesson-card">
             <h2>Referirea unui element</h2>
-
-            <p>Referirea unui element se face prin indexul său în interiorul tabloului: Referirea unui element se face prin operatorul de indexare, [], care are prioritate maximă</p>
-            <br>
-            <p>De exemplu:</p>
-            <ul>
-                <li>X[0]</li>
-                <li>X[5]</li>
-                <li>X[i]</li>
-            </ul>
-            <br>
             <p>
-                <b>X</b> este tabloul, iar <b>0,5,i</b> sunt indicii. Indici trebuie să fie întregi și să se încadreze în dimensiunea tabloului.
+                Accesul la o anumită valoare din vector se realizează prin intermediul <b>operatorului de indexare <code>[]</code></b>, care are prioritate maximă în ordinea executării operațiilor.
             </p>
-            <br> 
-            <p>Un element al tabloului referit prin indice este tratat ca o variabilă oarecare de tipul stabilit la declarare</p>
-            <pre>
-        int X[10];
-        X[0] = 17;
 
-        cout << X[0]; // 17
-        cout << X[0] + 5; // 22
-        cout << X[0] / 5; // 3
-            </pre>
+            <div class="math-box" style="border-left-color: #a855f7;">
+                <b style="color: #c084fc;"><i class="fa-solid fa-arrow-pointer"></i> Exemple de referire:</b> <code>X[0]</code>, <code>X[5]</code>, sau generalizat <code>X[i]</code> (unde <code>i</code> este o expresie întreagă validă).
+            </div>
+
+            <p>Un element referit corect se comportă exact ca o variabilă oarecare din tipul de bază al tabloului:</p>
+<pre>
+int X[10];
+X[0] = 17;
+
+cout << X[0];     // Afișează valoarea: 17
+cout << X[0] + 5; // Efectuează calculul: 22
+cout << X[0] / 5; // Diviziune întreagă: 3
+</pre>
         </section>
 
-        <!-- INT EXPLICAT -->
         <section class="lesson-card">
-            <h2>Dimensiunea unui tablou unidimensional</h2>
-
+            <h2>Dimensiunea fizică vs. Dimensiunea logică</h2>
             <p>
-                La declararea unui tablou unidimensional se precizează o dimensiune pentru acesta. Aceasta reprezintă <b>o dimensiune fizică a tabloului – numărul maxim de elemente pe care le-ar putea avea acesta,</b> conform restricțiilor problemei.
+                La declarare se stabilește <b>dimensiunea fizică</b> (numărul maxim de celule rezervate în memorie). În timpul execuției, se utilizează o <b>dimensiune logică</b> ($n$), reprezentând numărul curent de elemente populate efectiv.
             </p>
+
+            <div class="problem-section">
+                <h3><i class="fa-solid fa-arrows-repeat"></i> Parcurgerea unui vector</h3>
+                <p>Reprezintă vizitarea și/sau modificarea fiecărui element într-o ordine bine stabilită (directă sau inversă), folosind o structură repetitivă:</p>
+<pre>
+int X[100], n; // n reprezintă numărul de elemente utilizate efectiv
+for(int i = 0 ; i < n ; i++) {
+    X[i] = 1;  // Inițializăm toate elementele logice cu valoarea 1
+}
+</pre>
+            </div>
         </section>
 
-        <!-- FLOAT DOUBLE -->
         <section class="lesson-card">
-            <h2>Parcurgerea unui tablou unidimensional</h2>
+            <h2>Operații de Citire și Afișare</h2>
+            <p>Deoarece un vector este un ansamblu de elemente, citirea sau afișarea lui directă (ca o singură entitate obiectuală) nu este permisă conceptual în standardul simplu C++.</p>
 
-            <p>
-                Parcurgerea unui tablou reprezintă referirea fiecărui element al tabloului, într-o anumită ordine. Referirea elementului se face prin intermediul indicelui, cu ajutorul <b>operatorului de indexare.</b>
-            </p>
-            <br>
-        
-            <p>Exemplu:</p>
-            <pre>
-                int X[100], n;
-                    //unde n este numărul de elemente efectiv utilizate în tablou
-                for(int i = 0 ; i < n ; i ++) // de la 0 la n-1!! în ordine crescătoare
-                    X[i] = 1; //inițializăm toate elementele cu valoarea 1
-            </pre>
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3 style="color: #f43f5e;"><i class="fa-solid fa-triangle-exclamation"></i> Greșeli Frecvente la Examen</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        <code>cin >> X;</code> &rarr; <b>Eroare de sintaxă</b> (compilatorul nu știe câte elemente să citească).<br><br>
+                        <code>cout << X;</code> &rarr; <b>Nu dă eroare</b>, dar va tipări <b>adresa în hexazecimal</b> a primului element din memorie (ex. <code>0x7ffc9711bcd0</code>).
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #10b981;"><i class="fa-solid fa-square-check"></i> Implementarea Corectă</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">
+                        <b>Citirea element cu element:</b>
+<pre style="margin: 5px 0;">
+cin >> n;
+for(int i = 0 ; i < n ; i++)
+    cin >> X[i];
+</pre>
+                        <b>Afișarea element cu element:</b>
+<pre style="margin: 5px 0;">
+for(int i = 0 ; i < n ; i++)
+    cout << X[i] << " ";
+</pre>
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <!-- CHAR -->
         <section class="lesson-card">
-            <h2>Citirea unui vector</h2>
+            <h2>Strategii de abordare: Indexare de la 0 vs. Indexare de la 1</h2>
+            <p>Deși tehnic vectorii încep de la poziția 0, în rezolvările problemelor de la examenul de Bacalaureat se practică adesea ignorarea celulei 0 pentru a mapa indicii direct cu logica enunțului.</p>
 
-            <p>
-                În majoritatea cazurilor, citirea <b>NU</b> se poate face așa:
-            </p>
-            <pre> cin>>X; </pre>
-            <br>
-            <p> Aceasta va da eroare de sintaxă. În schimb, elementele tabloului pot fi citite în felul următor:</p>
-
-            <pre>
-                int X[100], n;
-
-                cin >> n;
-                for(int i = 0 ; i < n ; i ++)
-                cin >> X[i]; //de la consola pot fi atribuite valori de tipul 'int'
-            </pre>
+            <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.02);">
+                <h3><i class="fa-solid fa-circle-nodes"></i> Cum procedăm dacă vrem indexare de la 1?</h3>
+                <p>1. Celula <code>X[0]</code> va fi lăsată neutilizată în memorie.</p>
+                <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i = 1 ; i <= n ; i++)</code>.</p>
+                <p>3. <b>Atenție la dimensionare:</b> Dacă enunțul specifică $n \le 100$, tabloul va fi declarat obligatoriu de dimensiune cel puțin <code>101</code> pentru a evita depășirea de memorie (out of bounds) la accesarea lui <code>X[100]</code>.</p>
+<pre>
+int X[101]; // Alocă celule de la 0 la 100. Celula X[100] devine astfel accesibilă!
+</pre>
+            </div>
         </section>
 
-        <!-- BOOL -->
         <section class="lesson-card">
-            <h2>Afișarea unui vector</h2>
+            <h2>Inițializarea elementelor direct la declarare</h2>
+            <p>Dacă se cunosc valorile de la început, limbajul C++ permite utilizarea listelor de inițializare închise între acolade:</p>
 
-            <p>
-                La fel ca la citire, afișarea unui vector <b>NU</b> se poate face așa:
-            </p>
-            <pre> cout<< X; </pre>
-            <p> Totuși, acest lucru nu va duce la eroare de sintaxă, ci va afișa adresa de memorie a primului element ex. 0x7ffc9711bcd0</p>
-            <br>
-            <p> Afișarea corectă:</p>
-            <pre>
-                for(int i = 0 ; i < n ; i ++)
-                cout << X[i] << ' ';
-            </pre>
-
-        </section>
-
-        <!-- DECLARARE -->
-        <section class="lesson-card">
-            <h2>Indexare de la 0 și indexare de la 1</h2>
-
-            <p>
-                Orice tablou C++ are fizic elementele indexate de la 0 la Dimensiune-1.
-            </p>
-            <p> De exemplu, dacă avem nevoie de un tablou cu n≤100 elemente întregi, îl vom declara:</p>
-            <pre>int X[100];</pre>
-            <p> iar elementele vor avea indici între 0 și 99. Astfel, primul element al tabloului este X[0], al doilea este X[1], …, ultimul este X[n-1]. </p>
-
-            <br>
-            <p>Dacă dorim, putem ignora elementul X[0] (pur și simplu nu îl folosim, el există însă în continuare), și atunci toate operațiile (citire, afișare, parcurgere) vor utiliza elementele X[1] (primul element), X[2] (al doilea element), …, X[n] (ultimul element).</p>
-            <br>
-            <p>Trebuie de asemenea să tratăm cu atenție declararea tabloului, dimensiunea fizică trebuind să fie mai mare cu 1 decât valoarea precizată în problemă. Dacă de exemplu, n≤100, declararea va fi:</p>
-            <pre>int X[101];</pre>
-            <p>Acest lucru este necesar pentru a exista elementul X[100].</p>
-
-        </section>
-
-        <!-- CONCLUZIE -->
-        <section class="lesson-card">
-            <h2>Inițializarea elementelor unui vector</h2>
-
-            <p>
-                La declararea tabloului este posibil să inițializăm elementele sale:
-            </p>
-            <pre>
-                int A[] = {10 , 20 , 30 , 40}; 
-                int B[10] = {10 , 20 , 30 , 40}; 
-                int C[10] = {1}; 
-            </pre>
-            <br>
-            <p> A va avea 4 elemente, A[0] = 10, A[1] = 20, A[2] = 30, A[3] = 40</p>
-            <br>
-            <p>B va avea 10 elemente, B[0] = 10, B[1] = 20, B[2] = 30, B[3] = 40, restul elementelor vor fi inițializate cu 0</p>
-            <br>
-            <p>C va avea 10 elemente, toate inițializate cu 0 <b> ÎNAFĂRĂ DE C[0]</b> </p>
+            <div style="overflow-x: auto;">
+                <table class="dark-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Exemplu de cod</th>
+                            <th style="width: 65%;">Comportament dedus în memorie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>int A[] = {10, 20, 30, 40};</code></td>
+                            <td>Dimensiunea fizică este determinată automat la <b>4</b> elemente (de la <code>A[0]</code> la <code>A[3]</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><code>int B[10] = {10, 20, 30, 40};</code></td>
+                            <td>Primele 4 elemente preiau valorile date, iar restul de 6 elemente rămase sunt <b>inițializate automat cu 0</b>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>int C[10] = {1};</code></td>
+                            <td>Doar primul element <code>C[0]</code> va fi setat pe valoarea 1. <b>Toate celelalte 9 elemente vor fi automat 0!</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
     </main>
-
 </div>
 
 </body>
