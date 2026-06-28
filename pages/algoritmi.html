@@ -263,7 +263,7 @@ while (n!=0)
             
             <div class="algo-section">
                 <h3>Verificarea proprietății de număr prim</h3>
-                <p>Eficientizarea algoritmului constă în limitarea căutării divizorilor proprii până la valoarea părții întregi a rădăcinii pătrate a numărului (<code>d*d<=n</code>). Dacă nu se identifică niciun divizor în acest interval, numărul este prim.</p>
+                <p>Eficientizarea algoritmului constă în limitarea căutării divizorilor proprii până la valoarea părții întregi a rădăcinii pătrate a numărului (<code>d*d&lt;=n</code>). Dacă nu se identifică niciun divizor în acest interval, numărul este prim.</p>
             </div>
 
             <div class="simulator-box">
@@ -293,8 +293,16 @@ while (b!=0)
                     <h3>Cel mai mic multiplu comun (CMMMC)</h3>
                     <p>Se calculează pe baza relației matematice directe dintre produsul celor două numere și cel mai mare divizor comun al acestora.</p>
 <pre>
-int a, b, cmmmc;
-cmmmc=(a*b)/a; 
+int a, b, cmmmc, copie_a, copie_b, r;
+copie_a=a;
+copie_b=b;
+while (b!=0)
+{
+    r=a%b;
+    a=b;
+    b=r;
+}
+cmmmc=(copie_a*copie_b)/a;
 </pre>
                 </div>
             </div>
@@ -310,11 +318,11 @@ cmmmc=(a*b)/a;
                     <p>Folosește trei variabile pentru a păstra cei doi termeni anteriori și valoarea curentă calculată, reînoind valorile la fiecare pas.</p>
 <pre style="margin:0;">
 int a=1, b=1, c, i, n;
-cout<<a<<" "<<b<<" ";
-for (i=3; i<=n; i++)
+cout&lt;&lt;a&lt;&lt;" "&lt;&lt;b&lt;&lt;" ";
+for (i=3; i&lt;=n; i++)
 {
     c=a+b;
-    cout<<c<<" ";
+    cout&lt;&lt;c&lt;&lt;" ";
     a=b;
     b=c;
 }
@@ -326,7 +334,7 @@ for (i=3; i<=n; i++)
 <pre style="margin:0;">
 double s=0, p=1;
 int i, n;
-for (i=1; i<=n; i++)
+for (i=1; i&lt;=n; i++)
 {
     p*=i;
     s+=1.0/p;
@@ -341,9 +349,9 @@ for (i=1; i<=n; i++)
             <p>Algoritmul presupune inițializarea ipotetică a valorii extreme cu primul element al structurii liniare. Ulterior, vectorul este parcurs integral, comparând fiecare element cu valoarea de referință și actualizând-o ori de câte ori este identificată o valoare mai mare (pentru maxim) sau mai mică (pentru minim).</p>
 <pre>
 int maxim=v[0], i, n;
-for (i=1; i<n; i++)
+for (i=1; i&lt;n; i++)
 {
-    if (v[i]>maxim)
+    if (v[i]&gt;maxim)
     {
         maxim=v[i];
     }
@@ -370,11 +378,11 @@ for (i=1; i<n; i++)
                 <p>Parcurge vectorul în mod repetat și compară elementele vecine. Dacă acestea se află în ordine inversă, le interschimbă valorile. La fiecare iterație completă, cel mai mare element nerezolvat migrează spre poziția sa finală la extremitatea dreaptă.</p>
 <pre>
 int i, j, aux, n, v[100];
-for (i=0; i<n-1; i++)
+for (i=0; i&lt;n-1; i++)
 {
-    for (j=0; j<n-1-i; j++)
+    for (j=0; j&lt;n-1-i; j++)
     {
-        if (v[j]>v[j+1])
+        if (v[j]&gt;v[j+1])
         {
             aux=v[j];
             v[j]=v[j+1];
@@ -400,11 +408,11 @@ for (i=0; i<n-1; i++)
                                 <p style="margin-top:0;">Consideră că primele elemente sunt deja sortate. Ia fiecare element nou și îl inserează în poziția corectă printre cele deja verificate, deplasând restul elementelor spre dreapta.</p>
 <pre style="margin:0;">
 int i, j, x, n, v[100];
-for (i=1; i<n; i++)
+for (i=1; i&lt;n; i++)
 {
     x=v[i];
     j=i-1;
-    while (j>=0 && v[j]>x)
+    while (j&gt;=0 && v[j]&gt;x)
     {
         v[j+1]=v[j];
         j--;
@@ -419,11 +427,11 @@ for (i=1; i<n; i++)
                                 <p style="margin-top:0;">Compară fiecare element de pe o poziție fixată cu toate elementele aflate după el. Dacă se găsește o valoare mai mică, pozițiile sunt inversate imediat.</p>
 <pre style="margin:0;">
 int i, j, aux, n, v[100];
-for (i=0; i<n-1; i++)
+for (i=0; i&lt;n-1; i++)
 {
-    for (j=i+1; j<n; j++)
+    for (j=i+1; j&lt;n; j++)
     {
-        if (v[i]>v[j])
+        if (v[i]&gt;v[j])
         {
             aux=v[i];
             v[i]=v[j];
@@ -439,12 +447,12 @@ for (i=0; i<n-1; i++)
                                 <p style="margin-top:0;">Determină poziția finală a fiecărui element prin numărarea valorilor din vector care sunt strict mai mici decât el, plasând elementul direct la indexul rezultat într-un vector suplimentar.</p>
 <pre style="margin:0;">
 int i, j, rez, n, v[100], b[100];
-for (i=0; i<n; i++)
+for (i=0; i&lt;n; i++)
 {
     rez=0;
-    for (j=0; j<n; j++)
+    for (j=0; j&lt;n; j++)
     {
-        if (v[j]<v[i] || (v[j]==v[i] && j<i))
+        if (v[j]&lt;v[i] || (v[j]==v[i] && j&lt;i))
         {
             rez++;
         }
@@ -463,13 +471,25 @@ for (i=0; i<n; i++)
             <p>Interclasarea reprezintă tehnica de combinare a doi vectori ordonați în mod nativ într-un al treilea vector, păstrând proprietatea de sortare. Procesul folosește indici independenți pentru parcurgerea structurilor paralele și este mult mai eficient decât concatenarea urmată de o sortare clasică, având complexitate liniară.</p>
 <pre>
 int i=0, j=0, k=0, n, m, A[100], B[100], C[200];
-while (i<n && j<m)
+while (i&lt;n && j&lt;m)
 {
-    if (A[i]<B[j]) C[k++]=A[i++];
-    else C[k++]=B[j++];
+    if (A[i]&lt;B[j]) 
+    {
+        C[k++]=A[i++];
+    }
+    else 
+    {
+        C[k++]=B[j++];
+    }
 }
-while (i<n) C[k++]=A[i++];
-while (j<m) C[k++]=B[j++];
+while (i&lt;n) 
+{
+    C[k++]=A[i++];
+}
+while (j&lt;m) 
+{
+    C[k++]=B[j++];
+}
 </pre>
         </section>
 
@@ -493,7 +513,7 @@ while (j<m) C[k++]=B[j++];
                     <p>Potrivită pentru structuri nesortate. Verifică consecutiv fiecare element în parte, de la stânga la dreapta, până când valoarea căutată este identificată în tablou sau vectorul se epuizează.</p>
 <pre style="margin:0;">
 int poz=-1, i, n, x, v[100];
-for (i=0; i<n; i++)
+for (i=0; i&lt;n; i++)
 {
     if (v[i]==x)
     {
@@ -508,7 +528,7 @@ for (i=0; i<n; i++)
                     <p>Necesită obligatoriu un vector sortat. Algoritmul compară valoarea căutată cu mijlocul intervalului curent, înjumătățind spațiul de căutare la fiecare pas nefavorabil prin reajustarea limitelor stânga/dreapta.</p>
 <pre style="margin:0;">
 int st=0, dr=n-1, poz=-1, mij, x, v[100];
-while (st<=dr)
+while (st&lt;=dr)
 {
     mij=(st+dr)/2;
     if (v[mij]==x)
@@ -516,8 +536,14 @@ while (st<=dr)
         poz=mij;
         break;
     }
-    else if (v[mij]<x) st=mij+1;
-    else dr=mij-1;
+    else if (v[mij]&lt;x) 
+    {
+        st=mij+1;
+    }
+    else 
+    {
+        dr=mij-1;
+    }
 }
 </pre>
                 </div>
