@@ -55,13 +55,24 @@
             margin: 0;
             line-height: 1.8;
         }
+
+        /* Stil de bază pentru blocuri de cod (ajustabil conform stilului tău global) */
+        pre {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            color: #38bdf8;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        code .comment { color: #64748b; }
+        code .keyword { color: #f43f5e; }
     </style>
 </head>
 
 <body>
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
@@ -76,66 +87,93 @@
     </aside>
 
 
-    <!-- MAIN -->
     <main class="main lesson-page">
 
-        <!-- HEADER -->
         <section class="lesson-header">
             <h1>Recursivitate</h1>
             <p>Noțiuni fundamentale despre recursivitate în programare</p>
         </section>
 
-        <!-- DEFINITIE -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-arrows-rotate"></i> Definiția recursivității</h2>
 
             <div class="info-box">
                 <p style="margin: 0 0 10px 0;">
-                    Recursivitatea este o tehnică de programare în care un subprogram se apelează pe sine însuși.
+                    Recursivitatea este o tehnică de programare în care un subprogram se apelează pe sine însuși (direct sau indirect).
                 </p>
                 <p style="margin: 0;">
-                    <b style="color: #60a5fa;">Fiecare funcție recursivă trebuie să aibă un caz de bază.</b>
+                    <b style="color: #60a5fa;">Fiecare funcție recursivă trebuie să aibă o condiție de oprire (caz de bază).</b>
                 </p>
             </div>
 
             <div class="grid-2">
                 <div class="feature-card">
-                    <h3><i class="fa-solid fa-list-check"></i> Exemple</h3>
+                    <h3><i class="fa-solid fa-list-check"></i> Exemple clasice</h3>
                     <ul class="feature-list">
                         <li>Factorialul unui număr</li>
-                        <li>Ridicarea la putere a unui număr</li>
+                        <li>Cel mai mare divizor comun (CMMDC)</li>
+                        <li>Suma cifrelor unui număr</li>
                         <li>Șirul lui Fibonacci</li>
                     </ul>
                 </div>
                 <div class="feature-card" style="border-left-color: #eab308;">
-                    <h3 style="color: #facc15;"><i class="fa-solid fa-lightbulb"></i> Observație</h3>
-                    <p style="margin: 0;">Fără un caz de bază, funcția recursivă nu se va termina niciodată și va duce la o eroare de execuție.</p>
+                    <h3 style="color: #facc15;"><i class="fa-solid fa-lightbulb"></i> Mecanismul Stivei (Stack)</h3>
+                    <p style="margin: 0;">La fiecare autoapel, starea curentă a funcției (variabilele locale, parametrii) este salvată pe <b>stiva de execuție</b>. Când se atinge cazul de bază, stiva începe să se descarce în ordine inversă.</p>
                 </div>
             </div>
         </section>
 
-
         <section class="lesson-card">
-            <h2>Exemplu în C++</h2>
-
+            <h2><i class="fa-solid fa-code"></i> Exemplu: Factorialul unui număr ($n!$)</h2>
             <p>
-                Scriem o funcție C++ care returnează factorialul unui număr natural transmis ca parametru. Varianta nerecursivă (iterativă) este următoarea:
+                Pentru a înțelege diferența dintre abordări, iată cum calculăm factorialul unui număr natural în ambele variante:
             </p>
-<pre>
-int factorial(int n)
-    {
-    if(n == 0)
-        return 1; //cazul de bază
-    else
-        return n * factorial(n-1);
-    }
-</pre>
+
+            <div class="grid-2">
+                <div>
+                    <h4>Varianta Iterativă (nerecursivă)</h4>
+<pre><code><span class="keyword">int</span> factorial_iterativ(<span class="keyword">int</span> n) {
+    <span class="keyword">int</span> p = 1;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i = 1; i <= n; i++)
+        p = p * i;
+    <span class="keyword">return</span> p;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>Varianta Recursivă</h4>
+<pre><code><span class="keyword">int</span> factorial_recursiv(<span class="keyword">int</span> n) {
+    <span class="keyword">if</span>(n == 0)
+        <span class="keyword">return</span> 1; <span class="comment">// cazul de bază</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> n * factorial_recursiv(n - 1);
+}</code></pre>
+                </div>
+            </div>
         </section>
 
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-calculator"></i> Alt exemplu frecvent: Suma cifrelor unui număr</h2>
+            <p>
+                O problemă clasică de BAC cere calculul sumei cifrelor unui număr natural <code>n</code> folosind o funcție recursivă:
+            </p>
+<pre><code><span class="keyword">int</span> suma_cifre(<span class="keyword">int</span> n) {
+    <span class="keyword">if</span>(n == 0)
+        <span class="keyword">return</span> 0; <span class="comment">// Cazul de bază: numărul nu mai are cifre</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> n % 10 + suma_cifre(n / 10); <span class="comment">// Ultima cifră + suma restului cifrelor</span>
+}</code></pre>
+        </section>
+
+        <section class="lesson-card" style="border-left: 4px solid #ef4444; background: rgba(239, 68, 68, 0.02); padding: 15px; border-radius: 8px;">
+            <h2 style="color: #f87171;"><i class="fa-solid fa-triangle-exclamation"></i> Atenție la Capcanele de la BAC!</h2>
+            <ul style="line-height: 1.8; color: #cbd5e1;">
+                <li><b>Stack Overflow (Depășirea stivei):</b> Dacă uiți să pui cazul de bază sau dacă autoapelul nu tinde către cazul de bază (ex: apelul `f(n+1)` în loc de `f(n-1)`), programul se va bloca din cauza umplerii memoriei alocate stivei.</li>
+                <li><b>Ordinea instrucțiunilor:</b> Instrucțiunile scrise <i>înainte</i> de autoapel se execută la <i>urcarea pe stivă</i> (în ordinea apelurilor), în timp ce instrucțiunile scrise <i>după</i> autoapel se execută la <i>coborârea de pe stivă</i> (în ordine inversă).</li>
+            </ul>
+        </section>
 
     </main>
 
 </div>
-
 </body>
 </html>
