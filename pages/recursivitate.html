@@ -51,12 +51,13 @@
             gap: 10px;
         }
         .feature-list {
-            padding-left: 20px;
+            padding-left: 10px;
             margin: 0;
             line-height: 1.8;
+            list-style-position: inside; /* FIX: Forțează bullet-urile să rămână în interiorul containerului */
         }
 
-        /* Stil de bază pentru blocuri de cod (ajustabil conform stilului tău global) */
+        /* Stil de bază pentru blocuri de cod */
         pre {
             background: #0f172a;
             padding: 15px;
@@ -124,7 +125,7 @@
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-code"></i> Exemplu: Factorialul unui număr ($n!$)</h2>
+            <h2><i class="fa-solid fa-code"></i> Exemplu: Factorialul unui număr (n!)</h2>
             <p>
                 Pentru a înțelege diferența dintre abordări, iată cum calculăm factorialul unui număr natural în ambele variante:
             </p>
