@@ -1,46 +1,95 @@
-// =====================
-// SIDEBAR TOGGLE
-// =====================
+document.addEventListener("DOMContentLoaded", () => {
+    // ==========================================
+    // 1. CONFIGURARE LOGICĂ CĂUTARE GLOBALĂ
+    // ==========================================
+    
+    // Detectăm unde se află utilizatorul în acest moment (în rădăcină sau în /pages/)
+    const isInPagesFolder = window.location.pathname.includes('/pages/');
 
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.getElementById("sidebar");
+    // Setați prefixul corect pentru URL-uri în funcție de locație
+    const prefix = isInPagesFolder ? '' : 'pages/';
+    const homePrefix = isInPagesFolder ? '../' : '';
 
-if (menuToggle && sidebar) {
-    menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-    });
-}
+    // Baza de date a paginilor site-ului tău (pentru căutare)
+    const sitePages = [
+        { title: "🏠 Acasă / Dashboard", url: `${homePrefix}index.html`, keywords: ["acasa", "main", "dashboard", "index", "start"] },
+        { title: "📘 Teorie: Recursivitate", url: `${prefix}recursivitate.html`, keywords: ["recursivitate", "teorie", "factorial", "stiva", "stack"] },
+        { title: "📘 Teorie Materie", url: `${prefix}teorie.html`, keywords: ["teorie", "materie", "clase", "vectori", "matrice"] },
+        { title: "💻 Algoritmi Vizuali", url: `${prefix}algoritmi.html`, keywords: ["algoritmi", "sortare", "cautare", "grafuri", "vizual"] },
+        { title: "📝 Teste Grilă", url: `${prefix}teste.html`, keywords: ["teste", "grila", "quiz", "evaluare", "verificare"] },
+        { title: "🧩 Probleme Rezolvate", url: `${prefix}probleme.html`, keywords: ["probleme", "subiectul 3", "bac", "exercitii"] },
+        { title: "📊 Statistici Progres", url: `${prefix}statistici.html`, keywords: ["statistici", "progres", "grafic", "note"] },
+        { title: "⚙️ Setări Cont", url: `${prefix}setari.html`, keywords: ["setari", "configurare", "tema", "profil"] }
+    ];
 
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
 
-// =====================
-// SEARCH BAR (basic)
-// =====================
+    if (searchInput && searchResults) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query === '') {
+                searchResults.style.display = 'none';
+                searchResults.innerHTML = '';
+                return;
+            }
 
-const searchInput = document.querySelector(".topbar input");
+            // Filtrare în baza de date
+            const filteredResults = sitePages.filter(page => {
+                const matchTitle = page.title.toLowerCase().includes(query);
+                const matchKeywords = page.keywords.some(keyword => keyword.includes(query));
+                return matchTitle || matchKeywords;
+            });
 
-if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-        const value = e.target.value.toLowerCase();
-
-        const cards = document.querySelectorAll(".module-card, .card");
-
-        cards.forEach(card => {
-            const text = card.innerText.toLowerCase();
-
-            if (text.includes(value)) {
-                card.style.display = "block";
+            // Afișare rezultate în dropdown
+            if (filteredResults.length > 0) {
+                searchResults.innerHTML = filteredResults.map(page => `
+                    <a href="${page.url}" class="search-item">
+                        ${page.title}
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
             } else {
-                card.style.display = "none";
+                searchResults.innerHTML = `<div class="search-no-results">Niciun rezultat găsit 😕</div>`;
+                searchResults.style.display = 'block';
             }
         });
+
+        // Închide dropdown-ul la click în exterior
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+    }
+
+    // ==========================================
+    // 2. SIDEBAR TOGGLE
+    // ==========================================
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("hidden");
+        });
+    }
+
+    // ==========================================
+    // 3. RECUPERARE LOGICĂ LISTE LECȚII (ACCORDION)
+    // ==========================================
+    const classHeaders = document.querySelectorAll('.class-card > h3');
+    classHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.parentElement.classList.toggle('open');
+        });
     });
-}
+});
 
-
-// =====================
-// SIMPLE ANIMATION ON LOAD
-// =====================
-
+// ==========================================
+// 4. LOGICĂ PAGINĂ PROFIL & ANIMAȚII (LA LOAD)
+// ==========================================
 function initProfileAuthMode() {
     const toggle = document.getElementById('toggleMode');
     if (!toggle) return;
@@ -54,20 +103,26 @@ function initProfileAuthMode() {
     function setMode(m) {
         mode = m;
         if (mode === 'login') {
-            heading.textContent = 'Profil Elev';
-            parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
-            submitBtn.textContent = 'Loghează-te';
-            submitBtn.value = 'login';
+            if(heading) heading.textContent = 'Profil Elev';
+            if(parag) parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
+            if(submitBtn) {
+                submitBtn.textContent = 'Loghează-te';
+                submitBtn.value = 'login';
+            }
             registerOnly.forEach(el => el.style.display = 'none');
-            document.getElementById('confirmPassword').required = false;
+            const confirmPw = document.getElementById('confirmPassword');
+            if(confirmPw) confirmPw.required = false;
             toggle.textContent = 'Creează cont nou';
         } else {
-            heading.textContent = 'Creează cont';
-            parag.textContent = 'Completează formularul pentru a crea un cont nou.';
-            submitBtn.textContent = 'Înregistrează-te';
-            submitBtn.value = 'register';
+            if(heading) heading.textContent = 'Creează cont';
+            if(parag) parag.textContent = 'Completează formularul pentru a crea un cont nou.';
+            if(submitBtn) {
+                submitBtn.textContent = 'Înregistrează-te';
+                submitBtn.value = 'register';
+            }
             registerOnly.forEach(el => el.style.display = 'block');
-            document.getElementById('confirmPassword').required = true;
+            const confirmPw = document.getElementById('confirmPassword');
+            if(confirmPw) confirmPw.required = true;
             toggle.textContent = 'Am deja cont';
         }
     }
@@ -78,7 +133,7 @@ function initProfileAuthMode() {
     const authForm = document.getElementById('authForm');
     if (authForm) {
         authForm.addEventListener('submit', function (e) {
-            if (submitBtn.value === 'register') {
+            if (submitBtn && submitBtn.value === 'register') {
                 const pw = document.getElementById('password').value;
                 const cpw = document.getElementById('confirmPassword').value;
                 if (pw !== cpw) {
@@ -90,6 +145,7 @@ function initProfileAuthMode() {
     }
 }
 
+// Animațiile se declanșează când se termină de încărcat resursele paginii
 window.addEventListener("load", () => {
     const elements = document.querySelectorAll(".card, .module-card, .hero");
 
@@ -105,12 +161,4 @@ window.addEventListener("load", () => {
     });
 
     initProfileAuthMode();
-});
-
-// Toggle lesson list open/closed when card header is clicked
-const classHeaders = document.querySelectorAll('.class-card > h3');
-classHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        header.parentElement.classList.toggle('open');
-    });
 });
