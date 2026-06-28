@@ -3,14 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>Teste - BAC Master</title>
-
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* ===== Stiluri pentru grile interactive ===== */
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .quiz-options {
+display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            transition: border-color 0.15s, background 0.15s;
+            user-select: none;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+        }
+
+        .quiz-option.selected {
+ border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.12);
+        }
+
+        .quiz-option input[type="radio"] {
+            accent-color: #4a6cf7;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .quiz-check-btn {
+            padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+}
+        
+
+        .quiz-check-btn:hover {
+            opacity: 0.9;
+        }
+
+        .quiz-check-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+        }
+
+        .quiz-feedback {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: none;
+        }
+
+        .quiz-feedback.correct {
+            display: block;
+            background: #e3f7e8;
+            color: #1f7a3a;
+            border: 1px solid #b4e6c2;
+        }
+
+        .quiz-feedback.incorrect {
+            display: block;
+            background: #fdeaea;
+            color: #b32424;
+            border: 1px solid #f3bcbc;
+        }
+
+        /* după verificare: marcare opțiuni */
+        .quiz-option.correct-answer {
+            border-color: #1f7a3a;
+            background: #e3f7e8;
+        }
+
+        .quiz-option.wrong-answer {
+            border-color: #b32424;
+            background: #fdeaea;
+        }
+
+        .quiz-option.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+    </style>
 </head>
-
 <body>
-
 <div class="container">
-
     <aside class="sidebar">
         <a style="text-decoration:none" href="../index.html" class="logo">
             <h2>BAC Master</h2>
@@ -22,22 +127,132 @@
             <a href="teste.html">📝 Teste</a>
         </nav>
     </aside>
-
     <main class="main">
-
         <h1>📝 Teste Grilă</h1>
 
-        <div class="module-card">
+        <!--
+            ===== TEMPLATE GRILĂ =====
+            Structura unei întrebări:
+
+            <div class="module-card quiz-question-block" data-correct="LITERA_CORECTA">
+                <h3>Test X</h3>
+                <p class="quiz-question">Textul întrebării?</p>
+                <div class="quiz-options">
+                    <label class="quiz-option" data-letter="A">
+                        <input type="radio" name="qX">
+                        <span>A) varianta 1</span>
+                    </label>
+                    ... (B, C, D etc.)
+                </div>
+                <button class="quiz-check-btn">Verifică</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            - data-correct = litera răspunsului corect (ex: "A")
+            - data-letter pe fiecare quiz-option = litera respectivă
+            - name pe input trebuie să fie unic per întrebare (ex: q1, q2, q3...)
+            - Restul (selectare, verificare, feedback) e gestionat automat de script-ul de mai jos.
+        -->
+
+        <div class="module-card quiz-question-block" data-correct="A">
             <h3>Test 1</h3>
-            <p>Ce face un for?</p>
-            <p>A) repetă ✔</p>
-            <p>B) șterge</p>
-            <p>C) afișează</p>
+            <p class="quiz-question">Ce face un for?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q1">
+                    <span>A) repetă</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q1">
+                    <span>B) șterge</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q1">
+                    <span>C) afișează</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <h3>Test 2</h3>
+            <p class="quiz-question">Care structură repetitivă verifică condiția înainte de execuție și se poate executa de 0 ori?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q2">
+                    <span>A) do-while</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q2">
+                    <span>B) while</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q2">
+                    <span>C) switch</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
         </div>
 
     </main>
-
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const questionBlocks = document.querySelectorAll('.quiz-question-block');
+
+    questionBlocks.forEach(function (block) {
+        const options = block.querySelectorAll('.quiz-option');
+        const checkBtn = block.querySelector('.quiz-check-btn');
+        const feedback = block.querySelector('.quiz-feedback');
+        const correctLetter = block.getAttribute('data-correct');
+
+        // Click pe opțiune -> marcare vizuală "selected"
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                options.forEach(function (o) { o.classList.remove('selected'); });
+                option.classList.add('selected');
+                option.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Click pe butonul de verificare
+        checkBtn.addEventListener('click', function () {
+            const selected = block.querySelector('.quiz-option.selected');
+
+            if (!selected) {
+                feedback.textContent = 'Selectează o variantă înainte de a verifica.';
+                feedback.className = 'quiz-feedback incorrect';
+                return;
+            }
+
+            const selectedLetter = selected.getAttribute('data-letter');
+            const isCorrect = selectedLetter === correctLetter;
+
+            // Marchează vizual toate opțiunile și le blochează
+            options.forEach(function (option) {
+                option.classList.add('disabled');
+                option.style.pointerEvents = 'none';
+
+                const letter = option.getAttribute('data-letter');
+                if (letter === correctLetter) {
+                    option.classList.add('correct-answer');
+                } else if (option === selected) {
+                    option.classList.add('wrong-answer');
+                }
+            });
+
+            feedback.textContent = isCorrect
+                ? '✔ Corect!'
+                : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
+            feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+
+            checkBtn.disabled = true;
+        });
+    });
+});
+</script>
 </body>
 </html>
