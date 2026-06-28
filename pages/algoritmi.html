@@ -114,6 +114,89 @@
         .dark-table td code {
             color: #fbbf24;
         }
+
+        /* STILURI PENTRU INTERACTIVITATE / SIMULATORI */
+        .simulator-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .simulator-box h4 {
+            margin-top: 0;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sim-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .sim-input {
+            background: #1e293b;
+            border: 1px solid #475569;
+            color: #f8fafc;
+            padding: 8px 12px;
+            border-radius: 6px;
+            width: 120px;
+            font-size: 1rem;
+        }
+        .sim-btn {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .sim-btn:hover { background: #2563eb; }
+        .sim-btn:disabled { background: #475569; cursor: not-allowed; }
+        
+        /* Vizualizare vector */
+        .vector-container {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            min-height: 60px;
+            align-items: flex-end;
+        }
+        .vector-element {
+            background: #334155;
+            border: 2px solid #64748b;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            min-width: 40px;
+            text-align: center;
+            font-family: monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .vector-element.active {
+            background: #1e3a8a;
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+        }
+        .vector-element.sorted {
+            background: #064e3b;
+            border-color: #10b981;
+        }
+        .sim-steps-log {
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #cbd5e1;
+            border-left: 3px solid #fbbf24;
+        }
     </style>
 </head>
 
@@ -141,7 +224,6 @@
             <p>Algoritmii clasici pe numere și tablouri, frecvent ceruți la BAC</p>
         </section>
 
-        <!-- INTRODUCERE -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-diagram-project"></i> De ce sunt importanți?</h2>
             <div class="info-box">
@@ -154,7 +236,6 @@
             </div>
         </section>
 
-        <!-- NUMERE PRIME -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> Verificarea unui număr prim</h2>
             <div class="algo-section">
@@ -170,6 +251,15 @@
                 <b>&radic;n</b> (rădăcina pătrată), nu până la n &ndash; aceasta reduce semnificativ timpul de execuție.
             </p>
 
+            <div class="simulator-box">
+                <h4><i class="fa-solid fa-play" style="color: #10b981;"></i> Simulator Pas cu Pas: Test Număr Prim</h4>
+                <div class="sim-controls">
+                    <input type="number" id="primInput" class="sim-input" value="17" min="0">
+                    <button id="primBtn" class="sim-btn" onclick="simuleazaPrim()">Rulează Pas cu Pas</button>
+                </div>
+                <div id="primLog" class="sim-steps-log">Introduceți un număr și apăsați butonul pentru a porni urmărirea variabilelor.</div>
+            </div>
+
 <pre>
 bool estePrim(int n)
 {
@@ -183,15 +273,8 @@ bool estePrim(int n)
     return true; // nu am gasit niciun divizor -> e prim
 }
 </pre>
-
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Condiția
-                <code style="color: #fbbf24;">d * d &lt;= n</code> este echivalentă cu <code style="color: #fbbf24;">d &lt;= &radic;n</code>,
-                dar evită utilizarea funcției <code>sqrt()</code> și eventualele erori de rotunjire la numere zecimale.
-            </div>
         </section>
 
-        <!-- DIVIZORI -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-list-ol" style="color: #a855f7;"></i> Determinarea divizorilor unui număr</h2>
             <p>
@@ -207,30 +290,8 @@ void afiseazaDivizori(int n)
             cout << d << " ";
 }
 </pre>
-
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Optimizare:</b> Divizorii unui
-                număr apar în <b>perechi</b> (d și n/d). Putem parcurge doar până la &radic;n și afișa ambii divizori
-                din pereche, reducând complexitatea de la O(n) la O(&radic;n):
-            </div>
-
-<pre>
-void afiseazaDivizoriOptim(int n)
-{
-    for (int d = 1; d * d <= n; d++)
-    {
-        if (n % d == 0)
-        {
-            cout << d << " ";
-            if (d != n / d)
-                cout << n / d << " ";
-        }
-    }
-}
-</pre>
         </section>
 
-        <!-- CMMDC SI CMMMC -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> CMMDC și CMMMC</h2>
 
@@ -249,11 +310,6 @@ void afiseazaDivizoriOptim(int n)
                 </div>
             </div>
 
-            <p style="margin-top: 20px;">
-                CMMDC se calculează eficient cu <b>algoritmul lui Euclid</b>, bazat pe proprietatea:
-                <code>cmmdc(a, b) = cmmdc(b, a % b)</code>, până când restul devine 0.
-            </p>
-
 <pre>
 int cmmdc(int a, int b)
 {
@@ -266,116 +322,29 @@ int cmmdc(int a, int b)
     return a;
 }
 </pre>
-
-            <p>
-                CMMMC se obține folosind formula: <code>cmmmc(a, b) = (a * b) / cmmdc(a, b)</code>
-            </p>
-
-<pre>
-int cmmmc(int a, int b)
-{
-    return (a * b) / cmmdc(a, b);
-}
-</pre>
-
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Varianta recursivă
-                a algoritmului lui Euclid este la fel de des cerută la BAC:
-                <code style="color: #fbbf24;">cmmdc(a, b) = (b == 0) ? a : cmmdc(b, a % b)</code>
-            </div>
         </section>
 
-        <!-- NUMERE PERFECTE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-star" style="color: #facc15;"></i> Numere perfecte</h2>
-            <div class="algo-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.02);">
-                <h3 style="color: #facc15;"><i class="fa-solid fa-gem"></i> Definiție</h3>
-                <p style="margin: 0;">
-                    Un număr natural este <b>perfect</b> dacă este egal cu suma divizorilor săi proprii
-                    (toți divizorii, exceptând numărul însuși). Exemplu: <b>6</b> = 1 + 2 + 3.
-                </p>
-            </div>
-
-<pre>
-bool estePerfect(int n)
-{
-    int suma = 0;
-
-    for (int d = 1; d < n; d++)
-        if (n % d == 0)
-            suma += d;
-
-    return suma == n;
-}
-</pre>
-        </section>
-
-        <!-- FIBONACCI -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-infinity" style="color: #f43f5e;"></i> Șirul lui Fibonacci</h2>
-            <p>
-                Șirul lui Fibonacci este definit astfel: primii doi termeni sunt 1 și 1 (sau 0 și 1, în funcție
-                de convenție), iar fiecare termen următor este suma celor doi termeni anteriori.
-            </p>
-
-            <div class="grid-2">
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-arrows-rotate"></i> Variantă iterativă (recomandată)</h3>
-<pre style="margin: 0;">
-int fibonacci(int n)
-{
-    int a = 1, b = 1, c;
-
-    if (n <= 2)
-        return 1;
-
-    for (int i = 3; i <= n; i++)
-    {
-        c = a + b;
-        a = b;
-        b = c;
-    }
-    return b;
-}
-</pre>
-                </div>
-                <div class="feature-card" style="border-left-color: #fb7185;">
-                    <h3 style="color: #fb7185;"><i class="fa-solid fa-code-branch"></i> Variantă recursivă (lentă)</h3>
-<pre style="margin: 0;">
-int fibonacci(int n)
-{
-    if (n <= 2)
-        return 1;
-    return fibonacci(n-1) 
-         + fibonacci(n-2);
-}
-</pre>
-                </div>
-            </div>
-
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Varianta
-                recursivă este elegantă, dar ineficientă pentru valori mari ale lui n, deoarece recalculează
-                de multe ori aceiași termeni (complexitate exponențială). Varianta iterativă este preferată
-                în practică.
-            </div>
-        </section>
-
-        <!-- SORTARE -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> Algoritmi de sortare</h2>
             <p>
                 Sortarea înseamnă rearanjarea elementelor unui tablou în ordine crescătoare sau descrescătoare.
-                La BAC, cel mai frecvent cerut este algoritmul <b>Bubble Sort</b>, datorită simplității sale.
             </p>
 
             <div class="algo-section">
                 <h3><i class="fa-solid fa-water"></i> Bubble Sort (Metoda Bulelor)</h3>
                 <p style="margin: 0;">
                     Se compară perechi de elemente vecine și se interschimbă dacă nu sunt în ordinea corectă.
-                    Procesul se repetă până când tabloul este complet sortat (nicio interschimbare la o
-                    parcurgere completă).
                 </p>
+            </div>
+
+            <div class="simulator-box">
+                <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Interactivă: Bubble Sort</h4>
+                <div class="sim-controls">
+                    <button id="sortBtn" class="sim-btn" onclick="startBubbleSortSim()">Pornește Simulare Vizuală</button>
+                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorSim()">Generează Alt Vector</button>
+                </div>
+                <div id="vectorVisualContainer" class="vector-container"></div>
+                <div id="sortLog" class="sim-steps-log">Apasă pe buton ca să vezi cum urcă elementele mari ca bulele de aer.</div>
             </div>
 
 <pre>
@@ -391,69 +360,8 @@ void bubbleSort(int v[], int n)
             }
 }
 </pre>
-
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> La fiecare
-                parcurgere completă (valoarea lui <b>i</b>), cel mai mare element rămas "se ridică" la
-                poziția corectă din dreapta &ndash; de aici și denumirea de "bule". Complexitatea este
-                <b>O(n<sup>2</sup>)</b> în cazul general.
-            </div>
         </section>
 
-        <!-- CAUTARE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-magnifying-glass" style="color: #10b981;"></i> Algoritmi de căutare</h2>
-
-            <div class="grid-2">
-                <div class="feature-card" style="border-left-color: #10b981;">
-                    <h3 style="color: #34d399;"><i class="fa-solid fa-list"></i> Căutarea secvențială (liniară)</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Se parcurge tabloul element cu element, comparându-l cu valoarea căutată. Funcționează
-                        pe orice tablou, indiferent dacă este sortat sau nu. Complexitate: O(n).
-                    </p>
-                </div>
-                <div class="feature-card" style="border-left-color: #a855f7;">
-                    <h3 style="color: #c084fc;"><i class="fa-solid fa-arrows-split-up-and-left"></i> Căutarea binară</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Funcționează <b>doar pe tablouri sortate</b>. La fiecare pas se compară elementul din
-                        mijloc cu valoarea căutată și se elimină jumătate din interval. Complexitate: O(log n).
-                    </p>
-                </div>
-            </div>
-
-<pre>
-// Cautare secventiala
-int cautareSecventiala(int v[], int n, int x)
-{
-    for (int i = 0; i < n; i++)
-        if (v[i] == x)
-            return i; // pozitia gasita
-
-    return -1; // nu a fost gasit
-}
-</pre>
-
-<pre>
-// Cautare binara (tabloul TREBUIE sa fie sortat crescator)
-int cautareBinara(int v[], int st, int dr, int x)
-{
-    while (st <= dr)
-    {
-        int mij = (st + dr) / 2;
-
-        if (v[mij] == x)
-            return mij;
-        else if (v[mij] < x)
-            st = mij + 1;
-        else
-            dr = mij - 1;
-    }
-    return -1; // nu a fost gasit
-}
-</pre>
-        </section>
-
-        <!-- TABEL COMPARATIV -->
         <section class="lesson-card">
             <h2>Rezumat: complexități de timp</h2>
             <div style="overflow-x: auto;">
@@ -472,29 +380,9 @@ int cautareBinara(int v[], int st, int dr, int x)
                             <td>Cu optimizarea d*d &lt;= n</td>
                         </tr>
                         <tr>
-                            <td>Determinare divizori</td>
-                            <td style="color: #38bdf8; font-weight: bold;">O(&radic;n)</td>
-                            <td>Parcurgere în perechi (d, n/d)</td>
-                        </tr>
-                        <tr>
-                            <td>CMMDC (Euclid)</td>
-                            <td style="color: #10b981; font-weight: bold;">O(log(min(a,b)))</td>
-                            <td>Extrem de rapid</td>
-                        </tr>
-                        <tr>
                             <td>Bubble Sort</td>
                             <td style="color: #f43f5e; font-weight: bold;">O(n<sup>2</sup>)</td>
                             <td>Acceptabil pentru tablouri mici</td>
-                        </tr>
-                        <tr>
-                            <td>Căutare secvențială</td>
-                            <td style="color: #f59e0b; font-weight: bold;">O(n)</td>
-                            <td>Nu necesită tablou sortat</td>
-                        </tr>
-                        <tr>
-                            <td>Căutare binară</td>
-                            <td style="color: #10b981; font-weight: bold;">O(log n)</td>
-                            <td>Necesită tablou sortat</td>
                         </tr>
                     </tbody>
                 </table>
@@ -503,6 +391,131 @@ int cautareBinara(int v[], int st, int dr, int x)
 
     </main>
 </div>
+
+<script>
+    // ==========================================
+    // 1. SIMULATOR NUMĂR PRIM
+    // ==========================================
+    function simuleazaPrim() {
+        const n = parseInt(document.getElementById('primInput').value);
+        const logBox = document.getElementById('primLog');
+        logBox.innerHTML = "";
+        
+        if (isNaN(n)) {
+            logBox.innerHTML = "Eroare: Introduceți un număr valid.";
+            return;
+        }
+
+        logBox.innerHTML += `• Se apelează estePrim(${n})\n`;
+        if (n < 2) {
+            logBox.innerHTML += `❌ Pasul 1: ${n} < 2 => Returnează <b style="color:#f43f5e">false</b> (Nu este prim).\n`;
+            return;
+        }
+
+        logBox.innerHTML += `• Pasul 1: ${n} >= 2. Intrăm în bucla de verificare.\n`;
+        let estePrim = true;
+
+        for (let d = 2; d * d <= n; d++) {
+            logBox.innerHTML += `  -> Verificăm d = ${d} (d*d = ${d*d} <= ${n})\n`;
+            if (n % d === 0) {
+                logBox.innerHTML += `     💥 Restul ${n} % ${d} == 0! Am găsit divizor.\n`;
+                logBox.innerHTML += `❌ Returnează <b style="color:#f43f5e">false</b> (Numărul este compus, se divide cu ${d}).\n`;
+                estePrim = false;
+                break;
+            } else {
+                logBox.innerHTML += `     ✓ ${n} % ${d} != 0 (restul este ${n % d})\n`;
+            }
+        }
+
+        if (estePrim) {
+            logBox.innerHTML += `• Condiția d*d <= n nu mai este îndeplinită.\n`;
+            logBox.innerHTML += `✅ Succes: Nu s-a găsit niciun divizor! Returnează <b style="color:#10b981">true</b> (Este prim).\n`;
+        }
+    }
+
+    // ==========================================
+    // 2. SIMULATOR BUBBLE SORT VIZUAL
+    // ==========================================
+    let vectorSim = [45, 12, 89, 7, 34, 22];
+    
+    function afiseazaVectorSim() {
+        const container = document.getElementById('vectorVisualContainer');
+        container.innerHTML = "";
+        vectorSim.forEach((val, idx) => {
+            const div = document.createElement('div');
+            div.className = 'vector-element';
+            div.id = `el-${idx}`;
+            div.innerText = val;
+            container.appendChild(div);
+        });
+    }
+
+    function reseteazaVectorSim() {
+        vectorSim = [];
+        for(let i=0; i<6; i++) {
+            vectorSim.push(Math.floor(Math.random() * 90) + 10);
+        }
+        afiseazaVectorSim();
+        document.getElementById('sortLog').innerHTML = "Vector nou generat. Apasă pe simulare!";
+        document.getElementById('sortBtn').disabled = false;
+    }
+
+    // Funcție utilitară pentru a crea pauze/întârzieri asincrone în animație
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function startBubbleSortSim() {
+        const btn = document.getElementById('sortBtn');
+        const logBox = document.getElementById('sortLog');
+        btn.disabled = true;
+        logBox.innerHTML = "Inițializare Bubble Sort...\n";
+        
+        let n = vectorSim.length;
+        
+        for (let i = 0; i < n - 1; i++) {
+            logBox.innerHTML += `👉 Parcurgerea i = ${i}\n`;
+            for (let j = 0; j < n - 1 - i; j++) {
+                // Evidențiem elementele comparate
+                const el1 = document.getElementById(`el-${j}`);
+                const el2 = document.getElementById(`el-${j+1}`);
+                
+                el1.classList.add('active');
+                el2.classList.add('active');
+                
+                logBox.innerHTML += `   Comparăm v[${j}] (${vectorSim[j]}) cu v[${j+1}] (${vectorSim[j+1]})\n`;
+                logBox.scrollTop = logBox.scrollHeight;
+                await sleep(800);
+
+                if (vectorSim[j] > vectorSim[j + 1]) {
+                    logBox.innerHTML += `     🔄 Interschimbăm deoarece ${vectorSim[j]} > ${vectorSim[j+1]}\n`;
+                    
+                    // Schimbăm valorile în memorie
+                    let aux = vectorSim[j];
+                    vectorSim[j] = vectorSim[j + 1];
+                    vectorSim[j + 1] = aux;
+                    
+                    // Modificăm și vizual textele
+                    el1.innerText = vectorSim[j];
+                    el2.innerText = vectorSim[j + 1];
+                }
+                
+                await sleep(400);
+                el1.classList.remove('active');
+                el2.classList.remove('active');
+            }
+            // Elementul de la finalul parcurgerii este acum fixat/sortat definitiv
+            document.getElementById(`el-${n - 1 - i}`).classList.add('sorted');
+        }
+        // Și primul element devine sortat automat la final
+        document.getElementById(`el-0`).classList.add('sorted');
+        logBox.innerHTML += `\n✅ Tablou sortat cu succes!`;
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    // Generăm primul vector la deschiderea paginii
+    window.onload = function() {
+        afiseazaVectorSim();
+    };
+</script>
 
 </body>
 </html>
