@@ -160,7 +160,6 @@
             transition: all 0.4s ease;
             position: relative;
         }
-        /* Stări simulator sortare */
         .vector-element.active {
             background: #1e3a8a;
             border-color: #3b82f6;
@@ -170,7 +169,6 @@
             background: #064e3b;
             border-color: #10b981;
         }
-        /* Stări noi pentru simulator căutare binară */
         .vector-element.range-active {
             border-color: #3b82f6;
             background: #1e293b;
@@ -223,33 +221,37 @@
 
     <main class="main lesson-page">
         <section class="lesson-header">
-            <h1>6. Algoritmi elementari</h1>
-            <p>Programa oficială completă pentru examenul de Bacalaureat</p>
+            <h1>Algoritmi elementari</h1>
+            <p>Programa oficială pentru examenul de Bacalaureat. Secțiunile de mai jos conțin explicații detaliate, implementări curate în C++ și simulatoare vizuale interactive pentru a urmări execuția algoritmilor pas cu pas.</p>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> 6.1. Probleme care operează asupra cifrelor unui număr</h2>
-            <p>Extragerea cifrelor unui număr se face repetat prin izolarea ultimei cifre (<code>n % 10</code>) și eliminarea ei (<code>n / 10</code>).</p>
+            <h2><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> Probleme care operează asupra cifrelor unui număr</h2>
+            <p>Prelucrarea cifrelor se bazează pe descompunerea matematică în baza 10. Izolarea ultimei cifre se realizează prin operatorul modulo (<code>n%10</code>), în timp ce eliminarea fizică a acesteia din număr se face prin împărțire întreagă (<code>n/10</code>). Procesul se repetă într-o structură repetitivă cât timp numărul este diferit de 0.</p>
             
             <div class="grid-2">
                 <div class="feature-card">
                     <h3>Oglinditul (Inversul)</h3>
+                    <p>Construiește inversul cifrelor prin deplasarea succesivă a rezultatului spre stânga (înmulțire cu 10) și adunarea ultimei cifre curente.</p>
 <pre style="margin:0;">
-int ogl = 0;
-while (n != 0) {
-    ogl = ogl * 10 + n % 10;
-    n /= 10;
+int n, ogl=0;
+while (n!=0)
+{
+    ogl=ogl*10+n%10;
+    n/=10;
 }
 </pre>
                 </div>
                 <div class="feature-card">
                     <h3>Suma și Numărarea</h3>
+                    <p>Iterează prin număr, adunând valoarea fiecărei cifre în variabila sumă și incrementând un contor dedicat pentru fiecare pas executat.</p>
 <pre style="margin:0;">
-int s = 0, cn = 0;
-while (n != 0) {
-    s += n % 10;
+int n, s=0, cn=0;
+while (n!=0)
+{
+    s+=n%10;
     cn++;
-    n /= 10;
+    n/=10;
 }
 </pre>
                 </div>
@@ -257,11 +259,11 @@ while (n != 0) {
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> 6.2. Divizibilitate. Numere prime. Algoritmul lui Euclid</h2>
+            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> Divizibilitate. Numere prime. Algoritmul lui Euclid</h2>
             
             <div class="algo-section">
                 <h3>Verificarea proprietății de număr prim</h3>
-                <p>Un număr este prim dacă nu are divizori proprii în intervalul <code>[2, √n]</code>.</p>
+                <p>Eficientizarea algoritmului constă în limitarea căutării divizorilor proprii până la valoarea părții întregi a rădăcinii pătrate a numărului (<code>d*d<=n</code>). Dacă nu se identifică niciun divizor în acest interval, numărul este prim.</p>
             </div>
 
             <div class="simulator-box">
@@ -275,50 +277,59 @@ while (n != 0) {
 
             <div class="grid-2">
                 <div>
-                    <h3>Algoritmul lui Euclid (CMMDC prin resturi)</h3>
+                    <h3>Algoritmul lui Euclid (CMMDC)</h3>
+                    <p>Află cel mai mare divizor comun utilizând operația de obținere a restului împărțirilor succesive, metodă superioară scăderilor repetate.</p>
 <pre>
-while (b != 0) {
-    int r = a % b;
-    a = b;
-    b = r;
+int a, b, r;
+while (b!=0)
+{
+    r=a%b;
+    a=b;
+    b=r;
 }
-// CMMDC se află în variabila 'a'
 </pre>
                 </div>
                 <div>
                     <h3>Cel mai mic multiplu comun (CMMMC)</h3>
+                    <p>Se calculează pe baza relației matematice directe dintre produsul celor două numere și cel mai mare divizor comun al acestora.</p>
 <pre>
-int cmmmc = (a * b) / cmmdc(a, b);
+int a, b, cmmmc;
+cmmmc=(a*b)/a; 
 </pre>
                 </div>
             </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-infinity" style="color: #a855f7;"></i> 6.3. Şirul lui Fibonacci. Calculul unor sume</h2>
-            <p>Fiecare termen este suma celor doi termeni precedenți: <code>f(n) = f(n-1) + f(n-2)</code>.</p>
+            <h2><i class="fa-solid fa-infinity" style="color: #a855f7;"></i> Şirul lui Fibonacci. Calculul unor sume</h2>
+            <p>Șirul lui Fibonacci este o succesiune numerică în care primele două elemente sunt egale cu 1, iar fiecare termen următor este generat prin însumarea directă a celor doi termeni strict precedenți. Calculul sumelor cu termen general implică generarea riguroasă a fiecărui component la fiecare pas al buclei.</p>
             
             <div class="grid-2">
                 <div class="feature-card" style="border-left-color: #a855f7;">
                     <h3>Generare Șirul lui Fibonacci</h3>
+                    <p>Folosește trei variabile pentru a păstra cei doi termeni anteriori și valoarea curentă calculată, reînoind valorile la fiecare pas.</p>
 <pre style="margin:0;">
-int a = 1, b = 1, c;
-cout << a << " " << b << " ";
-for (int i = 3; i <= n; i++) {
-    c = a + b;
-    cout << c << " ";
-    a = b;
-    b = c;
+int a=1, b=1, c, i, n;
+cout<<a<<" "<<b<<" ";
+for (i=3; i<=n; i++)
+{
+    c=a+b;
+    cout<<c<<" ";
+    a=b;
+    b=c;
 }
 </pre>
                 </div>
                 <div class="feature-card" style="border-left-color: #f43f5e;">
-                    <h3>Calcul Sumpă cu termen general</h3>
+                    <h3>Calcul Sume (Exemplu: Termen Factorial)</h3>
+                    <p>Pentru a evita recalcularea costisitoare, numitorul (factorialul) se construiește incremental, prin înmulțire cu indicele curent.</p>
 <pre style="margin:0;">
-double s = 0, p = 1;
-for (int i = 1; i <= n; i++) {
-    p *= i; // Termen general factorial
-    s += 1.0 / p;
+double s=0, p=1;
+int i, n;
+for (i=1; i<=n; i++)
+{
+    p*=i;
+    s+=1.0/p;
 }
 </pre>
                 </div>
@@ -326,21 +337,23 @@ for (int i = 1; i <= n; i++) {
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrows-up-down" style="color: #fbbf24;"></i> 6.4. Determinare minim/maxim</h2>
-            <p>Determinarea celei mai mici sau mai mari valori dintr-o secvență sau un tablou liniar.</p>
+            <h2><i class="fa-solid fa-arrows-up-down" style="color: #fbbf24;"></i> Determinare minim/maxim</h2>
+            <p>Algoritmul presupune inițializarea ipotetică a valorii extreme cu primul element al structurii liniare. Ulterior, vectorul este parcurs integral, comparând fiecare element cu valoarea de referință și actualizând-o ori de câte ori este identificată o valoare mai mare (pentru maxim) sau mai mică (pentru minim).</p>
 <pre>
-int maxim = v[0];
-for (int i = 1; i < n; i++) {
-    if (v[i] > maxim) {
-        maxim = v[i];
+int maxim=v[0], i, n;
+for (i=1; i<n; i++)
+{
+    if (v[i]>maxim)
+    {
+        maxim=v[i];
     }
 }
 </pre>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> 6.5. Metode de ordonare</h2>
-            <p>Rearanjarea elementelor unui vector în ordine crescătoare sau descrescătoare.</p>
+            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> Metode de ordonare</h2>
+            <p>Sortarea reprezintă procesul de rearanjare a elementelor unui vector într-o structură monotonă (crescătoare sau descrescătoare). Alegerea metodei corecte depinde de restricțiile de timp și de structura datelor de intrare.</p>
 
             <div class="simulator-box">
                 <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Pas cu Pas: Metoda Bulelor</h4>
@@ -352,45 +365,93 @@ for (int i = 1; i < n; i++) {
                 <div id="sortLog" class="sim-steps-log">Apăsați pe pornire pentru a urmări evoluția elementelor în memorie.</div>
             </div>
 
-            <div class="dark-table-container" style="overflow-x:auto;">
+            <div class="feature-card" style="border-left-color: #38bdf8; margin-top: 20px;">
+                <h3>Sursa C++: Metoda Bulelor (Bubble Sort)</h3>
+                <p>Parcurge vectorul în mod repetat și compară elementele vecine. Dacă acestea se află în ordine inversă, le interschimbă valorile. La fiecare iterație completă, cel mai mare element nerezolvat migrează spre poziția sa finală la extremitatea dreaptă.</p>
+<pre>
+int i, j, aux, n, v[100];
+for (i=0; i<n-1; i++)
+{
+    for (j=0; j<n-1-i; j++)
+    {
+        if (v[j]>v[j+1])
+        {
+            aux=v[j];
+            v[j]=v[j+1];
+            v[j+1]=aux;
+        }
+    }
+}
+</pre>
+            </div>
+
+            <div class="dark-table-table-container" style="overflow-x:auto; margin-top:20px;">
                 <table class="dark-table">
                     <thead>
                         <tr>
-                            <th>Metodă</th>
-                            <th>Implementare C++</th>
+                            <th style="width: 25%;">Metodă</th>
+                            <th>Descriere Teoretică și Implementare C++</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><b>Metoda Inserției</b></td>
-                            <td><pre style="margin:0;">
-for (int i = 1; i < n; i++) {
-    int x = v[i], j = i - 1;
-    while (j >= 0 && v[j] > x) {
-        v[j + 1] = v[j];
+                            <td>
+                                <p style="margin-top:0;">Consideră că primele elemente sunt deja sortate. Ia fiecare element nou și îl inserează în poziția corectă printre cele deja verificate, deplasând restul elementelor spre dreapta.</p>
+<pre style="margin:0;">
+int i, j, x, n, v[100];
+for (i=1; i<n; i++)
+{
+    x=v[i];
+    j=i-1;
+    while (j>=0 && v[j]>x)
+    {
+        v[j+1]=v[j];
         j--;
     }
-    v[j + 1] = x;
-}</pre></td>
+    v[j+1]=x;
+}</pre>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Metoda Selecției</b></td>
-                            <td><pre style="margin:0;">
-for (int i = 0; i < n - 1; i++) {
-    for (int j = i + 1; j < n; j++) {
-        if (v[i] > v[j]) swap(v[i], v[j]);
+                            <td>
+                                <p style="margin-top:0;">Compară fiecare element de pe o poziție fixată cu toate elementele aflate după el. Dacă se găsește o valoare mai mică, pozițiile sunt inversate imediat.</p>
+<pre style="margin:0;">
+int i, j, aux, n, v[100];
+for (i=0; i<n-1; i++)
+{
+    for (j=i+1; j<n; j++)
+    {
+        if (v[i]>v[j])
+        {
+            aux=v[i];
+            v[i]=v[j];
+            v[j]=aux;
+        }
     }
-}</pre></td>
+}</pre>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Metoda Numărării</b></td>
-                            <td><pre style="margin:0;">
-for (int i = 0; i < n; i++) {
-    int rez = 0;
-    for (int j = 0; j < n; j++)
-        if (v[j] < v[i] || (v[j] == v[i] && j < i)) rez++;
-    b[rez] = v[i];
-}</pre></td>
+                            <td>
+                                <p style="margin-top:0;">Determină poziția finală a fiecărui element prin numărarea valorilor din vector care sunt strict mai mici decât el, plasând elementul direct la indexul rezultat într-un vector suplimentar.</p>
+<pre style="margin:0;">
+int i, j, rez, n, v[100], b[100];
+for (i=0; i<n; i++)
+{
+    rez=0;
+    for (j=0; j<n; j++)
+    {
+        if (v[j]<v[i] || (v[j]==v[i] && j<i))
+        {
+            rez++;
+        }
+    }
+    b[rez]=v[i];
+}</pre>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -398,21 +459,22 @@ for (int i = 0; i < n; i++) {
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-code-merge" style="color: #10b981;"></i> 6.6. Interclasare</h2>
-            <p>Combinarea a doi vectori deja sortați (<code>A</code> cu <code>n</code> elemente și <code>B</code> cu <code>m</code> elemente) într-un al treilea vector sortat <code>C</code>.</p>
+            <h2><i class="fa-solid fa-code-merge" style="color: #10b981;"></i> Interclasare</h2>
+            <p>Interclasarea reprezintă tehnica de combinare a doi vectori ordonați în mod nativ într-un al treilea vector, păstrând proprietatea de sortare. Procesul folosește indici independenți pentru parcurgerea structurilor paralele și este mult mai eficient decât concatenarea urmată de o sortare clasică, având complexitate liniară.</p>
 <pre>
-int i = 0, j = 0, k = 0;
-while (i < n && j < m) {
-    if (A[i] < B[j]) C[k++] = A[i++];
-    else C[k++] = B[j++];
+int i=0, j=0, k=0, n, m, A[100], B[100], C[200];
+while (i<n && j<m)
+{
+    if (A[i]<B[j]) C[k++]=A[i++];
+    else C[k++]=B[j++];
 }
-while (i < n) C[k++] = A[i++];
-while (j < m) C[k++] = B[j++];
+while (i<n) C[k++]=A[i++];
+while (j<m) C[k++]=B[j++];
 </pre>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-magnifying-glass" style="color: #fbbf24;"></i> 6.7. Metode de căutare</h2>
+            <h2><i class="fa-solid fa-magnifying-glass" style="color: #fbbf24;"></i> Metode de căutare</h2>
             
             <div class="simulator-box">
                 <h4><i class="fa-solid fa-eye" style="color: #fbbf24;"></i> Vizualizare Pas cu Pas: Căutare Binară</h4>
@@ -428,24 +490,34 @@ while (j < m) C[k++] = B[j++];
             <div class="grid-2">
                 <div class="feature-card" style="border-left-color: #fbbf24;">
                     <h3>Căutare Secvențială (Liniară)</h3>
-                    <p>Se verifică element cu element. Funcționează pe vectori nesortați.</p>
+                    <p>Potrivită pentru structuri nesortate. Verifică consecutiv fiecare element în parte, de la stânga la dreapta, până când valoarea căutată este identificată în tablou sau vectorul se epuizează.</p>
 <pre style="margin:0;">
-int poz = -1;
-for (int i = 0; i < n; i++) {
-    if (v[i] == x) { poz = i; break; }
+int poz=-1, i, n, x, v[100];
+for (i=0; i<n; i++)
+{
+    if (v[i]==x)
+    {
+        poz=i;
+        break;
+    }
 }
 </pre>
                 </div>
                 <div class="feature-card" style="border-left-color: #10b981;">
                     <h3>Căutare Binară</h3>
-                    <p>Înjumătățește repetat intervalul. Necesită obligatoriu vector sortat.</p>
+                    <p>Necesită obligatoriu un vector sortat. Algoritmul compară valoarea căutată cu mijlocul intervalului curent, înjumătățind spațiul de căutare la fiecare pas nefavorabil prin reajustarea limitelor stânga/dreapta.</p>
 <pre style="margin:0;">
-int st = 0, dr = n - 1, poz = -1;
-while (st <= dr) {
-    int mij = (st + dr) / 2;
-    if (v[mij] == x) { poz = mij; break; }
-    else if (v[mij] < x) st = mij + 1;
-    else dr = mij - 1;
+int st=0, dr=n-1, poz=-1, mij, x, v[100];
+while (st<=dr)
+{
+    mij=(st+dr)/2;
+    if (v[mij]==x)
+    {
+        poz=mij;
+        break;
+    }
+    else if (v[mij]<x) st=mij+1;
+    else dr=mij-1;
 }
 </pre>
                 </div>
@@ -455,7 +527,7 @@ while (st <= dr) {
 </div>
 
 <script>
-    const TIME_PAUSE = 1500; // Pauză internă stabilă pentru lizibilitate linie cu linie
+    const TIME_PAUSE = 1500; 
 
     // ==========================================
     // LOGICĂ SIMULATOR NUMĂR PRIM
@@ -588,11 +660,10 @@ while (st <= dr) {
         logBox.scrollTop = logBox.scrollHeight;
     }
 
-
     // ==========================================
     // LOGICĂ SIMULATOR CĂUTARE BINARĂ
     // ==========================================
-    let vectorCautare = [10, 18, 25, 33, 47, 52, 63, 71, 84, 99]; // Tablou obligatoriu sortat
+    let vectorCautare = [10, 18, 25, 33, 47, 52, 63, 71, 84, 99]; 
 
     function afiseazaVectorCautare() {
         const container = document.getElementById('vectorSearchContainer');
@@ -611,10 +682,9 @@ while (st <= dr) {
         for(let i = 0; i < 10; i++) {
             deBaza.push(Math.floor(Math.random() * 90) + 10);
         }
-        vectorCautare = deBaza.sort((a, b) => a - b); // Asigură proprietatea de vector sortat
+        vectorCautare = deBaza.sort((a, b) => a - b); 
         afiseazaVectorCautare();
         
-        // Pune aleatoriu o valoare existentă în input ca exemplu de test valid
         document.getElementById('searchTargetInput').value = vectorCautare[Math.floor(Math.random() * 10)];
         document.getElementById('searchLog').innerHTML = "Tablou nou generat și sortat crescător.\n";
         document.getElementById('searchBtn').disabled = false;
@@ -643,10 +713,9 @@ while (st <= dr) {
             logBox.innerHTML += `\n📍 [Pasul ${pas++}]: Interval curent de analiză între indicii [${st} ... ${dr}].\n`;
             logBox.scrollTop = logBox.scrollHeight;
 
-            // Actualizare vizuală elemente active/ignorate
             for (let i = 0; i < vectorCautare.length; i++) {
                 const el = document.getElementById(`se-${i}`);
-                el.className = 'vector-element'; // Resetează clasele anterioare
+                el.className = 'vector-element'; 
                 if (i < st || i > dr) {
                     el.classList.add('ignored');
                 } else {
@@ -655,7 +724,6 @@ while (st <= dr) {
             }
             await new Promise(r => setTimeout(r, TIME_PAUSE));
 
-            // Calcul mijloc
             let mij = Math.floor((st + dr) / 2);
             const elMij = document.getElementById(`se-${mij}`);
             elMij.classList.remove('range-active');
@@ -684,11 +752,9 @@ while (st <= dr) {
             await new Promise(r => setTimeout(r, TIME_PAUSE));
         }
 
-        // Finalizare vizuală
         if (poz !== -1) {
             logBox.innerHTML += `\n✅ Rezultat final: Elementul a fost identificat cu succes pe poziția (indexul) ${poz}.\n`;
         } else {
-            // Aplică starea de ignorat peste tot dacă nu s-a găsit elementul
             for (let i = 0; i < vectorCautare.length; i++) {
                 document.getElementById(`se-${i}`).className = 'vector-element ignored';
             }
@@ -699,7 +765,6 @@ while (st <= dr) {
         btn.disabled = false;
     }
 
-    // Inițializări automate la deschiderea paginii
     window.onload = function() {
         afiseazaVectorSim();
         afiseazaVectorCautare();
