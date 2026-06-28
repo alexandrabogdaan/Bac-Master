@@ -2,12 +2,12 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Algoritmi de Bază - BAC Master</title>
+    <title>Algoritmi Elementari - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Stiluri existente adaptate */
+        /* Stiluri generale pentru interfața Dark Mode */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -89,6 +89,7 @@
             color: #38bdf8; 
             padding: 12px;
             font-weight: bold;
+            text-align: left;
         }
         .dark-table td {
             padding: 12px;
@@ -96,7 +97,7 @@
             border-right: 1px solid #2d3748;
         }
 
-        /* STILURI PENTRU SIMULATORI */
+        /* STILURI PENTRU SIMULATORI INTERACTIVI */
         .simulator-box {
             background: #0f172a;
             border: 1px solid #334155;
@@ -123,6 +124,7 @@
             padding: 8px 12px;
             border-radius: 6px;
             width: 120px;
+            font-size: 1rem;
         }
         .sim-btn {
             background: #3b82f6;
@@ -132,6 +134,7 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
+            transition: 0.2s;
         }
         .sim-btn:hover { background: #2563eb; }
         .sim-btn:disabled { background: #475569; cursor: not-allowed; }
@@ -142,6 +145,7 @@
             margin: 15px 0;
             min-height: 60px;
             align-items: flex-end;
+            flex-wrap: wrap;
         }
         .vector-element {
             background: #334155;
@@ -149,12 +153,14 @@
             color: #fff;
             padding: 10px;
             border-radius: 6px;
-            min-width: 40px;
+            min-width: 42px;
             text-align: center;
             font-family: monospace;
             font-weight: bold;
             transition: all 0.4s ease;
+            position: relative;
         }
+        /* Stări simulator sortare */
         .vector-element.active {
             background: #1e3a8a;
             border-color: #3b82f6;
@@ -164,6 +170,26 @@
             background: #064e3b;
             border-color: #10b981;
         }
+        /* Stări noi pentru simulator căutare binară */
+        .vector-element.range-active {
+            border-color: #3b82f6;
+            background: #1e293b;
+        }
+        .vector-element.mid-active {
+            background: #b45309;
+            border-color: #f59e0b;
+            transform: translateY(-8px);
+        }
+        .vector-element.found {
+            background: #064e3b;
+            border-color: #10b981;
+            transform: scale(1.1);
+        }
+        .vector-element.ignored {
+            opacity: 0.25;
+            border-color: #1e293b;
+        }
+
         .sim-steps-log {
             background: #1e293b;
             padding: 12px;
@@ -171,11 +197,11 @@
             font-family: monospace;
             font-size: 0.95rem;
             line-height: 1.8;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             color: #cbd5e1;
             border-left: 3px solid #fbbf24;
-            white-space: pre-line; /* Forțează randarea corectă a liniilor noi */
+            white-space: pre-line;
         }
     </style>
 </head>
@@ -197,142 +223,242 @@
 
     <main class="main lesson-page">
         <section class="lesson-header">
-            <h1>Algoritmi de Bază Completă</h1>
-            <p>Toți algoritmii obligatorii pe numere și tablouri din programa de BAC</p>
+            <h1>6. Algoritmi elementari</h1>
+            <p>Programa oficială completă pentru examenul de Bacalaureat</p>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrows-rotate" style="color: #a855f7;"></i> 1. Interschimbarea a două variabile (Swap)</h2>
-            <p>Folosirea unei variabile auxiliare (paharul al treilea) pentru a schimba valorile între ele.</p>
-<pre>
-int aux = a;
-a = b;
-b = aux;
+            <h2><i class="fa-solid fa-calculator" style="color: #38bdf8;"></i> 6.1. Probleme care operează asupra cifrelor unui număr</h2>
+            <p>Extragerea cifrelor unui număr se face repetat prin izolarea ultimei cifre (<code>n % 10</code>) și eliminarea ei (<code>n / 10</code>).</p>
+            
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3>Oglinditul (Inversul)</h3>
+<pre style="margin:0;">
+int ogl = 0;
+while (n != 0) {
+    ogl = ogl * 10 + n % 10;
+    n /= 10;
+}
 </pre>
-            <div class="note-section">
-                <b>💡 Truc de BAC:</b> Schimbarea fără auxiliar (folosind operații matematice):
-                <code style="color: #fbbf24;">a = a + b; b = a - b; a = a - b;</code>
+                </div>
+                <div class="feature-card">
+                    <h3>Suma și Numărarea</h3>
+<pre style="margin:0;">
+int s = 0, cn = 0;
+while (n != 0) {
+    s += n % 10;
+    cn++;
+    n /= 10;
+}
+</pre>
+                </div>
             </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-calculator" style="color: #10b981;"></i> 2. Prelucrarea cifrelor unui număr</h2>
-            <p>Spargerea unui număr în cifre folosește operatorii <code>% 10</code> (pentru a lua ultima cifră) și <code>/ 10</code> (pentru a o tăia).</p>
-<pre>
-// Oglinditul (Palindrom) și extragerea cifrelor
-int oglindit = 0;
-while (n != 0) {
-    int cifra = n % 10;
-    oglindit = oglindit * 10 + cifra;
-    n = n / 10;
-}
-</pre>
-        </section>
-
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> 3. Verificarea unui număr prim</h2>
-            <p>Căutăm divizori pari sau impari doar în intervalul <code>[2, √n]</code>.</p>
+            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> 6.2. Divizibilitate. Numere prime. Algoritmul lui Euclid</h2>
+            
+            <div class="algo-section">
+                <h3>Verificarea proprietății de număr prim</h3>
+                <p>Un număr este prim dacă nu are divizori proprii în intervalul <code>[2, √n]</code>.</p>
+            </div>
 
             <div class="simulator-box">
-                <h4><i class="fa-solid fa-play" style="color: #10b981;"></i> Simulator Pas cu Pas (Viteză Redusă)</h4>
+                <h4><i class="fa-solid fa-play" style="color: #10b981;"></i> Simulator Pas cu Pas: Test Număr Prim</h4>
                 <div class="sim-controls">
-                    <input type="number" id="primInput" class="sim-input" value="13" min="0">
-                    <button id="primBtn" class="sim-btn" onclick="simuleazaPrim()">Rulează Lent</button>
+                    <input type="number" id="primInput" class="sim-input" value="19" min="0">
+                    <button id="primBtn" class="sim-btn" onclick="simuleazaPrim()">Rulează Pas cu Pas</button>
                 </div>
-                <div id="primLog" class="sim-steps-log">Introduceți un număr și porniți urmărirea.</div>
+                <div id="primLog" class="sim-steps-log">Introduceți un număr și apăsați butonul pentru a porni urmărirea.</div>
             </div>
 
-<pre>
-bool estePrim(int n) {
-    if (n < 2) return false;
-    for (int d = 2; d * d <= n; d++)
-        if (n % d == 0) return false;
-    return true;
-}
-</pre>
-        </section>
-
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-gavel" style="color: #f43f5e;"></i> 4. Descompunerea în factori primi</h2>
-            <p>Aflarea tuturor numerelor prime care înmulțite dau numărul inițial (foarte cerut la Subiectul II/III).</p>
-<pre>
-int d = 2;
-while (n > 1) {
-    int p = 0;
-    while (n % d == 0) {
-        p++;
-        n /= d;
-    }
-    if (p > 0) {
-        cout << d << "^" << p << endl;
-    }
-    d++;
-}
-</pre>
-        </section>
-
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> 5. CMMDC (Algoritmul lui Euclid)</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Algoritmul lui Euclid (CMMDC prin resturi)</h3>
 <pre>
 while (b != 0) {
     int r = a % b;
     a = b;
     b = r;
 }
-// CMMDC se află acum în 'a'
+// CMMDC se află în variabila 'a'
 </pre>
+                </div>
+                <div>
+                    <h3>Cel mai mic multiplu comun (CMMMC)</h3>
+<pre>
+int cmmmc = (a * b) / cmmdc(a, b);
+</pre>
+                </div>
+            </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> 6. Bubble Sort (Metoda Bulelor)</h2>
+            <h2><i class="fa-solid fa-infinity" style="color: #a855f7;"></i> 6.3. Şirul lui Fibonacci. Calculul unor sume</h2>
+            <p>Fiecare termen este suma celor doi termeni precedenți: <code>f(n) = f(n-1) + f(n-2)</code>.</p>
             
-            <div class="simulator-box">
-                <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Pas cu Pas Completă (Lentă)</h4>
-                <div class="sim-controls">
-                    <button id="sortBtn" class="sim-btn" onclick="startBubbleSortSim()">Pornește Simulare Text/Vizual</button>
-                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorSim()">Alt Vector</button>
-                </div>
-                <div id="vectorVisualContainer" class="vector-container"></div>
-                <div id="sortLog" class="sim-steps-log">Log-ul va genera explicațiile linie cu linie, cu pauze mari între pași.</div>
-            </div>
-
-<pre>
-void bubbleSort(int v[], int n) {
-    for (int i = 0; i < n - 1; i++)
-        for (let j = 0; j < n - 1 - i; j++)
-            if (v[j] > v[j + 1]) {
-                int aux = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = aux;
-            }
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #a855f7;">
+                    <h3>Generare Șirul lui Fibonacci</h3>
+<pre style="margin:0;">
+int a = 1, b = 1, c;
+cout << a << " " << b << " ";
+for (int i = 3; i <= n; i++) {
+    c = a + b;
+    cout << c << " ";
+    a = b;
+    b = c;
 }
 </pre>
+                </div>
+                <div class="feature-card" style="border-left-color: #f43f5e;">
+                    <h3>Calcul Sumpă cu termen general</h3>
+<pre style="margin:0;">
+double s = 0, p = 1;
+for (int i = 1; i <= n; i++) {
+    p *= i; // Termen general factorial
+    s += 1.0 / p;
+}
+</pre>
+                </div>
+            </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrow-down-short-wide" style="color: #fbbf24;"></i> 7. Sortarea prin Selecție Directă</h2>
-            <p>Se caută elementul minim din restul vectorului și se aduce în poziția curentă.</p>
+            <h2><i class="fa-solid fa-arrows-up-down" style="color: #fbbf24;"></i> 6.4. Determinare minim/maxim</h2>
+            <p>Determinarea celei mai mici sau mai mari valori dintr-o secvență sau un tablou liniar.</p>
 <pre>
-for (int i = 0; i < n - 1; i++) {
-    for (int j = i + 1; j < n; j++) {
-        if (v[i] > v[j]) {
-            int aux = v[i];
-            v[i] = v[j];
-            v[j] = aux;
-        }
+int maxim = v[0];
+for (int i = 1; i < n; i++) {
+    if (v[i] > maxim) {
+        maxim = v[i];
     }
 }
 </pre>
+        </section>
+
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> 6.5. Metode de ordonare</h2>
+            <p>Rearanjarea elementelor unui vector în ordine crescătoare sau descrescătoare.</p>
+
+            <div class="simulator-box">
+                <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Pas cu Pas: Metoda Bulelor</h4>
+                <div class="sim-controls">
+                    <button id="sortBtn" class="sim-btn" onclick="startBubbleSortSim()">Pornește Simulare Vizuală</button>
+                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorSim()">Generare Vector Nou</button>
+                </div>
+                <div id="vectorVisualContainer" class="vector-container"></div>
+                <div id="sortLog" class="sim-steps-log">Apăsați pe pornire pentru a urmări evoluția elementelor în memorie.</div>
+            </div>
+
+            <div class="dark-table-container" style="overflow-x:auto;">
+                <table class="dark-table">
+                    <thead>
+                        <tr>
+                            <th>Metodă</th>
+                            <th>Implementare C++</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Metoda Inserției</b></td>
+                            <td><pre style="margin:0;">
+for (int i = 1; i < n; i++) {
+    int x = v[i], j = i - 1;
+    while (j >= 0 && v[j] > x) {
+        v[j + 1] = v[j];
+        j--;
+    }
+    v[j + 1] = x;
+}</pre></td>
+                        </tr>
+                        <tr>
+                            <td><b>Metoda Selecției</b></td>
+                            <td><pre style="margin:0;">
+for (int i = 0; i < n - 1; i++) {
+    for (int j = i + 1; j < n; j++) {
+        if (v[i] > v[j]) swap(v[i], v[j]);
+    }
+}</pre></td>
+                        </tr>
+                        <tr>
+                            <td><b>Metoda Numărării</b></td>
+                            <td><pre style="margin:0;">
+for (int i = 0; i < n; i++) {
+    int rez = 0;
+    for (int j = 0; j < n; j++)
+        if (v[j] < v[i] || (v[j] == v[i] && j < i)) rez++;
+    b[rez] = v[i];
+}</pre></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-code-merge" style="color: #10b981;"></i> 6.6. Interclasare</h2>
+            <p>Combinarea a doi vectori deja sortați (<code>A</code> cu <code>n</code> elemente și <code>B</code> cu <code>m</code> elemente) într-un al treilea vector sortat <code>C</code>.</p>
+<pre>
+int i = 0, j = 0, k = 0;
+while (i < n && j < m) {
+    if (A[i] < B[j]) C[k++] = A[i++];
+    else C[k++] = B[j++];
+}
+while (i < n) C[k++] = A[i++];
+while (j < m) C[k++] = B[j++];
+</pre>
+        </section>
+
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-magnifying-glass" style="color: #fbbf24;"></i> 6.7. Metode de căutare</h2>
+            
+            <div class="simulator-box">
+                <h4><i class="fa-solid fa-eye" style="color: #fbbf24;"></i> Vizualizare Pas cu Pas: Căutare Binară</h4>
+                <div class="sim-controls">
+                    <input type="number" id="searchTargetInput" class="sim-input" value="63">
+                    <button id="searchBtn" class="sim-btn" onclick="startBinarySearchSim()">Pornește Simulare Vizuală</button>
+                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorCautare()">Generare Tablou Nou (Sortat)</button>
+                </div>
+                <div id="vectorSearchContainer" class="vector-container"></div>
+                <div id="searchLog" class="sim-steps-log">Introduceți valoarea căutată și porniți simularea. Vectorul este sortat automat în prealabil.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="feature-card" style="border-left-color: #fbbf24;">
+                    <h3>Căutare Secvențială (Liniară)</h3>
+                    <p>Se verifică element cu element. Funcționează pe vectori nesortați.</p>
+<pre style="margin:0;">
+int poz = -1;
+for (int i = 0; i < n; i++) {
+    if (v[i] == x) { poz = i; break; }
+}
+</pre>
+                </div>
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3>Căutare Binară</h3>
+                    <p>Înjumătățește repetat intervalul. Necesită obligatoriu vector sortat.</p>
+<pre style="margin:0;">
+int st = 0, dr = n - 1, poz = -1;
+while (st <= dr) {
+    int mij = (st + dr) / 2;
+    if (v[mij] == x) { poz = mij; break; }
+    else if (v[mij] < x) st = mij + 1;
+    else dr = mij - 1;
+}
+</pre>
+                </div>
+            </div>
         </section>
     </main>
 </div>
 
 <script>
-    // Configurare timpi lenți (în milisecunde)
-    const TIME_PAUSE = 1600; // 1.6 secunde pauză pentru a putea citi textul liniștit
+    const TIME_PAUSE = 1500; // Pauză internă stabilă pentru lizibilitate linie cu linie
 
     // ==========================================
-    // JS SIMULATOR NUMĂR PRIM
+    // LOGICĂ SIMULATOR NUMĂR PRIM
     // ==========================================
     async function simuleazaPrim() {
         const n = parseInt(document.getElementById('primInput').value);
@@ -344,44 +470,44 @@ for (int i = 0; i < n - 1; i++) {
             return;
         }
 
-        logBox.innerHTML += `• Se inițializează funcția estePrim pentru n = ${n}.\n`;
+        logBox.innerHTML += `• Se apelează estePrim pentru n = ${n}.\n`;
         await new Promise(r => setTimeout(r, TIME_PAUSE));
 
         if (n < 2) {
-            logBox.innerHTML += `❌ Pas evaluare: ${n} este mai mic decât 2.\n• Rezultat final: Returnează false (Nu este prim).\n`;
+            logBox.innerHTML += `❌ Pas evaluare: ${n} < 2.\n• Rezultat final: Returnează false.\n`;
             return;
         }
 
-        logBox.innerHTML += `• Verificare inițială trecută: ${n} >= 2.\n• Se pornește verificarea divizorilor în buclă.\n`;
+        logBox.innerHTML += `• Verificare condiție: ${n} >= 2.\n• Se pornește analizarea divizorilor.\n`;
         await new Promise(r => setTimeout(r, TIME_PAUSE));
         
         let estePrim = true;
 
         for (let d = 2; d * d <= n; d++) {
-            logBox.innerHTML += `👉 Se testează divizorul d = ${d}. (Verificare condiție limită: d*d = ${d*d} <= ${n}).\n`;
+            logBox.innerHTML += `👉 Se testează d = ${d}. (Verificare limită loop: d*d = ${d*d} <= ${n}).\n`;
             await new Promise(r => setTimeout(r, TIME_PAUSE));
 
             if (n % d === 0) {
-                logBox.innerHTML += `💥 Element găsit! Restul împărțirii ${n} la ${d} este 0.\n`;
-                logBox.innerHTML += `❌ Rezultat final: Returnează false. Numărul nu este prim (se divide cu ${d}).\n`;
+                logBox.innerHTML += `💥 Restul împărțirii ${n} % ${d} == 0. Divizor valid identificat.\n`;
+                logBox.innerHTML += `❌ Rezultat final: Returnează false (Numărul nu este prim).\n`;
                 estePrim = false;
                 break;
             } else {
-                logBox.innerHTML += `✓ Verificare: ${n} nu se divide la ${d} (restul este ${n % d}). Mergem mai departe.\n`;
+                logBox.innerHTML += `✓ Restul ${n} % ${d} != 0. Trecere la următorul element.\n`;
                 await new Promise(r => setTimeout(r, TIME_PAUSE));
             }
         }
 
         if (estePrim) {
-            logBox.innerHTML += `• Condiția de oprire atinsă (d*d > ${n}).\n`;
-            logBox.innerHTML += `✅ Rezultat final: Nu s-a descoperit niciun divizor! Returnează true (Numărul este PRIM).\n`;
+            logBox.innerHTML += `• Limita de verificare a fost atinsă.\n`;
+            logBox.innerHTML += `✅ Rezultat final: Nu s-a descoperit niciun divizor. Returnează true.\n`;
         }
     }
 
     // ==========================================
-    // JS SIMULATOR BUBBLE SORT VIZUAL
+    // LOGICĂ SIMULATOR BUBBLE SORT VIZUAL
     // ==========================================
-    let vectorSim = [42, 15, 88, 9, 23];
+    let vectorSim = [35, 14, 78, 8, 29];
     
     function afiseazaVectorSim() {
         const container = document.getElementById('vectorVisualContainer');
@@ -397,11 +523,11 @@ for (int i = 0; i < n - 1; i++) {
 
     function reseteazaVectorSim() {
         vectorSim = [];
-        for(let i=0; i<5; i++) {
+        for(let i = 0; i < 5; i++) {
             vectorSim.push(Math.floor(Math.random() * 89) + 10);
         }
         afiseazaVectorSim();
-        document.getElementById('sortLog').innerHTML = "Vector nou configurat complet. Gata de pornire.\n";
+        document.getElementById('sortLog').innerHTML = "Vector nou configurat în memorie.\n";
         document.getElementById('sortBtn').disabled = false;
     }
 
@@ -409,12 +535,12 @@ for (int i = 0; i < n - 1; i++) {
         const btn = document.getElementById('sortBtn');
         const logBox = document.getElementById('sortLog');
         btn.disabled = true;
-        logBox.innerHTML = "=== Start Algoritm Bubble Sort ===\n";
+        logBox.innerHTML = "=== Inițializare sortare vector ===\n";
         
         let n = vectorSim.length;
         
         for (let i = 0; i < n - 1; i++) {
-            logBox.innerHTML += `📍 Începe etapa generală i = ${i}.\n`;
+            logBox.innerHTML += `📍 Începe iterația generală i = ${i}.\n`;
             logBox.scrollTop = logBox.scrollHeight;
             await new Promise(r => setTimeout(r, TIME_PAUSE));
 
@@ -425,12 +551,12 @@ for (int i = 0; i < n - 1; i++) {
                 el1.classList.add('active');
                 el2.classList.add('active');
                 
-                logBox.innerHTML += `🔍 Comparăm elementele vecine v[${j}] și v[${j+1}]: Verificăm dacă ${vectorSim[j]} > ${vectorSim[j+1]}.\n`;
+                logBox.innerHTML += `🔍 Comparare elemente vecine: v[${j}] (${vectorSim[j]}) > v[${j+1}] (${vectorSim[j+1]}).\n`;
                 logBox.scrollTop = logBox.scrollHeight;
                 await new Promise(r => setTimeout(r, TIME_PAUSE));
 
                 if (vectorSim[j] > vectorSim[j + 1]) {
-                    logBox.innerHTML += `🔄 Schimbăm valorile între ele deoarece ordinea este greșită (${vectorSim[j]} > ${vectorSim[j+1]}).\n`;
+                    logBox.innerHTML += `🔄 Modificare poziții: Se execută interschimbarea elementelor.\n`;
                     
                     let aux = vectorSim[j];
                     vectorSim[j] = vectorSim[j + 1];
@@ -441,7 +567,7 @@ for (int i = 0; i < n - 1; i++) {
                     logBox.scrollTop = logBox.scrollHeight;
                     await new Promise(r => setTimeout(r, TIME_PAUSE));
                 } else {
-                    logBox.innerHTML += `✓ Elementele sunt deja în ordine corectă (${vectorSim[j]} <= ${vectorSim[j+1]}). Nu facem nimic.\n`;
+                    logBox.innerHTML += `✓ Relație corectă: Elementele își păstrează pozițiile actuale.\n`;
                     logBox.scrollTop = logBox.scrollHeight;
                     await new Promise(r => setTimeout(r, TIME_PAUSE));
                 }
@@ -452,18 +578,131 @@ for (int i = 0; i < n - 1; i++) {
             
             const sortedEl = document.getElementById(`el-${n - 1 - i}`);
             sortedEl.classList.add('sorted');
-            logBox.innerHTML += `🎯 Succes etapă: Elementul ${vectorSim[n - 1 - i]} s-a așezat definitiv pe poziția corectă.\n\n`;
+            logBox.innerHTML += `🎯 Valoarea ${vectorSim[n - 1 - i]} s-a fixat definitiv la indexul corect.\n\n`;
             logBox.scrollTop = logBox.scrollHeight;
             await new Promise(r => setTimeout(r, TIME_PAUSE));
         }
         
         document.getElementById(`el-0`).classList.add('sorted');
-        logBox.innerHTML += `✅ Final: Întregul vector este acum sortat crescător!\n`;
+        logBox.innerHTML += `✅ Procedură finalizată: Vectorul este sortat complet.\n`;
         logBox.scrollTop = logBox.scrollHeight;
     }
 
+
+    // ==========================================
+    // LOGICĂ SIMULATOR CĂUTARE BINARĂ
+    // ==========================================
+    let vectorCautare = [10, 18, 25, 33, 47, 52, 63, 71, 84, 99]; // Tablou obligatoriu sortat
+
+    function afiseazaVectorCautare() {
+        const container = document.getElementById('vectorSearchContainer');
+        container.innerHTML = "";
+        vectorCautare.forEach((val, idx) => {
+            const div = document.createElement('div');
+            div.className = 'vector-element';
+            div.id = `se-${idx}`;
+            div.innerText = val;
+            container.appendChild(div);
+        });
+    }
+
+    function reseteazaVectorCautare() {
+        let deBaza = [];
+        for(let i = 0; i < 10; i++) {
+            deBaza.push(Math.floor(Math.random() * 90) + 10);
+        }
+        vectorCautare = deBaza.sort((a, b) => a - b); // Asigură proprietatea de vector sortat
+        afiseazaVectorCautare();
+        
+        // Pune aleatoriu o valoare existentă în input ca exemplu de test valid
+        document.getElementById('searchTargetInput').value = vectorCautare[Math.floor(Math.random() * 10)];
+        document.getElementById('searchLog').innerHTML = "Tablou nou generat și sortat crescător.\n";
+        document.getElementById('searchBtn').disabled = false;
+    }
+
+    async function startBinarySearchSim() {
+        const targetInput = document.getElementById('searchTargetInput');
+        const btn = document.getElementById('searchBtn');
+        const logBox = document.getElementById('searchLog');
+        
+        const x = parseInt(targetInput.value);
+        if (isNaN(x)) {
+            logBox.innerHTML = "Eroare: Introduceți o valoare numerică validă pentru căutare.\n";
+            return;
+        }
+
+        btn.disabled = true;
+        logBox.innerHTML = `=== Inițializare Căutare Binară pentru x = ${x} ===\n`;
+        
+        let st = 0;
+        let dr = vectorCautare.length - 1;
+        let poz = -1;
+        let pas = 1;
+
+        while (st <= dr) {
+            logBox.innerHTML += `\n📍 [Pasul ${pas++}]: Interval curent de analiză între indicii [${st} ... ${dr}].\n`;
+            logBox.scrollTop = logBox.scrollHeight;
+
+            // Actualizare vizuală elemente active/ignorate
+            for (let i = 0; i < vectorCautare.length; i++) {
+                const el = document.getElementById(`se-${i}`);
+                el.className = 'vector-element'; // Resetează clasele anterioare
+                if (i < st || i > dr) {
+                    el.classList.add('ignored');
+                } else {
+                    el.classList.add('range-active');
+                }
+            }
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
+
+            // Calcul mijloc
+            let mij = Math.floor((st + dr) / 2);
+            const elMij = document.getElementById(`se-${mij}`);
+            elMij.classList.remove('range-active');
+            elMij.classList.add('mid-active');
+
+            logBox.innerHTML += `🔍 Calcul mijloc: mij = (${st} + ${dr}) / 2 = ${mij}. Elementul v[mij] este ${vectorCautare[mij]}.\n`;
+            logBox.scrollTop = logBox.scrollHeight;
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
+
+            if (vectorCautare[mij] === x) {
+                logBox.innerHTML += `🎯 Succes! Elementul de la mijloc se potrivește: v[${mij}] == ${x}.\n`;
+                elMij.className = 'vector-element found';
+                poz = mij;
+                break;
+            } 
+            else if (vectorCautare[mij] < x) {
+                logBox.innerHTML += `👉 Deoarece v[mij] (${vectorCautare[mij]}) < ${x}, eliminăm jumătatea stângă. Schimbăm stânga: st = mij + 1 = ${mij + 1}.\n`;
+                st = mij + 1;
+            } 
+            else {
+                logBox.innerHTML += `👈 Deoarece v[mij] (${vectorCautare[mij]}) > ${x}, eliminăm jumătatea dreaptă. Schimbăm dreapta: dr = mij - 1 = ${mij - 1}.\n`;
+                dr = mij - 1;
+            }
+            
+            logBox.scrollTop = logBox.scrollHeight;
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
+        }
+
+        // Finalizare vizuală
+        if (poz !== -1) {
+            logBox.innerHTML += `\n✅ Rezultat final: Elementul a fost identificat cu succes pe poziția (indexul) ${poz}.\n`;
+        } else {
+            // Aplică starea de ignorat peste tot dacă nu s-a găsit elementul
+            for (let i = 0; i < vectorCautare.length; i++) {
+                document.getElementById(`se-${i}`).className = 'vector-element ignored';
+            }
+            logBox.innerHTML += `\n❌ Rezultat final: Condiția st <= dr a picat. Elementul ${x} NU există în vector.\n`;
+        }
+        
+        logBox.scrollTop = logBox.scrollHeight;
+        btn.disabled = false;
+    }
+
+    // Inițializări automate la deschiderea paginii
     window.onload = function() {
         afiseazaVectorSim();
+        afiseazaVectorCautare();
     };
 </script>
 
