@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Stiluri specifice pentru tema Dark Mode a paginii Algoritmi de Bază */
+        /* Stiluri existente adaptate */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -21,9 +21,6 @@
         .info-box {
             background-color: #1e293b;
             border-left: 4px solid #3b82f6;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
@@ -49,7 +46,6 @@
             gap: 10px;
         }
 
-        /* Secțiune algoritm individual */
         .algo-section {
             background: rgba(59, 130, 246, 0.02);
             border: 1px solid rgba(59, 130, 246, 0.15);
@@ -76,17 +72,13 @@
             margin-top: 15px;
             color: #e2e8f0;
         }
-        .note-section b {
-            color: #c084fc;
-        }
+        .note-section b { color: #c084fc; }
 
-        /* Tabel comparativ complet adaptat pentru Dark Mode */
         .dark-table {
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
             border: 1px solid #2d3748; 
-            text-align: left;
             background-color: #1a202c;
             color: #e2e8f0;
             border-radius: 8px;
@@ -97,25 +89,14 @@
             color: #38bdf8; 
             padding: 12px;
             font-weight: bold;
-            border-bottom: 2px solid #4a5568;
         }
         .dark-table td {
             padding: 12px;
             border-bottom: 1px solid #2d3748;
             border-right: 1px solid #2d3748;
-            line-height: 1.5;
-        }
-        .dark-table tr:last-child td {
-            border-bottom: none;
-        }
-        .dark-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-        .dark-table td code {
-            color: #fbbf24;
         }
 
-        /* STILURI PENTRU INTERACTIVITATE / SIMULATORI */
+        /* STILURI PENTRU SIMULATORI */
         .simulator-box {
             background: #0f172a;
             border: 1px solid #334155;
@@ -142,7 +123,6 @@
             padding: 8px 12px;
             border-radius: 6px;
             width: 120px;
-            font-size: 1rem;
         }
         .sim-btn {
             background: #3b82f6;
@@ -152,12 +132,10 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
         }
         .sim-btn:hover { background: #2563eb; }
         .sim-btn:disabled { background: #475569; cursor: not-allowed; }
         
-        /* Vizualizare vector */
         .vector-container {
             display: flex;
             gap: 8px;
@@ -175,12 +153,12 @@
             text-align: center;
             font-family: monospace;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
         .vector-element.active {
             background: #1e3a8a;
             border-color: #3b82f6;
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
         .vector-element.sorted {
             background: #064e3b;
@@ -191,11 +169,13 @@
             padding: 12px;
             border-radius: 6px;
             font-family: monospace;
-            font-size: 0.9rem;
-            max-height: 150px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            max-height: 200px;
             overflow-y: auto;
             color: #cbd5e1;
             border-left: 3px solid #fbbf24;
+            white-space: pre-line; /* Forțează randarea corectă a liniilor noi */
         }
     </style>
 </head>
@@ -203,12 +183,10 @@
 <body>
 
 <div class="container">
-
     <aside class="sidebar">
         <a href="../index.html" class="logo" style="text-decoration:none;">
             <h2>BAC Master</h2>
         </a>
-
         <nav>
             <a href="../index.html">Acasă</a>
             <a href="teorie.html">Teorie</a>
@@ -218,142 +196,111 @@
     </aside>
 
     <main class="main lesson-page">
-
         <section class="lesson-header">
-            <h1>Algoritmi de Bază</h1>
-            <p>Algoritmii clasici pe numere și tablouri, frecvent ceruți la BAC</p>
+            <h1>Algoritmi de Bază Completă</h1>
+            <p>Toți algoritmii obligatorii pe numere și tablouri din programa de BAC</p>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-diagram-project"></i> De ce sunt importanți?</h2>
-            <div class="info-box">
-                <p style="margin: 0;">
-                    Algoritmii de bază sunt blocurile fundamentale din care sunt construite probleme mai
-                    complexe la BAC. Stăpânirea lor (verificarea numerelor prime, determinarea divizorilor,
-                    cmmdc/cmmmc, sortare, căutare) este esențială, deoarece apar atât ca subprobleme în
-                    exerciții ample, cât și direct, ca întrebări de tip "ce afișează codul?".
-                </p>
+            <h2><i class="fa-solid fa-arrows-rotate" style="color: #a855f7;"></i> 1. Interschimbarea a două variabile (Swap)</h2>
+            <p>Folosirea unei variabile auxiliare (paharul al treilea) pentru a schimba valorile între ele.</p>
+<pre>
+int aux = a;
+a = b;
+b = aux;
+</pre>
+            <div class="note-section">
+                <b>💡 Truc de BAC:</b> Schimbarea fără auxiliar (folosind operații matematice):
+                <code style="color: #fbbf24;">a = a + b; b = a - b; a = a - b;</code>
             </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> Verificarea unui număr prim</h2>
-            <div class="algo-section">
-                <h3><i class="fa-solid fa-magnifying-glass"></i> Definiție</h3>
-                <p style="margin: 0;">
-                    Un număr natural <b>n &gt; 1</b> este <b>prim</b> dacă are exact doi divizori naturali:
-                    1 și el însuși. Numărul 1 <b>nu</b> este considerat prim.
-                </p>
-            </div>
+            <h2><i class="fa-solid fa-calculator" style="color: #10b981;"></i> 2. Prelucrarea cifrelor unui număr</h2>
+            <p>Spargerea unui număr în cifre folosește operatorii <code>% 10</code> (pentru a lua ultima cifră) și <code>/ 10</code> (pentru a o tăia).</p>
+<pre>
+// Oglinditul (Palindrom) și extragerea cifrelor
+int oglindit = 0;
+while (n != 0) {
+    int cifra = n % 10;
+    oglindit = oglindit * 10 + cifra;
+    n = n / 10;
+}
+</pre>
+        </section>
 
-            <p style="margin-top: 15px;">
-                Pentru a verifica dacă <b>n</b> este prim, este suficient să căutăm divizori doar până la
-                <b>&radic;n</b> (rădăcina pătrată), nu până la n &ndash; aceasta reduce semnificativ timpul de execuție.
-            </p>
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-hashtag" style="color: #38bdf8;"></i> 3. Verificarea unui număr prim</h2>
+            <p>Căutăm divizori pari sau impari doar în intervalul <code>[2, √n]</code>.</p>
 
             <div class="simulator-box">
-                <h4><i class="fa-solid fa-play" style="color: #10b981;"></i> Simulator Pas cu Pas: Test Număr Prim</h4>
+                <h4><i class="fa-solid fa-play" style="color: #10b981;"></i> Simulator Pas cu Pas (Viteză Redusă)</h4>
                 <div class="sim-controls">
-                    <input type="number" id="primInput" class="sim-input" value="17" min="0">
-                    <button id="primBtn" class="sim-btn" onclick="simuleazaPrim()">Rulează Pas cu Pas</button>
+                    <input type="number" id="primInput" class="sim-input" value="13" min="0">
+                    <button id="primBtn" class="sim-btn" onclick="simuleazaPrim()">Rulează Lent</button>
                 </div>
-                <div id="primLog" class="sim-steps-log">Introduceți un număr și apăsați butonul pentru a porni urmărirea variabilelor.</div>
+                <div id="primLog" class="sim-steps-log">Introduceți un număr și porniți urmărirea.</div>
             </div>
 
 <pre>
-bool estePrim(int n)
-{
-    if (n < 2)
-        return false;
-
+bool estePrim(int n) {
+    if (n < 2) return false;
     for (int d = 2; d * d <= n; d++)
-        if (n % d == 0)
-            return false; // am gasit un divizor -> nu e prim
-
-    return true; // nu am gasit niciun divizor -> e prim
+        if (n % d == 0) return false;
+    return true;
 }
 </pre>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-list-ol" style="color: #a855f7;"></i> Determinarea divizorilor unui număr</h2>
-            <p>
-                Pentru a afișa toți divizorii unui număr <b>n</b>, parcurgem toate valorile de la 1 la n și
-                verificăm care dintre ele împart exact pe n.
-            </p>
-
+            <h2><i class="fa-solid fa-gavel" style="color: #f43f5e;"></i> 4. Descompunerea în factori primi</h2>
+            <p>Aflarea tuturor numerelor prime care înmulțite dau numărul inițial (foarte cerut la Subiectul II/III).</p>
 <pre>
-void afiseazaDivizori(int n)
-{
-    for (int d = 1; d <= n; d++)
-        if (n % d == 0)
-            cout << d << " ";
-}
-</pre>
-        </section>
-
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> CMMDC și CMMMC</h2>
-
-            <div class="grid-2">
-                <div class="feature-card" style="border-left-color: #10b981;">
-                    <h3 style="color: #34d399;"><i class="fa-solid fa-circle-minus"></i> CMMDC</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Cel Mai Mare Divizor Comun a două numere este cel mai mare număr care le împarte exact pe ambele.
-                    </p>
-                </div>
-                <div class="feature-card" style="border-left-color: #f59e0b;">
-                    <h3 style="color: #fbbf24;"><i class="fa-solid fa-circle-plus"></i> CMMMC</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Cel Mai Mic Multiplu Comun a două numere este cel mai mic număr divizibil cu ambele.
-                    </p>
-                </div>
-            </div>
-
-<pre>
-int cmmdc(int a, int b)
-{
-    while (b != 0)
-    {
-        int r = a % b;
-        a = b;
-        b = r;
+int d = 2;
+while (n > 1) {
+    int p = 0;
+    while (n % d == 0) {
+        p++;
+        n /= d;
     }
-    return a;
+    if (p > 0) {
+        cout << d << "^" << p << endl;
+    }
+    d++;
 }
 </pre>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> Algoritmi de sortare</h2>
-            <p>
-                Sortarea înseamnă rearanjarea elementelor unui tablou în ordine crescătoare sau descrescătoare.
-            </p>
+            <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> 5. CMMDC (Algoritmul lui Euclid)</h2>
+<pre>
+while (b != 0) {
+    int r = a % b;
+    a = b;
+    b = r;
+}
+// CMMDC se află acum în 'a'
+</pre>
+        </section>
 
-            <div class="algo-section">
-                <h3><i class="fa-solid fa-water"></i> Bubble Sort (Metoda Bulelor)</h3>
-                <p style="margin: 0;">
-                    Se compară perechi de elemente vecine și se interschimbă dacă nu sunt în ordinea corectă.
-                </p>
-            </div>
-
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-arrow-down-wide-short" style="color: #38bdf8;"></i> 6. Bubble Sort (Metoda Bulelor)</h2>
+            
             <div class="simulator-box">
-                <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Interactivă: Bubble Sort</h4>
+                <h4><i class="fa-solid fa-chart-bar" style="color: #38bdf8;"></i> Vizualizare Pas cu Pas Completă (Lentă)</h4>
                 <div class="sim-controls">
-                    <button id="sortBtn" class="sim-btn" onclick="startBubbleSortSim()">Pornește Simulare Vizuală</button>
-                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorSim()">Generează Alt Vector</button>
+                    <button id="sortBtn" class="sim-btn" onclick="startBubbleSortSim()">Pornește Simulare Text/Vizual</button>
+                    <button class="sim-btn" style="background:#475569;" onclick="reseteazaVectorSim()">Alt Vector</button>
                 </div>
                 <div id="vectorVisualContainer" class="vector-container"></div>
-                <div id="sortLog" class="sim-steps-log">Apasă pe buton ca să vezi cum urcă elementele mari ca bulele de aer.</div>
+                <div id="sortLog" class="sim-steps-log">Log-ul va genera explicațiile linie cu linie, cu pauze mari între pași.</div>
             </div>
 
 <pre>
-void bubbleSort(int v[], int n)
-{
+void bubbleSort(int v[], int n) {
     for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - 1 - i; j++)
-            if (v[j] > v[j + 1])
-            {
+        for (let j = 0; j < n - 1 - i; j++)
+            if (v[j] > v[j + 1]) {
                 int aux = v[j];
                 v[j] = v[j + 1];
                 v[j + 1] = aux;
@@ -363,80 +310,78 @@ void bubbleSort(int v[], int n)
         </section>
 
         <section class="lesson-card">
-            <h2>Rezumat: complexități de timp</h2>
-            <div style="overflow-x: auto;">
-                <table class="dark-table" border="1">
-                    <thead>
-                        <tr>
-                            <th>Algoritm</th>
-                            <th>Complexitate</th>
-                            <th>Observație</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Verificare număr prim</td>
-                            <td style="color: #38bdf8; font-weight: bold;">O(&radic;n)</td>
-                            <td>Cu optimizarea d*d &lt;= n</td>
-                        </tr>
-                        <tr>
-                            <td>Bubble Sort</td>
-                            <td style="color: #f43f5e; font-weight: bold;">O(n<sup>2</sup>)</td>
-                            <td>Acceptabil pentru tablouri mici</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h2><i class="fa-solid fa-arrow-down-short-wide" style="color: #fbbf24;"></i> 7. Sortarea prin Selecție Directă</h2>
+            <p>Se caută elementul minim din restul vectorului și se aduce în poziția curentă.</p>
+<pre>
+for (int i = 0; i < n - 1; i++) {
+    for (int j = i + 1; j < n; j++) {
+        if (v[i] > v[j]) {
+            int aux = v[i];
+            v[i] = v[j];
+            v[j] = aux;
+        }
+    }
+}
+</pre>
         </section>
-
     </main>
 </div>
 
 <script>
+    // Configurare timpi lenți (în milisecunde)
+    const TIME_PAUSE = 1600; // 1.6 secunde pauză pentru a putea citi textul liniștit
+
     // ==========================================
-    // 1. SIMULATOR NUMĂR PRIM
+    // JS SIMULATOR NUMĂR PRIM
     // ==========================================
-    function simuleazaPrim() {
+    async function simuleazaPrim() {
         const n = parseInt(document.getElementById('primInput').value);
         const logBox = document.getElementById('primLog');
         logBox.innerHTML = "";
         
         if (isNaN(n)) {
-            logBox.innerHTML = "Eroare: Introduceți un număr valid.";
+            logBox.innerHTML = "Eroare: Introduceți un număr valid.\n";
             return;
         }
 
-        logBox.innerHTML += `• Se apelează estePrim(${n})\n`;
+        logBox.innerHTML += `• Se inițializează funcția estePrim pentru n = ${n}.\n`;
+        await new Promise(r => setTimeout(r, TIME_PAUSE));
+
         if (n < 2) {
-            logBox.innerHTML += `❌ Pasul 1: ${n} < 2 => Returnează <b style="color:#f43f5e">false</b> (Nu este prim).\n`;
+            logBox.innerHTML += `❌ Pas evaluare: ${n} este mai mic decât 2.\n• Rezultat final: Returnează false (Nu este prim).\n`;
             return;
         }
 
-        logBox.innerHTML += `• Pasul 1: ${n} >= 2. Intrăm în bucla de verificare.\n`;
+        logBox.innerHTML += `• Verificare inițială trecută: ${n} >= 2.\n• Se pornește verificarea divizorilor în buclă.\n`;
+        await new Promise(r => setTimeout(r, TIME_PAUSE));
+        
         let estePrim = true;
 
         for (let d = 2; d * d <= n; d++) {
-            logBox.innerHTML += `  -> Verificăm d = ${d} (d*d = ${d*d} <= ${n})\n`;
+            logBox.innerHTML += `👉 Se testează divizorul d = ${d}. (Verificare condiție limită: d*d = ${d*d} <= ${n}).\n`;
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
+
             if (n % d === 0) {
-                logBox.innerHTML += `     💥 Restul ${n} % ${d} == 0! Am găsit divizor.\n`;
-                logBox.innerHTML += `❌ Returnează <b style="color:#f43f5e">false</b> (Numărul este compus, se divide cu ${d}).\n`;
+                logBox.innerHTML += `💥 Element găsit! Restul împărțirii ${n} la ${d} este 0.\n`;
+                logBox.innerHTML += `❌ Rezultat final: Returnează false. Numărul nu este prim (se divide cu ${d}).\n`;
                 estePrim = false;
                 break;
             } else {
-                logBox.innerHTML += `     ✓ ${n} % ${d} != 0 (restul este ${n % d})\n`;
+                logBox.innerHTML += `✓ Verificare: ${n} nu se divide la ${d} (restul este ${n % d}). Mergem mai departe.\n`;
+                await new Promise(r => setTimeout(r, TIME_PAUSE));
             }
         }
 
         if (estePrim) {
-            logBox.innerHTML += `• Condiția d*d <= n nu mai este îndeplinită.\n`;
-            logBox.innerHTML += `✅ Succes: Nu s-a găsit niciun divizor! Returnează <b style="color:#10b981">true</b> (Este prim).\n`;
+            logBox.innerHTML += `• Condiția de oprire atinsă (d*d > ${n}).\n`;
+            logBox.innerHTML += `✅ Rezultat final: Nu s-a descoperit niciun divizor! Returnează true (Numărul este PRIM).\n`;
         }
     }
 
     // ==========================================
-    // 2. SIMULATOR BUBBLE SORT VIZUAL
+    // JS SIMULATOR BUBBLE SORT VIZUAL
     // ==========================================
-    let vectorSim = [45, 12, 89, 7, 34, 22];
+    let vectorSim = [42, 15, 88, 9, 23];
     
     function afiseazaVectorSim() {
         const container = document.getElementById('vectorVisualContainer');
@@ -452,66 +397,71 @@ void bubbleSort(int v[], int n)
 
     function reseteazaVectorSim() {
         vectorSim = [];
-        for(let i=0; i<6; i++) {
-            vectorSim.push(Math.floor(Math.random() * 90) + 10);
+        for(let i=0; i<5; i++) {
+            vectorSim.push(Math.floor(Math.random() * 89) + 10);
         }
         afiseazaVectorSim();
-        document.getElementById('sortLog').innerHTML = "Vector nou generat. Apasă pe simulare!";
+        document.getElementById('sortLog').innerHTML = "Vector nou configurat complet. Gata de pornire.\n";
         document.getElementById('sortBtn').disabled = false;
     }
-
-    // Funcție utilitară pentru a crea pauze/întârzieri asincrone în animație
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     async function startBubbleSortSim() {
         const btn = document.getElementById('sortBtn');
         const logBox = document.getElementById('sortLog');
         btn.disabled = true;
-        logBox.innerHTML = "Inițializare Bubble Sort...\n";
+        logBox.innerHTML = "=== Start Algoritm Bubble Sort ===\n";
         
         let n = vectorSim.length;
         
         for (let i = 0; i < n - 1; i++) {
-            logBox.innerHTML += `👉 Parcurgerea i = ${i}\n`;
+            logBox.innerHTML += `📍 Începe etapa generală i = ${i}.\n`;
+            logBox.scrollTop = logBox.scrollHeight;
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
+
             for (let j = 0; j < n - 1 - i; j++) {
-                // Evidențiem elementele comparate
                 const el1 = document.getElementById(`el-${j}`);
                 const el2 = document.getElementById(`el-${j+1}`);
                 
                 el1.classList.add('active');
                 el2.classList.add('active');
                 
-                logBox.innerHTML += `   Comparăm v[${j}] (${vectorSim[j]}) cu v[${j+1}] (${vectorSim[j+1]})\n`;
+                logBox.innerHTML += `🔍 Comparăm elementele vecine v[${j}] și v[${j+1}]: Verificăm dacă ${vectorSim[j]} > ${vectorSim[j+1]}.\n`;
                 logBox.scrollTop = logBox.scrollHeight;
-                await sleep(800);
+                await new Promise(r => setTimeout(r, TIME_PAUSE));
 
                 if (vectorSim[j] > vectorSim[j + 1]) {
-                    logBox.innerHTML += `     🔄 Interschimbăm deoarece ${vectorSim[j]} > ${vectorSim[j+1]}\n`;
+                    logBox.innerHTML += `🔄 Schimbăm valorile între ele deoarece ordinea este greșită (${vectorSim[j]} > ${vectorSim[j+1]}).\n`;
                     
-                    // Schimbăm valorile în memorie
                     let aux = vectorSim[j];
                     vectorSim[j] = vectorSim[j + 1];
                     vectorSim[j + 1] = aux;
                     
-                    // Modificăm și vizual textele
                     el1.innerText = vectorSim[j];
                     el2.innerText = vectorSim[j + 1];
+                    logBox.scrollTop = logBox.scrollHeight;
+                    await new Promise(r => setTimeout(r, TIME_PAUSE));
+                } else {
+                    logBox.innerHTML += `✓ Elementele sunt deja în ordine corectă (${vectorSim[j]} <= ${vectorSim[j+1]}). Nu facem nimic.\n`;
+                    logBox.scrollTop = logBox.scrollHeight;
+                    await new Promise(r => setTimeout(r, TIME_PAUSE));
                 }
                 
-                await sleep(400);
                 el1.classList.remove('active');
                 el2.classList.remove('active');
             }
-            // Elementul de la finalul parcurgerii este acum fixat/sortat definitiv
-            document.getElementById(`el-${n - 1 - i}`).classList.add('sorted');
+            
+            const sortedEl = document.getElementById(`el-${n - 1 - i}`);
+            sortedEl.classList.add('sorted');
+            logBox.innerHTML += `🎯 Succes etapă: Elementul ${vectorSim[n - 1 - i]} s-a așezat definitiv pe poziția corectă.\n\n`;
+            logBox.scrollTop = logBox.scrollHeight;
+            await new Promise(r => setTimeout(r, TIME_PAUSE));
         }
-        // Și primul element devine sortat automat la final
+        
         document.getElementById(`el-0`).classList.add('sorted');
-        logBox.innerHTML += `\n✅ Tablou sortat cu succes!`;
+        logBox.innerHTML += `✅ Final: Întregul vector este acum sortat crescător!\n`;
         logBox.scrollTop = logBox.scrollHeight;
     }
 
-    // Generăm primul vector la deschiderea paginii
     window.onload = function() {
         afiseazaVectorSim();
     };
