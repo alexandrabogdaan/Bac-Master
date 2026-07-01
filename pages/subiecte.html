@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subiecte BAC - BAC Master</title>
+    <title>Arhivă Subiecte BAC - BAC Master</title>
 
     <link rel="stylesheet" href="../css/style.css">
 
@@ -12,7 +12,6 @@
         rel="stylesheet">
         
     <style>
-        /* Stiluri specifice pentru pagina de subiecte */
         .archive-container {
             display: flex;
             flex-direction: column;
@@ -36,12 +35,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 600;
         }
 
+        /* Grid setat pe exact 2 coloane egale pentru Iunie și Toamnă */
         .sessions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .session-card {
@@ -62,6 +63,7 @@
             color: #2b6cb0;
             font-size: 1.1rem;
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .action-links {
@@ -110,6 +112,13 @@
         .btn-interactive:hover {
             background-color: #38a169;
         }
+
+        /* Adaptabilitate pentru ecrane mici (telefoane) */
+        @media (max-width: 768px) {
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -148,7 +157,7 @@
                     <h2>Arhivă Subiecte BAC</h2>
                 </div>
                 <div class="right-top" style="position: relative;">
-                    <input type="text" id="searchInput" placeholder="Caută un an sau o sesiune...">
+                    <input type="text" id="searchInput" placeholder="Caută un an (ex: 2022)...">
                     <div id="searchResults" class="search-results-dropdown"></div>
                     <a href="profile.html" class="profile">👤 Contul meu</a>
                 </div>
@@ -156,67 +165,257 @@
 
             <section class="archive-container">
                 
-                <p style="color: #4a5568; margin-bottom: 10px;">
-                    Selectează anul și sesiunea pentru a descărca subiectele oficiale sau pentru a vedea rezolvările explicate pas cu pas de noi.
+                <p style="color: #4a5568; margin-bottom: 5px;">
+                    Explorează subiectele oficiale din ultimii 11 ani. Antrenează-te interactiv pentru Subiectul I (grilă) sau parcurge rezolvările noastre complete.
                 </p>
 
                 <div class="year-section">
                     <div class="year-title">📅 BAC 2025</div>
                     <div class="sessions-grid">
-                        
                         <div class="session-card">
-                            <h4>Sesiunea Iunie (Normală)</h4>
-                            <p style="font-size: 0.85rem; color: #718096;">Nivel mediu de dificultate. Focus pe grafuri și vectori.</p>
+                            <h4>Sesiunea Iunie</h4>
                             <div class="action-links">
-                                <a href="../assets/docs/2025_iulie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="../assets/docs/2025_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
                                 <a href="rezolvare.html?an=2025&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
                                 <a href="quiz_subiect1.html?an=2025&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
                             </div>
                         </div>
-
                         <div class="session-card">
-                            <h4>Model Oficial / Simulare</h4>
-                            <p style="font-size: 0.85rem; color: #718096;">Setul de probleme publicat de minister.</p>
+                            <h4>Sesiunea Toamnă</h4>
                             <div class="action-links">
-                                <a href="../assets/docs/2025_model_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="rezolvare.html?an=2025&ses=model" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="../assets/docs/2025_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2025&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2025&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div class="year-section">
                     <div class="year-title">📅 BAC 2024</div>
                     <div class="sessions-grid">
-                        
                         <div class="session-card">
                             <h4>Sesiunea Iunie</h4>
-                            <p style="font-size: 0.85rem; color: #718096;">Subiect clasic. Problemă intensă pe Subiectul III (eficientă).</p>
                             <div class="action-links">
-                                <a href="../assets/docs/2024_iulie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="../assets/docs/2024_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
                                 <a href="rezolvare.html?an=2024&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
                                 <a href="quiz_subiect1.html?an=2024&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
                             </div>
                         </div>
-
                         <div class="session-card">
-                            <h4>Sesiunea August (Toamnă)</h4>
-                            <p style="font-size: 0.85rem; color: #718096;">Subiecte de rezervă / sesiunea a doua.</p>
+                            <h4>Sesiunea Toamnă</h4>
                             <div class="action-links">
                                 <a href="../assets/docs/2024_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
                                 <a href="rezolvare.html?an=2024&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2024&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                </section>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2023</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2023_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2023&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2023&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2023_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2023&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2023&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2022</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2022_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2022&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2022&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2022_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2022&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2022&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2021</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2021_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2021&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2021&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2021_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2021&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2021&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2020</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2020_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2020&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2020&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2020_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2020&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2020&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2019</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2019_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2019&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2019&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2019_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2019&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2019&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2018</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2018_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2018&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2018&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2018_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2018&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2018&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2017</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2017_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2017&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2017&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2017_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2017&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2017&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2016</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2016_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2016&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2016&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2016_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2016&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2016&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2015</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2015_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2015&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2015&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2015_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2015&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2015&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
 
             <footer class="quote-footer">
                 <h3>💡 Sfatul Profesorului</h3>
-                <p>Rezolvarea subiectelor din anii trecuți este cea mai sigură cale către nota 10. Te ajută să înțelegi tiparul și capcanele întinse de examinatori!</p>
+                <p>Consecvența bate talentul. Dacă rezolvi câte 2 variante pe săptămână din această arhivă, algoritmul succesului tău este garantat!</p>
             </footer>
 
         </main>
@@ -224,7 +423,6 @@
     </div>
 
     <script src="../js/app.js"></script>
-
 </body>
 
 </html>
