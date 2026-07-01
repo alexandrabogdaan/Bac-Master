@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="ro">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subiecte BAC - BAC Master</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        
+    <style>
+        /* Stiluri specifice pentru pagina de subiecte */
+        .archive-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .year-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .year-title {
+            font-size: 1.5rem;
+            color: #1a365d;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .session-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f8fafc;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .session-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .session-card h4 {
+            margin-top: 0;
+            color: #2b6cb0;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .action-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-download {
+            background-color: #edf2f7;
+            color: #2d3748;
+        }
+
+        .btn-download:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-explain {
+            background-color: #3182ce;
+            color: white;
+        }
+
+        .btn-explain:hover {
+            background-color: #2b6cb0;
+        }
+
+        .btn-interactive {
+            background-color: #48bb78;
+            color: white;
+        }
+
+        .btn-interactive:hover {
+            background-color: #38a169;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <h2>BAC Master</h2>
+                    <p>Pregătește BAC-ul inteligent</p>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html">🧩 Probleme</a>
+                    <a href="statistici.html">📊 Statistici</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+
+        <main class="main">
+
+            <header class="topbar">
+                <div class="left-top">
+                    <button id="menuToggle" class="menu-btn">☰</button>
+                    <h2>Arhivă Subiecte BAC</h2>
+                </div>
+                <div class="right-top" style="position: relative;">
+                    <input type="text" id="searchInput" placeholder="Caută un an sau o sesiune...">
+                    <div id="searchResults" class="search-results-dropdown"></div>
+                    <a href="profile.html" class="profile">👤 Contul meu</a>
+                </div>
+            </header>
+
+            <section class="archive-container">
+                
+                <p style="color: #4a5568; margin-bottom: 10px;">
+                    Selectează anul și sesiunea pentru a descărca subiectele oficiale sau pentru a vedea rezolvările explicate pas cu pas de noi.
+                </p>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2025</div>
+                    <div class="sessions-grid">
+                        
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie (Normală)</h4>
+                            <p style="font-size: 0.85rem; color: #718096;">Nivel mediu de dificultate. Focus pe grafuri și vectori.</p>
+                            <div class="action-links">
+                                <a href="../assets/docs/2025_iulie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2025&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2025&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+
+                        <div class="session-card">
+                            <h4>Model Oficial / Simulare</h4>
+                            <p style="font-size: 0.85rem; color: #718096;">Setul de probleme publicat de minister.</p>
+                            <div class="action-links">
+                                <a href="../assets/docs/2025_model_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2025&ses=model" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2024</div>
+                    <div class="sessions-grid">
+                        
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <p style="font-size: 0.85rem; color: #718096;">Subiect clasic. Problemă intensă pe Subiectul III (eficientă).</p>
+                            <div class="action-links">
+                                <a href="../assets/docs/2024_iulie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2024&ses=iunie" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                                <a href="quiz_subiect1.html?an=2024&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+
+                        <div class="session-card">
+                            <h4>Sesiunea August (Toamnă)</h4>
+                            <p style="font-size: 0.85rem; color: #718096;">Subiecte de rezervă / sesiunea a doua.</p>
+                            <div class="action-links">
+                                <a href="../assets/docs/2024_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2024&ses=toamna" class="action-btn btn-explain">💡 Rezolvare Explicată</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                </section>
+
+            <footer class="quote-footer">
+                <h3>💡 Sfatul Profesorului</h3>
+                <p>Rezolvarea subiectelor din anii trecuți este cea mai sigură cale către nota 10. Te ajută să înțelegi tiparul și capcanele întinse de examinatori!</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>
