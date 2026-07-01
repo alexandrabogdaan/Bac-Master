@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrenament Subiectul 2025 Iunie - BAC Master</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .quiz-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+            max-width: 800px;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .option-item:hover {
+            background-color: #f7fafc;
+            border-color: #cbd5e0;
+        }
+        .option-item input {
+            scale: 1.2;
+            cursor: pointer;
+        }
+        .option-item.selected {
+            border-color: #3182ce;
+            background-color: #ebf8ff;
+        }
+        .quiz-actions {
+            display: flex;
+            gap: 15px;
+        }
+        .btn-submit {
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background-color: #2b6cb0; }
+        
+        .btn-next {
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            display: none; /* Apare doar după ce se dă Submit */
+            transition: background 0.2s;
+        }
+        .btn-next:hover { background-color: #38a169; }
+        
+        /* Zonele de feedback (Corect / Greșit) */
+        .feedback-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 500;
+        }
+        .feedback-success {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border-left: 5px solid #48bb78;
+        }
+        .feedback-error {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border-left: 5px solid #e53e3e;
+        }
+        .explanation-box {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #4a5568;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        /* Stil pentru blocurile de cod din interiorul întrebărilor */
+        pre {
+            background-color: #1a202c;
+            color: #edf2f7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        code {
+            background-color: #edf2f7;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <h2>BAC Master</h2>
+                    <p>Pregătește BAC-ul inteligent</p>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html" class="active">🏛️ Subiecte</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html">🧩 Probleme</a>
+                    <a href="statistici.html">📊 Statistici</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            
+            <header class="topbar">
+                <div class="left-top">
+                    <button id="menuToggle" class="menu-btn">☰</button>
+                    <h2 id="quiz-title">Antrenament Subiectul I</h2>
+                </div>
+                <div class="right-top">
+                    <a href="profile.html" class="profile">👤 Contul meu</a>
+                </div>
+            </header>
+
+            <section class="quiz-container">
+                
+                <div class="quiz-header">
+                    <span id="question-counter" style="font-weight: 600; color: #4a5568;">Exercițiul 1 din 5</span>
+                    <span id="score-counter" style="font-weight: 600; color: #3182ce;">Scor: 0 p</span>
+                </div>
+
+                <div id="question-container">
+                    <p class="question-text" id="question-text">Se încarcă exercițiul...</p>
+                    
+                    <div class="options-list" id="options-list">
+                        </div>
+                </div>
+
+                <div class="feedback-box" id="feedback-box">
+                    <span id="feedback-text" style="font-size: 1.05rem; font-weight: 600;"></span>
+                    <div class="explanation-box">
+                        <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 10px 0;">
+                        <strong>💡 Explicație rezolvare:</strong> <span id="explanation-text"></span>
+                    </div>
+                </div>
+
+                <div class="quiz-actions" style="margin-top: 25px;">
+                    <button class="btn-submit" id="submit-btn" onclick="checkAnswer()">Trimite Răspuns</button>
+                    <button class="btn-next" id="next-btn" onclick="nextQuestion()">Următorul Exercițiu ➔</button>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/quiz_engine.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>
