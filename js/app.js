@@ -21,25 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "📊 Statistici Progres", url: `${prefix}statistici.html`, keywords: ["statistici", "progres", "grafic", "note"] },
         { title: "⚙️ Setări Cont", url: `${prefix}setari.html`, keywords: ["setari", "configurare", "tema", "profil"] },
 
-        // Capitole Clasa a IX-a (Trimit către teorie.html sau pagini specifice dacă le creezi în viitor)
-        { title: "📘 IX: Variabile și tipuri de date", url: `${prefix}teorie.html`, keywords: ["variabile", "tipuri de date", "int", "float", "char", "clasa 9"] },
-        { title: "📘 IX: Operatori C++", url: `${prefix}teorie.html`, keywords: ["operatori", "aritmetici", "logici", "atribuire", "modulo", "clasa 9"] },
-        { title: "📘 IX: Algoritmi de bază", url: `${prefix}teorie.html`, keywords: ["algoritmi de baza", "cmmdc", "oglinzit", "prim", "cifre", "divizori", "clasa 9"] },
-        { title: "📘 IX: Tablouri unidimensionale (Vectori)", url: `${prefix}teorie.html`, keywords: ["tablouri unidimensionale", "vectori", "parcurgere", "vector", "clasa 9"] },
-        { title: "📘 IX: Tablouri bidimensionale (Matrice)", url: `${prefix}teorie.html`, keywords: ["tablouri bidimensionale", "matrice", "linii", "coloane", "diagonala", "clasa 9"] },
-        { title: "📘 IX: Fișiere", url: `${prefix}teorie.html`, keywords: ["fisiere", "ifstream", "ofstream", "fout", "fin", "clasa 9"] },
+        // Capitole Clasa a IX-a
+        { title: "📘 IX: Variabile și tipuri de date", url: `${prefix}variabile.html`, keywords: ["variabile", "tipuri de date", "int", "float", "char", "clasa 9"] },
+        { title: "📘 IX: Operatori C++", url: `${prefix}operatori.html`, keywords: ["operatori", "aritmetici", "logici", "atribuire", "modulo", "clasa 9"] },
+        { title: "📘 IX: Algoritmi de bază", url: `${prefix}algoritmi.html`, keywords: ["algoritmi de baza", "cmmdc", "oglinzit", "prim", "cifre", "divizori", "clasa 9"] },
+        { title: "📘 IX: Tablouri unidimensionale (Vectori)", url: `${prefix}vectori.html`, keywords: ["tablouri unidimensionale", "vectori", "parcurgere", "vector", "clasa 9"] },
+        { title: "📘 IX: Tablouri bidimensionale (Matrice)", url: `${prefix}matrice.html`, keywords: ["tablouri bidimensionale", "matrice", "linii", "coloane", "diagonala", "clasa 9"] },
+        { title: "📘 IX: Fișiere", url: `${prefix}fisier.html`, keywords: ["fisiere", "ifstream", "ofstream", "fout", "fin", "clasa 9"] },
 
         // Capitole Clasa a X-a
-        { title: "📘 X: Subprograme și modularizare", url: `${prefix}teorie.html`, keywords: ["subprograme", "modularizare", "functii", "parametri", "transmitere", "clasa 10"] },
+        { title: "📘 X: Subprograme și modularizare", url: `${prefix}subprograme.html`, keywords: ["subprograme", "modularizare", "functii", "parametri", "transmitere", "clasa 10"] },
         { title: "📘 X: Recursivitate", url: `${prefix}recursivitate.html`, keywords: ["recursivitate", "recursiv", "factorial", "stiva", "stack", "clasa 10"] },
-        { title: "📘 X: Șiruri de caractere", url: `${prefix}teorie.html`, keywords: ["siruri de caractere", "string", "cstring", "strcpy", "strlen", "strtok", "clasa 10"] },
-        { title: "📘 X: Structuri de date (Stiva, Coada)", url: `${prefix}teorie.html`, keywords: ["structuri de date", "stiva", "coada", "pop", "push", "clasa 10"] },
+        { title: "📘 X: Șiruri de caractere", url: `${prefix}siruri.html`, keywords: ["siruri de caractere", "string", "cstring", "strcpy", "strlen", "strtok", "clasa 10"] },
+        { title: "📘 X: Structuri de date (Stiva, Coada)", url: `${prefix}structuri-date.html`, keywords: ["structuri de date", "stiva", "coada", "pop", "push", "clasa 10"] },
 
         // Capitole Clasa a XI-a
-        { title: "📘 XI: Metoda Backtracking", url: `${prefix}teorie.html`, keywords: ["backtracking", "permutari", "aranjamente", "combinari", "stiva bkt", "clasa 11"] },
-        { title: "📘 XI: Metoda Greedy", url: `${prefix}teorie.html`, keywords: ["greedy", "optimizare", "rucsac", "spectacole", "clasa 11"] },
-        { title: "📘 XI: Teoria grafurilor (Neorientate/Orientate)", url: `${prefix}teorie.html`, keywords: ["teoria grafurilor", "grafuri", "graf neorientat", "graf orientat", "arbori", "clasa 11"] },
-        { title: "📘 XI: Structuri de date arborescente", url: `${prefix}teorie.html`, keywords: ["structuri de date arborescente", "arbori", "arbore", "radacina", "frunze", "clasa 11"] }
+        { title: "📘 XI: Metoda Backtracking", url: `${prefix}backtracking.html`, keywords: ["backtracking", "permutari", "aranjamente", "combinari", "stiva bkt", "clasa 11"] },
+        { title: "📘 XI: Metoda Greedy", url: `${prefix}greedy.html`, keywords: ["greedy", "optimizare", "rucsac", "spectacole", "clasa 11"] },
+        { title: "📘 XI: Teoria grafurilor (Neorientate/Orientate)", url: `${prefix}grafuri.html`, keywords: ["teoria grafurilor", "grafuri", "graf neorientat", "graf orientat", "arbori", "clasa 11"] },
+        { title: "📘 XI: Structuri de date arborescente", url: `${prefix}arbori.html`, keywords: ["structuri de date arborescente", "arbori", "arbore", "radacina", "frunze", "clasa 11"] }
     ];
 
     const searchInput = document.getElementById('searchInput');
