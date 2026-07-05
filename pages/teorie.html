@@ -9,14 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* Corecție pentru listele care ieșeau din casete */
+        .class-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
         .class-card ul {
-            list-style: none; /* Elimină punctele standard bulversate de margini */
-            padding: 0;       /* Resetează padding-ul care scotea elementele în afară */
+            list-style: none;
+            padding: 0;
             margin: 15px 0 0 0;
             display: flex;
             flex-direction: column;
-            gap: 10px;        /* Spațiu egal între elementele listei */
+            gap: 10px;
         }
 
         .class-card li {
@@ -24,33 +32,30 @@
             padding: 0;
         }
 
-        /* Transformă link-urile în rânduri interactive, curate și aliniate */
         .class-card li a {
             display: block;
             padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            color: #e2e8f0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
-        /* Efect de hover modern adaptat pentru Dark Mode */
         .class-card li a:hover {
-            background: rgba(56, 189, 248, 0.08);
-            border-color: rgba(56, 189, 248, 0.3);
-            color: #38bdf8;
-            transform: translateX(4px); /* Subtil efect de deplasare la dreapta */
+            background: rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.2);
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
-        /* Ajustări pentru titlurile cardurilor pentru un aspect premium */
         .class-card h2 {
             font-size: 1.25rem;
             margin-top: 0;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 8px;

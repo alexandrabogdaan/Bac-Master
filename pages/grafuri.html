@@ -25,14 +25,14 @@
         
         /* Carduri de definiții adaptate pentru Dark Mode */
         .vocab-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--surface);
             border-left: 4px solid #3b82f6;
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
         .vocab-card h3 {
             color: #60a5fa;
@@ -51,7 +51,7 @@
 
         /* Casete evidențiere formule matematice */
         .formula-display {
-            background-color: #1e293b;
+            background-color: var(--surface);
             border: 1px solid rgba(96, 165, 250, 0.2);
             color: #38bdf8;
             padding: 12px 20px;
@@ -81,8 +81,8 @@
 
         /* Secțiuni parcurgeri BFS / DFS */
         .algo-section {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 20px;
             border-radius: 8px;
             margin-top: 15px;
@@ -93,31 +93,31 @@
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
-            border: 1px solid #2d3748; 
+            border: 1px solid var(--border); 
             text-align: left;
-            background-color: #1a202c;
-            color: #e2e8f0;
+            background-color: var(--card);
+            color: var(--text);
             border-radius: 8px;
             overflow: hidden;
         }
         .dark-table th {
-            background-color: #2d3748; 
+            background-color: var(--surface); 
             color: #38bdf8; 
             padding: 12px;
             font-weight: bold;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 1px solid var(--border);
         }
         .dark-table td {
             padding: 12px;
-            border-bottom: 1px solid #2d3748;
-            border-right: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
             line-height: 1.5;
         }
         .dark-table tr:last-child td {
             border-bottom: none;
         }
         .dark-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(37, 99, 235, 0.05);
         }
     </style>
 </head>
@@ -220,7 +220,7 @@
                         <tr>
                             <td><b>Graf Bipartit</b></td>
                             <td>Nodurile pot fi împărțite în două mulțimi disjuncte X și Y, astfel încât orice muchie are un capăt în X și celălalt în Y (nu există muchii între noduri din aceeași mulțime).</td>
-                            <td style="color: #38bdf8;">Maxim: <b>p &bull; q</b> <br><small style="color: #a0aec0;">(unde p=|X|, q=|Y|)</small></td>
+                            <td style="color: #38bdf8;">Maxim: <b>p &bull; q</b> <br><small style="color: var(--muted);">(unde p=|X|, q=|Y|)</small></td>
                         </tr>
                         <tr>
                             <td><b>Graf Bipartit Complet</b></td>
@@ -250,7 +250,7 @@
             <div class="vocab-card" style="border-left-color: #06b6d4;">
                 <h3><i class="fa-solid fa-route"></i> Lanț</h3>
                 <p>O succesiune de noduri în care oricare două noduri consecutive sunt adiacente (legate prin muchie).</p>
-                <ul style="margin-top: 5px; padding-left: 20px; color: #a0aec0; font-size: 0.9rem;">
+                <ul style="margin-top: 5px; padding-left: 20px; color: var(--muted); font-size: 0.9rem;">
                     <li><i>Lanț elementar:</i> conține doar noduri distincte.</li>
                     <li><i>Lanț simplu:</i> conține doar muchii distincte.</li>
                 </ul>
@@ -259,7 +259,7 @@
             <div class="vocab-card" style="border-left-color: #06b6d4;">
                 <h3><i class="fa-solid fa-arrows-spin"></i> Ciclu</h3>
                 <p>Un lanț în care primul nod coincide cu ultimul nod.</p>
-                <ul style="margin-top: 5px; padding-left: 20px; color: #a0aec0; font-size: 0.9rem;">
+                <ul style="margin-top: 5px; padding-left: 20px; color: var(--muted); font-size: 0.9rem;">
                     <li><i>Ciclu elementar:</i> toate nodurile sunt distincte (cu excepția primului și ultimului).</li>
                 </ul>
             </div>
@@ -285,7 +285,7 @@
                 <h3 style="color: #f87171;"><i class="fa-solid fa-expand"></i> Număr maxim de muchii fără ca graful să fie conex:</h3>
                 <p style="margin-top: 0; margin-bottom: 8px;">Se izolează complet un singur nod, iar celelalte <i>n-1</i> noduri rămase formează un graf complet:</p>
                 <div class="formula-display" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3);">(n - 1) &bull; (n - 2) / 2 muchii</div>
-                <p style="margin-top: 8px; margin-bottom: 0; font-size: 0.9rem; color: #a0aec0;"><i>Observație importantă:</i> Dacă la această valoare mai adaugi chiar și o singură muchie, graful devine în mod obligatoriu conex!</p>
+                <p style="margin-top: 8px; margin-bottom: 0; font-size: 0.9rem; color: var(--muted);"><i>Observație importantă:</i> Dacă la această valoare mai adaugi chiar și o singură muchie, graful devine în mod obligatoriu conex!</p>
             </div>
         </section>
 

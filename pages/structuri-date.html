@@ -20,22 +20,22 @@
 
         /* Caseta introductivă / definiție */
         .info-box {
-            background-color: #1e293b;
+            background-color: var(--surface);
             border-left: 4px solid #3b82f6;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
-            color: #e2e8f0;
+            color: var(--text);
             line-height: 1.6;
         }
 
         /* Carduri de caracteristici / operații */
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -58,8 +58,8 @@
 
         /* Card funcție / operație specifică structurii */
         .func-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-left: 3px solid #a855f7;
             padding: 18px;
             border-radius: 0 8px 8px 0;
@@ -86,7 +86,7 @@
             padding: 16px 20px;
             border-radius: 0 8px 8px 0;
             margin-top: 15px;
-            color: #e2e8f0;
+            color: var(--text);
         }
         .note-section b {
             color: #c084fc;
@@ -120,7 +120,7 @@
             font-family: monospace;
         }
         .visual-box {
-            background: #1a202c;
+            background: var(--surface);
             border: 1px solid #38bdf8;
             color: #38bdf8;
             padding: 10px 16px;
@@ -134,7 +134,7 @@
             color: #34d399;
         }
         .visual-label {
-            color: #a0aec0;
+            color: var(--muted);
             font-size: 0.85rem;
             font-family: inherit;
         }
@@ -144,31 +144,31 @@
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
-            border: 1px solid #2d3748; 
+            border: 1px solid var(--border); 
             text-align: left;
-            background-color: #1a202c;
-            color: #e2e8f0;
+            background-color: var(--card);
+            color: var(--text);
             border-radius: 8px;
             overflow: hidden;
         }
         .dark-table th {
-            background-color: #2d3748; 
+            background-color: var(--surface); 
             color: #38bdf8; 
             padding: 12px;
             font-weight: bold;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 1px solid var(--border);
         }
         .dark-table td {
             padding: 12px;
-            border-bottom: 1px solid #2d3748;
-            border-right: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
             line-height: 1.5;
         }
         .dark-table tr:last-child td {
             border-bottom: none;
         }
         .dark-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(37, 99, 235, 0.05);
         }
     </style>
 </head>
@@ -249,7 +249,7 @@
                 <span class="visual-label">vârful stivei (TOP) &ndash; aici se introduce și se elimină</span>
             </div>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Operațiile fundamentale</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Operațiile fundamentale</h3>
 
             <div class="grid-2">
                 <div class="feature-card">
@@ -272,7 +272,7 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare în C++ (cu &lt;stack&gt;)</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Implementare în C++ (cu &lt;stack&gt;)</h3>
 <pre>
 #include &lt;iostream&gt;
 #include &lt;stack&gt;
@@ -299,7 +299,7 @@ int main()
 }
 </pre>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare manuală (cu vector/tablou)</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Implementare manuală (cu vector/tablou)</h3>
             <p>
                 La BAC, o stivă poate fi simulată simplu cu un tablou și o variabilă care reține poziția vârfului:
             </p>
@@ -349,7 +349,7 @@ bool empty()
                 <span class="visual-label">capul cozii (FRONT) &ndash; aici se elimină; la celălalt capăt (REAR) se introduce</span>
             </div>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Operațiile fundamentale</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Operațiile fundamentale</h3>
 
             <div class="grid-2">
                 <div class="feature-card" style="border-left-color: #34d399;">
@@ -372,7 +372,7 @@ bool empty()
                 </div>
             </div>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare în C++ (cu &lt;queue&gt;)</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Implementare în C++ (cu &lt;queue&gt;)</h3>
 <pre>
 #include &lt;iostream&gt;
 #include &lt;queue&gt;
@@ -399,7 +399,7 @@ int main()
 }
 </pre>
 
-            <h3 style="margin-top: 25px; color: #e2e8f0;">Implementare manuală (cu vector/tablou circular)</h3>
+            <h3 style="margin-top: 25px; color: var(--text);">Implementare manuală (cu vector/tablou circular)</h3>
             <p>
                 La BAC, o coadă simplă poate fi simulată cu un tablou și două variabile, <code>prim</code> și <code>ultim</code>:
             </p>

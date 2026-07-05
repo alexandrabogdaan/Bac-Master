@@ -19,22 +19,22 @@
 
         /* Caseta modelului matematic */
         .math-box {
-            background-color: #1e293b;
+            background-color: var(--surface);
             border-left: 4px solid #3b82f6;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
-            color: #e2e8f0;
+            color: var(--text);
             line-height: 1.6;
         }
 
         /* Carduri de caracteristici și observații */
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -50,8 +50,8 @@
 
         /* Secțiuni speciale pentru problemele celebre */
         .problem-section {
-            background: rgba(59, 130, 246, 0.02);
-            border: 1px solid rgba(59, 130, 246, 0.15);
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.16);
             border-left: 4px solid #3b82f6;
             padding: 20px;
             border-radius: 0 8px 8px 0;
@@ -71,31 +71,31 @@
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
-            border: 1px solid #2d3748; 
+            border: 1px solid var(--border); 
             text-align: left;
-            background-color: #1a202c;
-            color: #e2e8f0;
+            background-color: var(--card);
+            color: var(--text);
             border-radius: 8px;
             overflow: hidden;
         }
         .dark-table th {
-            background-color: #2d3748; 
+            background-color: var(--surface); 
             color: #38bdf8; 
             padding: 12px;
             font-weight: bold;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 1px solid var(--border);
         }
         .dark-table td {
             padding: 12px;
-            border-bottom: 1px solid #2d3748;
-            border-right: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
             line-height: 1.5;
         }
         .dark-table tr:last-child td {
             border-bottom: none;
         }
         .dark-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(37, 99, 235, 0.05);
         }
     </style>
 </head>
@@ -168,7 +168,7 @@ Execută
     SfârșitDacă
 Cât timp terminat = FALSE
 </pre>
-            <p style="margin-top: 15px; color: #a0aec0;"><i class="fa-solid fa-lightbulb" style="color: #eab308; margin-right: 5px;"></i> <i>Observație privind codul:</i> În practică, pentru majoritatea problemelor, algoritmul parcurge elementele mulțimii <i>A</i> deja sortate anterior după un criteriu bine stabilit.</p>
+            <p style="margin-top: 15px; color: var(--muted);"><i class="fa-solid fa-lightbulb" style="color: #eab308; margin-right: 5px;"></i> <i>Observație privind codul:</i> În practică, pentru majoritatea problemelor, algoritmul parcurge elementele mulțimii <i>A</i> deja sortate anterior după un criteriu bine stabilit.</p>
         </section>
 
         <section class="lesson-card">
@@ -206,8 +206,8 @@ Cât timp terminat = FALSE
                 Știm sigur că rezolvarea este corectă deoarece avem o demonstrație de natură matematică a corectitudinii criteriului de alegere (de exemplu, la problema spectacolelor).
             </div>
 
-            <div class="math-box" style="border-left-color: #64748b;">
-                <b style="color: #94a3b8; font-size: 1.05rem;">2. Cazul Euristic (Soluție Acceptabilă):</b><br>
+            <div class="math-box" style="border-left-color: var(--muted);">
+                <b style="color: var(--muted); font-size: 1.05rem;">2. Cazul Euristic (Soluție Acceptabilă):</b><br>
                 Nu avem la dispoziție decât soluții exponențiale extrem de lente (de tip Backtracking), iar un algoritm Greedy ne oferă rapid o soluție care, deși nu este neapărat optimă, este suficient de bună și acceptabilă în practică.
             </div>
         </section>
@@ -219,13 +219,13 @@ Cât timp terminat = FALSE
             <div class="problem-section">
                 <h3><i class="fa-solid fa-calendar-days"></i> 1. Problema Spectacolelor</h3>
                 <p><b>Criteriu:</b> Sortarea spectacolelor crescător după <b>ora de finalizare</b>.</p>
-                <p style="margin-bottom: 0; color: #a0aec0;"><i>De ce?</i> Eliberând sala cât mai devreme, lăsăm o fereastră de timp maximă pentru a programa alte activități ulterioare.</p>
+                <p style="margin-bottom: 0; color: var(--muted);"><i>De ce?</i> Eliberând sala cât mai devreme, lăsăm o fereastră de timp maximă pentru a programa alte activități ulterioare.</p>
             </div>
 
             <div class="problem-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.02);">
                 <h3 style="color: #34d399;"><i class="fa-solid fa-bag-shopping"></i> 2. Problema Continuă a Rucsacului</h3>
                 <p><b>Criteriu:</b> Sortarea obiectelor descrescător după <b>eficiența lor (Valoare / Greutate)</b>.</p>
-                <p style="margin-bottom: 0; color: #a0aec0;"><i>De ce?</i> Întrucât obiectele pot fi fragmentate (tăiate), hoțul dorește să încarce mai întâi kilogramele cele mai valoroase pentru a maximiza profitul total.</p>
+                <p style="margin-bottom: 0; color: var(--muted);"><i>De ce?</i> Întrucât obiectele pot fi fragmentate (tăiate), hoțul dorește să încarce mai întâi kilogramele cele mai valoroase pentru a maximiza profitul total.</p>
             </div>
 
             <div class="problem-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.02);">

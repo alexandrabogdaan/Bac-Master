@@ -17,35 +17,37 @@
             .grid-2 { grid-template-columns: 1fr; }
         }
         .vocab-item {
-            background: rgba(0, 123, 255, 0.05);
-            border-left: 4px solid #007bff;
+            background: rgba(37, 99, 235, 0.08);
+            border-left: 4px solid var(--primary);
             padding: 15px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 12px;
+            color: var(--text);
         }
         .vocab-item i {
-            color: #007bff;
+            color: var(--primary);
             margin-right: 8px;
         }
         .formula-box {
-            background-color: #2d3748;
-            color: #f7fafc;
+            background-color: var(--surface);
+            color: var(--text);
             padding: 20px;
             border-radius: 8px;
             font-family: 'Courier New', Courier, monospace;
             font-size: 1.1rem;
-            border-left: 4px solid #64ffda;
+            border-left: 4px solid var(--accent);
             margin: 15px 0;
         }
         .trick-card {
-            background: rgba(40, 167, 69, 0.05);
-            border: 1px solid rgba(40, 167, 69, 0.2);
+            background: rgba(22, 163, 74, 0.08);
+            border: 1px solid rgba(22, 163, 74, 0.2);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 15px;
+            color: var(--text);
         }
         .trick-card h3 {
-            color: #28a745;
+            color: var(--accent);
             margin-top: 0;
             display: flex;
             align-items: center;
@@ -58,25 +60,26 @@
             margin-top: 15px;
         }
         .strategy-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 20px;
             text-align: center;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            color: var(--text);
         }
         .strategy-box .badge {
-            background: #007bff;
-            color: black;
+            background: var(--primary);
+            color: #fff;
             padding: 5px 10px;
             border-radius: 4px;
             font-weight: bold;
             font-size: 0.9rem;
         }
         .exam-alert {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
-            border: 1px solid #ffeeba;
-            color: #856404;
+            background: rgba(234, 179, 8, 0.08);
+            border: 1px solid rgba(234, 179, 8, 0.25);
+            border-left: 4px solid #eab308;
+            color: var(--text);
             padding: 25px;
             border-radius: 8px;
             margin-top: 30px;
@@ -148,17 +151,17 @@
             </div>
 
             <div class="grid-2" style="margin-top: 0;">
-                <div class="vocab-item" style="border-left-color: #6c757d; background: rgba(108, 117, 125, 0.05);">
+                <div class="vocab-item" style="border-left-color: var(--muted); background: rgba(100, 116, 139, 0.08);">
                     <h3><i class="fa-solid fa-people-arrows"></i> Frați</h3>
                     <p>Nodurile care au exact același tată comun.</p>
                 </div>
-                <div class="vocab-item" style="border-left-color: #6c757d; background: rgba(108, 117, 125, 0.05);">
+                <div class="vocab-item" style="border-left-color: var(--muted); background: rgba(100, 116, 139, 0.08);">
                     <h3><i class="fa-solid fa-hourglass-start"></i> Înălțimea arborelui</h3>
                     <p>Numărul maxim de muchii de la rădăcină până la cea mai îndepărtată frunză.</p>
                 </div>
             </div>
 
-            <div class="vocab-item" style="border-left-color: #17a2b8; background: rgba(23, 162, 184, 0.05);">
+            <div class="vocab-item" style="border-left-color: #17a2b8; background: rgba(23, 162, 184, 0.08);">
                 <h3><i class="fa-solid fa-arrows-down-to-people"></i> Ascendenți (Strămoși) și Descendenți</h3>
                 <p><b>Ascendenții:</b> Toate nodurile aflate pe drumul unic de la un nod dat până la rădăcină. <br>
                 <b>Descendenți:</b> Toate nodurile care se află în subarborii generați de fiii unui nod dat.</p>
@@ -229,7 +232,7 @@
                 <p><i>Analiză pe exemplu:</i> Cine sunt fiii lui 4? Căutăm unde apare 4 în vector. Apare la pozițiile 1 și 5. Deci fiii lui 4 sunt <b>1 și 5</b>.</p>
             </div>
 
-            <div class="trick-card" style="background: rgba(0,0,0,0.02);">
+            <div class="trick-card" style="background: var(--surface);">
                 <h3><i class="fa-solid fa-calculator"></i> Cum determini numărul de muchii?</h3>
                 <p>Nu ai nevoie de calcule complicate: orice arbore cu <code>n</code> noduri are exact <b>n - 1 muchii</b>. Pentru exemplul nostru cu 7 noduri, numărul de muchii este sigur 6.</p>
             </div>
@@ -249,27 +252,27 @@
             <div class="strategy-container">
                 <div class="strategy-box">
                     <span class="badge">R S D</span>
-                    <h4 style="margin: 10px 0 5px 0; color: black;">Preordine</h4>
-                    <p style="font-size: 0.95rem; margin: 0;color: black;">Rădăcină &rarr; Stânga &rarr; Dreapta</p>
+                    <h4 style="margin: 10px 0 5px 0;">Preordine</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Rădăcină &rarr; Stânga &rarr; Dreapta</p>
                 </div>
                 <div class="strategy-box" style="border-top: 3px solid #28a745;">
                     <span class="badge" style="background:#28a745;">S R D</span>
-                    <h4 style="margin: 10px 0 5px 0;color: black;">Inordine</h4>
-                    <p style="font-size: 0.95rem; margin: 0;color: black;">Stânga &rarr; Rădăcină &rarr; Dreapta</p>
+                    <h4 style="margin: 10px 0 5px 0;">Inordine</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Stânga &rarr; Rădăcină &rarr; Dreapta</p>
                 </div>
                 <div class="strategy-box" style="border-top: 3px solid #dc3545;">
                     <span class="badge" style="background:#dc3545;">S D R</span>
-                    <h4 style="margin: 10px 0 5px 0; color: black;">Postordine</h4>
-                    <p style="font-size: 0.95rem; margin: 0;color: black;">Stânga &rarr; Dreapta &rarr; Rădăcină</p>
+                    <h4 style="margin: 10px 0 5px 0;">Postordine</h4>
+                    <p style="font-size: 0.95rem; margin: 0;">Stânga &rarr; Dreapta &rarr; Rădăcină</p>
                 </div>
             </div>
 
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #007bff;">
-                <p style="margin: 0;color: black;"><b>Exemplu rapid de parcurgere:</b> Pentru un arbore cu rădăcina 1, fiul stâng 2 (care are la rândul lui fiul stâng 4) și fiul drept 3:</p>
+            <div style="background: var(--surface); padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid var(--primary);">
+                <p style="margin: 0;"><b>Exemplu rapid de parcurgere:</b> Pentru un arbore cu rădăcina 1, fiul stâng 2 (care are la rândul lui fiul stâng 4) și fiul drept 3:</p>
                 <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
-                    <li style="color: black;"><b>Preordine (RSD):</b> 1, 2, 4, 3</li>
-                    <li style="color: black;"><b>Inordine (SRD):</b> 4, 2, 1, 3</li>
-                    <li style="color: black;"><b>Postordine (SDR):</b> 4, 2, 3, 1</li>
+                    <li ><b>Preordine (RSD):</b> 1, 2, 4, 3</li>
+                    <li ><b>Inordine (SRD):</b> 4, 2, 1, 3</li>
+                    <li ><b>Postordine (SDR):</b> 4, 2, 3, 1</li>
                 </ul>
             </div>
         </section>

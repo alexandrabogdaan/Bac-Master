@@ -28,6 +28,18 @@
     --border: rgba(0, 0, 0, 0.08);  /* Margini fine închise */
 }
 
+.light-mode .hero,
+.light-mode .card,
+.light-mode .module-card,
+.light-mode .class-card,
+.light-mode .lesson-card,
+.light-mode .lesson-nav,
+.light-mode .quote-footer,
+.light-mode .toc,
+.light-mode .search-results-dropdown {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
 /* Fontul Courier New rămâne izolat exclusiv pentru sintaxa codului */
 pre, code {
     font-family: 'Courier New', Courier, monospace !important;
@@ -142,7 +154,7 @@ body {
 .lesson-card h2 { color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 1.2rem; }
 .lesson-card h3 { color: var(--accent); margin: 12px 0 8px; font-size: 1.02rem; }
 .lesson-card p, .lesson-card li { color: var(--text); line-height: 1.7; }
-.lesson-card pre { background: rgba(15,23,36,0.72); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); color: var(--text); overflow: auto; margin: 10px 0; }
+.lesson-card pre { background: var(--surface); padding: 14px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); overflow: auto; margin: 10px 0; }
 .info-box { background: rgba(37,99,235,0.08); border-left: 4px solid var(--primary); border-radius: 0 10px 10px 0; padding: 16px 18px; margin: 12px 0 14px; color: var(--text); }
 .info-box strong { color: var(--primary); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
