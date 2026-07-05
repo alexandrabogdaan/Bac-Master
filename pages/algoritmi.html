@@ -19,28 +19,30 @@
         }
 
         .info-box {
-            background-color: #1e293b;
-            border-left: 4px solid #3b82f6;
+            background-color: var(--surface);
+            border-left: 4px solid var(--primary);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
-            color: #e2e8f0;
+            color: var(--text);
             line-height: 1.6;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
-            border-left: 3px solid #38bdf8;
+            border-left: 3px solid var(--accent);
+            color: var(--text);
         }
         .feature-card h3 {
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 1.1rem;
-            color: #38bdf8;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -64,50 +66,52 @@
         }
 
         .note-section {
-            background: rgba(168, 85, 247, 0.02);
-            border: 1px solid rgba(168, 85, 247, 0.15);
-            border-left: 4px solid #a855f7;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.16);
+            border-left: 4px solid var(--accent);
             padding: 16px 20px;
             border-radius: 0 8px 8px 0;
             margin-top: 15px;
-            color: #e2e8f0;
+            color: var(--text);
         }
-        .note-section b { color: #c084fc; }
+        .note-section b { color: var(--accent); }
 
         .dark-table {
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
-            border: 1px solid #2d3748; 
-            background-color: #1a202c;
-            color: #e2e8f0;
+            border: 1px solid var(--border); 
+            background-color: var(--card);
+            color: var(--text);
             border-radius: 8px;
             overflow: hidden;
         }
         .dark-table th {
-            background-color: #2d3748; 
-            color: #38bdf8; 
+            background-color: var(--surface); 
+            color: var(--primary); 
             padding: 12px;
             font-weight: bold;
             text-align: left;
+            border-bottom: 1px solid var(--border);
         }
         .dark-table td {
             padding: 12px;
-            border-bottom: 1px solid #2d3748;
-            border-right: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
         /* STILURI PENTRU SIMULATORI INTERACTIVI */
         .simulator-box {
-            background: #0f172a;
-            border: 1px solid #334155;
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 20px;
             margin: 15px 0;
+            color: var(--text);
         }
         .simulator-box h4 {
             margin-top: 0;
-            color: #f8fafc;
+            color: var(--text);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -118,9 +122,9 @@
             margin-bottom: 15px;
         }
         .sim-input {
-            background: #1e293b;
-            border: 1px solid #475569;
-            color: #f8fafc;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
             padding: 8px 12px;
             border-radius: 6px;
             width: 120px;
@@ -148,9 +152,9 @@
             flex-wrap: wrap;
         }
         .vector-element {
-            background: #334155;
-            border: 2px solid #64748b;
-            color: #fff;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: var(--text);
             padding: 10px;
             border-radius: 6px;
             min-width: 42px;
@@ -189,7 +193,7 @@
         }
 
         .sim-steps-log {
-            background: #1e293b;
+            background: var(--surface);
             padding: 12px;
             border-radius: 6px;
             font-family: monospace;
@@ -197,8 +201,8 @@
             line-height: 1.8;
             max-height: 220px;
             overflow-y: auto;
-            color: #cbd5e1;
-            border-left: 3px solid #fbbf24;
+            color: var(--text);
+            border-left: 3px solid var(--accent);
             white-space: pre-line;
         }
     </style>

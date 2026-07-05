@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Stiluri specifice pentru tema Dark Mode a paginii */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -18,48 +17,48 @@
             .grid-2 { grid-template-columns: 1fr; }
         }
 
-        /* Caseta modelului matematic / definiții cheie */
         .math-box {
-            background-color: #1e293b;
-            border-left: 4px solid #3b82f6;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            background-color: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
-            color: #e2e8f0;
+            color: var(--text);
             line-height: 1.6;
         }
 
-        /* Carduri de caracteristici și observații */
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
+            color: var(--text);
         }
         .feature-card h3 {
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 1.1rem;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* Secțiuni speciale pentru detalii specifice tipurilor de date */
         .problem-section {
-            background: rgba(59, 130, 246, 0.02);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-left: 4px solid #3b82f6;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.16);
+            border-left: 4px solid var(--primary);
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin-top: 15px;
+            color: var(--text);
         }
         .problem-section h3 {
-            color: #60a5fa;
+            color: var(--primary);
             margin-top: 0;
             margin-bottom: 10px;
             display: flex;
@@ -67,36 +66,35 @@
             gap: 10px;
         }
 
-        /* Tabel comparativ complet adaptat pentru Dark Mode */
         .dark-table {
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
-            border: 1px solid #2d3748; 
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border: 1px solid var(--border);
             text-align: left;
-            background-color: #1a202c;
-            color: #e2e8f0;
+            background-color: var(--card);
+            color: var(--text);
             border-radius: 8px;
             overflow: hidden;
         }
         .dark-table th {
-            background-color: #2d3748; 
-            color: #38bdf8; 
+            background-color: var(--surface);
+            color: var(--primary);
             padding: 12px;
             font-weight: bold;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 1px solid var(--border);
         }
         .dark-table td {
             padding: 12px;
-            border-bottom: 1px solid #2d3748;
-            border-right: 1px solid #2d3748;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
             line-height: 1.5;
         }
         .dark-table tr:last-child td {
             border-bottom: none;
         }
         .dark-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(37, 99, 235, 0.05);
         }
     </style>
 </head>

@@ -20,32 +20,32 @@
 
         /* Caseta introductivă / definiție */
         .info-box {
-            background-color: #1e293b;
-            border-left: 4px solid #3b82f6;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            background-color: var(--surface);
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             padding: 18px;
             border-radius: 0 8px 8px 0;
             margin: 15px 0;
-            color: #e2e8f0;
+            color: var(--text);
             line-height: 1.6;
         }
 
         /* Carduri de caracteristici / observații */
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface);
+            border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
-            border-left: 3px solid #38bdf8;
+            color: var (--text);
         }
         .feature-card h3 {
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 1.1rem;
-            color: #38bdf8;
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -84,7 +84,7 @@
             margin-top: 15px;
         }
         .success-section h3 {
-            color: #34d399;
+            color: var(--primary);
             margin-top: 0;
             margin-bottom: 10px;
             display: flex;
@@ -146,7 +146,7 @@
                 <p style="margin: 0;">
                     <b style="color: #60a5fa;">Un subprogram se declară în C++ astfel:</b>
                 </p>
-                <p style="margin: 5px 0 0 0; font-family: monospace; color: #e2e8f0;">
+                <p style="margin: 5px 0 0 0; font-family: monospace; color: var(--text);">
                     tipulFunctiei numeleFunctiei(parametrii);
                 </p>
             </div>
