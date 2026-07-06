@@ -1,11 +1,15 @@
 <?php
+// Sesiunea trebuie pornită înaintea oricărui output, ca să funcționeze
+// pe orice ramură (login reușit, login eșuat, register etc.)
+session_start();
+
 // 1. Conexiunea la baza de date din XAMPP
-$servername = "localhost";
+$servername = "127.0.0.1:3307";
 $username_db = "root"; // Utilizatorul default din XAMPP
 $password_db = "";     // Parola default este goală
-$dbname = "platforma_elevi";
+$dbname = "utilizatori";
 
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+$conn = new mysqli($servername, $username_db, $password_db, $dbname, 3307);
 
 // Verificăm dacă există erori de conexiune
 if ($conn->connect_error) {
@@ -14,9 +18,9 @@ if ($conn->connect_error) {
 
 // 2. Verificăm dacă datele au fost trimise prin POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = trim($_POST['username']);
-    $pass = $_POST['password'];
-    $action = $_POST['action']; // "login" sau "register" din valoarea butonului submit
+    $user   = isset($_POST['username']) ? trim($_POST['username']) : '';
+    $pass   = isset($_POST['password']) ? $_POST['password'] : '';
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if (empty($user) || empty($pass)) {
         die("Te rog completează toate câmpurile.");
@@ -24,34 +28,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // --- LOGICA DE ÎNREGISTRARE ---
     if ($action === "register") {
-        $confirm_pass = $_POST['confirmPassword'];
+        $confirm_pass = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : '';
 
         if ($pass !== $confirm_pass) {
-            die("Parolele nu se potrivesc.");
+            header("Location: ../pages/creare-cont.html?eroare=1");
+            exit;
         }
 
         // Securizăm parola prin hashing înainte de salvare
-        $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
+        // (password_hash produce un șir de caractere, nu un număr -
+        //  coloana password_hash din baza de date trebuie să fie VARCHAR(255), nu INT!)
+        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
         // Pregătim query-ul pentru a evita SQL Injection
-        $stmt = $conn->prepare("INSERT INTO utilizatori (username, password) VALUES (?, ?)");
+        $stmt = $conn->prepare("INSERT INTO ut_db (username, password_hash) VALUES (?, ?)");
         $stmt->bind_param("ss", $user, $hashed_password);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Cont creat cu succes!'); window.location.href='index.html';</script>";
+            // Logăm automat utilizatorul nou creat și ținem minte sesiunea
+            $_SESSION['user_id']  = $stmt->insert_id;
+            $_SESSION['username'] = $user;
+            // Setez cookie cu username pentru JavaScript
+            setcookie('username', $user, time() + (30 * 24 * 60 * 60), '/'); // 30 zile
+
+            header("Location: ../index.html");
+            exit;
         } else {
             if ($conn->errno == 1062) { // Eroare de tip Duplicate Entry (username deja existent)
-                echo "<script>alert('Acest nume de utilizator este deja luat.'); window.history.back();</script>";
+                header("Location: ../pages/creare-cont.html?eroare=1");
+                exit;
             } else {
-                echo "Eroare: " . $stmt->error;
+                die("Eroare: " . $stmt->error);
             }
         }
         $stmt->close();
-    } 
-    
+    }
+
     // --- LOGICA DE AUTENTIFICARE (LOGIN) ---
     elseif ($action === "login") {
-        $stmt = $conn->prepare("SELECT id, password FROM utilizatori WHERE username = ?");
+        $stmt = $conn->prepare("SELECT id, password_hash FROM ut_db WHERE username = ?");
         $stmt->bind_param("s", $user);
         $stmt->execute();
         $stmt->store_result();
@@ -62,21 +77,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Verificăm dacă parola introdusă corespunde cu cea criptată din DB
             if (password_verify($pass, $hashed_password)) {
-                // Pornim sesiunea utilizatorului
-                session_start();
-                $_SESSION['user_id'] = $id;
+                // Pornim / populăm sesiunea utilizatorului - site-ul va ține minte
+                // că e logat până la logout sau până expiră sesiunea din PHP.
+                $_SESSION['user_id']  = $id;
                 $_SESSION['username'] = $user;
+                // Setez cookie cu username pentru JavaScript
+                setcookie('username', $user, time() + (30 * 24 * 60 * 60), '/'); // 30 zile
 
-                echo "<script>alert('Logare reușită! Bine ai venit, $user.'); window.location.href='../index.html';</script>";
+                header("Location: ../index.html");
+                exit;
             } else {
-                echo "<script>alert('Parolă incorectă.'); window.history.back();</script>";
+                header("Location: ../pages/login.html?eroare=1");
+                exit;
             }
         } else {
-            echo "<script>alert('Utilizatorul nu există.'); window.history.back();</script>";
+            header("Location: ../pages/login.html?eroare=1");
+            exit;
         }
         $stmt->close();
     }
 }
 
 $conn->close();
-?>
