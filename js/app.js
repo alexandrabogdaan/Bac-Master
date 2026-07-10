@@ -1,3 +1,9 @@
+// Detectăm dacă suntem în /pages/ sau în rădăcina site-ului, ca linkurile
+// generate din JS (butonul de profil, căutarea) să fie corecte din orice pagină.
+const isInPagesFolder = window.location.pathname.includes('/pages/');
+const prefix = isInPagesFolder ? '' : 'pages/';
+const homePrefix = isInPagesFolder ? '../' : '';
+
 // Funcție pentru a extrage valoare din cookies
 function getCookie(name) {
     const nameEQ = name + "=";
@@ -12,19 +18,20 @@ function getCookie(name) {
 }
 
 // Actualizez butonul "Contul meu" în funcție de starea logării
+// (cookie-ul "username" e setat de auth.php la login/register reușit)
 function updateProfileButton() {
     const profileButton = document.querySelector('.profile');
     const username = getCookie('username');
-    
+
     if (profileButton) {
         if (username) {
-            // Utilizatorul este logat
+            // Utilizatorul este logat -> click duce la pagina de confirmare deconectare
             profileButton.textContent = '👤 ' + decodeURIComponent(username);
-            profileButton.href = 'pages/setari.html'; // Merge la setări dacă e logat
+            profileButton.href = `${prefix}delogare.html`;
         } else {
-            // Utilizatorul NU este logat
-            profileButton.textContent = '👤 Intra in cont';
-            profileButton.href = 'pages/creare-cont.html'; // Merge la login/register
+            // Utilizatorul NU este logat -> click duce la login
+            profileButton.textContent = '👤 Intră în cont';
+            profileButton.href = `${prefix}login.html`;
         }
     }
 }
@@ -39,13 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 1. CONFIGURARE LOGICĂ CĂUTARE GLOBALĂ
     // ==========================================
-    
-    // Detectăm unde se află utilizatorul în acest moment (în rădăcină sau în /pages/)
-    const isInPagesFolder = window.location.pathname.includes('/pages/');
-
-    // Setați prefixul corect pentru URL-uri în funcție de locație
-    const prefix = isInPagesFolder ? '' : 'pages/';
-    const homePrefix = isInPagesFolder ? '../' : '';
 
     // Baza de date extinsă cu toate capitolele de teorie din programă
     const sitePages = [
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchInput && searchResults) {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
-            
+
             if (query === '') {
                 searchResults.style.display = 'none';
                 searchResults.innerHTML = '';
@@ -142,35 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
             header.parentElement.classList.toggle('open');
         });
     });
-
-    //4. Update buton Contul meu
-    // 1. Funcție pentru extragerea valorii dintr-un cookie
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
-
-// 2. Citim cookie-ul "username"
-const savedUsername = getCookie("username");
-
-// 3. Dacă utilizatorul este logat, modificăm textul păstrând iconița
-if (savedUsername) {
-    const profileBtn = document.getElementById("profileBtn");
-    if (profileBtn) {
-        // decodeURIComponent se asigură că numele se vede corect dacă are spații sau diacritice
-        const usernameCurat = decodeURIComponent(savedUsername);
-        
-        // Păstrăm iconița de omuleț și punem numele utilizatorului
-        profileBtn.textContent = `👤 ${usernameCurat}`;
-    }
-}
 });
 
 // ==========================================
 // 4. LOGICĂ PAGINĂ PROFIL & ANIMAȚII (LA LOAD)
 // ==========================================
+// Notă: rămâne aici doar pentru compatibilitate, în caz că mai există undeva
+// o pagină combinată cu #toggleMode. Pe login.html / creare-cont.html / delogare.html
+// (paginile noi, separate) elementul nu există, deci funcția iese imediat.
 function initProfileAuthMode() {
     const toggle = document.getElementById('toggleMode');
     if (!toggle) return;

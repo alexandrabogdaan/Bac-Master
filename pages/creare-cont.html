@@ -194,8 +194,17 @@
         });
 
         var params = new URLSearchParams(window.location.search);
-        if (params.get('eroare')) {
-            document.getElementById('registerError').style.display = 'block';
+        var eroare = params.get('eroare');
+        if (eroare) {
+            var err = document.getElementById('registerError');
+            if (eroare === 'user_exists') {
+                err.textContent = 'Username deja existent.';
+            } else if (eroare === 'match') {
+                err.textContent = 'Parolele nu se potrivesc.';
+            } else {
+                err.textContent = 'A apărut o eroare. Încearcă din nou.';
+            }
+            err.style.display = 'block';
         }
     </script>
 </body>
