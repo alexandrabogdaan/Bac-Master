@@ -4,6 +4,104 @@
     <meta charset="UTF-8">
     <title>Teste - BAC Master</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* ===== Mini-examen (mock test) — auto-conținut, nu depinde de style.css ===== */
+        .mock-test-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 4px 0 30px;
+            padding: 16px 18px;
+            border: 2px dashed var(--primary, #2563eb);
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .mock-test-bar p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .mock-test-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary, #2563eb);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity 0.15s;
+        }
+
+        .mock-test-btn:hover {
+            opacity: 0.9;
+        }
+
+        .mock-test-active-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 4px 0 30px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 2px solid var(--primary, #2563eb);
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+        }
+
+        .mock-test-score {
+            font-weight: 700;
+        }
+
+        .mock-test-cancel-btn {
+            padding: 8px 16px;
+            border: 2px solid #b32424;
+            border-radius: 6px;
+            background: transparent;
+            color: #b32424;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .mock-test-cancel-btn:hover {
+            background: #b32424;
+            color: #fff;
+        }
+
+        .mock-question-number {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--primary, #2563eb);
+            border-radius: 999px;
+            padding: 3px 10px;
+            margin-bottom: 8px;
+            margin-right: 8px;
+        }
+
+        .mock-test-summary {
+            margin: 20px 0;
+            padding: 18px;
+            border-radius: 10px;
+            border: 2px solid var(--primary, #2563eb);
+            background: rgba(37, 99, 235, 0.08);
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+    </style>
 </head>
 <body>
     <script src="../js/theme.js"></script>
@@ -58,6 +156,20 @@
             - name pe input trebuie să fie unic per întrebare (ex: q1, q2, q3...)
             - Restul (selectare, verificare, feedback) e gestionat automat de script-ul de mai jos.
         -->
+
+        <div class="mock-test-bar" id="mockTestBar">
+            <p>🎯 Vrei un test rapid de antrenament? Generează un mini-examen cu câte o întrebare din fiecare capitol, în ordine aleatorie.</p>
+            <button class="mock-test-btn" id="startMockTestBtn">Generează Mini-Examen</button>
+        </div>
+
+        <div class="mock-test-active-bar" id="mockActiveBar" style="display:none;">
+            <span class="mock-test-score" id="mockTestScore">Scor: 0/0</span>
+            <button class="mock-test-cancel-btn" id="cancelMockTestBtn">✖ Anulează testul</button>
+        </div>
+
+        <div id="mock-quiz-list" style="display:none;"></div>
+
+        <div id="full-quiz-list">
 
         <h2 class="quiz-class-title">🎒 Clasa a IX-a</h2>
 
@@ -1385,8 +1497,183 @@
             <button class="quiz-check-btn">Verifică</button>
             <div class="quiz-feedback"></div>
         </div>
-        
+
+        </div>
+
     </main>
 </div>
+
+<script>
+/* ===== Mini-examen (mock test) — script auto-conținut =====
+   Nu depinde de ../js/app.js: gestionează singur selectarea răspunsurilor
+   și verificarea, doar pentru întrebările generate în mini-examen. */
+document.addEventListener('DOMContentLoaded', function () {
+    var startBtn = document.getElementById('startMockTestBtn');
+    var cancelBtn = document.getElementById('cancelMockTestBtn');
+    var fullList = document.getElementById('full-quiz-list');
+    var mockList = document.getElementById('mock-quiz-list');
+    var mockBar = document.getElementById('mockTestBar');
+    var activeBar = document.getElementById('mockActiveBar');
+    var scoreEl = document.getElementById('mockTestScore');
+
+    if (!startBtn) return;
+
+    var mockAnswered = 0;
+    var mockCorrect = 0;
+    var mockTotal = 0;
+
+    function updateScore() {
+        scoreEl.textContent = 'Scor: ' + mockCorrect + ' / ' + mockAnswered + ' răspunsuri (din ' + mockTotal + ' întrebări)';
+    }
+
+    function setupMockBlock(block, index, total) {
+        // curăță orice stare moștenită din clonă
+        var options = block.querySelectorAll('.quiz-option');
+        options.forEach(function (o) {
+            o.classList.remove('selected', 'disabled', 'correct-answer', 'wrong-answer');
+            o.style.pointerEvents = '';
+        });
+        var feedback = block.querySelector('.quiz-feedback');
+        feedback.textContent = '';
+        feedback.className = 'quiz-feedback';
+        var checkBtn = block.querySelector('.quiz-check-btn');
+        checkBtn.disabled = false;
+
+        // renumește radio-urile ca să nu se suprapună cu lista completă (ascunsă)
+        block.querySelectorAll('input[type="radio"]').forEach(function (r, i) {
+            r.name = 'mock-q' + index + '-' + i;
+            r.checked = false;
+        });
+
+        // badge cu numărul întrebării
+        var oldBadge = block.querySelector('.mock-question-number');
+        if (oldBadge) oldBadge.remove();
+        var badge = document.createElement('div');
+        badge.className = 'mock-question-number';
+        badge.textContent = 'Întrebarea ' + (index + 1) + ' / ' + total;
+        block.insertBefore(badge, block.firstChild);
+
+        var correctLetter = block.getAttribute('data-correct');
+        var answered = false;
+
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                if (answered) return;
+                options.forEach(function (o) { o.classList.remove('selected'); });
+                option.classList.add('selected');
+                var radio = option.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+            });
+        });
+
+        checkBtn.addEventListener('click', function () {
+            if (answered) return;
+            var selected = block.querySelector('.quiz-option.selected');
+
+            if (!selected) {
+                feedback.textContent = 'Selectează o variantă înainte de a verifica.';
+                feedback.className = 'quiz-feedback incorrect';
+                return;
+            }
+
+            answered = true;
+            var selectedLetter = selected.getAttribute('data-letter');
+            var isCorrect = selectedLetter === correctLetter;
+
+            options.forEach(function (option) {
+                option.classList.add('disabled');
+                option.style.pointerEvents = 'none';
+                var letter = option.getAttribute('data-letter');
+                if (letter === correctLetter) {
+                    option.classList.add('correct-answer');
+                } else if (option === selected) {
+                    option.classList.add('wrong-answer');
+                }
+            });
+
+            feedback.textContent = isCorrect ? '✔ Corect!' : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
+            feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+            checkBtn.disabled = true;
+
+            mockAnswered++;
+            if (isCorrect) mockCorrect++;
+            updateScore();
+
+            if (mockAnswered === mockTotal) {
+                showSummary();
+            }
+        });
+    }
+
+    function showSummary() {
+        var old = mockList.querySelector('.mock-test-summary');
+        if (old) old.remove();
+        var summary = document.createElement('div');
+        summary.className = 'mock-test-summary';
+        var pct = mockTotal ? Math.round((mockCorrect / mockTotal) * 100) : 0;
+        summary.textContent = '🏁 Test finalizat! Ai obținut ' + mockCorrect + ' din ' + mockTotal + ' (' + pct + '%). Apasă "Anulează testul" pentru a reveni la lista completă sau generează un nou mini-examen.';
+        mockList.appendChild(summary);
+    }
+
+    function startMockTest() {
+        // grupează întrebările originale după capitol
+        var groups = {};
+        var order = [];
+        fullList.querySelectorAll('.quiz-question-block').forEach(function (block) {
+            var tagEl = block.querySelector('.quiz-chapter-tag');
+            var chapter = tagEl ? tagEl.textContent.trim() : 'General';
+            if (!groups[chapter]) {
+                groups[chapter] = [];
+                order.push(chapter);
+            }
+            groups[chapter].push(block);
+        });
+
+        // alege o întrebare random din fiecare capitol
+        var selected = order.map(function (chapter) {
+            var arr = groups[chapter];
+            var pick = arr[Math.floor(Math.random() * arr.length)];
+            return pick.cloneNode(true);
+        });
+
+        // amestecă ordinea întrebărilor
+        for (var i = selected.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = selected[i];
+            selected[i] = selected[j];
+            selected[j] = tmp;
+        }
+
+        mockTotal = selected.length;
+        mockAnswered = 0;
+        mockCorrect = 0;
+        updateScore();
+
+        mockList.innerHTML = '';
+        selected.forEach(function (block, idx) {
+            setupMockBlock(block, idx, selected.length);
+            mockList.appendChild(block);
+        });
+
+        fullList.style.display = 'none';
+        mockList.style.display = 'block';
+        mockBar.style.display = 'none';
+        activeBar.style.display = 'flex';
+        activeBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function cancelMockTest() {
+        mockList.innerHTML = '';
+        mockList.style.display = 'none';
+        fullList.style.display = '';
+        activeBar.style.display = 'none';
+        mockBar.style.display = 'flex';
+        mockBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    startBtn.addEventListener('click', startMockTest);
+    cancelBtn.addEventListener('click', cancelMockTest);
+});
+</script>
 </body>
 </html>
