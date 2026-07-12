@@ -4,118 +4,10 @@
     <meta charset="UTF-8">
     <title>Teste - BAC Master</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        /* ===== Stiluri pentru grile interactive ===== */
-        .quiz-question {
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .quiz-options {
-display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    background: var(--card);
-    color: var(--text);
-    transition: border-color 0.15s, background 0.15s;
-    user-select: none;
-        }
-
-        .quiz-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            background: transparent;
-            transition: border-color 0.15s, background 0.15s;
-            user-select: none;
-        }
-
-        .quiz-option:hover {
-            border-color: var(--primary);
-        }
-
-        .quiz-option.selected {
- border-color: var(--primary);
-    background: rgba(37, 99, 235, 0.12);
-        }
-
-        .quiz-option input[type="radio"] {
-            accent-color: #4a6cf7;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-        }
-
-        .quiz-check-btn {
-            padding: 8px 18px;
-    border: none;
-    border-radius: 6px;
-    background: var(--primary);
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s, opacity 0.15s;
-}
-        
-
-        .quiz-check-btn:hover {
-            opacity: 0.9;
-        }
-
-        .quiz-check-btn:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-        }
-
-        .quiz-feedback {
-    margin-top: 12px;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-weight: 600;
-    display: none;
-        }
-
-        .quiz-feedback.correct {
-            display: block;
-            background: #e3f7e8;
-            color: #1f7a3a;
-            border: 1px solid #b4e6c2;
-        }
-
-        .quiz-feedback.incorrect {
-            display: block;
-            background: #fdeaea;
-            color: #b32424;
-            border: 1px solid #f3bcbc;
-        }
-
-        /* după verificare: marcare opțiuni */
-        .quiz-option.correct-answer {
-            border-color: #1f7a3a;
-            background: #e3f7e8;
-        }
-
-        .quiz-option.wrong-answer {
-            border-color: #b32424;
-            background: #fdeaea;
-        }
-
-        .quiz-option.disabled {
-            cursor: default;
-            opacity: 0.85;
-        }
-    </style>
 </head>
 <body>
     <script src="../js/theme.js"></script>
+    <script src="../js/app.js"></script>
     <div class="container">
 
         <aside class="sidebar" id="sidebar">
@@ -167,9 +59,12 @@ display: flex;
             - Restul (selectare, verificare, feedback) e gestionat automat de script-ul de mai jos.
         -->
 
+        <h2 class="quiz-class-title">🎒 Clasa a IX-a</h2>
+
         <div class="module-card quiz-question-block" data-correct="A">
-            <h3>Test 1</h3>
-            <p class="quiz-question">Ce face un for?</p>
+            <span class="quiz-chapter-tag">Algoritmi de bază</span>
+            <h3>Structuri repetitive</h3>
+            <p class="quiz-question">Ce face structura repetitivă for?</p>
             <div class="quiz-options">
                 <label class="quiz-option" data-letter="A">
                     <input type="radio" name="q1">
@@ -189,7 +84,8 @@ display: flex;
         </div>
 
         <div class="module-card quiz-question-block" data-correct="B">
-            <h3>Test 2</h3>
+            <span class="quiz-chapter-tag">Algoritmi de bază</span>
+            <h3>Structuri repetitive</h3>
             <p class="quiz-question">Care structură repetitivă verifică condiția înainte de execuție și se poate executa de 0 ori?</p>
             <div class="quiz-options">
                 <label class="quiz-option" data-letter="A">
@@ -209,63 +105,1288 @@ display: flex;
             <div class="quiz-feedback"></div>
         </div>
 
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Variabile și tipuri de date</span>
+            <h3>Dimensiunea tipurilor</h3>
+            <p class="quiz-question">Câți octeți ocupă în mod uzual (pe majoritatea compilatoarelor pe 32 de biți) o variabilă de tip <code>int</code> în C++?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q3">
+                    <span>A) 2 octeți</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q3">
+                    <span>B) 4 octeți</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q3">
+                    <span>C) 8 octeți</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q3">
+                    <span>D) 1 octet</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Variabile și tipuri de date</span>
+            <h3>Identificatori</h3>
+            <p class="quiz-question">Care dintre următoarele este un identificator valid în C++?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q4">
+                    <span>A) 2var</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q4">
+                    <span>B) _suma</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q4">
+                    <span>C) int</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q4">
+                    <span>D) my-var</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Operatori C++</span>
+            <h3>Operatorul modulo</h3>
+            <p class="quiz-question">Care este rezultatul expresiei <code>7 % 2</code> în C++?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q5">
+                    <span>A) 3</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q5">
+                    <span>B) 0</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q5">
+                    <span>C) 1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q5">
+                    <span>D) 3.5</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Operatori C++</span>
+            <h3>Operatori de incrementare</h3>
+            <p class="quiz-question">Ce operator se folosește pentru a incrementa cu 1 valoarea unei variabile?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q6">
+                    <span>A) +=</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q6">
+                    <span>B) ++</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q6">
+                    <span>C) --</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q6">
+                    <span>D) **</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Tablouri unidimensionale</span>
+            <h3>Indexarea tablourilor</h3>
+            <p class="quiz-question">Care este indexul primului element dintr-un tablou (vector) în C++?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q7">
+                    <span>A) 1</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q7">
+                    <span>B) 0</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q7">
+                    <span>C) -1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q7">
+                    <span>D) Depinde de compilator</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Tablouri unidimensionale</span>
+            <h3>Parcurgerea unui tablou</h3>
+            <p class="quiz-question">Pentru a parcurge toate elementele unui tablou cu <code>n</code> elemente (indexate de la 0), condiția din <code>for</code> trebuie să fie:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q8">
+                    <span>A) i &lt;= n</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q8">
+                    <span>B) i &lt; n</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q8">
+                    <span>C) i &lt; n - 1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q8">
+                    <span>D) i &lt;= n + 1</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Tablouri bidimensionale</span>
+            <h3>Declararea unei matrice</h3>
+            <p class="quiz-question">O matrice cu <code>n</code> linii și <code>m</code> coloane se declară corect astfel:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q9">
+                    <span>A) int a[n][m];</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q9">
+                    <span>B) int a(n, m);</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q9">
+                    <span>C) int a[n, m];</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q9">
+                    <span>D) int a{n}{m};</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Tablouri bidimensionale</span>
+            <h3>Accesarea elementelor</h3>
+            <p class="quiz-question">Elementul de pe linia 2 și coloana 3 (indexare de la 0) al matricei <code>a</code> se accesează prin:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q10">
+                    <span>A) a[3][2]</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q10">
+                    <span>B) a[2, 3]</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q10">
+                    <span>C) a[2][3]</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q10">
+                    <span>D) a(2)(3)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Fișiere</span>
+            <h3>Citirea din fișiere</h3>
+            <p class="quiz-question">Ce clasă din C++ se folosește pentru citirea datelor dintr-un fișier text?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q11">
+                    <span>A) ofstream</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q11">
+                    <span>B) ifstream</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q11">
+                    <span>C) sstream</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q11">
+                    <span>D) cin</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Fișiere</span>
+            <h3>Sfârșitul fișierului</h3>
+            <p class="quiz-question">Ce metodă verifică dacă s-a ajuns la sfârșitul unui fișier?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q12">
+                    <span>A) eof()</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q12">
+                    <span>B) end()</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q12">
+                    <span>C) close()</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q12">
+                    <span>D) stop()</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <h2 class="quiz-class-title">🎓 Clasa a X-a</h2>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Subprograme și modularizare</span>
+            <h3>Transmiterea parametrilor</h3>
+            <p class="quiz-question">Ce tip de transmitere a parametrilor permite modificarea variabilei originale din funcția apelantă?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q13">
+                    <span>A) Prin valoare</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q13">
+                    <span>B) Prin referință</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q13">
+                    <span>C) Prin copiere</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q13">
+                    <span>D) Prin index</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Subprograme și modularizare</span>
+            <h3>Funcții fără valoare de retur</h3>
+            <p class="quiz-question">O funcție care nu returnează nicio valoare are tipul returnat:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q14">
+                    <span>A) int</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q14">
+                    <span>B) void</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q14">
+                    <span>C) null</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q14">
+                    <span>D) empty</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Recursivitate</span>
+            <h3>Caz de bază</h3>
+            <p class="quiz-question">Ce este obligatoriu ca o funcție recursivă să conțină pentru a evita apelurile infinite?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q15">
+                    <span>A) O buclă for</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q15">
+                    <span>B) Un caz de bază (condiție de oprire)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q15">
+                    <span>C) Un tablou</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q15">
+                    <span>D) Un pointer</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Recursivitate</span>
+            <h3>Funcția factorial</h3>
+            <p class="quiz-question">Dacă <code>factorial(n) = n * factorial(n-1)</code> și <code>factorial(0) = 1</code>, cât este <code>factorial(3)</code>?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q16">
+                    <span>A) 3</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q16">
+                    <span>B) 6</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q16">
+                    <span>C) 9</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q16">
+                    <span>D) 1</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Șiruri de caractere</span>
+            <h3>Caracterul terminator</h3>
+            <p class="quiz-question">În C++, un șir de caractere de tip C (<code>char[]</code>) se termină cu caracterul:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q17">
+                    <span>A) '\n'</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q17">
+                    <span>B) '\0'</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q17">
+                    <span>C) ' '</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q17">
+                    <span>D) EOF</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Șiruri de caractere</span>
+            <h3>Lungimea unui șir</h3>
+            <p class="quiz-question">Care funcție din biblioteca <code>&lt;cstring&gt;</code> returnează lungimea unui șir de caractere?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q18">
+                    <span>A) length()</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q18">
+                    <span>B) size()</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q18">
+                    <span>C) strlen()</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q18">
+                    <span>D) count()</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Structuri de date (stivă, coadă)</span>
+            <h3>Principiul stivei</h3>
+            <p class="quiz-question">Care este principiul de funcționare al unei stive (stack)?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q19">
+                    <span>A) FIFO (primul intrat, primul ieșit)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q19">
+                    <span>B) LIFO (ultimul intrat, primul ieșit)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q19">
+                    <span>C) Ordine aleatoare</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q19">
+                    <span>D) Ordine sortată</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Structuri de date (stivă, coadă)</span>
+            <h3>Principiul cozii</h3>
+            <p class="quiz-question">Care este principiul de funcționare al unei cozi (queue)?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q20">
+                    <span>A) LIFO (ultimul intrat, primul ieșit)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q20">
+                    <span>B) FIFO (primul intrat, primul ieșit)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q20">
+                    <span>C) Ordine aleatoare</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q20">
+                    <span>D) Ordine sortată</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <h2 class="quiz-class-title">🎩 Clasa a XI-a</h2>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Metoda Backtracking</span>
+            <h3>Scopul metodei</h3>
+            <p class="quiz-question">Metoda backtracking este folosită pentru:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q21">
+                    <span>A) Sortare rapidă</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q21">
+                    <span>B) Generarea sistematică a tuturor soluțiilor posibile ale unei probleme</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q21">
+                    <span>C) Căutare binară</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q21">
+                    <span>D) Compresie de date</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Metoda Backtracking</span>
+            <h3>Revenirea (backtrack)</h3>
+            <p class="quiz-question">Atunci când o soluție parțială nu mai poate fi continuată, algoritmul backtracking realizează:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q22">
+                    <span>A) O buclă infinită</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q22">
+                    <span>B) Revenirea la pasul anterior</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q22">
+                    <span>C) Oprirea completă a programului</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q22">
+                    <span>D) Salt direct la soluția finală</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Metoda Greedy</span>
+            <h3>Principiul metodei</h3>
+            <p class="quiz-question">La fiecare pas, metoda greedy alege:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q23">
+                    <span>A) Toate soluțiile posibile</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q23">
+                    <span>B) Soluția optimă local, sperând să conducă la optimul global</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q23">
+                    <span>C) O soluție aleatoare</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q23">
+                    <span>D) Ultima soluție găsită anterior</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Metoda Greedy</span>
+            <h3>Exemplu clasic</h3>
+            <p class="quiz-question">Un exemplu clasic de problemă rezolvată prin metoda greedy este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q24">
+                    <span>A) Problema rucsacului fracționar</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q24">
+                    <span>B) Turnurile din Hanoi</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q24">
+                    <span>C) Sortarea prin interschimbare</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q24">
+                    <span>D) Căutarea în adâncime</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Grafuri orientate</h3>
+            <p class="quiz-question">Un graf în care muchiile au un sens (o direcție) se numește:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q25">
+                    <span>A) Graf neorientat</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q25">
+                    <span>B) Graf orientat</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q25">
+                    <span>C) Arbore</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q25">
+                    <span>D) Graf complet</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Gradul unui vârf</h3>
+            <p class="quiz-question">Ce reprezintă gradul unui vârf într-un graf neorientat?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q26">
+                    <span>A) Numărul de muchii incidente vârfului</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q26">
+                    <span>B) Numărul total de vârfuri din graf</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q26">
+                    <span>C) Distanța până la rădăcină</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q26">
+                    <span>D) Numărul de componente conexe</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbore binar</h3>
+            <p class="quiz-question">Un arbore binar este acel arbore în care fiecare nod are cel mult:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q27">
+                    <span>A) 1 copil</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q27">
+                    <span>B) 2 copii</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q27">
+                    <span>C) 3 copii</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q27">
+                    <span>D) Un număr nelimitat de copii</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Parcurgeri de arbori</h3>
+            <p class="quiz-question">Parcurgerea unui arbore binar în ordinea rădăcină → subarbore stâng → subarbore drept se numește:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q28">
+                    <span>A) Inordine</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q28">
+                    <span>B) Postordine</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q28">
+                    <span>C) Preordine</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q28">
+                    <span>D) Parcurgere pe nivel</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbori binari</h3>
+            <p class="quiz-question">Numărul maxim de noduri de pe nivelul k al unui arbore binar (rădăcina = nivelul 0) este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q28">
+                    <span>A) 2^k</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q28">
+                    <span>B) k^2</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q28">
+                    <span>C) 2k</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q28">
+                    <span>D) k+1</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbori binari</h3>
+            <p class="quiz-question">Numărul maxim de noduri dintr-un arbore binar cu înălțimea h (rădăcina = nivelul 0) este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q29">
+                    <span>A) 2^h</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q29">
+                    <span>B) 2^(h+1)-1</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q29">
+                    <span>C) h+1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q29">
+                    <span>D) 2^h-1</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="A">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbori binari</h3>
+            <p class="quiz-question">Într-un arbore binar propriu (fiecare nod are exact 0 sau 2 copii) cu F frunze, numărul de noduri interne este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q30">
+                    <span>A) F</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q30">
+                    <span>B) F-1</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q30">
+                    <span>C) F+1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q30">
+                    <span>D) 2F</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbori binari</h3>
+            <p class="quiz-question">Care este înălțimea minimă posibilă a unui arbore binar cu n noduri?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q31">
+                    <span>A) n-1</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q31">
+                    <span>B) n</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q31">
+                    <span>C) ≈log₂(n)</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q31">
+                    <span>D) n/2</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Structuri de date arborescente</span>
+            <h3>Arbori binari</h3>
+            <p class="quiz-question">Câte muchii are un arbore cu n noduri?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q32">
+                    <span>A) n</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q32">
+                    <span>B) n-1</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q32">
+                    <span>C) n+1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q32">
+                    <span>D) 2n</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <h2 class="quiz-class-title">🧠 Întrebări suplimentare</h2>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Grafuri neorientate</h3>
+            <p class="quiz-question">Suma gradelor tuturor vârfurilor unui graf neorientat este întotdeauna:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q33">
+                    <span>A) egală cu numărul de vârfuri</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q33">
+                    <span>B) egală cu dublul numărului de muchii</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q33">
+                    <span>C) egală cu numărul de muchii</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q33">
+                    <span>D) un număr impar</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Grafuri neorientate</h3>
+            <p class="quiz-question">Numărul maxim de muchii dintr-un graf neorientat complet cu n vârfuri este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q34">
+                    <span>A) n(n−1)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q34">
+                    <span>B) n(n−1)/2</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q34">
+                    <span>C) n²</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q34">
+                    <span>D) n − 1</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Grafuri orientate</h3>
+            <p class="quiz-question">Numărul maxim de muchii dintr-un graf orientat complet cu n vârfuri (fără bucle) este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q35">
+                    <span>A) n(n−1)/2</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q35">
+                    <span>B) n(n−1)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q35">
+                    <span>C) n²</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q35">
+                    <span>D) 2n</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Grafuri conexe</h3>
+            <p class="quiz-question">Un graf conex cu n vârfuri și exact n − 1 muchii este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q36">
+                    <span>A) un ciclu</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q36">
+                    <span>B) un arbore</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q36">
+                    <span>C) un graf complet</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q36">
+                    <span>D) un graf bipartit</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Teoria grafurilor</span>
+            <h3>Vârfuri</h3>
+            <p class="quiz-question">Un vârf de grad 0 se numește:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q37">
+                    <span>A) vârf terminal</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q37">
+                    <span>B) vârf izolat</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q37">
+                    <span>C) vârf sursă</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q37">
+                    <span>D) vârf pendant</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Complexitate algoritmi</span>
+            <h3>Căutare binară</h3>
+            <p class="quiz-question">Complexitatea căutării binare într-un vector sortat cu n elemente este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q38">
+                    <span>A) O(n)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q38">
+                    <span>B) O(n²)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q38">
+                    <span>C) O(log n)</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q38">
+                    <span>D) O(1)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Complexitate algoritmi</span>
+            <h3>Bubble sort</h3>
+            <p class="quiz-question">Complexitatea metodei bubble sort, în cel mai defavorabil caz, pentru n elemente este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q39">
+                    <span>A) O(n)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q39">
+                    <span>B) O(n log n)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q39">
+                    <span>C) O(n²)</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q39">
+                    <span>D) O(2ⁿ)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Complexitate algoritmi</span>
+            <h3>Parcurgerea unui tablou</h3>
+            <p class="quiz-question">O singură parcurgere a unui tablou cu n elemente are complexitatea:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q40">
+                    <span>A) O(log n)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q40">
+                    <span>B) O(n)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q40">
+                    <span>C) O(n²)</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q40">
+                    <span>D) O(1)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Complexitate algoritmi</span>
+            <h3>Backtracking</h3>
+            <p class="quiz-question">Generarea tuturor submulțimilor unei mulțimi cu n elemente prin backtracking are complexitatea:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q41">
+                    <span>A) O(n)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q41">
+                    <span>B) O(n²)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q41">
+                    <span>C) O(2ⁿ)</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q41">
+                    <span>D) O(n!)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Combinatorică</span>
+            <h3>Submulțimi</h3>
+            <p class="quiz-question">Câte submulțimi (inclusiv mulțimea vidă) are o mulțime cu n elemente?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q42">
+                    <span>A) n²</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q42">
+                    <span>B) 2ⁿ</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q42">
+                    <span>C) n!</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q42">
+                    <span>D) 2n</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Combinatorică</span>
+            <h3>Permutări</h3>
+            <p class="quiz-question">Câte permutări distincte se pot forma din n elemente distincte?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q43">
+                    <span>A) n²</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q43">
+                    <span>B) 2ⁿ</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q43">
+                    <span>C) n!</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q43">
+                    <span>D) n(n−1)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Combinatorică</span>
+            <h3>Aranjamente</h3>
+            <p class="quiz-question">Numărul de aranjamente A(n,k) se calculează cu formula:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q44">
+                    <span>A) n!/(k!(n−k)!)</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q44">
+                    <span>B) n!/(n−k)!</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q44">
+                    <span>C) n!/k!</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q44">
+                    <span>D) k!/(n−k)!</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Combinatorică</span>
+            <h3>Combinări</h3>
+            <p class="quiz-question">Numărul de combinări C(n,k) se calculează cu formula:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q45">
+                    <span>A) n!/(n−k)!</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q45">
+                    <span>B) n!/(k!(n−k)!)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q45">
+                    <span>C) n!·k!</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q45">
+                    <span>D) n!/k</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Recursivitate</span>
+            <h3>Factorial</h3>
+            <p class="quiz-question">Câte apeluri (inclusiv cel inițial) se fac pentru factorial(n), cu factorial(n)=n·factorial(n−1) și factorial(0)=1?</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q46">
+                    <span>A) n</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q46">
+                    <span>B) n − 1</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q46">
+                    <span>C) n + 1</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q46">
+                    <span>D) 2n</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Recursivitate</span>
+            <h3>Dezavantaj</h3>
+            <p class="quiz-question">Principalul dezavantaj al recursivității față de iterație este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q47">
+                    <span>A) cod mai greu de scris</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q47">
+                    <span>B) consum suplimentar de memorie (stiva apelurilor)</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q47">
+                    <span>C) nu poate rezolva probleme complexe</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q47">
+                    <span>D) nu poate returna valori</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="C">
+            <span class="quiz-chapter-tag">Recursivitate</span>
+            <h3>Fibonacci</h3>
+            <p class="quiz-question">Pentru Fibonacci recursiv (F(n)=F(n−1)+F(n−2)), numărul de apeluri crește, în raport cu n, în mod:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q48">
+                    <span>A) liniar</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q48">
+                    <span>B) logaritmic</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q48">
+                    <span>C) exponențial</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q48">
+                    <span>D) constant</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Tablouri</span>
+            <h3>Inversare tablou</h3>
+            <p class="quiz-question">Pentru a inversa un tablou cu n elemente prin interschimbarea capetelor spre mijloc, sunt necesare aproximativ:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q49">
+                    <span>A) n interschimbări</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q49">
+                    <span>B) n/2 interschimbări</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q49">
+                    <span>C) n² interschimbări</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q49">
+                    <span>D) log n interschimbări</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="module-card quiz-question-block" data-correct="B">
+            <span class="quiz-chapter-tag">Tablouri</span>
+            <h3>Matrice</h3>
+            <p class="quiz-question">Numărul total de elemente al unei matrice cu n linii și m coloane este:</p>
+            <div class="quiz-options">
+                <label class="quiz-option" data-letter="A">
+                    <input type="radio" name="q50">
+                    <span>A) n + m</span>
+                </label>
+                <label class="quiz-option" data-letter="B">
+                    <input type="radio" name="q50">
+                    <span>B) n · m</span>
+                </label>
+                <label class="quiz-option" data-letter="C">
+                    <input type="radio" name="q50">
+                    <span>C) n² + m²</span>
+                </label>
+                <label class="quiz-option" data-letter="D">
+                    <input type="radio" name="q50">
+                    <span>D) max(n, m)</span>
+                </label>
+            </div>
+            <button class="quiz-check-btn">Verifică</button>
+            <div class="quiz-feedback"></div>
+        </div>
+        
     </main>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const questionBlocks = document.querySelectorAll('.quiz-question-block');
-
-    questionBlocks.forEach(function (block) {
-        const options = block.querySelectorAll('.quiz-option');
-        const checkBtn = block.querySelector('.quiz-check-btn');
-        const feedback = block.querySelector('.quiz-feedback');
-        const correctLetter = block.getAttribute('data-correct');
-
-        // Click pe opțiune -> marcare vizuală "selected"
-        options.forEach(function (option) {
-            option.addEventListener('click', function () {
-                options.forEach(function (o) { o.classList.remove('selected'); });
-                option.classList.add('selected');
-                option.querySelector('input[type="radio"]').checked = true;
-            });
-        });
-
-        // Click pe butonul de verificare
-        checkBtn.addEventListener('click', function () {
-            const selected = block.querySelector('.quiz-option.selected');
-
-            if (!selected) {
-                feedback.textContent = 'Selectează o variantă înainte de a verifica.';
-                feedback.className = 'quiz-feedback incorrect';
-                return;
-            }
-
-            const selectedLetter = selected.getAttribute('data-letter');
-            const isCorrect = selectedLetter === correctLetter;
-
-            // Marchează vizual toate opțiunile și le blochează
-            options.forEach(function (option) {
-                option.classList.add('disabled');
-                option.style.pointerEvents = 'none';
-
-                const letter = option.getAttribute('data-letter');
-                if (letter === correctLetter) {
-                    option.classList.add('correct-answer');
-                } else if (option === selected) {
-                    option.classList.add('wrong-answer');
-                }
-            });
-
-            feedback.textContent = isCorrect
-                ? '✔ Corect!'
-                : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
-            feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
-
-            checkBtn.disabled = true;
-        });
-    });
-});
-</script>
 </body>
 </html>

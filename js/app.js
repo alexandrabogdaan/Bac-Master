@@ -39,6 +39,134 @@ function updateProfileButton() {
 // Apelez funcția la încărcarea paginii
 updateProfileButton();
 
+function initChapterDropdowns() {
+    const classTitles = document.querySelectorAll('.quiz-class-title');
+
+    classTitles.forEach(function (title) {
+        const questions = [];
+        let current = title.nextElementSibling;
+
+        while (current && !current.classList.contains('quiz-class-title')) {
+            if (current.classList.contains('quiz-question-block')) {
+                questions.push(current);
+            }
+            current = current.nextElementSibling;
+        }
+
+        if (!questions.length) return;
+
+        const chapterGroups = new Map();
+
+        questions.forEach(function (block) {
+            const chapterTag = block.querySelector('.quiz-chapter-tag');
+            const chapterName = chapterTag ? chapterTag.textContent.trim() : 'General';
+
+            if (!chapterGroups.has(chapterName)) {
+                chapterGroups.set(chapterName, []);
+            }
+            chapterGroups.get(chapterName).push(block);
+        });
+
+        const accordion = document.createElement('div');
+        accordion.className = 'quiz-chapter-accordion';
+        title.parentNode.insertBefore(accordion, title.nextSibling);
+
+        chapterGroups.forEach(function (blocks, chapterName) {
+            const panelId = 'quiz-chapter-' + chapterName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            const toggleBtn = document.createElement('button');
+            toggleBtn.type = 'button';
+            toggleBtn.className = 'quiz-chapter-toggle';
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.innerHTML = `<span>${chapterName}</span><span class="quiz-chapter-toggle-icon">+</span>`;
+
+            const panel = document.createElement('div');
+            panel.className = 'quiz-chapter-panel';
+            panel.id = panelId;
+
+            blocks.forEach(function (block) {
+                panel.appendChild(block);
+            });
+
+            toggleBtn.addEventListener('click', function () {
+                const isOpen = toggleBtn.classList.contains('active');
+                const parentAccordion = toggleBtn.closest('.quiz-chapter-accordion');
+
+                parentAccordion.querySelectorAll('.quiz-chapter-toggle').forEach(function (btn) {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+                parentAccordion.querySelectorAll('.quiz-chapter-panel').forEach(function (item) {
+                    item.classList.remove('open');
+                });
+
+                if (!isOpen) {
+                    toggleBtn.classList.add('active');
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                    panel.classList.add('open');
+                }
+            });
+
+            accordion.appendChild(toggleBtn);
+            accordion.appendChild(panel);
+        });
+    });
+}
+
+function initQuizGrille() {
+    const questionBlocks = document.querySelectorAll('.quiz-question-block');
+
+    if (!questionBlocks.length) return;
+
+    questionBlocks.forEach(function (block) {
+        const options = block.querySelectorAll('.quiz-option');
+        const checkBtn = block.querySelector('.quiz-check-btn');
+        const feedback = block.querySelector('.quiz-feedback');
+        const correctLetter = block.getAttribute('data-correct');
+
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                options.forEach(function (o) {
+                    o.classList.remove('selected');
+                });
+                option.classList.add('selected');
+                option.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        checkBtn.addEventListener('click', function () {
+            const selected = block.querySelector('.quiz-option.selected');
+
+            if (!selected) {
+                feedback.textContent = 'Selectează o variantă înainte de a verifica.';
+                feedback.className = 'quiz-feedback incorrect';
+                return;
+            }
+
+            const selectedLetter = selected.getAttribute('data-letter');
+            const isCorrect = selectedLetter === correctLetter;
+
+            options.forEach(function (option) {
+                option.classList.add('disabled');
+                option.style.pointerEvents = 'none';
+
+                const letter = option.getAttribute('data-letter');
+                if (letter === correctLetter) {
+                    option.classList.add('correct-answer');
+                } else if (option === selected) {
+                    option.classList.add('wrong-answer');
+                }
+            });
+
+            feedback.textContent = isCorrect
+                ? '✔ Corect!'
+                : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
+            feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+
+            checkBtn.disabled = true;
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Actualizez din nou după ce DOM-ul e complet încărcat
     updateProfileButton();
@@ -142,6 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
             header.parentElement.classList.toggle('open');
         });
     });
+
+    // ==========================================
+    // 4. LOGICĂ TESTE GRILĂ
+    // ==========================================
+    initChapterDropdowns();
+    initQuizGrille();
 });
 
 // ==========================================
