@@ -139,16 +139,15 @@ const databaseSubiecte = {
             explicatie: "Urmărim auto-apelurile recursivității:<br>- <code>f(2020, 0)</code> apelează <code>f(202, 1)</code> și la întoarcere va afișa cifra unităților <code>x%10</code> (0) urmată de y (0).<br>- <code>f(202, 1)</code> apelează <code>f(20, 2)</code> -> la întoarcere afișează 2 și apoi 1.<br>- <code>f(20, 2)</code> apelează <code>f(2, 3)</code> -> la întoarcere afișează 0 și apoi 2.<br>- <code>f(2, 3)</code> are x < 10, deci se oprește recursivitatea, afișează direct x (2), apoi afișează y (3).<br>Urmărind ordinea afișărilor pe ecran de la cel mai adânc apel înapoi spre primul: 2 (din f(2)), 3 (din f(2)), 0 (din f(20)), 2 (din f(20)), 2 (din f(202)), 1 (din f(202)), 0 (din f(2020)), 0 (din f(2020)). Rezultatul final este: 23022100."
         },
         {
-            enunt: "3. Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate {1, 2, 3, 4, 5, 6} astfel încât pe primele trei poziții sunt doar valori pare, iar pe ultimele trei poziții sunt doar valori impare. Primele șase sunt: (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1). Indicați a șaptea permutare generată.",
+            enunt: `3. Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate {1, 2, 3, 4, 5, 6} astfel încât pe primele trei poziții sunt doar valori pare, iar pe ultimele trei poziții sunt doar valori impare. Primele șase sunt: (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1). Indicați a șaptea permutare generată.`,
             optiuni: [
                 "(4,2,6,1,5,3)", 
                 "(4,2,6,1,3,5)", 
                 "(2,6,4,1,3,5)", 
                 "(2,4,6,5,3,2)"
             ],
-            optionsFormat: "letters",
-            corect: 1, // Varianta b
-            explicatie: "Primele 6 permutări încep toate cu grupul de cifre pare (2, 4, 6) pe primele 3 poziții, epuizând toate combinările posibile ale cifrelor impare {1, 3, 5} de pe ultimele poziții.<br>Următoarea valoare în ordine lexicografică pentru primele 3 poziții este (4, 2, 6). Din această nouă ramură, primele cifre impare generate în ordine crescătoare vor fi (1, 3, 5).<br>Astfel, a 7-a permutare este (4, 2, 6, 1, 3, 5)."
+            corect: 2, // Varianta c 
+            explicatie: `Generarea se face în ordine lexicografică. Problema ne împarte permutarea în două bucăți:<br>1. <b>Primele 3 poziții (cifre pare):</b> {2, 4, 6}<br>2. <b>Ultimele 3 poziții (cifre impare):</b> {1, 3, 5}<br><br>Permutările cifrelor pare sunt ordonate crescător așa:<br>- 1. 2, 4, 6 (cea mai mică valoare numerică: 246)<br>- 2. 2, 6, 4 (următoarea valoare numerică: 264)<br>- 3. 4, 2, 6... etc.<br><br>Pentru primul prefix par (2, 4, 6) se generează toate cele 6 permutări ale cifrelor impare (acestea sunt primele 6 soluții oferite în enunț).<br>Când acestea se epuizează, algoritmul trece la următorul prefix par în ordine lexicografică, adică <b>2, 6, 4</b>, și o ia de la capăt cu prima permutare a celor impare, adică <b>1, 3, 5</b>.<br>Așadar, a 7-a soluție generată este: <b>(2, 6, 4, 1, 3, 5)</b> (Varianta C).`
         },
         {
             enunt: "4. Variabila x memorează date pentru 20 de sortimente de ciocolată: tipul (char) și prețul (float). Indicați o expresie a cărei valoare este egală cu tipul celui de al 11-lea sortiment.<pre>struct ciocolata\n{\n  char tip;\n  float pret;\n} x[20];</pre>",
