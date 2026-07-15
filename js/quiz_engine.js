@@ -1,6 +1,4 @@
-Iată fișierul `quizengine.js` complet, în care am înlocuit întrebările din secțiunea `"2025_toamna"` cu grilele pe care tocmai le-ai trimis (împreună cu opțiunile, răspunsurile corecte și explicațiile detaliate pentru fiecare):
 
-```javascript
 // 1. Baza de date cu întrebările de Subiectul I
 const databaseSubiecte = {
     "2025_iunie": [
