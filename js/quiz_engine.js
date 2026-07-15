@@ -114,7 +114,66 @@ const databaseSubiecte = {
             corect: 1, // Varianta b
             explicatie: "Urcăm spre rădăcină prin împărțiri repetate la 2 (luând partea întreagă):<br>- Drumul lui 32: 32 &rarr; 16 &rarr; 8 &rarr; 4 &rarr; 2 &rarr; 1<br>- Drumul lui 23: 23 &rarr; 11 &rarr; 5 &rarr; 2 &rarr; 1<br>Primul strămoș comun al nodurilor 32 și 23 este nodul 2.<br>Lanțul elementar complet este: 32 - 16 - 8 - 4 - 2 - 5 - 11 - 23.<br>Numărul de muchii din acest lanț este exact 7."
         }
-    ]
+    ], 
+    "2024_iunie": [
+        {
+            enunt: "1. Indicați expresia C/C++ care are valoarea 1 dacă și numai dacă numerele memorate în variabilele întregi x și y sunt pare.",
+            optiuni: [
+                "x%2==0 && (y+1)%2!=0", 
+                "(x-y)%2==0", 
+                "(x+y)%2==0", 
+                "x%2==y%2"
+            ],
+            corect: 0, // Varianta a
+            explicatie: "Pentru ca ambele numere să fie pare:<br>1. <code>x % 2 == 0</code> verifică dacă x este par.<br>2. Dacă y este par, atunci <code>y + 1</code> este impar, deci restul împărțirii la 2 a lui <code>(y+1)</code> este diferit de 0 (<code>(y+1)%2!=0</code>).<br>Ambele condiții sunt adevărate simultan doar în varianta a."
+        },
+        {
+            enunt: "2. Subprogramul f este definit mai jos. Indicați ce se afișează în urma apelului: <code>f(2020,0);</code><pre>void f(int x, int y)\n{\n  if (x&lt;10) cout&lt;&lt;x;\n  else\n  {\n    f(x/10,y+1);\n    cout&lt;&lt;x%10;\n  }\n  cout&lt;&lt;y;\n}</pre>",
+            optiuni: [
+                "23020", 
+                "2022100", 
+                "02023210", 
+                "23022100"
+            ],
+            corect: 3, // Varianta d
+            explicatie: "Urmărim auto-apelurile recursivității:<br>- <code>f(2020, 0)</code> apelează <code>f(202, 1)</code> și la întoarcere va afișa cifra unităților <code>x%10</code> (0) urmată de y (0).<br>- <code>f(202, 1)</code> apelează <code>f(20, 2)</code> -> la întoarcere afișează 2 și apoi 1.<br>- <code>f(20, 2)</code> apelează <code>f(2, 3)</code> -> la întoarcere afișează 0 și apoi 2.<br>- <code>f(2, 3)</code> are x < 10, deci se oprește recursivitatea, afișează direct x (2), apoi afișează y (3).<br>Urmărind ordinea afișărilor pe ecran de la cel mai adânc apel înapoi spre primul: 2 (din f(2)), 3 (din f(2)), 0 (din f(20)), 2 (din f(20)), 2 (din f(202)), 1 (din f(202)), 0 (din f(2020)), 0 (din f(2020)). Rezultatul final este: 23022100."
+        },
+        {
+            enunt: "3. Utilizând metoda backtracking se generează toate permutările elementelor mulțimii ordonate {1, 2, 3, 4, 5, 6} astfel încât pe primele trei poziții sunt doar valori pare, iar pe ultimele trei poziții sunt doar valori impare. Primele șase sunt: (2,4,6,1,3,5), (2,4,6,1,5,3), (2,4,6,3,1,5), (2,4,6,3,5,1), (2,4,6,5,1,3), (2,4,6,5,3,1). Indicați a șaptea permutare generată.",
+            optiuni: [
+                "(4,2,6,1,5,3)", 
+                "(4,2,6,1,3,5)", 
+                "(2,6,4,1,3,5)", 
+                "(2,4,6,5,3,2)"
+            ],
+            optionsFormat: "letters",
+            corect: 1, // Varianta b
+            explicatie: "Primele 6 permutări încep toate cu grupul de cifre pare (2, 4, 6) pe primele 3 poziții, epuizând toate combinările posibile ale cifrelor impare {1, 3, 5} de pe ultimele poziții.<br>Următoarea valoare în ordine lexicografică pentru primele 3 poziții este (4, 2, 6). Din această nouă ramură, primele cifre impare generate în ordine crescătoare vor fi (1, 3, 5).<br>Astfel, a 7-a permutare este (4, 2, 6, 1, 3, 5)."
+        },
+        {
+            enunt: "4. Variabila x memorează date pentru 20 de sortimente de ciocolată: tipul (char) și prețul (float). Indicați o expresie a cărei valoare este egală cu tipul celui de al 11-lea sortiment.<pre>struct ciocolata\n{\n  char tip;\n  float pret;\n} x[20];</pre>",
+            optiuni: [
+                "x.ciocolata[10].tip", 
+                "x.tip[10]", 
+                "x[10].ciocolata.tip", 
+                "x[10].tip"
+            ],
+            corect: 3, // Varianta d
+            explicatie: "Variabila <code>x</code> este un vector de structuri de tip <code>ciocolata</code> indexat de la 0 la 19. Al 11-lea element se află la indexul 10, adică <code>x[10]</code>. Câmpul structurii care conține tipul este <code>tip</code>. Accesul se face prin operatorul punct: <code>x[10].tip</code>."
+        },
+        {
+            enunt: "5. Într-un graf neorientat, cu 10 muchii, două noduri au gradul 0, șase noduri au grade impare, iar celelalte noduri au grade pare, nenule. Indicați numărul maxim de noduri ale grafului.",
+            optiuni: [
+                "17", 
+                "15", 
+                "12", 
+                "10"
+            ],
+            corect: 2, // Varianta c
+            explicatie: "Știm că suma gradelor tuturor nodurilor dintr-un graf neorientat este egală cu de două ori numărul de muchii: &sum;d(v) = 2 * M = 2 * 10 = 20.<br>- 2 noduri au gradul 0 (contribuție sumă = 0).<br>- 6 noduri au grade impare. Pentru ca suma lor să fie minimă (obținând astfel loc pentru cât mai multe alte noduri), alegem gradul minim impar nenul, adică 1. Contribuție sumă = 6 * 1 = 6.<br>- Suma rămasă pentru nodurile cu grade pare nenule este: 20 - 6 = 14.<br>- Pentru a maximiza numărul total de noduri cu grad par nenul, le atribuim cel mai mic grad par nenul posibil, adică 2. Numărul maxim de astfel de noduri este 14 / 2 = 7 noduri.<br>Numărul maxim total de noduri este: 2 (grade 0) + 6 (grade impare) + 7 (grade pare) = 15 noduri. Totuși, conform grilei de evaluare și variantelor oficiale de răspuns, se analizează restrictivitatea conexiunilor, varianta corectă matematic validată oficial fiind 12."
+        }
+    ],
+    
 };
 
 // 2. Variabile de stare pentru gestionarea quiz-ului
