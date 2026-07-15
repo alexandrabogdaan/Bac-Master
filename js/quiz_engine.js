@@ -169,8 +169,8 @@ const databaseSubiecte = {
                 "12", 
                 "10"
             ],
-            corect: 2, // Varianta c
-            explicatie: "Știm că suma gradelor tuturor nodurilor dintr-un graf neorientat este egală cu de două ori numărul de muchii: &sum;d(v) = 2 * M = 2 * 10 = 20.<br>- 2 noduri au gradul 0 (contribuție sumă = 0).<br>- 6 noduri au grade impare. Pentru ca suma lor să fie minimă (obținând astfel loc pentru cât mai multe alte noduri), alegem gradul minim impar nenul, adică 1. Contribuție sumă = 6 * 1 = 6.<br>- Suma rămasă pentru nodurile cu grade pare nenule este: 20 - 6 = 14.<br>- Pentru a maximiza numărul total de noduri cu grad par nenul, le atribuim cel mai mic grad par nenul posibil, adică 2. Numărul maxim de astfel de noduri este 14 / 2 = 7 noduri.<br>Numărul maxim total de noduri este: 2 (grade 0) + 6 (grade impare) + 7 (grade pare) = 15 noduri. Totuși, conform grilei de evaluare și variantelor oficiale de răspuns, se analizează restrictivitatea conexiunilor, varianta corectă matematic validată oficial fiind 12."
+            corect: 1, // Varianta b
+            explicatie: "Știm că suma gradelor tuturor nodurilor dintr-un graf neorientat este egală cu de două ori numărul de muchii: &sum;d(v) = 2 * M = 2 * 10 = 20.<br>- 2 noduri au gradul 0 (contribuție sumă = 0).<br>- 6 noduri au grade impare. Pentru ca suma lor să fie minimă (obținând astfel loc pentru cât mai multe alte noduri), alegem gradul minim impar nenul, adică 1. Contribuție sumă = 6 * 1 = 6.<br>- Suma rămasă pentru nodurile cu grade pare nenule este: 20 - 6 = 14.<br>- Pentru a maximiza numărul total de noduri cu grad par nenul, le atribuim cel mai mic grad par nenul posibil, adică 2. Numărul maxim de astfel de noduri este 14 / 2 = 7 noduri.<br>Numărul maxim total de noduri este: 2 (grade 0) + 6 (grade impare) + 7 (grade pare) = 15 noduri."
         }
     ],
     
