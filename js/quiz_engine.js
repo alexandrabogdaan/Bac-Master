@@ -1,3 +1,6 @@
+Iată fișierul `quizengine.js` complet, în care am înlocuit întrebările din secțiunea `"2025_toamna"` cu grilele pe care tocmai le-ai trimis (împreună cu opțiunile, răspunsurile corecte și explicațiile detaliate pentru fiecare):
+
+```javascript
 // 1. Baza de date cu întrebările de Subiectul I
 const databaseSubiecte = {
     "2025_iunie": [
@@ -32,7 +35,7 @@ const databaseSubiecte = {
                 "int m[100];"
             ],
             corect: 1, // Varianta b
-            explicatie: "În C++, matricile se declară folosind sintaxa: tip nume[linii][coloane]. Varianta b definește o matrice de tip float (numere reale) cu 4 linii și 25 de coloane, ocupând exact 4 * 25 = 100 de spații de memorie. Varianta d alocă tot 100 de valori, dar este un vector simplu de tip int (întregi)."
+            explicatie: "În C++, matricile se declară folosinf sintaxa: tip nume[linii][coloane]. Varianta b definește o matrice de tip float (numere reale) cu 4 linii și 25 de coloane, ocupând exact 4 * 25 = 100 de spații de memorie. Varianta d alocă tot 100 de valori, dar este un vector simplu de tip int (întregi)."
         },
         {
             enunt: "4. Utilizând metoda backtracking, s-au generat codurile de câte 6 cifre distincte, unde primele trei cifre sunt impare și ultimele trei sunt pare. Primele coduri: 135024, 135026... Indicați penultimul cod generat.",
@@ -59,10 +62,59 @@ const databaseSubiecte = {
     ],
     "2025_toamna": [
         {
-            enunt: "Exemplu: Întrebarea pentru sesiunea de Toamnă 2025 va apărea aici.",
-            optiuni: ["Varianta A", "Varianta B", "Varianta C", "Varianta D"],
-            corect: 0,
-            explicatie: "Aici veți scrie explicația când completați sesiunea de toamnă."
+            enunt: "1. Indicați intervalul căruia îi aparține valoarea memorată în variabila întreagă x, dacă și numai dacă expresia C/C++ alăturată are valoarea 1:<br><code>!(x&lt;=2020) &amp;&amp; !(x&gt;2025)</code>",
+            optiuni: [
+                "(2020,2025]", 
+                "(2020,2025)", 
+                "[2020,2025]", 
+                "(2021,2025)"
+            ],
+            corect: 0, // Varianta a
+            explicatie: "Evaluăm condițiile:<br>1. <code>!(x &lt;= 2020)</code> devine <code>x &gt; 2020</code> (interval deschis la stânga: (2020, +&infin;))<br>2. <code>!(x &gt; 2025)</code> devine <code>x &lt;= 2025</code> (interval închis la dreapta: (-&infin;, 2025])<br>Intersectând cele două intervale obținem x &isin; (2020, 2025]."
+        },
+        {
+            enunt: "2. Variabila k este de tip întreg, iar variabila s permite memorarea unui șir de maximum 20 de caractere. Indicați valoarea variabilei k în urma executării secvenței alăturate:<pre>strcpy(s,\"calculator\");\nk=strchr(s,s[1])-strchr(s,s[3]);</pre>",
+            optiuni: [
+                "9", 
+                "3", 
+                "2", 
+                "1"
+            ],
+            corect: 3, // Varianta d
+            explicatie: "În șirul <code>\"calculator\"</code> (indexat de la 0):<br>- <code>s[1]</code> este 'a', iar prima sa apariție în șir se află la adresa <code>s + 1</code>.<br>- <code>s[3]</code> este 'c', iar prima sa apariție se află chiar la începutul șirului, la adresa <code>s + 0</code> (indexul 0).<br>Scăzând pointerii: <code>(s + 1) - (s + 0) = 1</code>."
+        },
+        {
+            enunt: "3. La o probă de dans a unui concurs s-au calificat 6 perechi, notate cu litere distincte din mulțimea ordonată {A, B, C, D, E, F}, fiecare pereche prezentând câte un dans. Utilizând metoda backtracking, se generează toate posibilitățile de a stabili ordinea susținerii probei, astfel încât perechea A să prezinte prima, iar perechea F să prezinte ultima. Primele trei soluții generate sunt (A, B, C, D, E, F), (A, B, C, E, D, F), (A, B, D, C, E, F). Indicați ultima soluție generată.",
+            optiuni: [
+                "(A, D, B, C, E, F)", 
+                "(A, E, D, B, C, F)", 
+                "(A, E, D, C, B, F)", 
+                "(A, F, E, D, C, B)"
+            ],
+            corect: 2, // Varianta c
+            explicatie: "Deoarece prima poziție este mereu fixată cu A și ultima cu F, algoritmul generează permutările elementelor din mijloc: {B, C, D, E}. Ultima soluție în ordine lexicografică va avea aceste elemente din mijloc sortate în ordine descrescătoare (invers lexicografică): E, D, C, B. Soluția finală completă este (A, E, D, C, B, F)."
+        },
+        {
+            enunt: "4. Un graf orientat cu 6 vârfuri, numerotate de la 1 la 6, are arcele (3,1), (4,1), (4,2), (4,3), (5,6), (6,4). Indicați numărul vârfurilor pentru care gradul exterior este egal cu gradul interior.",
+            optiuni: [
+                "1", 
+                "2", 
+                "3", 
+                "4"
+            ],
+            corect: 1, // Varianta b
+            explicatie: "Calculăm gradul exterior (arce care pleacă, d+) și interior (arce care intră, d-) pentru fiecare nod:<br>- Nodul 1: d+=0, d-=2 (d+ &ne; d-)<br>- Nodul 2: d+=0, d-=1 (d+ &ne; d-)<br>- Nodul 3: d+=1, d-=1 (d+ = d- = 1) -> <strong>Egal!</strong><br>- Nodul 4: d+=3, d-=1 (d+ &ne; d-)<br>- Nodul 5: d+=1, d-=0 (d+ &ne; d-)<br>- Nodul 6: d+=1, d-=1 (d+ = d- = 1) -> <strong>Egal!</strong><br>Vârfurile cu d+ = d- sunt 3 și 6, adică 2 vârfuri."
+        },
+        {
+            enunt: "5. Într-un arbore cu 50 de noduri, numerotate de la 1 la 50, rădăcina este nodul numerotat cu 1, iar tatăl oricărui alt nod i al său este nodul numerotat cu [i/2]. Indicați lungimea lanțului elementar cu o extremitate în nodul 32 și cealaltă extremitate în nodul 23.",
+            optiuni: [
+                "5", 
+                "7", 
+                "9", 
+                "11"
+            ],
+            corect: 1, // Varianta b
+            explicatie: "Urcăm spre rădăcină prin împărțiri repetate la 2 (luând partea întreagă):<br>- Drumul lui 32: 32 &rarr; 16 &rarr; 8 &rarr; 4 &rarr; 2 &rarr; 1<br>- Drumul lui 23: 23 &rarr; 11 &rarr; 5 &rarr; 2 &rarr; 1<br>Primul strămoș comun al nodurilor 32 și 23 este nodul 2.<br>Lanțul elementar complet este: 32 - 16 - 8 - 4 - 2 - 5 - 11 - 23.<br>Numărul de muchii din acest lanț este exact 7."
         }
     ]
 };
@@ -185,3 +237,5 @@ function nextQuestion() {
         document.getElementById("feedback-box").style.display = "none";
     }
 }
+
+```
