@@ -118,122 +118,237 @@ const databaseSubiecte = {
 };
 
 // 2. Variabile de stare pentru gestionarea quiz-ului
+
 let currentQuestions = [];
+
 let currentQuestionIndex = 0;
+
 let score = 0;
+
 let selectedOptionIndex = null;
 
+
+
 // 3. Funcția automată la încărcarea paginii
+
 window.onload = function() {
+
     const urlParams = new URLSearchParams(window.location.search);
+
     const an = urlParams.get('an') || "2025";
+
     const ses = urlParams.get('ses') || "iunie";
+
     
+
     const cheie = `${an}_${ses}`;
+
     
+
     // Corectat formatul titlului dinamic conform preferinței tale
+
     const titluElement = document.getElementById("quiz-title");
+
     if (titluElement) {
+
         titluElement.innerText = `Antrenament Subiect BAC ${an} ${ses.charAt(0).toUpperCase() + ses.slice(1)}`;
+
     }
+
+
 
     if (databaseSubiecte[cheie]) {
+
         currentQuestions = databaseSubiecte[cheie];
+
         loadQuestion();
+
     } else {
+
         document.getElementById("question-container").innerHTML = `
+
             <p class='question-text' style='text-align:center; padding: 20px;'>
+
                 ⚠️ Întrebările interactive pentru sesiunea <strong>${ses.toUpperCase()} (${an})</strong> nu au fost adăugate încă în fișierul JavaScript.
+
             </p>
+
         `;
+
         document.getElementById("submit-btn").style.display = "none";
+
     }
+
 };
 
+
+
 // 4. Funcția de randare/afișare a întrebării curente
+
 function loadQuestion() {
+
     const q = currentQuestions[currentQuestionIndex];
+
     
+
     document.getElementById("question-counter").innerText = `Exercițiul ${currentQuestionIndex + 1} din ${currentQuestions.length}`;
+
     document.getElementById("question-text").innerHTML = q.enunt;
+
     document.getElementById("feedback-box").style.display = "none";
+
     document.getElementById("next-btn").style.display = "none";
+
     document.getElementById("submit-btn").style.display = "block";
+
     selectedOptionIndex = null;
 
+
+
     const listHtml = document.getElementById("options-list");
+
     listHtml.innerHTML = "";
+
     
+
     q.optiuni.forEach((text, index) => {
+
         const item = document.createElement("div");
+
         item.className = "option-item";
+
         item.id = `option-${index}`;
+
         item.innerHTML = `<input type="radio" name="quiz-opt" value="${index}"> <span>${text}</span>`;
+
         
+
         item.onclick = function() {
+
             document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+
             item.classList.add("selected");
+
             item.querySelector("input").checked = true;
+
             selectedOptionIndex = index;
+
         };
+
         
+
         listHtml.appendChild(item);
+
     });
+
 }
 
+
+
 // 5. Verificarea răspunsului ales
+
 function checkAnswer() {
+
     if (selectedOptionIndex === null) {
+
         alert("Te rugăm să selectezi o variantă de răspuns înainte de a trimite!");
+
         return;
+
     }
 
+
+
     const q = currentQuestions[currentQuestionIndex];
+
     const feedbackBox = document.getElementById("feedback-box");
+
     const feedbackText = document.getElementById("feedback-text");
+
     const explanationText = document.getElementById("explanation-text");
+
+
 
     document.querySelectorAll(".option-item").forEach(el => el.style.pointerEvents = "none");
 
+
+
     if (selectedOptionIndex === q.corect) {
+
         feedbackBox.className = "feedback-box feedback-success";
+
         feedbackText.innerHTML = "🎉 Corect! Ai obținut 4 puncte.";
+
         score += 4;
+
         document.getElementById("score-counter").innerText = `Scor: ${score} p`;
+
     } else {
+
         feedbackBox.className = "feedback-box feedback-error";
+
         const litereRăspuns = ["a", "b", "c", "d"];
+
         feedbackText.innerHTML = `❌ Greșit! Răspunsul corect era varianta <strong>${litereRăspuns[q.corect].toUpperCase()}</strong>.`;
+
         
+
         document.getElementById(`option-${q.corect}`).style.borderColor = "#48bb78";
+
         document.getElementById(`option-${q.corect}`).style.backgroundColor = "#c6f6d5";
+
     }
+
+
 
     explanationText.innerHTML = q.explicatie;
+
     feedbackBox.style.display = "block";
+
     
+
     document.getElementById("submit-btn").style.display = "none";
+
     document.getElementById("next-btn").style.display = "block";
+
 }
+
+
 
 // 6. Trecerea la următorul exercițiu
-function nextQuestion() {
-    currentQuestionIndex++;
-    
-    if (currentQuestionIndex < currentQuestions.length) {
-        loadQuestion();
-    } else {
-        document.getElementById("question-container").innerHTML = `
-            <div style="text-align: center; padding: 30px 10px;">
-                <h3 style="color: #2b6cb0; font-size: 1.6rem; margin-bottom: 10px;">🎉 Felicitări! Ai finalizat testul.</h3>
-                <p style="font-size: 1.2rem; color: #4a5568;">Scorul tău final este de <strong>${score} puncte</strong> dintr-un maxim de ${currentQuestions.length * 4} puncte alocate acestor grile.</p>
-                <a href="subiecte.html" class="btn-primary" style="display:inline-block; margin-top: 20px; text-decoration:none; padding:10px 20px; background:#3182ce; color:white; border-radius:6px; font-weight:600;">Înapoi la arhivă</a>
-            </div>
-        `;
-        document.getElementById("next-btn").style.display = "none";
-        document.getElementById("submit-btn").style.display = "none";
-        document.getElementById("feedback-box").style.display = "none";
-    }
-}
 
-```
+function nextQuestion() {
+
+    currentQuestionIndex++;
+
+    
+
+    if (currentQuestionIndex < currentQuestions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        document.getElementById("question-container").innerHTML = `
+
+            <div style="text-align: center; padding: 30px 10px;">
+
+                <h3 style="color: #2b6cb0; font-size: 1.6rem; margin-bottom: 10px;">🎉 Felicitări! Ai finalizat testul.</h3>
+
+                <p style="font-size: 1.2rem; color: #4a5568;">Scorul tău final este de <strong>${score} puncte</strong> dintr-un maxim de ${currentQuestions.length * 4} puncte alocate acestor grile.</p>
+
+                <a href="subiecte.html" class="btn-primary" style="display:inline-block; margin-top: 20px; text-decoration:none; padding:10px 20px; background:#3182ce; color:white; border-radius:6px; font-weight:600;">Înapoi la arhivă</a>
+
+            </div>
+
+        `;
+
+        document.getElementById("next-btn").style.display = "none";
+
+        document.getElementById("submit-btn").style.display = "none";
+
+        document.getElementById("feedback-box").style.display = "none";
+
+    }
+
+} 
