@@ -336,14 +336,14 @@ const databaseSubiecte = {
       "enunt": "1. Variabila x este de tip întreg. Indicați o expresie care are valoarea 1 dacă și numai dacă expresia C/C++ alăturată are valoarea 1:<br><code>x&gt;=3 &amp;&amp; x&lt;10</code>",
       "optiuni": ["<code>!(x&lt;3 &amp;&amp; x&gt;=10)</code>", "<code>!(x&lt;3 || x&gt;=10)</code>", "<code>x&lt;3 &amp;&amp; !(x&gt;=10)</code>", "<code>!(x&lt;3) || x&gt;=10</code>"],
       "corect": 1,
-      "explicatie": "Aplicând legile lui De Morgan, negarea expresiei <code>(A &amp;&amp; B)</code> este <code>!(A) || !(B)</code>.<br>Negarea condiției <code>x&gt;=3</code> este <code>x&lt;3</code>, iar negarea condiției <code>x&lt;10</code> este <code>x&gt;=10</code>.<br>Prin urmare, <code>x&gt;=3 &amp;&amp; x&lt;10</code> este echivalentă cu negarea reuniunii contrariilor lor: <code>!(x&lt;3 || x&gt;=10)</code>."
+      "explicatie": "Aplicând legile lui De Morgan, negarea expresiei <code>(A &amp;&amp; B)</code> este <code>!(A) || !(B)</code>.<br>Negarea condiției <code>x&gt;=3</code> este <code>x&lt;3</code>, iar negarea condiției <code>x&lt;10</code> este <code>x&gt;=10</code>.<br>Prin urmare, <code>x&gt;=3 &amp;&amp; x&lt;10</code> este echivalentă cu <code>!(x&lt;3 || x&gt;=10)</code>."
     },
     {
       "tip": "grila",
-      "enunt": "2. Subprogramul f este definit incomplet, alăturat. Indicați o expresie cu care pot fi înlocuite punctele de suspensie pentru ca <code>f(n,3)</code> să aibă valoarea 1 pentru orice număr prim n (n∈[2,10^4]) și valoarea 0 în caz contrar.<br><pre><code>int f(int x, int y)\n{\n  if(x!=2 &amp;&amp; x%2==0) return 0;\n  if(y*y&gt;x) return 1;\n  if(x%y==0) return 0;\n  return f(x,.........);\n}</code></pre>",
+      "enunt": "2. Subprogramul f este definit incomplet, alăturat. Indicați o expresie cu care pot fi înlocuite punctele de suspensie pentru ca <code>f(n,3)</code> să aibă valoarea 1 pentru orice număr prim n (n ∈ [2,10000]) și valoarea 0 în caz contrar.<br><pre><code>int f(int x, int y)\n{\n  if(x!=2 &amp;&amp; x%2==0) return 0;\n  if(y*y&gt;x) return 1;\n  if(x%y==0) return 0;\n  return f(x,.........);\n}</code></pre>",
       "optiuni": ["y+2", "y-2", "y*2", "y/2"],
       "corect": 0,
-      "explicatie": "Paritatea numărului <code>x</code> este deja verificată în prima linie (numerele pare $\neq 2$ sunt excluse direct). Deoarece apelul inițial este <code>f(n, 3)</code>, divisorul de test <code>y</code> începe de la 3 (impar). Pentru eficientizare, verificarea divizibilității trebuie să continue doar cu următorul număr impar, adică <code>y+2</code>."
+      "explicatie": "Paritatea numărului <code>x</code> este deja verificată în prima linie. Deoarece apelul inițial este <code>f(n, 3)</code>, divizorul de test <code>y</code> începe de la 3 (impar). Pentru eficientizare, verificarea divizibilității trebuie să continue doar cu următorul număr impar, adică <code>y+2</code>."
     },
     {
       "tip": "grila",
@@ -356,72 +356,15 @@ const databaseSubiecte = {
       "tip": "grila",
       "enunt": "4. Variabila j este de tip întreg, iar variabila A memorează un tablou bidimensional cu 100 de linii și 100 de coloane (numerotate de la 0 la 99). Indicați valoarea variabilei j, dacă elementul <code>A[20][j]</code> se află pe diagonala secundară a tabloului.",
       "optiuni": ["20", "49", "79", "80"],
-      "corect": 3,
-      "explicatie": "Pentru o matrice pătratică de ordinul $N$ indexată de la 0 la $N-1$, un element $A[i][j]$ se află pe diagonala secundară dacă $i + j = N - 1$.<br>În acest caz $N = 100$, deci $20 + j = 99 \implies j = 99 - 20 = 79$."
+      "corect": 2,
+      "explicatie": "Pentru o matrice pătratică de ordinul N indexată de la 0 la N-1, un element A[i][j] se află pe diagonala secundară dacă i + j = N - 1.<br>În acest caz N = 100, deci 20 + j = 99 → j = 99 - 20 = 79."
     },
     {
       "tip": "grila",
       "enunt": "5. Un graf neorientat are 7 noduri (1 la 7) și 8 muchii, dintre care șase sunt: [1,2], [2,4], [2,7], [3,4], [4,5], [4,6]. Știind că unul dintre lanțurile elementare de lungime maximă este 1, 2, 7, 5, 4, 6, indicați care ar putea fi celelalte două muchii ale grafului.",
       "optiuni": ["[1,4] și [4,7]", "[1,4] și [5,7]", "[2,5] și [4,7]", "[3,6] și [5,7]"],
       "corect": 3,
-      "explicatie": "Lanțul 1 &rarr; 2 &rarr; 7 &rarr; 5 &rarr; 4 &rarr; 6 folosește muchiile [1,2], [2,7], [5,7], [4,5], [4,6].<br>Pentru ca acest lanț să existe în graf, muchia **[5,7]** trebuie neapărat să facă parte din cele două muchii lipsă (deoarece ea nu se regăsea în lista primelor 6 muchii oferite).<br>Analizând opțiunile b și d (care conțin [5,7]):<br>• În opțiunea d, adăugarea muchiei [3,6] păstrează lanțul specificat valid și neîntrerupt de alte scurtături ce i-ar modifica lungimea maximă."
-    }
-  ],
-    "2021_iunie": [
-    {
-      "tip": "grila",
-      "enunt": "1. Indicați o expresie C/C++ care are valoarea 1 dacă și numai dacă valorile variabilelor întregi x și y sunt numere pare.",
-      "optiuni": [
-        "<code>x%2==0 &amp;&amp; (y+1)%2!=0</code>",
-        "<code>(x-y)/2==0</code>",
-        "<code>(x+y)%2==0 &amp;&amp; (x-y)%2==0</code>",
-        "<code>x%2==y%2</code>"
-      ],
-      "corect": 0,
-      "explicatie": "• a. <code>x%2==0</code> verifică dacă <code>x</code> este par. Condiția <code>(y+1)%2!=0</code> înseamnă că <code>y+1</code> este impar, deci <code>y</code> este par. Ambele fiind îndeplinite, expresia evaluează la 1 dacă și numai dacă ambele sunt pare.<br>• b. Verifică dacă $x=y$.<br>• c. Este adevărată și dacă ambele numere sunt impare (ex: $x=3, y=5 \implies 3+5=8$ par, $3-5=-2$ par).<br>• d. Verifică doar dacă au aceeași paritate (ambele pare sau ambele impare)."
-    },
-    {
-      "tip": "grila",
-      "enunt": "2. Subprogramul f este definit alăturat. Indicați valorile pe care le pot avea parametrii n și c, astfel încât, în urma apelului, <code>f(n,c)</code> să aibă valoarea 2021.<br><pre><code>int f(int n,int c)\n{\n  if(n==0) return 0;\n  else\n  if(n%10==c) return f(n/10,c);\n  else return n%10+10*f(n/10,c);\n}</code></pre>",
-      "optiuni": [
-        "n=2021 și c=0",
-        "n=200211 și c=2",
-        "n=312032 și c=3",
-        "n=720721 și c=7"
-      ],
-      "corect": 3,
-      "explicatie": "Subprogramul elimină din numărul <code>n</code> toate cifrele egale cu <code>c</code> și reconstruiește numărul format din cifrele rămase.<br>• Pentru <code>n=720721</code> și <code>c=7</code>, eliminând toate cifrele de 7, obținem numărul <code>2021</code>."
-    },
-    {
-      "tip": "grila",
-      "enunt": "3. Variabila m memorează elementele unui tablou bidimensional cu 100 de linii și 100 de coloane (numerotate de la 0 la 99). Indicați expresia C/C++ prin care poate fi accesat un element aflat pe diagonala secundară a tabloului.",
-      "optiuni": [
-        "<code>m[42/42]</code>",
-        "<code>m[42|42]</code>",
-        "<code>m[42]:[57]</code>",
-        "<code>m[42][57]</code>"
-      ],
-      "corect": 3,
-      "explicatie": "Un element $m[i][j]$ dintr-o matrice pătratică cu dimensiunea $N=100$ (indexată de la $0$ la $99$) se află pe diagonala secundară dacă $i + j = N - 1 = 99$.<br>Pentru linia <code>42</code> și coloana <code>57</code>, $42 + 57 = 99$, deci <code>m[42][57]</code> este un element de pe diagonala secundară accesat corect sintactic."
-    },
-    {
-      "tip": "grila",
-      "enunt": "4. Un graf neorientat are 6 noduri, numerotate de la 1 la 6, și muchiile [1,2], [1,3], [2,3], [3,4], [3,5], [4,5], [5,6]. Indicați un ciclu elementar al acestui graf.",
-      "optiuni": [
-        "1,2,3",
-        "1,2,3,1",
-        "1,2,3,4,5,3,1",
-        "1,2,3,4,5,6,1"
-      ],
-      "corect": 1,
-      "explicatie": "Un ciclu este elementar dacă nu repetă niciun nod (cu excepția primului și ultimului nod care trebuie să coincidă).<br>• a. Este doar o succesiune de noduri, nu un ciclu (nu se închide).<br>• b. <code>1,2,3,1</code> conține muchiile existente [1,2], [2,3], [3,1] și se închide în nodul 1, fără a repeta noduri intermediare. Este un ciclu elementar.<br>• c. Repetă nodurile 3 și 1.<br>• d. Folosește muchia [6,1] care nu există în graf."
-    },
-    {
-      "tip": "grila",
-      "enunt": "5. Într-un arbore cu rădăcină (nivelul 0 = rădăcina), toate nodurile de pe același nivel au un număr egal de „fii” și NU există două niveluri diferite cu același număr de noduri. Indicați numărul minim de noduri de pe nivelul 3.",
-      "optiuni": ["12", "9", "8", "5"],
-      "corect": 2,
-      "explicatie": "Fie $k_i$ numărul de fii ai fiecărui nod de pe nivelul $i$.<br>• Nivelul 0: 1 nod (rădăcina).<br>• Nivelul 1: $1 \cdot k_0 = k_0$ noduri.<br>• Nivelul 2: $k_0 \cdot k_1$ noduri.<br>• Nivelul 3: $k_0 \cdot k_1 \cdot k_2$ noduri.<br>Deoarece numărul de noduri de pe fiecare nivel trebuie să fie strict diferit și cât mai mic posibil, alegem valorile minime posibile pentru numărul de fii de pe fiecare nivel $k_i \ge 2$:<br>Dacă $k_0 = 2$, $k_1 = 2$, $k_2 = 2$:<br>• Nivelul 0: 1 nod<br>• Nivelul 1: 2 noduri<br>• Nivelul 2: $2 \cdot 2 = 4$ noduri<br>• Nivelul 3: $4 \cdot 2 = 8$ noduri.<br>Toate nivelurile au numere distincte de noduri (1, 2, 4, 8), iar numărul minim de noduri de pe nivelul 3 este 8."
+      "explicatie": "Lanțul 1 → 2 → 7 → 5 → 4 → 6 folosește muchiile [1,2], [2,7], [5,7], [4,5], [4,6].<br>Pentru ca acest lanț să existe în graf, muchia [5,7] trebuie neapărat să facă parte din cele două muchii lipsă.<br>Adăugarea muchiei [3,6] păstrează lanțul specificat valid și neîntrerupt."
     }
   ],
     "2021_toamna": [
