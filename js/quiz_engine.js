@@ -252,35 +252,35 @@ const databaseSubiecte = {
       "enunt": "1. Indicați numerele pe care le pot memora variabilele întregi x și y, astfel încât valoarea expresiei C/C++ alăturate să fie 1:<br><code>y%x - (x/y)*3 != 0</code>",
       "optiuni": ["x=25 și y=75", "x=25 și y=15", "x=15 și y=0", "x=10 și y=30"],
       "corect": 1,
-      "explicatie": "Evaluăm opțiunile:<br>a. <code>x=25, y=75</code>: <code>75%25 - (25/75)*3</code> = <code>0 - 0*3</code> = 0 &rarr; <code>0!=0</code> este 0 (fals).<br>b. <code>x=25, y=15</code>: <code>15%25 - (25/15)*3</code> = <code>15 - 1*3</code> = 12 &rarr; <code>12!=0</code> este 1 (adevărat).<br>c. <code>y=0</code> generează eroare (împărțire la zero).<br>d. <code>x=10, y=30</code>: <code>30%10 - (10/30)*3</code> = <code>0 - 0*3</code> = 0 &rarr; <code>0!=0</code> este 0 (fals)."
+      "explicatie": "Răspuns corect: <b>b (x=25 și y=15)</b>.<br>Evaluăm opțiunea b: <code>15%25 - (25/15)*3</code> = <code>15 - 1*3</code> = 12 &rarr; <code>12 != 0</code> evaluează la 1 (adevărat)."
     },
     {
       "tip": "grila",
       "enunt": "2. Subprogramul f este definit alăturat. Indicați valoarea <code>f(3,2)</code>.<br><pre><code>int f(int x, int y)\n{\n  int z;\n  if (y==0) return 1;\n  z=f(x,y/2);\n  if (y%2!=0) return z*z*x;\n  return z*z;\n}</code></pre>",
       "optiuni": ["1", "2", "9", "18"],
       "corect": 2,
-      "explicatie": "Subprogramul calculează $x^y$ prin ridicare la putere în timp logaritmic:<br>• <code>f(3,2)</code> apelează <code>z = f(3,1)</code>.<br>• <code>f(3,1)</code> apelează <code>z = f(3,0)</code>, care returnează 1.<br>• În <code>f(3,1)</code>: <code>z=1</code>, <code>y%2!=0</code> (1 este impar) &rarr; returnează <code>1*1*3 = 3</code>.<br>• În <code>f(3,2)</code>: <code>z=3</code>, <code>y%2!=0</code> este fals (2 este par) &rarr; returnează <code>z*z = 3*3 = 9</code>."
+      "explicatie": "Răspuns corect: <b>c (9)</b>.<br>• <code>f(3,2)</code> apelează <code>z = f(3,1)</code>.<br>• <code>f(3,1)</code> apelează <code>z = f(3,0)</code>, care returnează 1.<br>• În <code>f(3,1)</code>: <code>z=1</code>, <code>1%2!=0</code> &rarr; returnează <code>1*1*3 = 3</code>.<br>• În <code>f(3,2)</code>: <code>z=3</code>, <code>2%2!=0</code> este fals &rarr; returnează <code>3*3 = 9</code>."
     },
     {
       "tip": "grila",
       "enunt": "3. Variabila s poate accesa un șir cu cel mult 20 de caractere. Indicați șirul accesat prin s în urma executării secvenței alăturate:<br><pre><code>strcpy(s,\"2019\");\nstrcpy(s+3,\"23\");</code></pre>",
       "optiuni": ["20123", "201923", "202223", "2023"],
       "corect": 0,
-      "explicatie": "Inițial <code>s = \"2019\"</code> (pozițiile 0, 1, 2, 3 conțin '2', '0', '1', '9'). Instrucțiunea <code>strcpy(s+3, \"23\")</code> copiază șirul <code>\"23\"</code> începând de la poziția cu indicele 3, suprascriind caracterul '9' și adăugând terminatorul de șir. Rezultatul este <code>\"20123\"</code>."
+      "explicatie": "Răspuns corect: <b>a (20123)</b>.<br>Inițial <code>s = \"2019\"</code>. Instrucțiunea <code>strcpy(s+3, \"23\")</code> copiază <code>\"23\"</code> începând de la poziția cu indicele 3, suprascriind caracterul '9' și adăugând terminatorul de șir. Rezultatul este <code>\"20123\"</code>."
     },
     {
       "tip": "grila",
       "enunt": "4. Utilizând metoda backtracking, se generează toate parfumurile formate prin amestecarea a câte 3 esențe distincte din mulțimea {bergamotă, cireș, iris, lămâie, salcâm}. Două parfumuri sunt distincte dacă diferă prin cel puțin o esență. Primele patru soluții obținute sunt, în această ordine: (bergamotă, cireș, iris), (bergamotă, cireș, lămâie), (bergamotă, cireș, salcâm) și (bergamotă, iris, lămâie). Indicați penultima soluție generată.",
       "optiuni": ["(cireș, iris, salcâm)", "(cireș, lămâie, salcâm)", "(lămâie, iris, salcâm)", "(iris, lămâie, salcâm)"],
-      "corect": 3,
-      "explicatie": "Se generează combinări de 5 elemente luate câte 3, în ordine alfabetică: 1. bergamotă, 2. cireș, 3. iris, 4. lămâie, 5. salcâm.<br>Ultima soluție generată este formată din ultimele 3 elemente în ordine: (iris, lămâie, salcâm) &ndash; corespunzătoare indicilor (3, 4, 5).<br>Penultima soluție generată este cea anterioară ei în ordine lexicografică, adică (cireș, lămâie, salcâm) &ndash; corespunzătoare indicilor (2, 4, 5)."
+      "corect": 1,
+      "explicatie": "Răspuns corect: <b>b ((cireș, lămâie, salcâm))</b>.<br>Elementele sunt ordonate alfabetic: 1. bergamotă, 2. cireș, 3. iris, 4. lămâie, 5. salcâm.<br>Ultima soluție generată este (iris, lămâie, salcâm) &ndash; indicii (3, 4, 5).<br>Penultima soluție generată este cea anterioară ei lexicografic, adică (cireș, lămâie, salcâm) &ndash; indicii (2, 4, 5)."
     },
     {
       "tip": "grila",
       "enunt": "5. Un graf neorientat are 5 noduri, numerotate de la 1 la 5, cu gradele figurate în tabel (1: 2, 2: x, 3: 3, 4: 3, 5: y). Indicați o pereche de valori posibile pentru x și y.",
       "optiuni": ["0 și 4", "1 și 5", "2 și 3", "3 și 3"],
-      "corect": 2,
-      "explicatie": "Teorema fundamentală a grafurilor neorientate impune două condiții:<br>1. Suma gradelor trebuie să fie număr par: $2 + x + 3 + 3 + y = 8 + x + y$, deci $x + y$ trebuie să fie număr par.<br>2. Într-un graf neorientat cu 5 noduri fără bucle, gradul maxim al oricărui nod este $5 - 1 = 4$.<br>Analizând opțiunile:<br>a. (0,4): $x+y=4$ (par), dar dacă nodul 5 are gradul 4, el este legat de toate celelalte noduri (inclusiv nodul 2, deci nodul 2 nu poate avea gradul 0).<br>b. (1,5): gradul 5 este imposibil (maxim 4).<br>c. (2,3): $x+y=5$ &rarr; suma gradelor este $8+5=13$ (impar, imposibil).<br>d. (3,3): $x+y=6$ (par) și toate gradele sunt $\le 4$. Secvența de grade 2, 3, 3, 3, 3 este realizabilă."
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (3 și 3)</b>.<br>Suma gradelor trebuie să fie pară: $2 + 3 + 3 + 3 + 3 = 14$ (pară), iar gradul maxim este $\le 4$. Secvența de grade 2, 3, 3, 3, 3 este realizabilă într-un graf neorientat cu 5 noduri."
     }
   ],
     "2022_iunie": [
