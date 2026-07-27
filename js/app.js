@@ -18,26 +18,20 @@ function getCookie(name) {
 }
 
 // Actualizez butonul "Contul meu" în funcție de starea logării
-// (cookie-ul "username" e setat de auth.php la login/register reușit)
 function updateProfileButton() {
     const profileButton = document.querySelector('.profile');
     const username = getCookie('username');
 
     if (profileButton) {
         if (username) {
-            // Utilizatorul este logat -> click duce la pagina de confirmare deconectare
             profileButton.textContent = '👤 ' + decodeURIComponent(username);
             profileButton.href = `${prefix}delogare.html`;
         } else {
-            // Utilizatorul NU este logat -> click duce la login
             profileButton.textContent = '👤 Intră în cont';
             profileButton.href = `${prefix}login.html`;
         }
     }
 }
-
-// Apelez funcția la încărcarea paginii
-updateProfileButton();
 
 function initChapterDropdowns() {
     const classTitles = document.querySelectorAll('.quiz-class-title');
@@ -129,161 +123,47 @@ function initQuizGrille() {
                     o.classList.remove('selected');
                 });
                 option.classList.add('selected');
-                option.querySelector('input[type="radio"]').checked = true;
+                const radioInput = option.querySelector('input[type="radio"]');
+                if (radioInput) radioInput.checked = true;
             });
         });
 
-        checkBtn.addEventListener('click', function () {
-            const selected = block.querySelector('.quiz-option.selected');
+        if (checkBtn) {
+            checkBtn.addEventListener('click', function () {
+                const selected = block.querySelector('.quiz-option.selected');
 
-            if (!selected) {
-                feedback.textContent = 'Selectează o variantă înainte de a verifica.';
-                feedback.className = 'quiz-feedback incorrect';
-                return;
-            }
-
-            const selectedLetter = selected.getAttribute('data-letter');
-            const isCorrect = selectedLetter === correctLetter;
-
-            options.forEach(function (option) {
-                option.classList.add('disabled');
-                option.style.pointerEvents = 'none';
-
-                const letter = option.getAttribute('data-letter');
-                if (letter === correctLetter) {
-                    option.classList.add('correct-answer');
-                } else if (option === selected) {
-                    option.classList.add('wrong-answer');
+                if (!selected) {
+                    feedback.textContent = 'Selectează o variantă înainte de a verifica.';
+                    feedback.className = 'quiz-feedback incorrect';
+                    return;
                 }
+
+                const selectedLetter = selected.getAttribute('data-letter');
+                const isCorrect = selectedLetter === correctLetter;
+
+                options.forEach(function (option) {
+                    option.classList.add('disabled');
+                    option.style.pointerEvents = 'none';
+
+                    const letter = option.getAttribute('data-letter');
+                    if (letter === correctLetter) {
+                        option.classList.add('correct-answer');
+                    } else if (option === selected) {
+                        option.classList.add('wrong-answer');
+                    }
+                });
+
+                feedback.textContent = isCorrect
+                    ? '✔ Corect!'
+                    : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
+                feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+
+                checkBtn.disabled = true;
             });
-
-            feedback.textContent = isCorrect
-                ? '✔ Corect!'
-                : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
-            feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
-
-            checkBtn.disabled = true;
-        });
+        }
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Actualizez din nou după ce DOM-ul e complet încărcat
-    updateProfileButton();
-
-    // ==========================================
-    // 1. CONFIGURARE LOGICĂ CĂUTARE GLOBALĂ
-    // ==========================================
-
-    // Baza de date extinsă cu toate capitolele de teorie din programă
-    const sitePages = [
-        // Pagini principale
-        { title: "🏠 Acasă / Dashboard", url: `${homePrefix}index.html`, keywords: ["acasa", "main", "dashboard", "index", "start"] },
-        { title: "📘 Teorie Materie (Toate clasele)", url: `${prefix}teorie.html`, keywords: ["teorie", "materie", "clase", "lectii", "capitole"] },
-        { title: "💻 Algoritmi Vizuali", url: `${prefix}algoritmi.html`, keywords: ["algoritmi", "sortare", "cautare", "interactiv", "vizual"] },
-        { title: "📝 Teste Grilă", url: `${prefix}teste.html`, keywords: ["teste", "grila", "quiz", "evaluare", "verificare"] },
-        { title: "🧩 Probleme Rezolvate", url: `${prefix}probleme.html`, keywords: ["probleme", "subiectul 3", "bac", "exercitii"] },
-        { title: "📊 Statistici Progres", url: `${prefix}statistici.html`, keywords: ["statistici", "progres", "grafic", "note"] },
-        { title: "⚙️ Setări Cont", url: `${prefix}setari.html`, keywords: ["setari", "configurare", "tema", "profil"] },
-
-        // Capitole Clasa a IX-a
-        { title: "📘 IX: Variabile și tipuri de date", url: `${prefix}variabile.html`, keywords: ["variabile", "tipuri de date", "int", "float", "char", "clasa 9"] },
-        { title: "📘 IX: Operatori C++", url: `${prefix}operatori.html`, keywords: ["operatori", "aritmetici", "logici", "atribuire", "modulo", "clasa 9"] },
-        { title: "📘 IX: Algoritmi de bază", url: `${prefix}algoritmi.html`, keywords: ["algoritmi de baza", "cmmdc", "oglinzit", "prim", "cifre", "divizori", "clasa 9"] },
-        { title: "📘 IX: Tablouri unidimensionale (Vectori)", url: `${prefix}vectori.html`, keywords: ["tablouri unidimensionale", "vectori", "parcurgere", "vector", "clasa 9"] },
-        { title: "📘 IX: Tablouri bidimensionale (Matrice)", url: `${prefix}matrice.html`, keywords: ["tablouri bidimensionale", "matrice", "linii", "coloane", "diagonala", "clasa 9"] },
-        { title: "📘 IX: Fișiere", url: `${prefix}fisier.html`, keywords: ["fisiere", "ifstream", "ofstream", "fout", "fin", "clasa 9"] },
-
-        // Capitole Clasa a X-a
-        { title: "📘 X: Subprograme și modularizare", url: `${prefix}subprograme.html`, keywords: ["subprograme", "modularizare", "functii", "parametri", "transmitere", "clasa 10"] },
-        { title: "📘 X: Recursivitate", url: `${prefix}recursivitate.html`, keywords: ["recursivitate", "recursiv", "factorial", "stiva", "stack", "clasa 10"] },
-        { title: "📘 X: Șiruri de caractere", url: `${prefix}siruri.html`, keywords: ["siruri de caractere", "string", "cstring", "strcpy", "strlen", "strtok", "clasa 10"] },
-        { title: "📘 X: Structuri de date (Stiva, Coada)", url: `${prefix}structuri-date.html`, keywords: ["structuri de date", "stiva", "coada", "pop", "push", "clasa 10"] },
-
-        // Capitole Clasa a XI-a
-        { title: "📘 XI: Metoda Backtracking", url: `${prefix}backtracking.html`, keywords: ["backtracking", "permutari", "aranjamente", "combinari", "stiva bkt", "clasa 11"] },
-        { title: "📘 XI: Metoda Greedy", url: `${prefix}greedy.html`, keywords: ["greedy", "optimizare", "rucsac", "spectacole", "clasa 11"] },
-        { title: "📘 XI: Teoria grafurilor (Neorientate/Orientate)", url: `${prefix}grafuri.html`, keywords: ["teoria grafurilor", "grafuri", "graf neorientat", "graf orientat", "arbori", "clasa 11"] },
-        { title: "📘 XI: Structuri de date arborescente", url: `${prefix}arbori.html`, keywords: ["structuri de date arborescente", "arbori", "arbore", "radacina", "frunze", "clasa 11"] }
-    ];
-
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-
-    if (searchInput && searchResults) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-
-            if (query === '') {
-                searchResults.style.display = 'none';
-                searchResults.innerHTML = '';
-                return;
-            }
-
-            // Filtrare în baza de date
-            const filteredResults = sitePages.filter(page => {
-                const matchTitle = page.title.toLowerCase().includes(query);
-                const matchKeywords = page.keywords.some(keyword => keyword.includes(query));
-                return matchTitle || matchKeywords;
-            });
-
-            // Afișare rezultate în dropdown
-            if (filteredResults.length > 0) {
-                searchResults.innerHTML = filteredResults.map(page => `
-                    <a href="${page.url}" class="search-item">
-                        ${page.title}
-                    </a>
-                `).join('');
-                searchResults.style.display = 'block';
-            } else {
-                searchResults.innerHTML = `<div class="search-no-results">Niciun rezultat găsit 😕</div>`;
-                searchResults.style.display = 'block';
-            }
-        });
-
-        // Închide dropdown-ul la click în exterior
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                searchResults.style.display = 'none';
-            }
-        });
-    }
-
-    // ==========================================
-    // 2. SIDEBAR TOGGLE
-    // ==========================================
-    const menuToggle = document.getElementById("menuToggle");
-    const sidebar = document.getElementById("sidebar");
-
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener("click", () => {
-            sidebar.classList.toggle("hidden");
-        });
-    }
-
-    // ==========================================
-    // 3. RECUPERARE LOGICĂ LISTE LECȚII (ACCORDION)
-    // ==========================================
-    const classHeaders = document.querySelectorAll('.class-card > h3');
-    classHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            header.parentElement.classList.toggle('open');
-        });
-    });
-
-    // ==========================================
-    // 4. LOGICĂ TESTE GRILĂ
-    // ==========================================
-    initChapterDropdowns();
-    initQuizGrille();
-});
-
-// ==========================================
-// 4. LOGICĂ PAGINĂ PROFIL & ANIMAȚII (LA LOAD)
-// ==========================================
-// Notă: rămâne aici doar pentru compatibilitate, în caz că mai există undeva
-// o pagină combinată cu #toggleMode. Pe login.html / creare-cont.html / delogare.html
-// (paginile noi, separate) elementul nu există, deci funcția iese imediat.
 function initProfileAuthMode() {
     const toggle = document.getElementById('toggleMode');
     if (!toggle) return;
@@ -297,26 +177,26 @@ function initProfileAuthMode() {
     function setMode(m) {
         mode = m;
         if (mode === 'login') {
-            if(heading) heading.textContent = 'Profil Elev';
-            if(parag) parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
-            if(submitBtn) {
+            if (heading) heading.textContent = 'Profil Elev';
+            if (parag) parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
+            if (submitBtn) {
                 submitBtn.textContent = 'Loghează-te';
                 submitBtn.value = 'login';
             }
             registerOnly.forEach(el => el.style.display = 'none');
             const confirmPw = document.getElementById('confirmPassword');
-            if(confirmPw) confirmPw.required = false;
+            if (confirmPw) confirmPw.required = false;
             toggle.textContent = 'Creează cont nou';
         } else {
-            if(heading) heading.textContent = 'Creează cont';
-            if(parag) parag.textContent = 'Completează formularul pentru a crea un cont nou.';
-            if(submitBtn) {
+            if (heading) heading.textContent = 'Creează cont';
+            if (parag) parag.textContent = 'Completează formularul pentru a crea un cont nou.';
+            if (submitBtn) {
                 submitBtn.textContent = 'Înregistrează-te';
                 submitBtn.value = 'register';
             }
             registerOnly.forEach(el => el.style.display = 'block');
             const confirmPw = document.getElementById('confirmPassword');
-            if(confirmPw) confirmPw.required = true;
+            if (confirmPw) confirmPw.required = true;
             toggle.textContent = 'Am deja cont';
         }
     }
@@ -338,71 +218,108 @@ function initProfileAuthMode() {
         });
     }
 }
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("searchInput");
-    const searchResults = document.getElementById("searchResults");
-    const yearSections = document.querySelectorAll(".year-section");
 
-    // 1. Ascultă introducerea de text în input
-    searchInput.addEventListener("input", function () {
-        const query = this.value.trim().toLowerCase();
-        searchResults.innerHTML = "";
+document.addEventListener("DOMContentLoaded", () => {
+    updateProfileButton();
 
-        if (query.length === 0) {
-            searchResults.style.display = "none";
-            // Reafișează toate secțiunile dacă căutarea e goală
-            yearSections.forEach(section => section.style.display = "block");
-            return;
-        }
+    // ==========================================
+    // 1. CONFIGURARE LOGICĂ CĂUTARE GLOBALĂ
+    // ==========================================
+    const sitePages = [
+        { title: "🏠 Acasă / Dashboard", url: `${homePrefix}index.html`, keywords: ["acasa", "main", "dashboard", "index", "start"] },
+        { title: "📘 Teorie Materie (Toate clasele)", url: `${prefix}teorie.html`, keywords: ["teorie", "materie", "clase", "lectii", "capitole"] },
+        { title: "💻 Algoritmi Vizuali", url: `${prefix}algoritmi.html`, keywords: ["algoritmi", "sortare", "cautare", "interactiv", "vizual"] },
+        { title: "📝 Teste Grilă", url: `${prefix}teste.html`, keywords: ["teste", "grila", "quiz", "evaluare", "verificare"] },
+        { title: "🧩 Probleme Rezolvate", url: `${prefix}probleme.html`, keywords: ["probleme", "subiectul 3", "bac", "exercitii"] },
+        { title: "📊 Statistici Progres", url: `${prefix}statistici.html`, keywords: ["statistici", "progres", "grafic", "note"] },
+        { title: "⚙️ Setări Cont", url: `${prefix}setari.html`, keywords: ["setari", "configurare", "tema", "profil"] },
+        { title: "📘 IX: Variabile și tipuri de date", url: `${prefix}variabile.html`, keywords: ["variabile", "tipuri de date", "int", "float", "char", "clasa 9"] },
+        { title: "📘 IX: Operatori C++", url: `${prefix}operatori.html`, keywords: ["operatori", "aritmetici", "logici", "atribuire", "modulo", "clasa 9"] },
+        { title: "📘 IX: Algoritmi de bază", url: `${prefix}algoritmi.html`, keywords: ["algoritmi de baza", "cmmdc", "oglinzit", "prim", "cifre", "divizori", "clasa 9"] },
+        { title: "📘 IX: Tablouri unidimensionale (Vectori)", url: `${prefix}vectori.html`, keywords: ["tablouri unidimensionale", "vectori", "parcurgere", "vector", "clasa 9"] },
+        { title: "📘 IX: Tablouri bidimensionale (Matrice)", url: `${prefix}matrice.html`, keywords: ["tablouri bidimensionale", "matrice", "linii", "coloane", "diagonala", "clasa 9"] },
+        { title: "📘 IX: Fișiere", url: `${prefix}fisier.html`, keywords: ["fisiere", "ifstream", "ofstream", "fout", "fin", "clasa 9"] },
+        { title: "📘 X: Subprograme și modularizare", url: `${prefix}subprograme.html`, keywords: ["subprograme", "modularizare", "functii", "parametri", "transmitere", "clasa 10"] },
+        { title: "📘 X: Recursivitate", url: `${prefix}recursivitate.html`, keywords: ["recursivitate", "recursiv", "factorial", "stiva", "stack", "clasa 10"] },
+        { title: "📘 X: Șiruri de caractere", url: `${prefix}siruri.html`, keywords: ["siruri de caractere", "string", "cstring", "strcpy", "strlen", "strtok", "clasa 10"] },
+        { title: "📘 X: Structuri de date (Stiva, Coada)", url: `${prefix}structuri-date.html`, keywords: ["structuri de date", "stiva", "coada", "pop", "push", "clasa 10"] },
+        { title: "📘 XI: Metoda Backtracking", url: `${prefix}backtracking.html`, keywords: ["backtracking", "permutari", "aranjamente", "combinari", "stiva bkt", "clasa 11"] },
+        { title: "📘 XI: Metoda Greedy", url: `${prefix}greedy.html`, keywords: ["greedy", "optimizare", "rucsac", "spectacole", "clasa 11"] },
+        { title: "📘 XI: Teoria grafurilor (Neorientate/Orientate)", url: `${prefix}grafuri.html`, keywords: ["teoria grafurilor", "grafuri", "graf neorientat", "graf orientat", "arbori", "clasa 11"] },
+        { title: "📘 XI: Structuri de date arborescente", url: `${prefix}arbori.html`, keywords: ["structuri de date arborescente", "arbori", "arbore", "radacina", "frunze", "clasa 11"] }
+    ];
 
-        let matches = 0;
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
 
-        // 2. Filtrează secțiunile din pagină
-        yearSections.forEach(section => {
-            const yearTitle = section.querySelector(".year-title").textContent;
-            const yearText = yearTitle.toLowerCase();
+    if (searchInput && searchResults) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
 
-            if (yearText.includes(query)) {
-                matches++;
-                
-                // Creăm un element în dropdown pentru fiecare an găsit
-                const item = document.createElement("div");
-                item.className = "search-item";
-                item.innerHTML = `
-                    <span>${yearTitle}</span>
-                    <span class="search-item-badge">Sari la an</span>
-                `;
+            if (query === '') {
+                searchResults.style.display = 'none';
+                searchResults.innerHTML = '';
+                return;
+            }
 
-                // La click pe rezultat, derulăm direct la secțiunea respectivă
-                item.addEventListener("click", function () {
-                    section.scrollIntoView({ behavior: "smooth", block: "start" });
-                    searchResults.style.display = "none";
-                    searchInput.value = ""; // Opțional: resetează căutarea
-                });
+            const filteredResults = sitePages.filter(page => {
+                const matchTitle = page.title.toLowerCase().includes(query);
+                const matchKeywords = page.keywords.some(keyword => keyword.includes(query));
+                return matchTitle || matchKeywords;
+            });
 
-                searchResults.appendChild(item);
+            if (filteredResults.length > 0) {
+                searchResults.innerHTML = filteredResults.map(page => `
+                    <a href="${page.url}" class="search-item">
+                        ${page.title}
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = `<div class="search-no-results">Niciun rezultat găsit 😕</div>`;
+                searchResults.style.display = 'block';
             }
         });
 
-        // 3. Dacă nu există potriviri, afișăm un mesaj
-        if (matches === 0) {
-            searchResults.innerHTML = `<div class="search-item" style="cursor:default; color:#a0aec0;">Niciun rezultat găsit</div>`;
-        }
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+    }
 
-        searchResults.style.display = "block";
+    // ==========================================
+    // 2. SIDEBAR TOGGLE
+    // ==========================================
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("hidden");
+        });
+    }
+
+    // ==========================================
+    // 3. ACCORDION CARDURI
+    // ==========================================
+    const classHeaders = document.querySelectorAll('.class-card > h3');
+    classHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.parentElement.classList.toggle('open');
+        });
     });
 
-    // 4. Închide dropdown-ul dacă utilizatorul dă click în afara lui
-    document.addEventListener("click", function (event) {
-        if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
-            searchResults.style.display = "none";
-        }
-    });
+    // ==========================================
+    // 4. INIȚIALIZĂRI TESTE
+    // ==========================================
+    initChapterDropdowns();
+    initQuizGrille();
 });
-</script>
 
-// Animațiile se declanșează când se termină de încărcat resursele paginii
+// ==========================================
+// 5. ANIMAȚII LA LOAD
+// ==========================================
 window.addEventListener("load", () => {
     const elements = document.querySelectorAll(".card, .module-card, .hero");
 
