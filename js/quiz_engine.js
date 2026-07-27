@@ -367,6 +367,63 @@ const databaseSubiecte = {
   "explicatie": "Răspuns corect: <b>b ([1,4] și [5,7])</b>.<br>• Muchia [5,7] este obligatorie pentru ca lanțul 1 → 2 → 7 → 5 → 4 → 6 (de lungime 5) să existe în graf.<br>• În varianta b, adăugarea muchiei [1,4] păstrează lungimea maximă de 5 a lanțului.<br>• În varianta d, adăugarea muchiei [3,6] ar crea un lanț mai lung: 1 → 2 → 7 → 5 → 4 → 3 → 6 (de lungime 6), ceea ce ar contrazice faptul că lanțul din enunț are lungime maximă."
     }
   ],
+    "2021_iunie": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați o expresie C/C++ care are valoarea 1 dacă și numai dacă valorile variabilelor întregi x și y sunt numere pare.",
+      "optiuni": [
+        "<code>x%2==0 &amp;&amp; (y+1)%2!=0</code>",
+        "<code>(x-y)/2==0</code>",
+        "<code>(x+y)%2==0 &amp;&amp; (x-y)%2==0</code>",
+        "<code>x%2==y%2</code>"
+      ],
+      "corect": 0,
+      "explicatie": "Răspuns corect: <b>a (<code>x%2==0 &amp;&amp; (y+1)%2!=0</code>)</b>.<br>• <code>x%2==0</code> verifică dacă x este par.<br>• <code>(y+1)%2!=0</code> înseamnă că y+1 este impar, adică y este par.<br>Expresia este 1 dacă și numai dacă ambele numere sunt pare."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați valorile pe care le pot avea parametrii n și c, astfel încât, în urma apelului, <code>f(n,c)</code> să aibă valoarea 2021.<br><pre><code>int f(int n,int c)\n{\n  if(n==0) return 0;\n  else\n  if(n%10==c) return f(n/10,c);\n  else return n%10+10*f(n/10,c);\n}</code></pre>",
+      "optiuni": [
+        "n=2021 și c=0",
+        "n=200211 și c=2",
+        "n=312032 și c=3",
+        "n=720721 și c=7"
+      ],
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (n=720721 și c=7)</b>.<br>Subprogramul elimină din numărul n toate cifrele egale cu c. Pentru n=720721 și c=7, eliminând cifrele de 7 obținem exact numărul 2021."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Variabila m memorează elementele unui tablou bidimensional cu 100 de linii și 100 de coloane (numerotate de la 0 la 99). Indicați expresia C/C++ prin care poate fi accesat un element aflat pe diagonala secundară a tabloului.",
+      "optiuni": [
+        "<code>m[42/42]</code>",
+        "<code>m[42|42]</code>",
+        "<code>m[42]:[57]</code>",
+        "<code>m[42][57]</code>"
+      ],
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (<code>m[42][57]</code>)</b>.<br>Un element m[i][j] dintr-o matrice cu N=100 (indexată de la 0 la 99) se află pe diagonala secundară dacă i + j = N - 1 = 99. Pentru linia 42 și coloana 57 avem 42 + 57 = 99."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Un graf neorientat are 6 noduri, numerotate de la 1 la 6, și muchiile [1,2], [1,3], [2,3], [3,4], [3,5], [4,5], [5,6]. Indicați un ciclu elementar al acestui graf.",
+      "optiuni": [
+        "1,2,3",
+        "1,2,3,1",
+        "1,2,3,4,5,3,1",
+        "1,2,3,4,5,6,1"
+      ],
+      "corect": 1,
+      "explicatie": "Răspuns corect: <b>b (1,2,3,1)</b>.<br>Un ciclu este elementar dacă se închide în primul nod fără a repeta alte noduri intermediare. Secvența 1,2,3,1 folosește muchiile [1,2], [2,3] și [3,1] și este un ciclu elementar."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Într-un arbore cu rădăcină (nivelul 0 = rădăcina), toate nodurile de pe același nivel au un număr egal de „fii” și NU există două niveluri diferite cu același număr de noduri. Indicați numărul minim de noduri de pe nivelul 3.",
+      "optiuni": ["12", "9", "8", "5"],
+      "corect": 2,
+      "explicatie": "Răspuns corect: <b>c (8)</b>.<br>Notăm cu k<sub>i</sub> numărul de fii ai fiecărui nod de pe nivelul i (k<sub>i</sub> ≥ 2):<br>• Nivelul 0: 1 nod<br>• Nivelul 1: k<sub>0</sub> = 2 noduri (pt. k<sub>0</sub>=2)<br>• Nivelul 2: k<sub>0</sub> · k<sub>1</sub> = 2 · 2 = 4 noduri (pt. k<sub>1</sub>=2)<br>• Nivelul 3: k<sub>0</sub> · k<sub>1</sub> · k<sub>2</sub> = 4 · 2 = 8 noduri (pt. k<sub>2</sub>=2).<br>Numerele de noduri (1, 2, 4, 8) sunt toate distincte, iar minimul de pe nivelul 3 este 8."
+    }
+  ],
     "2021_toamna": [
     {
       "tip": "grila",
