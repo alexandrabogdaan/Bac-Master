@@ -106,15 +106,19 @@
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'light') {
         document.body.classList.add('light-mode');
+        document.documentElement.classList.add('light-mode');
+        document.documentElement.setAttribute('data-theme', 'light');
         updateUI(true);
     } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
         updateUI(false);
     }
 
     // Ascultăm evenimentul de click pe buton
     themeToggleBtn.addEventListener('click', () => {
-        // Schimbăm clasa pe elementul body
+        // Schimbăm clasa pe elementul body și pe document
         document.body.classList.toggle('light-mode');
+        document.documentElement.classList.toggle('light-mode');
         
         // Verificăm noua stare
         const isLightActive = document.body.classList.contains('light-mode');
@@ -122,8 +126,10 @@
         // Salvăm starea în localStorage pentru a fi reținută pe tot site-ul
         if (isLightActive) {
             localStorage.setItem('theme', 'light');
+            document.documentElement.setAttribute('data-theme', 'light');
         } else {
             localStorage.setItem('theme', 'dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
         }
         
         // Actualizăm interfața butonului
