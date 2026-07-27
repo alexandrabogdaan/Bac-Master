@@ -233,6 +233,51 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "🧩 Probleme Rezolvate", url: `${prefix}probleme.html`, keywords: ["probleme", "subiectul 3", "bac", "exercitii"] },
         { title: "📊 Statistici Progres", url: `${prefix}statistici.html`, keywords: ["statistici", "progres", "grafic", "note"] },
         { title: "⚙️ Setări Cont", url: `${prefix}setari.html`, keywords: ["setari", "configurare", "tema", "profil"] },
+        // --- SUBIECTE BAC PE ANI ȘI SESIUNI (2015 - 2025) ---
+        // 2025
+        { title: "📄 Subiect BAC 2025 - Iunie", url: `${prefix}2025_iunie_subiect.pdf`, keywords: ["2025", "iunie", "bac 2025", "vara"] },
+        { title: "📄 Subiect BAC 2025 - Toamnă", url: `${prefix}2025_toamna_subiect.pdf`, keywords: ["2025", "toamna", "bac 2025", "august"] },
+
+        // 2024
+        { title: "📄 Subiect BAC 2024 - Iunie", url: `${prefix}2024_iunie_subiect.pdf`, keywords: ["2024", "iunie", "bac 2024", "vara"] },
+        { title: "📄 Subiect BAC 2024 - Toamnă", url: `${prefix}2024_toamna_subiect.pdf`, keywords: ["2024", "toamna", "bac 2024", "august"] },
+
+        // 2023
+        { title: "📄 Subiect BAC 2023 - Iunie", url: `${prefix}2023_iunie_subiect.pdf`, keywords: ["2023", "iunie", "bac 2023", "vara"] },
+        { title: "📄 Subiect BAC 2023 - Toamnă", url: `${prefix}2023_toamna_subiect.pdf`, keywords: ["2023", "toamna", "bac 2023", "august"] },
+
+        // 2022
+        { title: "📄 Subiect BAC 2022 - Iunie", url: `${prefix}2022_iunie_subiect.pdf`, keywords: ["2022", "iunie", "bac 2022", "vara"] },
+        { title: "📄 Subiect BAC 2022 - Toamnă", url: `${prefix}2022_toamna_subiect.pdf`, keywords: ["2022", "toamna", "bac 2022", "august"] },
+
+        // 2021
+        { title: "📄 Subiect BAC 2021 - Iunie", url: `${prefix}2021_iunie_subiect.pdf`, keywords: ["2021", "iunie", "bac 2021", "vara"] },
+        { title: "📄 Subiect BAC 2021 - Toamnă", url: `${prefix}2021_toamna_subiect.pdf`, keywords: ["2021", "toamna", "bac 2021", "august"] },
+
+        // 2020
+        { title: "📄 Subiect BAC 2020 - Iunie", url: `${prefix}2020_iunie_subiect.pdf`, keywords: ["2020", "iunie", "bac 2020", "vara"] },
+        { title: "📄 Subiect BAC 2020 - Toamnă", url: `${prefix}2020_toamna_subiect.pdf`, keywords: ["2020", "toamna", "bac 2020", "august"] },
+
+        // 2019
+        { title: "📄 Subiect BAC 2019 - Iunie", url: `${prefix}2019_iunie_subiect.pdf`, keywords: ["2019", "iunie", "bac 2019", "vara"] },
+        { title: "📄 Subiect BAC 2019 - Toamnă", url: `${prefix}2019_toamna_subiect.pdf`, keywords: ["2019", "toamna", "bac 2019", "august"] },
+
+        // 2018
+        { title: "📄 Subiect BAC 2018 - Iunie", url: `${prefix}2018_iunie_subiect.pdf`, keywords: ["2018", "iunie", "bac 2018", "vara"] },
+        { title: "📄 Subiect BAC 2018 - Toamnă", url: `${prefix}2018_toamna_subiect.pdf`, keywords: ["2018", "toamna", "bac 2018", "august"] },
+
+        // 2017
+        { title: "📄 Subiect BAC 2017 - Iunie", url: `${prefix}2017_iunie_subiect.pdf`, keywords: ["2017", "iunie", "bac 2017", "vara"] },
+        { title: "📄 Subiect BAC 2017 - Toamnă", url: `${prefix}2017_toamna_subiect.pdf`, keywords: ["2017", "toamna", "bac 2017", "august"] },
+
+        // 2016
+        { title: "📄 Subiect BAC 2016 - Iunie", url: `${prefix}2016_iunie_subiect.pdf`, keywords: ["2016", "iunie", "bac 2016", "vara"] },
+        { title: "📄 Subiect BAC 2016 - Toamnă", url: `${prefix}2016_toamna_subiect.pdf`, keywords: ["2016", "toamna", "bac 2016", "august"] },
+
+        // 2015
+        { title: "📄 Subiect BAC 2015 - Iunie", url: `${prefix}2015_iunie_subiect.pdf`, keywords: ["2015", "iunie", "bac 2015", "vara"] },
+        { title: "📄 Subiect BAC 2015 - Toamnă", url: `${prefix}2015_toamna_subiect.pdf`, keywords: ["2015", "toamna", "bac 2015", "august"] },
+        
         { title: "📘 IX: Variabile și tipuri de date", url: `${prefix}variabile.html`, keywords: ["variabile", "tipuri de date", "int", "float", "char", "clasa 9"] },
         { title: "📘 IX: Operatori C++", url: `${prefix}operatori.html`, keywords: ["operatori", "aritmetici", "logici", "atribuire", "modulo", "clasa 9"] },
         { title: "📘 IX: Algoritmi de bază", url: `${prefix}algoritmi.html`, keywords: ["algoritmi de baza", "cmmdc", "oglinzit", "prim", "cifre", "divizori", "clasa 9"] },
