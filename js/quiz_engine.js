@@ -252,14 +252,14 @@ const databaseSubiecte = {
       "enunt": "1. Indicați numerele pe care le pot memora variabilele întregi x și y, astfel încât valoarea expresiei C/C++ alăturate să fie 1:<br><code>y%x - (x/y)*3 != 0</code>",
       "optiuni": ["x=25 și y=75", "x=25 și y=15", "x=15 și y=0", "x=10 și y=30"],
       "corect": 1,
-      "explicatie": "Răspuns corect: <b>b (x=25 și y=15)</b>.<br>Evaluăm opțiunea b: <code>15%25 - (25/15)*3</code> = <code>15 - 1*3</code> = 12 &rarr; <code>12 != 0</code> evaluează la 1 (adevărat)."
+      "explicatie": "Răspuns corect: <b>b (x=25 și y=15)</b>.<br>Evaluăm opțiunea b: <code>15%25 - (25/15)*3</code> = <code>15 - 1*3</code> = 12 → <code>12 != 0</code> evaluează la 1 (adevărat)."
     },
     {
       "tip": "grila",
       "enunt": "2. Subprogramul f este definit alăturat. Indicați valoarea <code>f(3,2)</code>.<br><pre><code>int f(int x, int y)\n{\n  int z;\n  if (y==0) return 1;\n  z=f(x,y/2);\n  if (y%2!=0) return z*z*x;\n  return z*z;\n}</code></pre>",
       "optiuni": ["1", "2", "9", "18"],
       "corect": 2,
-      "explicatie": "Răspuns corect: <b>c (9)</b>.<br>• <code>f(3,2)</code> apelează <code>z = f(3,1)</code>.<br>• <code>f(3,1)</code> apelează <code>z = f(3,0)</code>, care returnează 1.<br>• În <code>f(3,1)</code>: <code>z=1</code>, <code>1%2!=0</code> &rarr; returnează <code>1*1*3 = 3</code>.<br>• În <code>f(3,2)</code>: <code>z=3</code>, <code>2%2!=0</code> este fals &rarr; returnează <code>3*3 = 9</code>."
+      "explicatie": "Răspuns corect: <b>c (9)</b>.<br>• <code>f(3,2)</code> apelează <code>z = f(3,1)</code>.<br>• <code>f(3,1)</code> apelează <code>z = f(3,0)</code>, care returnează 1.<br>• În <code>f(3,1)</code>: <code>z=1</code>, <code>1%2!=0</code> → returnează <code>1*1*3 = 3</code>.<br>• În <code>f(3,2)</code>: <code>z=3</code>, <code>2%2!=0</code> este fals → returnează <code>3*3 = 9</code>."
     },
     {
       "tip": "grila",
@@ -273,14 +273,14 @@ const databaseSubiecte = {
       "enunt": "4. Utilizând metoda backtracking, se generează toate parfumurile formate prin amestecarea a câte 3 esențe distincte din mulțimea {bergamotă, cireș, iris, lămâie, salcâm}. Două parfumuri sunt distincte dacă diferă prin cel puțin o esență. Primele patru soluții obținute sunt, în această ordine: (bergamotă, cireș, iris), (bergamotă, cireș, lămâie), (bergamotă, cireș, salcâm) și (bergamotă, iris, lămâie). Indicați penultima soluție generată.",
       "optiuni": ["(cireș, iris, salcâm)", "(cireș, lămâie, salcâm)", "(lămâie, iris, salcâm)", "(iris, lămâie, salcâm)"],
       "corect": 1,
-      "explicatie": "Răspuns corect: <b>b ((cireș, lămâie, salcâm))</b>.<br>Elementele sunt ordonate alfabetic: 1. bergamotă, 2. cireș, 3. iris, 4. lămâie, 5. salcâm.<br>Ultima soluție generată este (iris, lămâie, salcâm) &ndash; indicii (3, 4, 5).<br>Penultima soluție generată este cea anterioară ei lexicografic, adică (cireș, lămâie, salcâm) &ndash; indicii (2, 4, 5)."
+      "explicatie": "Răspuns corect: <b>b ((cireș, lămâie, salcâm))</b>.<br>Elementele sunt ordonate alfabetic: 1. bergamotă, 2. cireș, 3. iris, 4. lămâie, 5. salcâm.<br>Ultima soluție generată este (iris, lămâie, salcâm) – indicii (3, 4, 5).<br>Penultima soluție generată este cea anterioară ei lexicografic, adică (cireș, lămâie, salcâm) – indicii (2, 4, 5)."
     },
     {
       "tip": "grila",
       "enunt": "5. Un graf neorientat are 5 noduri, numerotate de la 1 la 5, cu gradele figurate în tabel (1: 2, 2: x, 3: 3, 4: 3, 5: y). Indicați o pereche de valori posibile pentru x și y.",
       "optiuni": ["0 și 4", "1 și 5", "2 și 3", "3 și 3"],
       "corect": 3,
-      "explicatie": "Răspuns corect: <b>d (3 și 3)</b>.<br>Suma gradelor trebuie să fie pară: $2 + 3 + 3 + 3 + 3 = 14$ (pară), iar gradul maxim este $\le 4$. Secvența de grade 2, 3, 3, 3, 3 este realizabilă într-un graf neorientat cu 5 noduri."
+      "explicatie": "Răspuns corect: <b>d (3 și 3)</b>.<br>Suma gradelor trebuie să fie pară: 2 + 3 + 3 + 3 + 3 = 14 (pară), iar gradul maxim al oricărui nod este ≤ 4. Secvența de grade 2, 3, 3, 3, 3 este realizabilă într-un graf neorientat cu 5 noduri."
     }
   ],
     "2022_iunie": [
