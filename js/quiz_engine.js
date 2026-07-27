@@ -516,7 +516,7 @@ const databaseSubiecte = {
       "enunt": "2. Subprogramul f este definit alăturat. Indicați apelul în urma căruia simbolul * se afișează de trei ori.<br><pre><code>void f(int x)\n{\n  cout&lt;&lt;\"*\";\n  if(x&gt;5) f((x+1)/2);\n}</code></pre>",
       "optiuni": ["<code>f(30);</code>", "<code>f(21);</code>", "<code>f(17);</code>", "<code>f(8);</code>"],
       "corect": 2,
-      "explicatie": "Pentru <code>f(17)</code>:<br>• Afișează * (1) &rarr; $17 > 5$ este adevărat &rarr; apelează <code>f((17+1)/2) = f(9)</code><br>• Afișează * (2) &rarr; $9 > 5$ este adevărat &rarr; apelează <code>f((9+1)/2) = f(5)</code><br>• Afișează * (3) &rarr; $5 > 5$ este fals &rarr; se oprește.<br>În total, simbolul * este afișat de exact 3 ori."
+      "explicatie": "Pentru <code>f(17)</code>:<br>• Afișează * (1) → 17 &gt; 5 este adevărat → apelează <code>f((17+1)/2) = f(9)</code><br>• Afișează * (2) → 9 &gt; 5 este adevărat → apelează <code>f((9+1)/2) = f(5)</code><br>• Afișează * (3) → 5 &gt; 5 este fals → se oprește.<br>În total, simbolul * este afișat de exact 3 ori."
     },
     {
       "tip": "grila",
@@ -528,7 +528,7 @@ const databaseSubiecte = {
         "(căpșune, mere, pere, pepene)"
       ],
       "corect": 2,
-      "explicatie": "Elementele din mulțime sunt considerate în ordinea: 1. căpșune, 2. mere, 3. pepene, 4. pere, 5. portocale.<br>Generarea submulțimilor de 3 și 4 elemente în ordine lexicografică este:<br>1. (căpșune, mere, pepene)<br>2. (căpșune, mere, pepene, pere)<br>3. (căpșune, mere, pepene, portocale)<br>4. (căpșune, mere, pere)<br>5. (căpșune, mere, pere, portocale)<br>6. (căpșune, mere, portocale)<br>A șasea soluție este <code>(căpșune, mere, portocale)</code>."
+      "explicatie": "Elementele din mulțime sunt considerate în ordinea: 1. căpșune, 2. mere, 3. pepene, 4. pere, 5. portocale.<br>Generarea submulțimilor de 3 și 4 elemente în ordine lexicografică este:<br>1. (căpșune, mere, pepene)<br>2. (căpșune, mere, pepene, pere)<br>3. (căpșune, mere, pepene, portocale)<br>4. (căpșune, mere, pere)<br>5. (căpșune, mere, pere, portocale)<br>6. (căpșune, mere, portocale)<br>A șasea soluție este (căpșune, mere, portocale)."
     },
     {
       "tip": "grila",
@@ -542,7 +542,7 @@ const databaseSubiecte = {
       "enunt": "5. Un graf neorientat eulerian cu 5 noduri are un nod cu gradul 4. Indicați numărul minim de muchii ale grafului.",
       "optiuni": ["4", "6", "8", "10"],
       "corect": 1,
-      "explicatie": "Un graf este eulerian dacă este conex și toate nodurile sale au grade pare non-nule.<br>Graful are 5 noduri și un nod de grad 4. Pentru a minimiza numărul total de muchii, celelalte 4 noduri trebuie să aibă cel mai mic grad par posibil, adică gradul 2.<br>Suma gradelor din graf va fi $4 + 2 + 2 + 2 + 2 = 12$.<br>Conform teoremei fundamentale a grafurilor, numărul de muchii este egal cu jumătatea sumei gradelor: $12 / 2 = 6$ muchii."
+      "explicatie": "Un graf este eulerian dacă este conex și toate nodurile sale au grade pare non-nule.<br>Graful are 5 noduri și un nod de grad 4. Pentru a minimiza numărul total de muchii, celelalte 4 noduri trebuie să aibă cel mai mic grad par posibil, adică gradul 2.<br>Suma gradelor din graf va fi 4 + 2 + 2 + 2 + 2 = 12.<br>Conform teoremei fundamentale a grafurilor, numărul de muchii este egal cu jumătatea sumei gradelor: 12 / 2 = 6 muchii."
     }
   ],
       "2019_toamna": [
