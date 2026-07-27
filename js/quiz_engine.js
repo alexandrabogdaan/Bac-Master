@@ -361,10 +361,10 @@ const databaseSubiecte = {
     },
     {
       "tip": "grila",
-      "enunt": "5. Un graf neorientat are 7 noduri (1 la 7) și 8 muchii, dintre care șase sunt: [1,2], [2,4], [2,7], [3,4], [4,5], [4,6]. Știind că unul dintre lanțurile elementare de lungime maximă este 1, 2, 7, 5, 4, 6, indicați care ar putea fi celelalte două muchii ale grafului.",
-      "optiuni": ["[1,4] și [4,7]", "[1,4] și [5,7]", "[2,5] și [4,7]", "[3,6] și [5,7]"],
-      "corect": 3,
-      "explicatie": "Lanțul 1 → 2 → 7 → 5 → 4 → 6 folosește muchiile [1,2], [2,7], [5,7], [4,5], [4,6].<br>Pentru ca acest lanț să existe în graf, muchia [5,7] trebuie neapărat să facă parte din cele două muchii lipsă.<br>Adăugarea muchiei [3,6] păstrează lanțul specificat valid și neîntrerupt."
+  "enunt": "5. Un graf neorientat are 7 noduri (1 la 7) și 8 muchii, dintre care șase sunt: [1,2], [2,4], [2,7], [3,4], [4,5], [4,6]. Știind că unul dintre lanțurile elementare de lungime maximă este 1, 2, 7, 5, 4, 6, indicați care ar putea fi celelalte două muchii ale grafului.",
+  "optiuni": ["[1,4] și [4,7]", "[1,4] și [5,7]", "[2,5] și [4,7]", "[3,6] și [5,7]"],
+  "corect": 1,
+  "explicatie": "Răspuns corect: <b>b ([1,4] și [5,7])</b>.<br>• Muchia [5,7] este obligatorie pentru ca lanțul 1 → 2 → 7 → 5 → 4 → 6 (de lungime 5) să existe în graf.<br>• În varianta b, adăugarea muchiei [1,4] păstrează lungimea maximă de 5 a lanțului.<br>• În varianta d, adăugarea muchiei [3,6] ar crea un lanț mai lung: 1 → 2 → 7 → 5 → 4 → 3 → 6 (de lungime 6), ceea ce ar contrazice faptul că lanțul din enunț are lungime maximă."
     }
   ],
     "2021_toamna": [
