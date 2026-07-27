@@ -338,6 +338,69 @@ function initProfileAuthMode() {
         });
     }
 }
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    const yearSections = document.querySelectorAll(".year-section");
+
+    // 1. Ascultă introducerea de text în input
+    searchInput.addEventListener("input", function () {
+        const query = this.value.trim().toLowerCase();
+        searchResults.innerHTML = "";
+
+        if (query.length === 0) {
+            searchResults.style.display = "none";
+            // Reafișează toate secțiunile dacă căutarea e goală
+            yearSections.forEach(section => section.style.display = "block");
+            return;
+        }
+
+        let matches = 0;
+
+        // 2. Filtrează secțiunile din pagină
+        yearSections.forEach(section => {
+            const yearTitle = section.querySelector(".year-title").textContent;
+            const yearText = yearTitle.toLowerCase();
+
+            if (yearText.includes(query)) {
+                matches++;
+                
+                // Creăm un element în dropdown pentru fiecare an găsit
+                const item = document.createElement("div");
+                item.className = "search-item";
+                item.innerHTML = `
+                    <span>${yearTitle}</span>
+                    <span class="search-item-badge">Sari la an</span>
+                `;
+
+                // La click pe rezultat, derulăm direct la secțiunea respectivă
+                item.addEventListener("click", function () {
+                    section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    searchResults.style.display = "none";
+                    searchInput.value = ""; // Opțional: resetează căutarea
+                });
+
+                searchResults.appendChild(item);
+            }
+        });
+
+        // 3. Dacă nu există potriviri, afișăm un mesaj
+        if (matches === 0) {
+            searchResults.innerHTML = `<div class="search-item" style="cursor:default; color:#a0aec0;">Niciun rezultat găsit</div>`;
+        }
+
+        searchResults.style.display = "block";
+    });
+
+    // 4. Închide dropdown-ul dacă utilizatorul dă click în afara lui
+    document.addEventListener("click", function (event) {
+        if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+            searchResults.style.display = "none";
+        }
+    });
+});
+</script>
 
 // Animațiile se declanșează când se termină de încărcat resursele paginii
 window.addEventListener("load", () => {
