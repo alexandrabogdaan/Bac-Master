@@ -283,7 +283,89 @@ document.addEventListener("DOMContentLoaded", () => {
     initChapterDropdowns();
     initQuizGrille();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const yearSections = document.querySelectorAll('.year-section');
 
+    if (searchInput && yearSections.length > 0) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            // Dacă utilizatorul a șters textul, ascundem dropdown-ul
+            if (query === '') {
+                if (searchResults) {
+                    searchResults.style.display = 'none';
+                    searchResults.innerHTML = '';
+                }
+                yearSections.forEach(section => section.style.display = 'block');
+                return;
+            }
+
+            let dropdownContent = '';
+
+            yearSections.forEach((section) => {
+                const yearTitle = section.querySelector('.year-title');
+                const yearText = yearTitle ? yearTitle.textContent.toLowerCase() : '';
+
+                // Verificăm dacă anul conține textul tastat (ex: "2022")
+                if (yearText.includes(query)) {
+                    section.style.display = 'block';
+                    visibleCount++;
+
+                    // Adăugăm opțiunea în dropdown-ul interactiv din topbar
+                    const yearNumber = yearText.replace(/[^0-9]/g, '');
+                    dropdownContent += `
+                        <div class="search-item" onclick="scrollToYear('${yearNumber}')">
+                            <span>📅 BAC ${yearNumber}</span>
+                            <span class="search-item-badge">Sesiuni Iunie & Toamnă</span>
+                        </div>
+                    `;
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            // Gestionare afișare dropdown
+            if (searchResults) {
+                if (dropdownContent !== '') {
+                    searchResults.innerHTML = dropdownContent;
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<div class="search-item" style="color: #a0aec0; justify-content: center;">Nu am găsit niciun an</div>';
+                    searchResults.style.display = 'block';
+                }
+            }
+        });
+
+        // Ascundem dropdown-ul dacă utilizatorul dă click în afara lui
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && searchResults && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+    }
+});
+
+// Funcție ajutătoare pentru a derula pagina direct la anul selectat din dropdown
+function scrollToYear(year) {
+    const sections = document.querySelectorAll('.year-section');
+    sections.forEach(section => {
+        const title = section.querySelector('.year-title');
+        if (title && title.textContent.includes(year)) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Efect vizual scurt de evidențiere
+            section.style.transition = 'background-color 0.3s';
+            section.style.backgroundColor = '#ebf8ff';
+            setTimeout(() => {
+                section.style.backgroundColor = '#ffffff';
+            }, 1000);
+        }
+    });
+    const searchResults = document.getElementById('searchResults');
+    if (searchResults) searchResults.style.display = 'none';
+}
 // ==========================================
 // 5. ANIMAȚII LA LOAD
 // ==========================================
