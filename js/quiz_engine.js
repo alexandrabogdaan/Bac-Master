@@ -232,11 +232,11 @@ const databaseSubiecte = {
       "explicatie": "În șirul <code>\"bac2023\"</code>, caracterul de la poziția 2 este <code>'c'</code> (indexat de la 0: s[0]='b', s[1]='a', s[2]='c'). Diferența <code>'c'-'a'</code> are valoarea 2. Instrucțiunea devine <code>s[2] = '\\0'</code>, ceea ce plasează terminatorul de șir pe poziția 2. Șirul devine <code>\"ba\"</code>, iar <code>strlen(s)</code> returnează 2."
     },
     {
-      "tip": "grila",
-      "enunt": "4. Indicați un vector de „tați” corespunzător unui arbore cu 7 noduri, în care cel puțin unul dintre noduri are trei ascendenți.",
-      "optiuni": ["0,1,2,1,1,1,2", "3,0,2,1,3,2,1", "4,3,0,3,4,4,3", "5,4,3,0,2,3,4"],
-      "corect": 3,
-      "explicatie": "În varianta d <code>(5,4,3,0,2,3,4)</code>, rădăcina este nodul 4 (tatăl este 0). Nodul 1 îl are ca tată pe 5, nodul 5 îl are ca tată pe 2, iar nodul 2 îl are ca tată pe 4 (rădăcina). Lanțul de la nodul 1 la rădăcină este 1 &rarr; 5 &rarr; 2 &rarr; 4, deci nodul 1 are exact 3 ascendenți (5, 2 și 4)."
+     "tip": "grila",
+  "enunt": "4. Indicați un vector de „tați” corespunzător unui arbore cu 7 noduri, în care cel puțin unul dintre noduri are trei ascendenți.",
+  "optiuni": ["0,1,2,1,1,1,2", "3,0,2,1,3,2,1", "4,3,0,3,4,4,3", "5,4,3,0,2,3,4"],
+  "corect": 1,
+  "explicatie": "În varianta b <code>(3,0,2,1,3,2,1)</code>, rădăcina este nodul 2 (are tatăl 0). Urmărind lanțul de ascendenți pentru nodul 4: tatăl lui 4 este nodul 1, tatăl lui 1 este nodul 3, iar tatăl lui 3 este nodul 2 (rădăcina). Drumul de la nodul 4 la rădăcină este 4 &rarr; 1 &rarr; 3 &rarr; 2, deci nodul 4 are exact 3 ascendenți (1, 3 și 2)."
     },
     {
       "tip": "grila",
