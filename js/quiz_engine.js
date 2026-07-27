@@ -172,6 +172,379 @@ const databaseSubiecte = {
             explicatie: "Știm că suma gradelor tuturor nodurilor dintr-un graf neorientat este egală cu de două ori numărul de muchii: &sum;d(v) = 2 * M = 2 * 10 = 20.<br>- 2 noduri au gradul 0 (contribuție sumă = 0).<br>- 6 noduri au grade impare. Pentru ca suma lor să fie minimă (obținând astfel loc pentru cât mai multe alte noduri), alegem gradul minim impar nenul, adică 1. Contribuție sumă = 6 * 1 = 6.<br>- Suma rămasă pentru nodurile cu grade pare nenule este: 20 - 6 = 14.<br>- Pentru a maximiza numărul total de noduri cu grad par nenul, le atribuim cel mai mic grad par nenul posibil, adică 2. Numărul maxim de astfel de noduri este 14 / 2 = 7 noduri.<br>Numărul maxim total de noduri este: 2 (grade 0) + 6 (grade impare) + 7 (grade pare) = 15 noduri."
         }
     ],
+"2024_toamna": [
+    {
+      tip: "grila",
+      enunt: "1. Variabilele x și y memorează câte un număr natural (x≤y). Indicați expresia C/C++ cu valoarea 1 dacă și numai dacă intervalul [x,y] NU conține niciun număr de două cifre.",
+      optiuni: ["<code>!(x&gt;=10 || y&gt;99)</code>", "<code>!(x&lt;=99 &amp;&amp; y&gt;=10)</code>", "<code>x&gt;=10 || y&lt;=99</code>", "<code>x&gt;99 &amp;&amp; y&lt;10</code>"],
+      corect: 1,
+      explicatie: "Intervalul [x,y] conține un număr de două cifre dacă se suprapune cu [10,99], adică dacă <code>x&lt;=99 &amp;&amp; y&gt;=10</code>. Pentru a verifica contrariul (NU conține niciun număr de două cifre), negăm această condiție: <code>!(x&lt;=99 &amp;&amp; y&gt;=10)</code>."
+    },
+    {
+      tip: "grila",
+      enunt: "2. Subprogramul f este definit alăturat. Indicați un apel în urma căruia se afișează pe ecran secvența <code>13579</code>:<br><pre><code>void f(int x,int y,int z)\n{\n  if(z&lt;x)\n  {\n    cout&lt;&lt;y;\n    f(x,y+2,z+1);\n  }\n}</code></pre>",
+      optiuni: ["<code>f(5,0,0);</code>", "<code>f(5,1,1);</code>", "<code>f(6,1,6);</code>", "<code>f(6,1,1);</code>"],
+      corect: 3,
+      explicatie: "Sunt afișate 5 numere impare consecutive începând de la 1. Apelul <code>f(6,1,1)</code> face 5 pași (pentru z = 1, 2, 3, 4, 5 &lt; 6) și afișează succesiv y = 1, 3, 5, 7, 9."
+    },
+    {
+      tip: "grila",
+      enunt: "3. Variabilele s, x și y permit memorarea câte unui șir de cel mult 15 caractere. Indicați șirul accesat prin variabila s în urma executării secvenței alăturate:<br><pre><code>strcpy(x,\"soare\");\nstrcpy(y,\"ploaie\");\nif (strcmp(x,y)&gt;0) strcpy(s,x+1);\nelse strcpy(s,y+2);</code></pre>",
+      optiuni: ["oare", "oaie", "ploaie", "soare"],
+      corect: 0,
+      explicatie: "Alfabetic, \"soare\" este mai mare decât \"ploaie\" (s &gt; p), deci <code>strcmp(x,y) &gt; 0</code> este adevărat. Se execută <code>strcpy(s, x+1)</code>, unde <code>x+1</code> pointează spre subșirul ce începe la pozitia 1 din \"soare\", adică \"oare\"."
+    },
+    {
+      tip: "grila",
+      enunt: "4. Un arbore cu 14 noduri, numerotate de la 1 la 14, este reprezentat prin vectorul de \"tați\" <code>(13,3,0,6,13,3,3,7,6,2,13,2,6,13)</code>. Indicați nodul care este rădăcina arborelui.",
+      optiuni: ["1", "3", "7", "13"],
+      corect: 1,
+      explicatie: "Rădăcina unui arbore reprezentat prin vector de tați este singurul nod care are tatăl egal cu 0. În vector, valoarea 0 se află pe poziția a 3-a (pentru nodul 3)."
+    },
+    {
+      tip: "grila",
+      enunt: "5. Indicați numărul maxim de vârfuri izolate pe care le poate avea un graf orientat cu 24 de vârfuri și 24 de arce poziționate adecvat.",
+      optiuni: ["5", "6", "18", "21"],
+      corect: 2,
+      explicatie: "Pentru a maximiza numărul de noduri izolate, concentrăm cele 24 de arce pe un număr minim de noduri neizolate. Într-un graf orientat fără bucle, k noduri pot forma maxim k*(k-1) arce. Pentru k = 5 noduri, numărul maxim de arce este 5*4 = 20 (insuficiente pentru cele 24). Pentru k = 6 noduri, numărul maxim de arce este 6*5 = 30 &gt;= 24. Deci 6 noduri pot absorbi toate cele 24 de arce, iar restul de 24 - 6 = 18 noduri rămân izolate."
+    }
+    ],
+    "2023_iunie": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați expresia C/C++ care are cea mai mare valoare, comparativ cu celelalte trei expresii.",
+      "optiuni": ["<code>20*23/(2*2)</code>", "<code>20/2*23/2</code>", "<code>(20*23)/2</code>", "<code>(20*23)/2*2</code>"],
+      "corect": 3,
+      "explicatie": "Se evaluează fiecare expresie utilizând împărțirea întreagă:<br>a. <code>20*23/4</code> = <code>460/4</code> = 115<br>b. <code>20/2*23/2</code> = <code>10*23/2</code> = <code>230/2</code> = 115<br>c. <code>(20*23)/2</code> = <code>460/2</code> = 230<br>d. <code>(20*23)/2*2</code> = <code>230*2</code> = 460. Cea mai mare valoare este 460."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați ce se afișează în urma apelului <code>f(23);</code><br><pre><code>void f (int n)\n{\n  if(n!=0) f(n/2);\n  cout&lt;&lt;n%2;\n}</code></pre>",
+      "optiuni": ["100111", "111010", "010111", "01251123"],
+      "corect": 2,
+      "explicatie": "Apelurile recursive stivuiesc valorile lui <code>n</code>: 23, 11, 5, 2, 1, 0. Când <code>n=0</code>, condiția <code>if(0!=0)</code> este falsă, astfel că <code>f(0)</code> nu mai apelează nimic și trece direct la afișarea lui <code>0%2 = 0</code>. La revenirea din recursivitate, se afișează resturile împarțirii la 2 ale valorilor anterioare (1, 2, 5, 11, 23), rezultând secvența <code>010111</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Variabila k este de tip întreg, iar variabila s permite memorarea unui șir de maximum 50 de caractere. Indicați valoarea variabilei k în urma executării secvenței alăturate:<br><pre><code>strcpy(s,\"bac2023\");\ns[s[2]-'a']='\\0';\nk=strlen(s);</code></pre>",
+      "optiuni": ["7", "6", "2", "1"],
+      "corect": 2,
+      "explicatie": "În șirul <code>\"bac2023\"</code>, caracterul de la poziția 2 este <code>'c'</code> (indexat de la 0: s[0]='b', s[1]='a', s[2]='c'). Diferența <code>'c'-'a'</code> are valoarea 2. Instrucțiunea devine <code>s[2] = '\\0'</code>, ceea ce plasează terminatorul de șir pe poziția 2. Șirul devine <code>\"ba\"</code>, iar <code>strlen(s)</code> returnează 2."
+    },
+    {
+     "tip": "grila",
+  "enunt": "4. Indicați un vector de „tați” corespunzător unui arbore cu 7 noduri, în care cel puțin unul dintre noduri are trei ascendenți.",
+  "optiuni": ["0,1,2,1,1,1,2", "3,0,2,1,3,2,1", "4,3,0,3,4,4,3", "5,4,3,0,2,3,4"],
+  "corect": 1,
+  "explicatie": "În varianta b <code>(3,0,2,1,3,2,1)</code>, rădăcina este nodul 2 (are tatăl 0). Urmărind lanțul de ascendenți pentru nodul 4: tatăl lui 4 este nodul 1, tatăl lui 1 este nodul 3, iar tatăl lui 3 este nodul 2 (rădăcina). Drumul de la nodul 4 la rădăcină este 4 &rarr; 1 &rarr; 3 &rarr; 2, deci nodul 4 are exact 3 ascendenți (1, 3 și 2)."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. O companie de colectare a fructelor are 6 depozite (1,3,5 - mere; 2,4 - pere; 6 - piersici) și 4 benzi: (1,5), (5,2), (5,4) și (6,1). Indicați numărul minim de benzi de transport care pot fi adăugate astfel încât graful obținut să aibă trei componente tare conexe, fiecare având vârfuri care corespund depozitelor cu același tip de fructe.",
+      "optiuni": ["4", "3", "2", "1"],
+      "corect": 0,
+      "explicatie": "Componentele tare conexe trebuie să fie formate strict din nodurile de același tip: C1={1,3,5}, C2={2,4}, C3={6}.<br>• Pentru C1: avem deja arcul (1,5). Pentru a închide un circuit între 1, 3 și 5, avem nevoie de minim 2 arce noi (de ex. 5&rarr;3 și 3&rarr;1).<br>• Pentru C2: nu există niciun arc între 2 și 4. Pentru a le face tare conexe, trebuie adăugate 2 arce (2&rarr;4 și 4&rarr;2).<br>• Pentru C3: conține un singur nod (6), deci este deja tare conexă (0 arce necesare).<br>În total sunt necesare minim 2 + 2 = 4 arce noi."
+    }
+  ],
+    "2023_toamna": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați numerele pe care le pot memora variabilele întregi x și y, astfel încât valoarea expresiei C/C++ alăturate să fie 1:<br><code>y%x - (x/y)*3 != 0</code>",
+      "optiuni": ["x=25 și y=75", "x=25 și y=15", "x=15 și y=0", "x=10 și y=30"],
+      "corect": 1,
+      "explicatie": "Răspuns corect: <b>b (x=25 și y=15)</b>.<br>Evaluăm opțiunea b: <code>15%25 - (25/15)*3</code> = <code>15 - 1*3</code> = 12 → <code>12 != 0</code> evaluează la 1 (adevărat)."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați valoarea <code>f(3,2)</code>.<br><pre><code>int f(int x, int y)\n{\n  int z;\n  if (y==0) return 1;\n  z=f(x,y/2);\n  if (y%2!=0) return z*z*x;\n  return z*z;\n}</code></pre>",
+      "optiuni": ["1", "2", "9", "18"],
+      "corect": 2,
+      "explicatie": "Răspuns corect: <b>c (9)</b>.<br>• <code>f(3,2)</code> apelează <code>z = f(3,1)</code>.<br>• <code>f(3,1)</code> apelează <code>z = f(3,0)</code>, care returnează 1.<br>• În <code>f(3,1)</code>: <code>z=1</code>, <code>1%2!=0</code> → returnează <code>1*1*3 = 3</code>.<br>• În <code>f(3,2)</code>: <code>z=3</code>, <code>2%2!=0</code> este fals → returnează <code>3*3 = 9</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Variabila s poate accesa un șir cu cel mult 20 de caractere. Indicați șirul accesat prin s în urma executării secvenței alăturate:<br><pre><code>strcpy(s,\"2019\");\nstrcpy(s+3,\"23\");</code></pre>",
+      "optiuni": ["20123", "201923", "202223", "2023"],
+      "corect": 0,
+      "explicatie": "Răspuns corect: <b>a (20123)</b>.<br>Inițial <code>s = \"2019\"</code>. Instrucțiunea <code>strcpy(s+3, \"23\")</code> copiază <code>\"23\"</code> începând de la poziția cu indicele 3, suprascriind caracterul '9' și adăugând terminatorul de șir. Rezultatul este <code>\"20123\"</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Utilizând metoda backtracking, se generează toate parfumurile formate prin amestecarea a câte 3 esențe distincte din mulțimea {bergamotă, cireș, iris, lămâie, salcâm}. Două parfumuri sunt distincte dacă diferă prin cel puțin o esență. Primele patru soluții obținute sunt, în această ordine: (bergamotă, cireș, iris), (bergamotă, cireș, lămâie), (bergamotă, cireș, salcâm) și (bergamotă, iris, lămâie). Indicați penultima soluție generată.",
+      "optiuni": ["(cireș, iris, salcâm)", "(cireș, lămâie, salcâm)", "(lămâie, iris, salcâm)", "(iris, lămâie, salcâm)"],
+      "corect": 1,
+      "explicatie": "Răspuns corect: <b>b ((cireș, lămâie, salcâm))</b>.<br>Elementele sunt ordonate alfabetic: 1. bergamotă, 2. cireș, 3. iris, 4. lămâie, 5. salcâm.<br>Ultima soluție generată este (iris, lămâie, salcâm) – indicii (3, 4, 5).<br>Penultima soluție generată este cea anterioară ei lexicografic, adică (cireș, lămâie, salcâm) – indicii (2, 4, 5)."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Un graf neorientat are 5 noduri, numerotate de la 1 la 5, cu gradele figurate în tabel (1: 2, 2: x, 3: 3, 4: 3, 5: y). Indicați o pereche de valori posibile pentru x și y.",
+      "optiuni": ["0 și 4", "1 și 5", "2 și 3", "3 și 3"],
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (3 și 3)</b>.<br>Suma gradelor trebuie să fie pară: 2 + 3 + 3 + 3 + 3 = 14 (pară), iar gradul maxim al oricărui nod este ≤ 4. Secvența de grade 2, 3, 3, 3, 3 este realizabilă într-un graf neorientat cu 5 noduri."
+    }
+  ],
+    "2022_iunie": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați valoarea expresiei C/C++ alăturate: <code>22/20*20/2</code>",
+      "optiuni": ["0", "0.55", "10", "55"],
+      "corect": 2,
+      "explicatie": "Operatorii <code>/</code> și <code>*</code> au aceeași prioritate și se evaluează de la stânga la dreapta folosind împărțirea întreagă:<br>• <code>22 / 20 = 1</code><br>• <code>1 * 20 = 20</code><br>• <code>20 / 2 = 10</code>"
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Variabilele x și valoare sunt declarate alăturat. Indicați o instrucțiune de atribuire corectă din punctul de vedere sintactic.<br><pre><code>struct produs\n{\n  char denumire[50];\n  float cantitate, pret;\n}x;\nfloat valoare;</code></pre>",
+      "optiuni": [
+        "<code>x=(\"apa minerala\",10,2.5);</code>",
+        "<code>x.produs.pret=2.5;</code>",
+        "<code>x.denumire[5]= \"Borsec\";</code>",
+        "<code>valoare=2*x.cantitate*x.pret;</code>"
+      ],
+      "corect": 3,
+      "explicatie": "a. Atribuirea directă a unei liste de valori între paranteze nu este permisă în C++.<br>b. Numele structurii (<code>produs</code>) nu se folosește ca membru al variabilei.<br>c. <code>x.denumire[5]</code> este un singur caracter (de tip <code>char</code>), căruia nu i se poate atribui un șir de caractere.<br>d. Se accesează corect câmpurile numerice <code>cantitate</code> și <code>pret</code> ale structurii <code>x</code> pentru a calcula o valoare reală."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. La o sală de sport se organizează antrenamente pentru sporturi din mulțimea {tenis, fotbal, volei, handbal, baschet}, astfel încât o persoană poate opta pentru un pachet de două sau trei sporturi, dar nu poate alege fotbal și baschet în același pachet. Utilizând backtracking se generează toate posibilitățile. Primele cinci soluții generate sunt: {tenis, fotbal}, {tenis, fotbal, volei}, {tenis, fotbal, handbal}, {tenis, volei}, {tenis, volei, handbal}. Indicați soluția generată imediat după {fotbal, handbal}.",
+      "optiuni": [
+        "{volei, handbal}",
+        "{fotbal, handbal, baschet}",
+        "{handbal, baschet}",
+        "{volei, handbal, baschet}"
+      ],
+      "corect": 0,
+      "explicatie": "Elementele din mulțime sunt considerate în ordinea specificată: 1. tenis, 2. fotbal, 3. volei, 4. handbal, 5. baschet.<br>După soluția <code>{fotbal, handbal}</code>, adăugarea elementului <code>baschet</code> ar crea pachetul <code>{fotbal, handbal, baschet}</code>, care este invalid (conține fotbal și baschet).<br>Prin urmare, algoritmul face pasul înapoi (backtrack) și epuizează toate combinările ce conțin <code>fotbal</code> pe prima poziție. Următorul primul element disponibil este <code>volei</code>, iar prima submulțime validă de cel puțin două elemente ce începe cu volei este <code>{volei, handbal}</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Un graf neorientat cu 6 noduri, numerotate de la 1 la 6, are muchiile [1,2], [1,3], [2,3], [4,6]. Indicați numărul de componente conexe ale acestuia.",
+      "optiuni": ["1", "3", "5", "6"],
+      "corect": 1,
+      "explicatie": "Componentele conexe ale grafului sunt subgrafurile formate din nodurile legate între ele:<br>1. Componenta 1: nodurile {1, 2, 3}<br>2. Componenta 2: nodurile {4, 6}<br>3. Componenta 3: nodul izolat {5}<br>În total sunt 3 componente conexe."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Un arbore cu rădăcină are 12 noduri și este reprezentat prin vectorul de „tați” <code>(2,4,2,0,4,4,x,6,x,x,y,y)</code>. Indicați un set de valori pe care le pot avea x și y, știind că pe ultimul nivel există cinci noduri frunză și că un singur nod este numerotat cu o valoare egală cu numărul său de descendenți direcți („fii”) de tip „frunză”.",
+      "optiuni": ["x=11 y=12", "x=8 y=3", "x=3 y=8", "x=3 y=3"],
+      "corect": 2,
+      "explicatie": "Rădăcina este nodul 4 (tatăl=0, nivelul 0).<br>• Fiie lui 4: 2, 5, 6 (nivelul 1).<br>• Fiii lui 2: 1, 3 (nivelul 2). Fiii lui 6: 8 (nivelul 2).<br>Pentru <code>x=3</code> și <code>y=8</code>:<br>• Fiii lui 3 sunt nodurile 7, 9, 10 (nivelul 3). Toate 3 sunt frunze.<br>• Fiii lui 8 sunt nodurile 11, 12 (nivelul 3). Ambele sunt frunze.<br>Pe ultimul nivel (nivelul 3) avem 5 noduri frunză (7, 9, 10, 11, 12).<br>Nodul 3 are exact 3 descendenți direcți de tip frunză (nodurile 7, 9, 10), deci valoarea nodului (3) este egală cu numărul de fii frunză. Este singurul nod cu această proprietate."
+    }
+  ], 
+    "2022_toamna": [
+    {
+      "tip": "grila",
+      "enunt": "1. Variabila x este de tip întreg. Indicați o expresie care are valoarea 1 dacă și numai dacă expresia C/C++ alăturată are valoarea 1:<br><code>x&gt;=3 &amp;&amp; x&lt;10</code>",
+      "optiuni": ["<code>!(x&lt;3 &amp;&amp; x&gt;=10)</code>", "<code>!(x&lt;3 || x&gt;=10)</code>", "<code>x&lt;3 &amp;&amp; !(x&gt;=10)</code>", "<code>!(x&lt;3) || x&gt;=10</code>"],
+      "corect": 1,
+      "explicatie": "Aplicând legile lui De Morgan, negarea expresiei <code>(A &amp;&amp; B)</code> este <code>!(A) || !(B)</code>.<br>Negarea condiției <code>x&gt;=3</code> este <code>x&lt;3</code>, iar negarea condiției <code>x&lt;10</code> este <code>x&gt;=10</code>.<br>Prin urmare, <code>x&gt;=3 &amp;&amp; x&lt;10</code> este echivalentă cu <code>!(x&lt;3 || x&gt;=10)</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit incomplet, alăturat. Indicați o expresie cu care pot fi înlocuite punctele de suspensie pentru ca <code>f(n,3)</code> să aibă valoarea 1 pentru orice număr prim n (n ∈ [2,10000]) și valoarea 0 în caz contrar.<br><pre><code>int f(int x, int y)\n{\n  if(x!=2 &amp;&amp; x%2==0) return 0;\n  if(y*y&gt;x) return 1;\n  if(x%y==0) return 0;\n  return f(x,.........);\n}</code></pre>",
+      "optiuni": ["y+2", "y-2", "y*2", "y/2"],
+      "corect": 0,
+      "explicatie": "Paritatea numărului <code>x</code> este deja verificată în prima linie. Deoarece apelul inițial este <code>f(n, 3)</code>, divizorul de test <code>y</code> începe de la 3 (impar). Pentru eficientizare, verificarea divizibilității trebuie să continue doar cu următorul număr impar, adică <code>y+2</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Utilizând metoda backtracking, se generează toate posibilitățile de a forma platouri de câte trei fructe distincte din mulţimea {măr, gutuie, prună, caisă, piersică}, astfel încât pe același platou NU se află o gutuie și o piersică simultan. Primele patru soluţii sunt: (măr, gutuie, prună), (măr, gutuie, caisă), (măr, prună, caisă), (măr, prună, piersică). Indicați soluţia generată imediat după (gutuie, prună, caisă).",
+      "optiuni": ["(caisă, piersică, măr)", "(gutuie, prună, piersică)", "(măr, caisă, piersică)", "(prună, caisă, piersică)"],
+      "corect": 3,
+      "explicatie": "Ordinea elementelor din mulțime este: 1. măr, 2. gutuie, 3. prună, 4. caisă, 5. piersică.<br>După <code>(gutuie, prună, caisă)</code>, încercarea de adăugare a ultimului element disponibil pe a treia poziție ar fi <code>piersică</code>, rezultând pachetul <code>(gutuie, prună, piersică)</code>. Această combinație este însă invalidă deoarece conține simultan gutuie și piersică.<br>Epuizând soluțiile ce încep cu <code>gutuie</code>, algoritmul trece la următorul element de pe prima poziție, adică <code>prună</code>. Prima soluție validă ce începe cu prună este <code>(prună, caisă, piersică)</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Variabila j este de tip întreg, iar variabila A memorează un tablou bidimensional cu 100 de linii și 100 de coloane (numerotate de la 0 la 99). Indicați valoarea variabilei j, dacă elementul <code>A[20][j]</code> se află pe diagonala secundară a tabloului.",
+      "optiuni": ["20", "49", "79", "80"],
+      "corect": 2,
+      "explicatie": "Pentru o matrice pătratică de ordinul N indexată de la 0 la N-1, un element A[i][j] se află pe diagonala secundară dacă i + j = N - 1.<br>În acest caz N = 100, deci 20 + j = 99 → j = 99 - 20 = 79."
+    },
+    {
+      "tip": "grila",
+  "enunt": "5. Un graf neorientat are 7 noduri (1 la 7) și 8 muchii, dintre care șase sunt: [1,2], [2,4], [2,7], [3,4], [4,5], [4,6]. Știind că unul dintre lanțurile elementare de lungime maximă este 1, 2, 7, 5, 4, 6, indicați care ar putea fi celelalte două muchii ale grafului.",
+  "optiuni": ["[1,4] și [4,7]", "[1,4] și [5,7]", "[2,5] și [4,7]", "[3,6] și [5,7]"],
+  "corect": 1,
+  "explicatie": "Răspuns corect: <b>b ([1,4] și [5,7])</b>.<br>• Muchia [5,7] este obligatorie pentru ca lanțul 1 → 2 → 7 → 5 → 4 → 6 (de lungime 5) să existe în graf.<br>• În varianta b, adăugarea muchiei [1,4] păstrează lungimea maximă de 5 a lanțului.<br>• În varianta d, adăugarea muchiei [3,6] ar crea un lanț mai lung: 1 → 2 → 7 → 5 → 4 → 3 → 6 (de lungime 6), ceea ce ar contrazice faptul că lanțul din enunț are lungime maximă."
+    }
+  ],
+    "2021_iunie": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați o expresie C/C++ care are valoarea 1 dacă și numai dacă valorile variabilelor întregi x și y sunt numere pare.",
+      "optiuni": [
+        "<code>x%2==0 &amp;&amp; (y+1)%2!=0</code>",
+        "<code>(x-y)/2==0</code>",
+        "<code>(x+y)%2==0 &amp;&amp; (x-y)%2==0</code>",
+        "<code>x%2==y%2</code>"
+      ],
+      "corect": 0,
+      "explicatie": "Răspuns corect: <b>a (<code>x%2==0 &amp;&amp; (y+1)%2!=0</code>)</b>.<br>• <code>x%2==0</code> verifică dacă x este par.<br>• <code>(y+1)%2!=0</code> înseamnă că y+1 este impar, adică y este par.<br>Expresia este 1 dacă și numai dacă ambele numere sunt pare."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați valorile pe care le pot avea parametrii n și c, astfel încât, în urma apelului, <code>f(n,c)</code> să aibă valoarea 2021.<br><pre><code>int f(int n,int c)\n{\n  if(n==0) return 0;\n  else\n  if(n%10==c) return f(n/10,c);\n  else return n%10+10*f(n/10,c);\n}</code></pre>",
+      "optiuni": [
+        "n=2021 și c=0",
+        "n=200211 și c=2",
+        "n=312032 și c=3",
+        "n=720721 și c=7"
+      ],
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (n=720721 și c=7)</b>.<br>Subprogramul elimină din numărul n toate cifrele egale cu c. Pentru n=720721 și c=7, eliminând cifrele de 7 obținem exact numărul 2021."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Variabila m memorează elementele unui tablou bidimensional cu 100 de linii și 100 de coloane (numerotate de la 0 la 99). Indicați expresia C/C++ prin care poate fi accesat un element aflat pe diagonala secundară a tabloului.",
+      "optiuni": [
+        "<code>m[42/42]</code>",
+        "<code>m[42|42]</code>",
+        "<code>m[42]:[57]</code>",
+        "<code>m[42][57]</code>"
+      ],
+      "corect": 3,
+      "explicatie": "Răspuns corect: <b>d (<code>m[42][57]</code>)</b>.<br>Un element m[i][j] dintr-o matrice cu N=100 (indexată de la 0 la 99) se află pe diagonala secundară dacă i + j = N - 1 = 99. Pentru linia 42 și coloana 57 avem 42 + 57 = 99."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Un graf neorientat are 6 noduri, numerotate de la 1 la 6, și muchiile [1,2], [1,3], [2,3], [3,4], [3,5], [4,5], [5,6]. Indicați un ciclu elementar al acestui graf.",
+      "optiuni": [
+        "1,2,3",
+        "1,2,3,1",
+        "1,2,3,4,5,3,1",
+        "1,2,3,4,5,6,1"
+      ],
+      "corect": 1,
+      "explicatie": "Răspuns corect: <b>b (1,2,3,1)</b>.<br>Un ciclu este elementar dacă se închide în primul nod fără a repeta alte noduri intermediare. Secvența 1,2,3,1 folosește muchiile [1,2], [2,3] și [3,1] și este un ciclu elementar."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Într-un arbore cu rădăcină (nivelul 0 = rădăcina), toate nodurile de pe același nivel au un număr egal de „fii” și NU există două niveluri diferite cu același număr de noduri. Indicați numărul minim de noduri de pe nivelul 3.",
+      "optiuni": ["12", "9", "8", "5"],
+      "corect": 2,
+      "explicatie": "Răspuns corect: <b>c (8)</b>.<br>Notăm cu k<sub>i</sub> numărul de fii ai fiecărui nod de pe nivelul i (k<sub>i</sub> ≥ 2):<br>• Nivelul 0: 1 nod<br>• Nivelul 1: k<sub>0</sub> = 2 noduri (pt. k<sub>0</sub>=2)<br>• Nivelul 2: k<sub>0</sub> · k<sub>1</sub> = 2 · 2 = 4 noduri (pt. k<sub>1</sub>=2)<br>• Nivelul 3: k<sub>0</sub> · k<sub>1</sub> · k<sub>2</sub> = 4 · 2 = 8 noduri (pt. k<sub>2</sub>=2).<br>Numerele de noduri (1, 2, 4, 8) sunt toate distincte, iar minimul de pe nivelul 3 este 8."
+    }
+  ],
+    "2021_toamna": [
+    {
+      "tip": "grila",
+      "enunt": "1. Variabilele x și y sunt de tip real (x ≠ -2). Indicați o expresie C/C++ corespunzătoare expresiei aritmetice ((x+y)/5 + (x-y)/2) / (x+2).",
+      "optiuni": [
+        "<code>(x+y/5+x-y/2)/x+2</code>",
+        "<code>(x+y)/5+(x-y)/2/(x+2)</code>",
+        "<code>((x+y)/5+(x-y)/2)/x+2</code>",
+        "<code>((x+y)/5+(x-y)/2)/(x+2)</code>"
+      ],
+      "corect": 3,
+      "explicatie": "Membrii numărătorului complex se parantezează individual: <code>(x+y)/5</code> și <code>(x-y)/2</code>. Întreg numărătorul este pus într-o paranteză mare <code>((x+y)/5+(x-y)/2)</code>, iar numitorul <code>(x+2)</code> este parantezat separat la numitor pentru a păstra ordinea corectă a operațiilor."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați valoarea <code>f(1234)</code>.<br><pre><code>int f(int n)\n{\n  if (n!=0)\n    return (n%2)*(n%10)+f(n/10);\n  return 0;\n}</code></pre>",
+      "optiuni": ["0", "4", "6", "10"],
+      "corect": 1,
+      "explicatie": "Termenul <code>(n%2)*(n%10)</code> adaugă cifra doar dacă <code>n</code> este impar (pentru numere pare <code>n%2 == 0</code>, deci termenul devine 0).<br>• <code>f(1234)</code>: n=1234 (par) → 0 + f(123)<br>• <code>f(123)</code>: n=123 (impar) → 1 · 3 + f(12) = 3 + f(12)<br>• <code>f(12)</code>: n=12 (par) → 0 + f(1)<br>• <code>f(1)</code>: n=1 (impar) → 1 · 1 + f(0) = 1 + 0 = 1<br>Suma returnată este 3 + 1 = 4."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Utilizând metoda backtracking se generează toate numerele formate din cifre distincte, cifre a căror sumă este 6. Primele patru soluții generate sunt: 1023, 1032, 105 și 1203. Indicați cea de a șasea soluție generată.",
+      "optiuni": ["1230", "132", "123", "15"],
+      "corect": 0,
+      "explicatie": "Soluțiile se generează în ordine crescătoare a valorii numerice:<br>1. 1023<br>2. 1032<br>3. 105<br>4. 1203<br>5. 123 (1+2+3=6)<br>6. 1230 (1+2+3+0=6)<br>Cea de-a șasea soluție generată este 1230."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Unui arbore cu 10 noduri i se adaugă o muchie cu extremitățile în două dintre nodurile sale. Indicați numărul ciclurilor elementare pe care le conține graful obținut.",
+      "optiuni": ["0", "1", "9", "10"],
+      "corect": 1,
+      "explicatie": "Un arbore este un graf conex și fără cicluri, în care între oricare două noduri există un singur drum elementar. Adăugarea unei singure muchii între două noduri nevecine va conecta capetele acelui drum unic, creând exact un singur ciclu elementar."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Un graf neorientat are 21 de noduri, numerotate de la 1 la 21; pentru oricare două noduri i și j există muchia [i,j] dacă și numai dacă ultima cifră a lui i este egală cu ultima cifră a lui j. Indicați numărul valorilor nule din matricea de adiacență a grafului.",
+      "optiuni": ["2 · 21 - 10²", "21² - 11", "21² - 2 · 12", "2 · 21² - 13"],
+      "corect": 2,
+      "explicatie": "Matricea de adiacență are dimensiunea 21 × 21 = 21² elemente.<br>Există muchie (valoarea 1) între noduri distincte din aceeași clasă de resturi modulo 10:<br>• Clasele pentru cifrele 2, 3, 4, 5, 6, 7, 8, 9, 0 conțin câte 2 noduri fiecare (ex: 2 și 12, 3 și 13 etc.). Fiecare pereche generează 2 de 1 în matrice (9 × 2 = 18).<br>• Clasa pentru cifra 1 conține 3 noduri (1, 11, 21), formând 3 muchii, adică 3 × 2 = 6 de 1 în matrice.<br>Total elemente egale cu 1: 18 + 6 = 24 = 2 · 12.<br>Numărul de valori nule (0) este 21² - 24 = 21² - 2 · 12."
+    }
+  ],
+    "2020_iunie": [
+    {
+      "tip": "grila",
+      "enunt": "1. Indicați valoarea expresiei C/C++ alăturate: <code>3+5.0/2+2</code>",
+      "optiuni": ["2", "5", "6", "7.5"],
+      "corect": 3,
+      "explicatie": "Datorită constantei reale <code>5.0</code>, operația de împărțire <code>5.0/2</code> este o împărțire reală cu rezultat <code>2.5</code>. Evaluarea se face de la stânga la dreapta: <code>3 + 2.5 + 2 = 7.5</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Variabila v memorează un tablou unidimensional cu 4 elemente (numerotate de la 0). Subprogramul f este definit alăturat. Indicați setul de elemente pe care le poate avea tabloul memorat în v, în ordinea în care apar în acesta, astfel încât în urma apelului <code>f(0,v);</code> să se afișeze pe ecran <code>2020</code>.<br><pre><code>void f(int i, int v[4])\n{\n  if(i&gt;=3) v[i]=v[i]+1;\n  else f(i+1,v);\n  cout&lt;&lt;v[i];\n}</code></pre>",
+      "optiuni": ["-1,1,0,2", "0,2,0,1", "1,-1,0,1", "2,0,1,0"],
+      "corect": 1,
+      "explicatie": "Subprogramul coboară recursiv până la <code>i=3</code>. Când ajunge la <code>i=3</code>, modifică <code>v[3] = v[3] + 1</code> și afișează <code>v[3]</code>. La revenirea din recursivitate afișează în ordine <code>v[2]</code>, <code>v[1]</code> și <code>v[0]</code>.<br>Pentru a afișa <code>2020</code> trebuie ca:<br>• <code>v[3] + 1 = 2</code> &rarr; <code>v[3] = 1</code><br>• <code>v[2] = 0</code><br>• <code>v[1] = 2</code><br>• <code>v[0] = 0</code><br>Prin urmare, tabloul inițial este <code>0, 2, 0, 1</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Utilizând metoda backtracking se generează toate variantele prin care patru persoane pot plăti o consumație totală de 200 de lei în condițiile: fiecare plătește o sumă nenulă, divizibilă cu 10; primul plătește mai mult decât al doilea, al doilea mai mult decât al treilea, iar acesta mai mult decât al patrulea. Primele patru soluții sunt: (70, 60, 40, 30), (70, 60, 50, 20), (80, 50, 40, 30), (80, 60, 40, 20). Indicați cea de a șasea soluție, în ordinea generării acestora.",
+      "optiuni": ["(80,60,45,15)", "(80,60,50,10)", "(80,70,30,20)", "(80,70,40,10)"],
+      "corect": 2,
+      "explicatie": "Generarea soluțiilor continuă ordonat:<br>1. (70, 60, 40, 30)<br>2. (70, 60, 50, 20)<br>3. (80, 50, 40, 30)<br>4. (80, 60, 40, 20)<br>5. (80, 60, 50, 10)<br>6. (80, 70, 30, 20)<br>Prin urmare, a șasea soluție generată este <code>(80, 70, 30, 20)</code>."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Un arbore cu 10 noduri, numerotate de la 1 la 10, este reprezentat prin vectorul de „tați” <code>(7,5,6,5,7,0,6,3,3,8)</code>. Indicați numărul de noduri „frunză” ale acestui arbore.",
+      "optiuni": ["2", "3", "5", "6"],
+      "corect": 2,
+      "explicatie": "Nodurile frunză sunt cele care NU apar deloc în vectorul de tați (nu au niciun descendent direct).<br>Valori prezente în vectorul de tați (care sunt tați): <code>{3, 5, 6, 7, 8}</code> (și 0 indică rădăcina).<br>Nodurile care nu apar sunt: <code>{1, 2, 4, 9, 10}</code>, adică un total de 5 noduri frunză."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Un graf neorientat cu 5 noduri are matricea de adiacență dată (muchiile sunt [1,2], [1,4], [1,5], [2,3], [3,4]). Indicați numărul grafurilor parțiale conexe ale acestuia care sunt diferite de graful dat.",
+      "optiuni": ["4", "6", "8", "30"],
+      "corect": 0,
+      "explicatie": "Un graf conex cu 5 noduri are nevoie de cel puțin 4 muchii. Graful inițial are 5 muchii.<br>Grafurile parțiale se obțin eliminând muchii:<br>• Daca eliminăm [1,5], nodul 5 devine izolat (graful devine neconex).<br>• Daca eliminăm oricare din celelalte 4 muchii ([1,2], [1,4], [2,3] sau [3,4]), graful rămâne conex.<br>Deci există exact 4 grafuri parțiale conexe diferite de graful dat."
+    }
+  ],
+    "2020_toamna": [
+    {
+      "tip": "grila",
+      "enunt": "1. Variabila x este de tip întreg și poate memora un număr natural din intervalul [0,10^9). Indicați valoarea maximă pe care o poate avea expresia C/C++ alăturată: <code>x%2020</code>",
+      "optiuni": ["20.2", "2019", "2020", "495049"],
+      "corect": 1,
+      "explicatie": "Restul împărțirii oricărui număr întreg la 2020 (operația <code>x%2020</code>) ia valori în mulțimea {0, 1, 2, ..., 2019}. Valoarea maximă posibilă este 2019."
+    },
+    {
+      "tip": "grila",
+      "enunt": "2. Subprogramul f este definit alăturat. Indicați apelul în urma căruia simbolul * se afișează de trei ori.<br><pre><code>void f(int x)\n{\n  cout&lt;&lt;\"*\";\n  if(x&gt;5) f((x+1)/2);\n}</code></pre>",
+      "optiuni": ["<code>f(30);</code>", "<code>f(21);</code>", "<code>f(17);</code>", "<code>f(8);</code>"],
+      "corect": 2,
+      "explicatie": "Pentru <code>f(17)</code>:<br>• Afișează * (1) → 17 &gt; 5 este adevărat → apelează <code>f((17+1)/2) = f(9)</code><br>• Afișează * (2) → 9 &gt; 5 este adevărat → apelează <code>f((9+1)/2) = f(5)</code><br>• Afișează * (3) → 5 &gt; 5 este fals → se oprește.<br>În total, simbolul * este afișat de exact 3 ori."
+    },
+    {
+      "tip": "grila",
+      "enunt": "3. Utilizând metoda backtracking se generează toate modalitățile de a prepara o băutură din câte 3 sau 4 tipuri de fructe distincte din mulțimea {căpșune, mere, pepene, pere, portocale}. Primele patru soluții generate sunt: (căpșune, mere, pepene), (căpșune, mere, pepene, pere), (căpșune, mere, pepene, portocale), (căpșune, mere, pere). Indicați cea de a șasea soluție generată.",
+      "optiuni": [
+        "(pepene, pere, portocale)",
+        "(mere, pepene, pere, portocale)",
+        "(căpșune, mere, portocale)",
+        "(căpșune, mere, pere, pepene)"
+      ],
+      "corect": 2,
+      "explicatie": "Elementele din mulțime sunt considerate în ordinea: 1. căpșune, 2. mere, 3. pepene, 4. pere, 5. portocale.<br>Generarea submulțimilor de 3 și 4 elemente în ordine lexicografică este:<br>1. (căpșune, mere, pepene)<br>2. (căpșune, mere, pepene, pere)<br>3. (căpșune, mere, pepene, portocale)<br>4. (căpșune, mere, pere)<br>5. (căpșune, mere, pere, portocale)<br>6. (căpșune, mere, portocale)<br>A șasea soluție este (căpșune, mere, portocale)."
+    },
+    {
+      "tip": "grila",
+      "enunt": "4. Un arbore cu 9 noduri, numerotate de la 1 la 9, este reprezentat prin vectorul de „tați” <code>(8,6,4,2,3,0,4,2,7)</code>. Indicați un „frate” al nodului 4.",
+      "optiuni": ["1", "2", "7", "8"],
+      "corect": 3,
+      "explicatie": "Nodul 4 se află pe poziția a 4-a din vector și are tatăl egal cu 2. Căutăm un alt nod care îl are ca tată tot pe nodul 2. În vectorul de tați, valoarea 2 apare pe poziția 4 și pe poziția 8. Prin urmare, nodul 8 are același tată (2) ca și nodul 4, fiind fratele acestuia."
+    },
+    {
+      "tip": "grila",
+      "enunt": "5. Un graf neorientat eulerian cu 5 noduri are un nod cu gradul 4. Indicați numărul minim de muchii ale grafului.",
+      "optiuni": ["4", "6", "8", "10"],
+      "corect": 1,
+      "explicatie": "Un graf este eulerian dacă este conex și toate nodurile sale au grade pare non-nule.<br>Graful are 5 noduri și un nod de grad 4. Pentru a minimiza numărul total de muchii, celelalte 4 noduri trebuie să aibă cel mai mic grad par posibil, adică gradul 2.<br>Suma gradelor din graf va fi 4 + 2 + 2 + 2 + 2 = 12.<br>Conform teoremei fundamentale a grafurilor, numărul de muchii este egal cu jumătatea sumei gradelor: 12 / 2 = 6 muchii."
+    }
+  ],
       "2019_toamna": [
     {
       tip: "grila",
