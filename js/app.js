@@ -1,5 +1,6 @@
-// Detectăm dacă suntem în /pages/ sau în rădăcina site-ului, ca linkurile
-// generate din JS (butonul de profil, etc.) să fie corecte din orice pagină.
+// ==========================================
+// 1. CONFIGURARE DINAMICĂ CĂI (PATHS)
+// ==========================================
 const isInPagesFolder = window.location.pathname.includes('/pages/');
 const prefix = isInPagesFolder ? '' : 'pages/';
 const homePrefix = isInPagesFolder ? '../' : '';
@@ -17,7 +18,7 @@ function getCookie(name) {
     return null;
 }
 
-// Actualizez butonul "Contul meu" în funcție de starea logării
+// Actualizează butonul "Contul meu" în funcție de starea logării
 function updateProfileButton() {
     const profileButton = document.querySelector('.profile');
     const username = getCookie('username');
@@ -33,6 +34,9 @@ function updateProfileButton() {
     }
 }
 
+// ==========================================
+// 2. LOGICĂ TESTE & QUIZ-URI
+// ==========================================
 function initChapterDropdowns() {
     const classTitles = document.querySelectorAll('.quiz-class-title');
 
@@ -164,6 +168,9 @@ function initQuizGrille() {
     });
 }
 
+// ==========================================
+// 3. AUTENTIFICARE & MOD LOGIN/REGISTER
+// ==========================================
 function initProfileAuthMode() {
     const toggle = document.getElementById('toggleMode');
     if (!toggle) return;
@@ -219,143 +226,15 @@ function initProfileAuthMode() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateProfileButton();
-
-    // ==========================================
-    // 1. FILTRARE DIRECTĂ ÎN PAGINĂ DUPĂ AN
-    // ==========================================
-    const searchInput = document.getElementById('searchInput');
-    const yearCards = document.querySelectorAll('.year-card');
-    const noResultsMessage = document.getElementById('noResultsMessage');
-
-    if (searchInput && yearCards.length > 0) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.trim().toLowerCase();
-            let visibleCount = 0;
-
-            yearCards.forEach((card) => {
-                // Verifică atributul data-year sau textul din card
-                const yearAttr = card.getAttribute('data-year') || '';
-                const cardText = card.textContent.toLowerCase();
-
-                // Dacă căutarea e goală SAU anul se potrivește cu textul tastaț
-                if (query === '' || yearAttr.includes(query) || cardText.includes(query)) {
-                    card.style.display = ''; // Îl afișează
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none'; // Îl ascunde
-                }
-            });
-
-            // Afișează mesajul dacă nu s-a găsit niciun an
-            if (noResultsMessage) {
-                noResultsMessage.style.display = (visibleCount === 0) ? 'block' : 'none';
-            }
-        });
-    }
-
-    // ==========================================
-    // 2. SIDEBAR TOGGLE
-    // ==========================================
-    const menuToggle = document.getElementById("menuToggle");
-    const sidebar = document.getElementById("sidebar");
-
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener("click", () => {
-            sidebar.classList.toggle("hidden");
-        });
-    }
-
-    // ==========================================
-    // 3. ACCORDION CARDURI
-    // ==========================================
-    const classHeaders = document.querySelectorAll('.class-card > h3');
-    classHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            header.parentElement.classList.toggle('open');
-        });
-    });
-
-    // ==========================================
-    // 4. INIȚIALIZĂRI TESTE
-    // ==========================================
-    initChapterDropdowns();
-    initQuizGrille();
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-    const yearSections = document.querySelectorAll('.year-section');
-
-    if (searchInput && yearSections.length > 0) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.trim().toLowerCase();
-            let visibleCount = 0;
-
-            // Dacă utilizatorul a șters textul, ascundem dropdown-ul
-            if (query === '') {
-                if (searchResults) {
-                    searchResults.style.display = 'none';
-                    searchResults.innerHTML = '';
-                }
-                yearSections.forEach(section => section.style.display = 'block');
-                return;
-            }
-
-            let dropdownContent = '';
-
-            yearSections.forEach((section) => {
-                const yearTitle = section.querySelector('.year-title');
-                const yearText = yearTitle ? yearTitle.textContent.toLowerCase() : '';
-
-                // Verificăm dacă anul conține textul tastat (ex: "2022")
-                if (yearText.includes(query)) {
-                    section.style.display = 'block';
-                    visibleCount++;
-
-                    // Adăugăm opțiunea în dropdown-ul interactiv din topbar
-                    const yearNumber = yearText.replace(/[^0-9]/g, '');
-                    dropdownContent += `
-                        <div class="search-item" onclick="scrollToYear('${yearNumber}')">
-                            <span>📅 BAC ${yearNumber}</span>
-                            <span class="search-item-badge">Sesiuni Iunie & Toamnă</span>
-                        </div>
-                    `;
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-
-            // Gestionare afișare dropdown
-            if (searchResults) {
-                if (dropdownContent !== '') {
-                    searchResults.innerHTML = dropdownContent;
-                    searchResults.style.display = 'block';
-                } else {
-                    searchResults.innerHTML = '<div class="search-item" style="color: #a0aec0; justify-content: center;">Nu am găsit niciun an</div>';
-                    searchResults.style.display = 'block';
-                }
-            }
-        });
-
-        // Ascundem dropdown-ul dacă utilizatorul dă click în afara lui
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && searchResults && !searchResults.contains(e.target)) {
-                searchResults.style.display = 'none';
-            }
-        });
-    }
-});
-
-// Funcție ajutătoare pentru a derula pagina direct la anul selectat din dropdown
+// ==========================================
+// 4. FUNCȚIE GLOBALĂ PENTRU SCROLL LA AN (ARHIVĂ)
+// ==========================================
 function scrollToYear(year) {
     const sections = document.querySelectorAll('.year-section');
     sections.forEach(section => {
         const title = section.querySelector('.year-title');
         if (title && title.textContent.includes(year)) {
             section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // Efect vizual scurt de evidențiere
             section.style.transition = 'background-color 0.3s';
             section.style.backgroundColor = '#ebf8ff';
             setTimeout(() => {
@@ -366,8 +245,137 @@ function scrollToYear(year) {
     const searchResults = document.getElementById('searchResults');
     if (searchResults) searchResults.style.display = 'none';
 }
+
 // ==========================================
-// 5. ANIMAȚII LA LOAD
+// 5. DOM CONTENT LOADED (EXECUȚIE PRINCIPALĂ)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    updateProfileButton();
+
+    // A. SIDEBAR TOGGLE
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("hidden");
+        });
+    }
+
+    // B. ACCORDION CARDURI
+    const classHeaders = document.querySelectorAll('.class-card > h3');
+    classHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.parentElement.classList.toggle('open');
+        });
+    });
+
+    // C. INIȚIALIZĂRI TESTE
+    initChapterDropdowns();
+    initQuizGrille();
+
+    // D. SISTEM UNIFICAT DE CĂUTARE (Index & Arhivă Subiecte)
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const yearSections = document.querySelectorAll('.year-section');
+    const yearCards = document.querySelectorAll('.year-card');
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    const homeCards = document.querySelectorAll('.card, .module-card');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+
+            // Cazul 1: Suntem pe pagina de Arhivă Subiecte (are .year-section)
+            if (yearSections.length > 0) {
+                let visibleCount = 0;
+
+                if (query === '') {
+                    if (searchResults) {
+                        searchResults.style.display = 'none';
+                        searchResults.innerHTML = '';
+                    }
+                    yearSections.forEach(section => section.style.display = 'block');
+                    return;
+                }
+
+                let dropdownContent = '';
+
+                yearSections.forEach((section) => {
+                    const yearTitle = section.querySelector('.year-title');
+                    const yearText = yearTitle ? yearTitle.textContent.toLowerCase() : '';
+
+                    if (yearText.includes(query)) {
+                        section.style.display = 'block';
+                        visibleCount++;
+
+                        const yearNumber = yearText.replace(/[^0-9]/g, '');
+                        dropdownContent += `
+                            <div class="search-item" onclick="scrollToYear('${yearNumber}')">
+                                <span>📅 BAC ${yearNumber}</span>
+                                <span class="search-item-badge">Sesiuni Iunie & Toamnă</span>
+                            </div>
+                        `;
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+
+                if (searchResults) {
+                    if (dropdownContent !== '') {
+                        searchResults.innerHTML = dropdownContent;
+                        searchResults.style.display = 'block';
+                    } else {
+                        searchResults.innerHTML = '<div class="search-item" style="color: #a0aec0; justify-content: center;">Nu am găsit niciun an</div>';
+                        searchResults.style.display = 'block';
+                    }
+                }
+            } 
+            // Cazul 2: Suntem pe altă pagină (de ex. Arhivă simplă cu .year-card)
+            else if (yearCards.length > 0) {
+                let visibleCount = 0;
+
+                yearCards.forEach((card) => {
+                    const yearAttr = card.getAttribute('data-year') || '';
+                    const cardText = card.textContent.toLowerCase();
+
+                    if (query === '' || yearAttr.includes(query) || cardText.includes(query)) {
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (noResultsMessage) {
+                    noResultsMessage.style.display = (visibleCount === 0) ? 'block' : 'none';
+                }
+            }
+            // Cazul 3: Suntem pe Pagina Principală (index.html) - filtrează cardurile
+            else if (homeCards.length > 0) {
+                homeCards.forEach((card) => {
+                    const cardText = card.textContent.toLowerCase();
+
+                    if (query === '' || cardText.includes(query)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Ascunde dropdown-ul de căutare dacă utilizatorul dă click în afara lui
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && searchResults && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+    }
+});
+
+// ==========================================
+// 6. ANIMAȚII LA LOAD
 // ==========================================
 window.addEventListener("load", () => {
     const elements = document.querySelectorAll(".card, .module-card, .hero");
