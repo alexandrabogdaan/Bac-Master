@@ -427,7 +427,7 @@ const databaseSubiecte = {
     "2021_toamna": [
     {
       "tip": "grila",
-      "enunt": "1. Variabilele x și y sunt de tip real (x≠-2). Indicați o expresie C/C++ corespunzătoare expresiei aritmetice $\\frac{\\frac{x+y}{5} + \\frac{x-y}{2}}{x+2}$.",
+      "enunt": "1. Variabilele x și y sunt de tip real (x ≠ -2). Indicați o expresie C/C++ corespunzătoare expresiei aritmetice ((x+y)/5 + (x-y)/2) / (x+2).",
       "optiuni": [
         "<code>(x+y/5+x-y/2)/x+2</code>",
         "<code>(x+y)/5+(x-y)/2/(x+2)</code>",
@@ -442,7 +442,7 @@ const databaseSubiecte = {
       "enunt": "2. Subprogramul f este definit alăturat. Indicați valoarea <code>f(1234)</code>.<br><pre><code>int f(int n)\n{\n  if (n!=0)\n    return (n%2)*(n%10)+f(n/10);\n  return 0;\n}</code></pre>",
       "optiuni": ["0", "4", "6", "10"],
       "corect": 1,
-      "explicatie": "Termenul <code>(n%2)*(n%10)</code> adaugă cifra doar dacă <code>n</code> este impar (pentru numere pare <code>n%2 == 0</code>, deci termenul devine 0).<br>• <code>f(1234)</code>: n=1234 (par) &rarr; $0 + f(123)$<br>• <code>f(123)</code>: n=123 (impar) &rarr; $1 \\cdot 3 + f(12) = 3 + f(12)$<br>• <code>f(12)</code>: n=12 (par) &rarr; $0 + f(1)$<br>• <code>f(1)</code>: n=1 (impar) &rarr; $1 \\cdot 1 + f(0) = 1 + 0 = 1$<br>Suma returnată este $3 + 1 = 4$."
+      "explicatie": "Termenul <code>(n%2)*(n%10)</code> adaugă cifra doar dacă <code>n</code> este impar (pentru numere pare <code>n%2 == 0</code>, deci termenul devine 0).<br>• <code>f(1234)</code>: n=1234 (par) → 0 + f(123)<br>• <code>f(123)</code>: n=123 (impar) → 1 · 3 + f(12) = 3 + f(12)<br>• <code>f(12)</code>: n=12 (par) → 0 + f(1)<br>• <code>f(1)</code>: n=1 (impar) → 1 · 1 + f(0) = 1 + 0 = 1<br>Suma returnată este 3 + 1 = 4."
     },
     {
       "tip": "grila",
@@ -461,9 +461,9 @@ const databaseSubiecte = {
     {
       "tip": "grila",
       "enunt": "5. Un graf neorientat are 21 de noduri, numerotate de la 1 la 21; pentru oricare două noduri i și j există muchia [i,j] dacă și numai dacă ultima cifră a lui i este egală cu ultima cifră a lui j. Indicați numărul valorilor nule din matricea de adiacență a grafului.",
-      "optiuni": ["2∙21-10^2", "21^2-11", "21^2-2∙12", "2∙21^2-13"],
+      "optiuni": ["2 · 21 - 10²", "21² - 11", "21² - 2 · 12", "2 · 21² - 13"],
       "corect": 2,
-      "explicatie": "Matricea de adiacență are dimensiunea $21 \\times 21 = 21^2$ elemente.<br>Există muchie (valoarea 1) între noduri distincte din aceeași clasă de resturi modulo 10:<br>• Clasele pentru cifrele 2, 3, 4, 5, 6, 7, 8, 9, 0 conțin câte 2 noduri fiecare (ex: 2 și 12, 3 și 13 etc.). Fiecare pereche generează 2 de 1 în matrice ($9 \\times 2 = 18$).<br>• Clasa pentru cifra 1 conține 3 noduri (1, 11, 21), formând $C_3^2 = 3$ muchii, adică $3 \\times 2 = 6$ de 1 în matrice.<br>Total elemente egale cu 1: $18 + 6 = 24 = 2 \\cdot 12$.<br>Diagonala principală are 21 de valori de 0 (nu avem bucle). Toate celelalte poziții fără muchie sunt 0.<br>Numărul de valori nule este $21^2 - 24 = 21^2 - 2 \\cdot 12$."
+      "explicatie": "Matricea de adiacență are dimensiunea 21 × 21 = 21² elemente.<br>Există muchie (valoarea 1) între noduri distincte din aceeași clasă de resturi modulo 10:<br>• Clasele pentru cifrele 2, 3, 4, 5, 6, 7, 8, 9, 0 conțin câte 2 noduri fiecare (ex: 2 și 12, 3 și 13 etc.). Fiecare pereche generează 2 de 1 în matrice (9 × 2 = 18).<br>• Clasa pentru cifra 1 conține 3 noduri (1, 11, 21), formând 3 muchii, adică 3 × 2 = 6 de 1 în matrice.<br>Total elemente egale cu 1: 18 + 6 = 24 = 2 · 12.<br>Numărul de valori nule (0) este 21² - 24 = 21² - 2 · 12."
     }
   ],
     "2020_iunie": [
