@@ -9,6 +9,15 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
 <body>
@@ -47,30 +56,32 @@
             <div class="content-section" style="background: var(--card-background); padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
                 <h3 style="color: var(--text-color); margin-bottom: 15px;">📜 Enunțul problemei</h3>
                 
-                <p style="margin-bottom: 15px; line-height: 1.6;">
-                    Un număr natural <code>an</code> este <strong>ascendent</strong> al numărului natural <code>n</code>, dacă oricare dintre cifrele lui <code>an</code> este mai mare sau egală cu cifra unităților lui <code>n</code>.
-                </p>
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Un număr natural <code>an</code> este <strong>ascendent</strong> al numărului natural <code>n</code>, dacă oricare dintre cifrele lui <code>an</code> este mai mare sau egală cu cifra unităților lui <code>n</code>.
+                    </p>
 
-                <p style="margin-bottom: 15px; line-height: 1.6;">
-                    <strong>Exemplu:</strong> Oricare dintre numerele 7, 9, 98 sau 7998 este ascendent al lui 827, dar numărul 857 nu este ascendent al lui 827.
-                </p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        <strong>Exemplu:</strong> Oricare dintre numerele 7, 9, 98 sau 7998 este ascendent al lui 827, dar numărul 857 nu este ascendent al lui 827.
+                    </p>
 
-                <p style="margin-bottom: 10px; line-height: 1.6;">
-                    Subprogramul <code>ascendent</code> are trei parametri:
-                </p>
-                <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                    <li><code>n</code>, prin care primește un număr natural (n din intervalul [0, 10^3));</li>
-                    <li><code>x</code> și <code>y</code>, prin care primește câte un număr natural din intervalul [0, 10^3) (x &lt; y).</li>
-                </ul>
+                    <p style="margin-bottom: 10px; line-height: 1.6;">
+                        Subprogramul <code>ascendent</code> are trei parametri:
+                    </p>
+                    <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
+                        <li><code>n</code>, prin care primește un număr natural (n din intervalul [0, 10^3));</li>
+                        <li><code>x</code> și <code>y</code>, prin care primește câte un număr natural din intervalul [0, 10^3) (x &lt; y).</li>
+                    </ul>
 
-                <p style="margin-bottom: 15px; line-height: 1.6;">
-                    Subprogramul returnează suma ascendenților lui <code>n</code> din intervalul [x, y], sau valoarea 0, dacă nu există niciun astfel de ascendent. Scrieți definiția completă a subprogramului C/C++.
-                </p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Subprogramul returnează suma ascendenților lui <code>n</code> din intervalul [x, y], sau valoarea 0, dacă nu există niciun astfel de ascendent. Scrieți definiția completă a subprogramului C/C++.
+                    </p>
 
-                <p style="margin-bottom: 10px; line-height: 1.6;">
-                    <strong>Exemplu:</strong> dacă n = 827, x = 9, y = 800, subprogramul returnează 7893 
-                    <span style="display: block; font-size: 0.9em; opacity: 0.8; margin-top: 5px;">(9 + 77 + 78 + 79 + 87 + 88 + 89 + 97 + 98 + 99 + 777 + 778 + 779 + 787 + 788 + 789 + 797 + 798 + 799 = 7893)</span>
-                </p>
+                    <p style="margin-bottom: 0; line-height: 1.6;">
+                        <strong>Exemplu:</strong> dacă n = 827, x = 9, y = 800, subprogramul returnează 7893 
+                        <span style="display: block; font-size: 0.9em; opacity: 0.8; margin-top: 5px;">(9 + 77 + 78 + 79 + 87 + 88 + 89 + 97 + 98 + 99 + 777 + 778 + 779 + 787 + 788 + 789 + 797 + 798 + 799 = 7893)</span>
+                    </p>
+                </div>
             </div>
 
             <div style="margin-top: 20px;">
