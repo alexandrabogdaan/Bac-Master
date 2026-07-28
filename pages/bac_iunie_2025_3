@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Subiectul III - 3: Muzee virtuale - BAC Master</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            color: var(--text-color, #2d3748);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .problem-statement-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content-section {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .problem-statement-box pre, .problem-statement-box code {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 0.95em;
+            display: block;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .btn-fancy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+            border: none;
+        }
+        .btn-fancy-back:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+        .btn-fancy-back svg { transition: transform 0.3s ease; }
+        .btn-fancy-back:hover svg { transform: translateX(-4px); }
+    </style>
+</head>
+<body>
+<script src="../js/theme.js"></script>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <h2>BAC Master</h2>
+                    <p>Pregătește BAC-ul inteligent</p>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html" class="active">🧩 Probleme</a>
+                    <a href="statistici.html">📊 Statistici</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+        
+        <main class="main">
+            <div class="teorie-header">
+                <span class="quiz-chapter-tag" style="background-color: #3182ce; color: white;">BAC Iunie 2025</span>
+                <h1>Subiectul III - 3: Muzee virtuale</h1>
+                <p>Prelucrarea intervalelor orare din fișiere text.</p>
+            </div>
+
+            <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <span>📜</span> Enunțul problemei
+                </h3>
+                
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Un tânăr pasionat de călătorii are o listă cu muzee virtuale și, pentru fiecare, câte un singur interval orar, în care acesta poate fi vizitat online, gratuit. Tânărul dispune zilnic de același interval orar pentru vizite; un muzeu este convenabil dacă poate fi vizitat online gratuit în timpul disponibil și dacă pentru vizită îi poate aloca cel puțin o oră. Muzeele din listă sunt numerotate cu valori naturale consecutive, începând cu 1, și cel puțin unul este convenabil.
+                    </p>
+
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Fișierul text <code>bac.in</code> conține cel mult 10<sup>5</sup> linii, iar pe fiecare linie câte o pereche de numere, reprezentând limitele câte unui interval orar: pe prima linie intervalul orar de care tânărul dispune zilnic, iar pe fiecare dintre următoarele linii, intervalul orar de vizitare gratuită pentru câte un muzeu, în ordinea din listă. Limitele intervalelor sunt ore fixe, numere naturale din intervalul [8, 22], iar cele aflate pe aceeași linie a fișierului sunt în ordine strict crescătoare și sunt separate printr-un spațiu.
+                    </p>
+
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Se cere să se afișeze pe ecran, separate printr-un spațiu, două valori, reprezentând numărul de muzee convenabile, respectiv numărul de ordine al ultimului astfel de muzeu din lista tânărului. Utilizați un algoritm eficient din punctul de vedere al timpului de executare și al memoriei utilizate.
+                    </p>
+
+                    <p style="margin-bottom: 5px; line-height: 1.6;">
+                        <strong>Exemplu:</strong> dacă fișierul conține valorile:
+                    </p>
+                    <pre>16 19
+15 18
+17 21
+19 21
+18 20
+12 13</pre>
+                    <p style="margin-top: 10px; margin-bottom: 0; line-height: 1.6;">
+                        atunci pe ecran se afișează numerele <code>3 4</code> (pot fi vizitate trei muzee cu numerele de ordine 1, 2 și 4, în intervalele 16-18, 17-19, respectiv 18-19).
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; padding-bottom: 20px;">
+                <a href="probleme.html" class="btn-fancy-back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Înapoi la lista de probleme
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
