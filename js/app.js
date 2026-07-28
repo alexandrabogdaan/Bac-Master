@@ -1,41 +1,5 @@
 // ==========================================
-// 1. CONFIGURARE DINAMICĂ CĂI (PATHS)
-// ==========================================
-const isInPagesFolder = window.location.pathname.includes('/pages/');
-const prefix = isInPagesFolder ? '' : 'pages/';
-const homePrefix = isInPagesFolder ? '../' : '';
-
-// Funcție pentru a extrage valoare din cookies
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.indexOf(nameEQ) === 0) {
-            return cookie.substring(nameEQ.length);
-        }
-    }
-    return null;
-}
-
-// Actualizează butonul "Contul meu" în funcție de starea logării
-function updateProfileButton() {
-    const profileButton = document.querySelector('.profile');
-    const username = getCookie('username');
-
-    if (profileButton) {
-        if (username) {
-            profileButton.textContent = '👤 ' + decodeURIComponent(username);
-            profileButton.href = `${prefix}delogare.html`;
-        } else {
-            profileButton.textContent = '👤 Intră în cont';
-            profileButton.href = `${prefix}login.html`;
-        }
-    }
-}
-
-// ==========================================
-// 2. LOGICĂ TESTE & QUIZ-URI
+// 1. LOGICĂ TESTE & QUIZ-URI
 // ==========================================
 function initChapterDropdowns() {
     const classTitles = document.querySelectorAll('.quiz-class-title');
@@ -169,65 +133,7 @@ function initQuizGrille() {
 }
 
 // ==========================================
-// 3. AUTENTIFICARE & MOD LOGIN/REGISTER
-// ==========================================
-function initProfileAuthMode() {
-    const toggle = document.getElementById('toggleMode');
-    if (!toggle) return;
-
-    const registerOnly = document.querySelectorAll('.register-only');
-    const submitBtn = document.getElementById('submitBtn');
-    const heading = document.querySelector('.profile-card h1');
-    const parag = document.querySelector('.profile-card p');
-    let mode = 'login';
-
-    function setMode(m) {
-        mode = m;
-        if (mode === 'login') {
-            if (heading) heading.textContent = 'Profil Elev';
-            if (parag) parag.textContent = 'Autentifică-te pentru a accesa progresul și setările tale personale.';
-            if (submitBtn) {
-                submitBtn.textContent = 'Loghează-te';
-                submitBtn.value = 'login';
-            }
-            registerOnly.forEach(el => el.style.display = 'none');
-            const confirmPw = document.getElementById('confirmPassword');
-            if (confirmPw) confirmPw.required = false;
-            toggle.textContent = 'Creează cont nou';
-        } else {
-            if (heading) heading.textContent = 'Creează cont';
-            if (parag) parag.textContent = 'Completează formularul pentru a crea un cont nou.';
-            if (submitBtn) {
-                submitBtn.textContent = 'Înregistrează-te';
-                submitBtn.value = 'register';
-            }
-            registerOnly.forEach(el => el.style.display = 'block');
-            const confirmPw = document.getElementById('confirmPassword');
-            if (confirmPw) confirmPw.required = true;
-            toggle.textContent = 'Am deja cont';
-        }
-    }
-
-    toggle.addEventListener('click', () => setMode(mode === 'login' ? 'register' : 'login'));
-    setMode('login');
-
-    const authForm = document.getElementById('authForm');
-    if (authForm) {
-        authForm.addEventListener('submit', function (e) {
-            if (submitBtn && submitBtn.value === 'register') {
-                const pw = document.getElementById('password').value;
-                const cpw = document.getElementById('confirmPassword').value;
-                if (pw !== cpw) {
-                    e.preventDefault();
-                    alert('Parolele nu se potrivesc.');
-                }
-            }
-        });
-    }
-}
-
-// ==========================================
-// 4. FUNCȚIE GLOBALĂ PENTRU SCROLL LA AN (ARHIVĂ)
+// 3. FUNCȚIE GLOBALĂ PENTRU SCROLL LA AN (ARHIVĂ)
 // ==========================================
 function scrollToYear(year) {
     const sections = document.querySelectorAll('.year-section');
@@ -250,8 +156,6 @@ function scrollToYear(year) {
 // 5. DOM CONTENT LOADED (EXECUȚIE PRINCIPALĂ)
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-    updateProfileButton();
-
     // A. SIDEBAR TOGGLE
     const menuToggle = document.getElementById("menuToggle");
     const sidebar = document.getElementById("sidebar");
@@ -390,6 +294,4 @@ window.addEventListener("load", () => {
             el.style.transform = "translateY(0)";
         }, index * 100);
     });
-
-    initProfileAuthMode();
 });
