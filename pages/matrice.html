@@ -10,6 +10,7 @@
         }
     </style>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* Stiluri specifice pentru tema activă a paginii Tablouri Bidimensionale */
         .grid-2 {
@@ -85,26 +86,26 @@
             color: var(--accent);
         }
 
-        /* Vizualizare grilă matrice - casete mărite pentru o vizibilitate mai bună */
+        /* Vizualizare grilă matrice - casete mărite semnificativ pentru o vizibilitate mai bună */
         .matrix-grid {
             display: inline-grid;
-            gap: 6px;
+            gap: 8px;
             margin: 18px 0;
             font-family: monospace;
-            grid-template-columns: repeat(4, 52px);
+            grid-template-columns: repeat(4, 68px);
         }
         .matrix-cell {
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text);
-            width: 52px;
-            height: 52px;
+            width: 68px;
+            height: 68px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
         }
         .matrix-cell.diag-main {
             border-color: var(--primary);
@@ -243,13 +244,13 @@ int b[2][3]={ {1, 2, 3}, {4, 5, 6} };
 int a[10][10], n, m, i, j;
 cin>>n>>m;
 // Citire
-for (i=0; i<n; i++)
-    for (j=0; j<m; j++)
+for (i=0; i&lt;n; i++)
+    for (j=0; j&lt;m; j++)
          cin>>a[i][j];
 // Afișare (sub formă de matrice, cu linii și coloane)
-for (i=0; i<n; i++)
+for (i=0; i&lt;n; i++)
 {
-    for (j=0; j<m; j++)
+    for (j=0; j&lt;m; j++)
         cout<<a[i][j]<<" ";
     cout<<'\n'; // trecem pe linia următoare
 }
@@ -286,13 +287,13 @@ for (i=0; i<n; i++)
                     <div class="feature-card">
                         <h3><i class="fa-solid fa-arrow-down"></i> Diagonala principală</h3>
                         <p style="margin: 0; font-size: 0.95rem;">
-                            Conține elementele <code>a[i][j]</code> pentru care <b>i==j</b> (marcate albastru mai sus).
+                            Conține elementele <code>a[i][j]</code> pentru care <b>i == j</b> (marcate albastru mai sus).
                         </p>
                     </div>
                     <div class="feature-card" style="border-left-color: #f43f5e;">
                         <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-down-left"></i> Diagonala secundară</h3>
                         <p style="margin: 0; font-size: 0.95rem;">
-                            Conține elementele <code>a[i][j]</code> pentru care <b>i+j==n-1</b> (marcate roșu mai sus).
+                            Conține elementele <code>a[i][j]</code> pentru care <b>i + j == n - 1</b> (marcate roșu mai sus).
                         </p>
                     </div>
                 </div>
@@ -301,18 +302,18 @@ for (i=0; i<n; i++)
 // Suma elementelor de pe diagonala principală
 int sumaPrincipala(int a[10][10], int n)
 {
-    int s=0, i;
-    for (i=0; i<n; i++)
-        s+=a[i][i];
+    int s = 0, i;
+    for (i=0; i&lt;n; i++)
+        s += a[i][i];
     return s;
 }
 
 // Suma elementelor de pe diagonala secundară
 int sumaSecundara(int a[10][10], int n)
 {
-    int s=0, i;
-    for (i=0; i<n; i++)
-        s+=a[i][n-1-i];
+    int s = 0, i;
+    for (i=0; i&lt;n; i++)
+        s += a[i][n - 1 - i];
     return s;
 }
 </pre>
@@ -324,7 +325,7 @@ int sumaSecundara(int a[10][10], int n)
                     <h3 style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> Definiție</h3>
                     <p style="margin: 0;">
                         O matrice pătratică este <b>simetrică</b> dacă elementele simetrice față de diagonala
-                        principală sunt egale, adică <code>a[i][j]==a[j][i]</code> pentru orice i, j.
+                        principală sunt egale, adică <code>a[i][j] == a[j][i]</code> pentru orice i, j.
                     </p>
                 </div>
 
@@ -332,9 +333,9 @@ int sumaSecundara(int a[10][10], int n)
 bool esteSimetrica(int a[10][10], int n)
 {
     int i, j;
-    for (i=0; i<n; i++)
-        for (j=0; j<n; j++)
-            if (a[i][j]!=a[j][i])
+    for (i=0; i&lt;n; i++)
+        for (j=0; j&lt;n; j++)
+            if (a[i][j] != a[j][i])
                 return false;
 
     return true;
@@ -351,9 +352,9 @@ bool esteSimetrica(int a[10][10], int n)
 bool esteSimetricaOptim(int a[10][10], int n)
 {
     int i, j;
-    for (i=0; i<n; i++)
-        for (j=i+1; j<n; j++)
-            if (a[i][j]!=a[j][i])
+    for (i=0; i&lt;n; i++)
+        for (j=i+1; j&lt;n; j++)
+            if (a[i][j] != a[j][i])
                 return false;
 
     return true;
@@ -373,9 +374,10 @@ bool esteSimetricaOptim(int a[10][10], int n)
 void transpusa(int a[10][10], int t[10][10], int n, int m)
 {
     int i, j;
-    for (i=0; i<n; i++)
-        for (j=0; j<m; j++)
-            t[j][i]=a[i][j];
+    for (i=0; i&lt;n; i++)
+        for (j=0; j&lt;m; j++)
+            t[j][i] = a[i][j];
+
     // t va avea m linii și n coloane
 }
 </pre>
@@ -405,13 +407,13 @@ void transpusa(int a[10][10], int t[10][10], int n, int m)
 void inmultire(int a[10][10], int b[10][10], int c[10][10], int n, int m, int p)
 {
     int i, j, k;
-    for (i=0; i<n; i++)
+    for (i=0; i&lt;n; i++)
     {
-        for (j=0; j<p; j++)
+        for (j=0; j&lt;p; j++)
         {
-            c[i][j]=0;
-            for (k=0; k<m; k++)
-                c[i][j]+=a[i][k]*b[k][j];
+            c[i][j] = 0;
+            for (k=0; k&lt;m; k++)
+                c[i][j] += a[i][k] * b[k][j];
         }
     }
 }
@@ -425,32 +427,33 @@ void inmultire(int a[10][10], int b[10][10], int c[10][10], int n, int m, int p)
 // Suma elementelor de pe linia i
 int sumaLinie(int a[10][10], int m, int i)
 {
-    int s=0, j;
-    for (j=0; j<m; j++)
-        s+=a[i][j];
+    int s = 0, j;
+    for (j=0; j&lt;m; j++)
+        s += a[i][j];
     return s;
 }
 
 // Suma elementelor de pe coloana j
 int sumaColoana(int a[10][10], int n, int j)
 {
-    int s=0, i;
-    for (i=0; i<n; i++)
-        s+=a[i][j];
+    int s = 0, i;
+    for (i=0; i&lt;n; i++)
+        s += a[i][j];
     return s;
 }
 
 // Determinarea elementului maxim din matrice și poziția sa
 void maximMatrice(int a[10][10], int n, int m)
 {
-    int maxim=a[0][0], li=0, co=0, i, j;
-    for (i=0; i<n; i++)
-        for (j=0; j<m; j++)
-            if (a[i][j]>maxim)
+    int maxim = a[0][0], li = 0, co = 0, i, j;
+
+    for (i=0; i&lt;n; i++)
+        for (j=0; j&lt;m; j++)
+            if (a[i][j] > maxim)
             {
-                maxim=a[i][j];
-                li=i;
-                co=j;
+                maxim = a[i][j];
+                li = i;
+                co = j;
             }
 
     cout<<"Maxim: "<<maxim<<" pe linia "<<li<<", coloana "<<co;
@@ -477,12 +480,12 @@ void maximMatrice(int a[10][10], int n, int m)
                             </tr>
                             <tr>
                                 <td>Diagonale (principală/secundară)</td>
-                                <td>matrice pătratică (n=m)</td>
+                                <td>matrice pătratică (n = m)</td>
                                 <td>O(n)</td>
                             </tr>
                             <tr>
                                 <td>Verificare matrice simetrică</td>
-                                <td>matrice pătratică (n=m)</td>
+                                <td>matrice pătratică (n = m)</td>
                                 <td>O(n<sup>2</sup>)</td>
                             </tr>
                             <tr>
