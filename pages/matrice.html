@@ -10,7 +10,6 @@
         }
     </style>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* Stiluri specifice pentru tema activă a paginii Tablouri Bidimensionale */
         .grid-2 {
@@ -86,24 +85,26 @@
             color: var(--accent);
         }
 
-        /* Vizualizare grilă matrice */
+        /* Vizualizare grilă matrice - casete mărite pentru o vizibilitate mai bună */
         .matrix-grid {
             display: inline-grid;
-            gap: 4px;
+            gap: 6px;
             margin: 18px 0;
             font-family: monospace;
+            grid-template-columns: repeat(4, 52px);
         }
         .matrix-cell {
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text);
-            width: 38px;
-            height: 38px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: bold;
+            font-size: 0.85rem;
         }
         .matrix-cell.diag-main {
             border-color: var(--primary);
@@ -122,7 +123,7 @@
             margin-top: 15px;
             border: 1px solid var(--border);
             text-align: left;
-            background-color: var(--surface );
+            background-color: var(--surface);
             color: var(--text);
             border-radius: 8px;
             overflow: hidden;
@@ -154,7 +155,7 @@
 
 <body>
     <script src="../js/theme.js"></script>
-        <div class="container">
+    <div class="container">
 
         <aside class="sidebar" id="sidebar">
             <div>
@@ -171,7 +172,6 @@
                     <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
-
                     <a href="setari.html">⚙️ Setări</a>
                 </nav>
             </div>
@@ -181,336 +181,327 @@
             </div>
         </aside>
 
-    <main class="main lesson-page">
+        <main class="main lesson-page">
 
-        <section class="lesson-header">
-            <h1>Tablouri Bidimensionale</h1>
-            <p>Matrice: declarare, parcurgere și algoritmii clasici de la BAC</p>
-        </section>
+            <section class="lesson-header">
+                <h1>Tablouri Bidimensionale</h1>
+                <p>Matrice: declarare, parcurgere și algoritmii clasici de la BAC</p>
+            </section>
 
-        <!-- INTRODUCERE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-table-cells"></i> Ce este un tablou bidimensional?</h2>
-            <div class="info-box">
-                <p style="margin: 0;">
-                    Un tablou bidimensional (numit și <b>matrice</b>) este, conceptual, un <b>vector de
-                    vectori</b>: o structură organizată pe linii și coloane, în care fiecare element este
-                    identificat prin <b>doi indici</b> &ndash; indicele liniei (i) și indicele coloanei (j).
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-table-cells"></i> Ce este un tablou bidimensional?</h2>
+                <div class="info-box">
+                    <p style="margin: 0;">
+                        Un tablou bidimensional (numit și <b>matrice</b>) este, conceptual, un <b>vector de
+                        vectori</b>: o structură organizată pe linii și coloane, în care fiecare element este
+                        identificat prin <b>doi indici</b> &ndash; indicele liniei (i) și indicele coloanei (j).
+                    </p>
+                </div>
+
+                <div class="matrix-grid">
+                    <div class="matrix-cell">a[0][0]</div>
+                    <div class="matrix-cell">a[0][1]</div>
+                    <div class="matrix-cell">a[0][2]</div>
+                    <div class="matrix-cell">a[0][3]</div>
+                    <div class="matrix-cell">a[1][0]</div>
+                    <div class="matrix-cell">a[1][1]</div>
+                    <div class="matrix-cell">a[1][2]</div>
+                    <div class="matrix-cell">a[1][3]</div>
+                    <div class="matrix-cell">a[2][0]</div>
+                    <div class="matrix-cell">a[2][1]</div>
+                    <div class="matrix-cell">a[2][2]</div>
+                    <div class="matrix-cell">a[2][3]</div>
+                </div>
+
+                <p>
+                    O matrice cu <b>n</b> linii și <b>m</b> coloane se declară astfel în C++:
                 </p>
-            </div>
-
-            <div class="matrix-grid" style="grid-template-columns: repeat(4, 38px);">
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[0][0]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[0][1]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[0][2]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[0][3]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[1][0]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[1][1]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[1][2]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[1][3]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[2][0]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[2][1]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[2][2]</div>
-                <div class="matrix-cell" style="font-size: 0.7rem;">a[2][3]</div>
-            </div>
-
-            <p>
-                O matrice cu <b>n</b> linii și <b>m</b> coloane se declară astfel în C++:
-            </p>
 <pre>
-int a[10][10]; // matrice cu maximum 10 linii si 10 coloane
-int n, m;      // numarul real de linii / coloane folosite
+int a[10][10]; // matrice cu maximum 10 linii și 10 coloane
+int n, m;      // numărul real de linii / coloane folosite
 
-// initializare directa
-int b[2][3] = { {1, 2, 3}, {4, 5, 6} };
+// inițializare directă
+int b[2][3]={ {1, 2, 3}, {4, 5, 6} };
 </pre>
 
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> La fel ca la
-                tablourile unidimensionale, indexarea începe de la <b>0</b>. O matrice cu n linii și m
-                coloane are linii indexate <code style="color: #fbbf24;">0...n-1</code> și coloane indexate
-                <code style="color: #fbbf24;">0...m-1</code>.
-            </div>
-        </section>
+                <div class="note-section">
+                    <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> La fel ca la
+                    tablourile unidimensionale, indexarea începe de la <b>0</b>. O matrice cu n linii și m
+                    coloane are linii indexate <code style="color: #fbbf24;">0...n-1</code> și coloane indexate
+                    <code style="color: #fbbf24;">0...m-1</code>.
+                </div>
+            </section>
 
-        <!-- CITIRE SI AFISARE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-keyboard" style="color: #38bdf8;"></i> Citirea și afișarea unei matrice</h2>
-            <p>
-                Pentru a citi sau afișa toate elementele unei matrice, folosim <b>două bucle imbricate</b>:
-                bucla exterioară parcurge liniile, iar bucla interioară parcurge coloanele din linia curentă.
-            </p>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-keyboard" style="color: #38bdf8;"></i> Citirea și afișarea unei matrice</h2>
+                <p>
+                    Pentru a citi sau afișa toate elementele unei matrice, folosim <b>două bucle imbricate</b>:
+                    bucla exterioară parcurge liniile, iar bucla interioară parcurge coloanele din linia curentă.
+                </p>
 
 <pre>
-int a[10][10], n, m;
-
-cin >> n >> m;
-
+int a[10][10], n, m, i, j;
+cin>>n>>m;
 // Citire
-for (int i = 0; i < n; i++)
-    for (int j = 0; j < m; j++)
-        cin >> a[i][j];
-
-// Afisare (sub forma de matrice, cu linii si coloane)
-for (int i = 0; i < n; i++)
+for (i=0; i<n; i++)
+    for (j=0; j<m; j++)
+         cin>>a[i][j];
+// Afișare (sub formă de matrice, cu linii și coloane)
+for (i=0; i<n; i++)
 {
-    for (int j = 0; j < m; j++)
-        cout << a[i][j] << " ";
-    cout << endl; // trecem pe linia urmatoare
+    for (j=0; j<m; j++)
+        cout<<a[i][j]<<" ";
+    cout<<'\n'; // trecem pe linia următoare
 }
 </pre>
-        </section>
+            </section>
 
-        <!-- MATRICE PATRATICA SI DIAGONALE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-border-all" style="color: #a855f7;"></i> Matrice pătratică. Diagonalele</h2>
-            <p>
-                O matrice este <b>pătratică</b> atunci când numărul de linii este egal cu numărul de coloane
-                (n = m). Pentru o astfel de matrice, putem identifica două diagonale importante:
-            </p>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-border-all" style="color: #a855f7;"></i> Matrice pătratică. Diagonalele</h2>
+                <p>
+                    O matrice este <b>pătratică</b> atunci când numărul de linii este egal cu numărul de coloane
+                    (n = m). Pentru o astfel de matrice, putem identifica două diagonale importante:
+                </p>
 
-            <div class="matrix-grid" style="grid-template-columns: repeat(4, 38px);">
-                <div class="matrix-cell diag-main">0,0</div>
-                <div class="matrix-cell">0,1</div>
-                <div class="matrix-cell">0,2</div>
-                <div class="matrix-cell diag-sec">0,3</div>
-                <div class="matrix-cell">1,0</div>
-                <div class="matrix-cell diag-main">1,1</div>
-                <div class="matrix-cell diag-sec">1,2</div>
-                <div class="matrix-cell">1,3</div>
-                <div class="matrix-cell">2,0</div>
-                <div class="matrix-cell diag-sec">2,1</div>
-                <div class="matrix-cell diag-main">2,2</div>
-                <div class="matrix-cell">2,3</div>
-                <div class="matrix-cell diag-sec">3,0</div>
-                <div class="matrix-cell">3,1</div>
-                <div class="matrix-cell">3,2</div>
-                <div class="matrix-cell diag-main">3,3</div>
-            </div>
-
-            <div class="grid-2">
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-arrow-down"></i> Diagonala principală</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Conține elementele <code>a[i][j]</code> pentru care <b>i == j</b> (marcate albastru mai sus).
-                    </p>
+                <div class="matrix-grid">
+                    <div class="matrix-cell diag-main">0,0</div>
+                    <div class="matrix-cell">0,1</div>
+                    <div class="matrix-cell">0,2</div>
+                    <div class="matrix-cell diag-sec">0,3</div>
+                    <div class="matrix-cell">1,0</div>
+                    <div class="matrix-cell diag-main">1,1</div>
+                    <div class="matrix-cell diag-sec">1,2</div>
+                    <div class="matrix-cell">1,3</div>
+                    <div class="matrix-cell">2,0</div>
+                    <div class="matrix-cell diag-sec">2,1</div>
+                    <div class="matrix-cell diag-main">2,2</div>
+                    <div class="matrix-cell">2,3</div>
+                    <div class="matrix-cell diag-sec">3,0</div>
+                    <div class="matrix-cell">3,1</div>
+                    <div class="matrix-cell">3,2</div>
+                    <div class="matrix-cell diag-main">3,3</div>
                 </div>
-                <div class="feature-card" style="border-left-color: #f43f5e;">
-                    <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-down-left"></i> Diagonala secundară</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Conține elementele <code>a[i][j]</code> pentru care <b>i + j == n - 1</b> (marcate roșu mai sus).
-                    </p>
+
+                <div class="grid-2">
+                    <div class="feature-card">
+                        <h3><i class="fa-solid fa-arrow-down"></i> Diagonala principală</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">
+                            Conține elementele <code>a[i][j]</code> pentru care <b>i==j</b> (marcate albastru mai sus).
+                        </p>
+                    </div>
+                    <div class="feature-card" style="border-left-color: #f43f5e;">
+                        <h3 style="color: #fb7185;"><i class="fa-solid fa-arrow-down-left"></i> Diagonala secundară</h3>
+                        <p style="margin: 0; font-size: 0.95rem;">
+                            Conține elementele <code>a[i][j]</code> pentru care <b>i+j==n-1</b> (marcate roșu mai sus).
+                        </p>
+                    </div>
                 </div>
-            </div>
 
 <pre>
-// Suma elementelor de pe diagonala principala
+// Suma elementelor de pe diagonala principală
 int sumaPrincipala(int a[10][10], int n)
 {
-    int s = 0;
-    for (int i = 0; i < n; i++)
-        s += a[i][i];
+    int s=0, i;
+    for (i=0; i<n; i++)
+        s+=a[i][i];
     return s;
 }
 
-// Suma elementelor de pe diagonala secundara
+// Suma elementelor de pe diagonala secundară
 int sumaSecundara(int a[10][10], int n)
 {
-    int s = 0;
-    for (int i = 0; i < n; i++)
-        s += a[i][n - 1 - i];
+    int s=0, i;
+    for (i=0; i<n; i++)
+        s+=a[i][n-1-i];
     return s;
 }
 </pre>
-        </section>
+            </section>
 
-        <!-- MATRICE SIMETRICA -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-arrows-left-right" style="color: #10b981;"></i> Matrice simetrică</h2>
-            <div class="algo-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.02);">
-                <h3 style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> Definiție</h3>
-                <p style="margin: 0;">
-                    O matrice pătratică este <b>simetrică</b> dacă elementele simetrice față de diagonala
-                    principală sunt egale, adică <code>a[i][j] == a[j][i]</code> pentru orice i, j.
-                </p>
-            </div>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-arrows-left-right" style="color: #10b981;"></i> Matrice simetrică</h2>
+                <div class="algo-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.02);">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> Definiție</h3>
+                    <p style="margin: 0;">
+                        O matrice pătratică este <b>simetrică</b> dacă elementele simetrice față de diagonala
+                        principală sunt egale, adică <code>a[i][j]==a[j][i]</code> pentru orice i, j.
+                    </p>
+                </div>
 
 <pre>
 bool esteSimetrica(int a[10][10], int n)
 {
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            if (a[i][j] != a[j][i])
+    int i, j;
+    for (i=0; i<n; i++)
+        for (j=0; j<n; j++)
+            if (a[i][j]!=a[j][i])
                 return false;
 
     return true;
 }
 </pre>
 
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Optimizare:</b> Este suficient
-                să comparăm doar elementele situate <b>peste</b> diagonala principală cu cele simetrice lor,
-                evitând verificările duble (j parcurge doar de la i+1):
-            </div>
+                <div class="note-section">
+                    <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Optimizare:</b> Este suficient
+                    să comparăm doar elementele situate <b>peste</b> diagonala principală cu cele simetrice lor,
+                    evitând verificările duble (j parcurge doar de la i+1):
+                </div>
 
 <pre>
 bool esteSimetricaOptim(int a[10][10], int n)
 {
-    for (int i = 0; i < n; i++)
-        for (int j = i + 1; j < n; j++)
-            if (a[i][j] != a[j][i])
+    int i, j;
+    for (i=0; i<n; i++)
+        for (j=i+1; j<n; j++)
+            if (a[i][j]!=a[j][i])
                 return false;
 
     return true;
 }
 </pre>
-        </section>
+            </section>
 
-        <!-- TRANSPUSA -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-rotate" style="color: #f59e0b;"></i> Transpusa unei matrice</h2>
-            <p>
-                Transpusa unei matrice <b>A</b> (notată <b>A<sup>T</sup></b>) se obține interschimbând liniile
-                cu coloanele: elementul de pe poziția <code>(i, j)</code> din A devine elementul de pe poziția
-                <code>(j, i)</code> în transpusă.
-            </p>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-rotate" style="color: #f59e0b;"></i> Transpusa unei matrice</h2>
+                <p>
+                    Transpusa unei matrice <b>A</b> (notată <b>A<sup>T</sup></b>) se obține interschimbând liniile
+                    cu coloanele: elementul de pe poziția <code>(i, j)</code> din A devine elementul de pe poziția
+                    <code>(j, i)</code> în transpusă.
+                </p>
 
 <pre>
 void transpusa(int a[10][10], int t[10][10], int n, int m)
 {
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            t[j][i] = a[i][j];
-
-    // t va avea m linii si n coloane
+    int i, j;
+    for (i=0; i<n; i++)
+        for (j=0; j<m; j++)
+            t[j][i]=a[i][j];
+    // t va avea m linii și n coloane
 }
 </pre>
 
-            <div class="note-section">
-                <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Dacă matricea
-                originală are <b>n</b> linii și <b>m</b> coloane, transpusa va avea <b>m</b> linii și <b>n</b>
-                coloane &ndash; dimensiunile se inversează.
-            </div>
-        </section>
+                <div class="note-section">
+                    <b><i class="fa-solid fa-lightbulb" style="color: #eab308;"></i> Observație:</b> Dacă matricea
+                    originală are <b>n</b> linii și <b>m</b> coloane, transpusa va avea <b>m</b> linii și <b>n</b>
+                    coloane &ndash; dimensiunile se inversează.
+                </div>
+            </section>
 
-        <!-- INMULTIREA MATRICELOR -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Înmulțirea a două matrice</h2>
-            <p>
-                Două matrice <b>A</b> (n &times; m) și <b>B</b> (m &times; p) pot fi înmulțite doar dacă
-                numărul de coloane al lui A este egal cu numărul de linii al lui B. Rezultatul este o
-                matrice <b>C</b> de dimensiune n &times; p, unde fiecare element se calculează ca suma
-                produselor dintre linia corespunzătoare din A și coloana corespunzătoare din B.
-            </p>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Înmulțirea a două matrice</h2>
+                <p>
+                    Două matrice <b>A</b> (n &times; m) și <b>B</b> (m &times; p) pot fi înmulțite doar dacă
+                    numărul de coloane al lui A este egal cu numărul de linii al lui B. Rezultatul este o
+                    matrice <b>C</b> de dimensiune n &times; p, unde fiecare element se calculează ca suma
+                    produselor dintre linia corespunzătoare din A și coloana corespunzătoare din B.
+                </p>
 
-            <div class="info-box" style="border-left-color: #f43f5e;">
-                <b style="color: #fb7185;">Formula:</b><br>
-                <code style="font-size: 1.05rem;">c[i][j] = &sum; a[i][k] * b[k][j]</code>, pentru k = 0...m-1
-            </div>
+                <div class="info-box" style="border-left-color: #f43f5e;">
+                    <b style="color: #fb7185;"> Formulă:</b><br>
+                    <code style="font-size: 1.05rem;">c[i][j] = &sum; a[i][k] * b[k][j]</code>, pentru k = 0...m-1
+                </div>
 
 <pre>
 void inmultire(int a[10][10], int b[10][10], int c[10][10], int n, int m, int p)
 {
-    for (int i = 0; i < n; i++)
+    int i, j, k;
+    for (i=0; i<n; i++)
     {
-        for (int j = 0; j < p; j++)
+        for (j=0; j<p; j++)
         {
-            c[i][j] = 0;
-            for (int k = 0; k < m; k++)
-                c[i][j] += a[i][k] * b[k][j];
+            c[i][j]=0;
+            for (k=0; k<m; k++)
+                c[i][j]+=a[i][k]*b[k][j];
         }
     }
 }
 </pre>
-        </section>
+            </section>
 
-        <!-- SUME SI ELEMENTE SPECIALE -->
-        <section class="lesson-card">
-            <h2><i class="fa-solid fa-plus-minus" style="color: #38bdf8;"></i> Sume pe linii, coloane și elemente speciale</h2>
+            <section class="lesson-card">
+                <h2><i class="fa-solid fa-plus-minus" style="color: #38bdf8;"></i> Sume pe linii, coloane și elemente speciale</h2>
 
 <pre>
 // Suma elementelor de pe linia i
 int sumaLinie(int a[10][10], int m, int i)
 {
-    int s = 0;
-    for (int j = 0; j < m; j++)
-        s += a[i][j];
+    int s=0, j;
+    for (j=0; j<m; j++)
+        s+=a[i][j];
     return s;
 }
 
 // Suma elementelor de pe coloana j
 int sumaColoana(int a[10][10], int n, int j)
 {
-    int s = 0;
-    for (int i = 0; i < n; i++)
-        s += a[i][j];
+    int s=0, i;
+    for (i=0; i<n; i++)
+        s+=a[i][j];
     return s;
 }
 
-// Determinarea elementului maxim din matrice si pozitia sa
+// Determinarea elementului maxim din matrice și poziția sa
 void maximMatrice(int a[10][10], int n, int m)
 {
-    int maxim = a[0][0], li = 0, co = 0;
-
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            if (a[i][j] > maxim)
+    int maxim=a[0][0], li=0, co=0, i, j;
+    for (i=0; i<n; i++)
+        for (j=0; j<m; j++)
+            if (a[i][j]>maxim)
             {
-                maxim = a[i][j];
-                li = i;
-                co = j;
+                maxim=a[i][j];
+                li=i;
+                co=j;
             }
 
-    cout << "Maxim: " << maxim << " pe linia " << li << ", coloana " << co;
+    cout<<"Maxim: "<<maxim<<" pe linia "<<li<<", coloana "<<co;
 }
 </pre>
-        </section>
+            </section>
 
-        <!-- TABEL REZUMAT -->
-        <section class="lesson-card">
-            <h2>Rezumat rapid</h2>
-            <div style="overflow-x: auto;">
-                <table class="dark-table" border="1">
-                    <thead>
-                        <tr>
-                            <th>Operație</th>
-                            <th>Condiție pe dimensiuni</th>
-                            <th>Complexitate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Parcurgere completă (citire/afișare)</td>
-                            <td>oricare n, m</td>
-                            <td>O(n &times; m)</td>
-                        </tr>
-                        <tr>
-                            <td>Diagonale (principală/secundară)</td>
-                            <td>matrice pătratică (n = m)</td>
-                            <td>O(n)</td>
-                        </tr>
-                        <tr>
-                            <td>Verificare matrice simetrică</td>
-                            <td>matrice pătratică (n = m)</td>
-                            <td>O(n<sup>2</sup>)</td>
-                        </tr>
-                        <tr>
-                            <td>Transpusă</td>
-                            <td>oricare n, m</td>
-                            <td>O(n &times; m)</td>
-                        </tr>
-                        <tr>
-                            <td>Înmulțire matrice</td>
-                            <td>coloane(A) = linii(B)</td>
-                            <td style="color: #f43f5e; font-weight: bold;">O(n &times; m &times; p)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+            <section class="lesson-card">
+                <h2>Rezumat rapid</h2>
+                <div style="overflow-x: auto;">
+                    <table class="dark-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Operație</th>
+                                <th>Condiție pe dimensiuni</th>
+                                <th>Complexitate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Parcurgere completă (citire/afișare)</td>
+                                <td>oricare n, m</td>
+                                <td>O(n &times; m)</td>
+                            </tr>
+                            <tr>
+                                <td>Diagonale (principală/secundară)</td>
+                                <td>matrice pătratică (n=m)</td>
+                                <td>O(n)</td>
+                            </tr>
+                            <tr>
+                                <td>Verificare matrice simetrică</td>
+                                <td>matrice pătratică (n=m)</td>
+                                <td>O(n<sup>2</sup>)</td>
+                            </tr>
+                            <tr>
+                                <td>Transpusă</td>
+                                <td>oricare n, m</td>
+                                <td>O(n &times; m)</td>
+                            </tr>
+                            <tr>
+                                <td>Înmulțire matrice</td>
+                                <td>coloane(A) = linii(B)</td>
+                                <td style="color: #f43f5e; font-weight: bold;">O(n &times; m &times; p)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-    </main>
-</div>
+        </main>
+    </div>
 
 </body>
 </html>
