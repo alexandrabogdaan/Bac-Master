@@ -1,3 +1,4 @@
+@ -1,853 +1,853 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -39,7 +40,7 @@
             border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border-left: 3px solid var(--accent);
             color: var(--text);
         }
@@ -106,7 +107,7 @@
             border-right: 1px solid var(--border);
         }
 
-        /* STILURI PENTRU SIMULATORI INTERACTIVI (SPAȚIERE OPTIMIZATĂ) */
+        /* STILURI PENTRU SIMULATORI INTERACTIVI */
         .simulator-box {
             background: var(--card);
             border: 1px solid var(--border);
@@ -237,6 +238,7 @@
                     <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
+                    <a href="statistici.html">📊 Statistici</a>
                     <a href="setari.html">⚙️ Setări</a>
                 </nav>
             </div>
@@ -288,37 +290,39 @@ while (n!=0)
         <section class="lesson-card">
             <h2><i class="fa-solid fa-divide" style="color: #10b981;"></i> Divizibilitate. Numere prime. Algoritmul lui Euclid</h2>
             
-            <div class="grid-2">
-                <div class="feature-card" style="border-left-color: #10b981;">
-                    <h3>Determining and Counting Divisors</h3>
-                    <p>Parcurge doar numerele până la rădăcina pătrată a lui n (<code>d*d&lt;=n</code>) pentru a identifica divizorii pereche, garantând o complexitate optimă de timp.</p>
+            <div class="feature-card" style="border-left-color: #10b981;">
+                <h3>Determinarea și numărarea divizorilor</h3>
+                <p>Parcurge doar numerele până la rădăcina pătrată a lui n (<code>d*d&lt;=n</code>) pentru a identifica divizorii pereche, garantând o complexitate optimă de timp.</p>
 <pre style="margin:0;">
-int n, nr_div = 0;
-for (int d = 1; d * d <= n; d++) {
-    if (n % d == 0) {
-        if (d * d == n)
-            nr_div += 1;
+int n, nr_div=0;
+for (int d=1; d*d<=n; d++)
+{
+    if (n%d==0)
+    {
+        if (d*d==n)
+            nr_div+=1;
         else
-            nr_div += 2; // d și n/d sunt amândoi divizori
+            nr_div+=2;
     }
 }
 </pre>
-                </div>
+            </div>
 
-                <div class="feature-card" style="border-left-color: #3b82f6;">
-                    <h3>Verificarea proprietății de număr prim</h3>
-                    <p>Verifică dacă un număr are divizori proprii până la <code>d*d&lt;=n</code>. Dacă nu se găsește niciun divizor în acest interval, numărul este prim.</p>
+            <div class="feature-card" style="border-left-color: #3b82f6;">
+                <h3>Verificarea proprietății de număr prim</h3>
+                <p>Verifică dacă un număr are divizori proprii până la <code>d*d&lt;=n</code>. Dacă nu se găsește niciun divizor în acest interval, numărul este prim.</p>
 <pre style="margin:0;">
-int n, este_prim = 1;
-if (n < 2) este_prim = 0;
-for (int d = 2; d * d <= n; d++) {
-    if (n % d == 0) {
-        este_prim = 0;
+int n, este_prim=1;
+if (n<2) este_prim=0;
+for (int d=2; d*d<=n; d++)
+{
+    if (n%d==0)
+    {
+        este_prim=0;
         break;
     }
 }
 </pre>
-                </div>
             </div>
 
             <div class="simulator-box">
@@ -391,8 +395,8 @@ double s=0, p=1;
 int i, n;
 for (i=1; i&lt;=n; i++)
 {
-    p*=i;      // p păstrează valoarea i!
-    s+=1.0/p;  // adăugăm 1/i! la sumă
+    p*=i;
+    s+=1.0/p;
 }
 </pre>
                 </div>
@@ -528,20 +532,20 @@ for (i=0; i&lt;n; i++)
 int i=0, j=0, k=0, n, m, A[100], B[100], C[200];
 while (i&lt;n && j&lt;m)
 {
-    if (A[i]&lt;B[j]) 
+    if (A[i]&lt;B[j])
     {
         C[k++]=A[i++];
     }
-    else 
+    else
     {
         C[k++]=B[j++];
     }
 }
-while (i&lt;n) 
+while (i&lt;n)
 {
     C[k++]=A[i++];
 }
-while (j&lt;m) 
+while (j&lt;m)
 {
     C[k++]=B[j++];
 }
@@ -580,21 +584,23 @@ for (i=0; i&lt;n; i++)
                 </div>
                 <div class="feature-card" style="border-left-color: #10b981;">
                     <h3>Căutare Binară (Algoritm Optimizat)</h3>
-                    <p>Varianta cu interval deschis <code>(st, dr)</code>. Restrânge eficient spațiul de căutare până când <code>dr - st &lt;= 1</code>, apoi verifică dacă valoarea a fost identificată la limita superioară.</p>
+                    <p>Varianta cu interval deschis <code>(st, dr)</code>. Restrânge eficient spațiul de căutare până când <code>dr-st&lt;=1</code>, apoi verifică dacă valoarea a fost identificată la limita superioară.</p>
 <pre style="margin:0;">
-int cautare_binara(int v[], int n, int x) {
-    int dr = n, st = -1, mij;
-    while (dr - st > 1) {
-        mij = (st + dr) / 2;
-        if (v[mij] < x)
-            st = mij;
+int cautare_binara(int v[], int n, int x)
+{
+    int dr=n, st=-1, mij;
+    while (dr-st>1)
+    {
+        mij=(st+dr)/2;
+        if (v[mij]&lt;x)
+            st=mij;
         else
-            dr = mij;
+            dr=mij;
     }
-    if (dr == n || v[dr] != x)
-        return -1; // Element negăsit
+    if (dr==n || v[dr]!=x)
+        return -1;
     else
-        return dr; // Poziția găsită
+        return dr;
 }
 </pre>
                 </div>
@@ -604,7 +610,7 @@ int cautare_binara(int v[], int n, int x) {
 </div>
 
 <script>
-    const TIME_PAUSE = 1500; 
+    const PAUZA_TIMP = 1500; 
 
     // ==========================================
     // LOGICĂ SIMULATOR NUMĂR PRIM
@@ -620,7 +626,7 @@ int cautare_binara(int v[], int n, int x) {
         }
 
         logBox.innerHTML += `• Se verifică proprietatea de număr prim pentru n = ${n}.\n`;
-        await new Promise(r => setTimeout(r, TIME_PAUSE));
+        await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
         if (n < 2) {
             logBox.innerHTML += `❌ Pas evaluare: ${n} < 2.\n• Rezultat final: Returnează false.\n`;
@@ -628,13 +634,13 @@ int cautare_binara(int v[], int n, int x) {
         }
 
         logBox.innerHTML += `• Verificare condiție: ${n} >= 2.\n• Se pornește analizarea divizorilor.\n`;
-        await new Promise(r => setTimeout(r, TIME_PAUSE));
+        await new Promise(r => setTimeout(r, PAUZA_TIMP));
         
         let estePrim = true;
 
         for (let d = 2; d * d <= n; d++) {
-            logBox.innerHTML += `👉 Se testează d = ${d}. (Verificare limită loop: d*d = ${d*d} <= ${n}).\n`;
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            logBox.innerHTML += `👉 Se testează d = ${d}. (Verificare limită buclă: d*d = ${d*d} <= ${n}).\n`;
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
             if (n % d === 0) {
                 logBox.innerHTML += `💥 Restul împărțirii ${n} % ${d} == 0. Divizor valid identificat.\n`;
@@ -643,7 +649,7 @@ int cautare_binara(int v[], int n, int x) {
                 break;
             } else {
                 logBox.innerHTML += `✓ Restul ${n} % ${d} != 0. Trecere la următorul element.\n`;
-                await new Promise(r => setTimeout(r, TIME_PAUSE));
+                await new Promise(r => setTimeout(r, PAUZA_TIMP));
             }
         }
 
@@ -654,7 +660,7 @@ int cautare_binara(int v[], int n, int x) {
     }
 
     // ==========================================
-    // LOGICĂ SIMULATOR BUBBLE SORT VIZUAL
+    // LOGICĂ SIMULATOR SORTARE PRIN METODA BULELOR
     // ==========================================
     let vectorSim = [35, 14, 78, 8, 29];
     
@@ -691,7 +697,7 @@ int cautare_binara(int v[], int n, int x) {
         for (let i = 0; i < n - 1; i++) {
             logBox.innerHTML += `📍 Începe iterația generală i = ${i}.\n`;
             logBox.scrollTop = logBox.scrollHeight;
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
             for (let j = 0; j < n - 1 - i; j++) {
                 const el1 = document.getElementById(`el-${j}`);
@@ -702,7 +708,7 @@ int cautare_binara(int v[], int n, int x) {
                 
                 logBox.innerHTML += `🔍 Comparare elemente vecine: v[${j}] (${vectorSim[j]}) > v[${j+1}] (${vectorSim[j+1]}).\n`;
                 logBox.scrollTop = logBox.scrollHeight;
-                await new Promise(r => setTimeout(r, TIME_PAUSE));
+                await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
                 if (vectorSim[j] > vectorSim[j + 1]) {
                     logBox.innerHTML += `🔄 Modificare poziții: Se execută interschimbarea elementelor.\n`;
@@ -714,11 +720,11 @@ int cautare_binara(int v[], int n, int x) {
                     el1.innerText = vectorSim[j];
                     el2.innerText = vectorSim[j + 1];
                     logBox.scrollTop = logBox.scrollHeight;
-                    await new Promise(r => setTimeout(r, TIME_PAUSE));
+                    await new Promise(r => setTimeout(r, PAUZA_TIMP));
                 } else {
                     logBox.innerHTML += `✓ Relație corectă: Elementele își păstrează pozițiile actuale.\n`;
                     logBox.scrollTop = logBox.scrollHeight;
-                    await new Promise(r => setTimeout(r, TIME_PAUSE));
+                    await new Promise(r => setTimeout(r, PAUZA_TIMP));
                 }
                 
                 el1.classList.remove('active');
@@ -729,7 +735,7 @@ int cautare_binara(int v[], int n, int x) {
             sortedEl.classList.add('sorted');
             logBox.innerHTML += `🎯 Valoarea ${vectorSim[n - 1 - i]} s-a fixat definitiv la indexul corect.\n\n`;
             logBox.scrollTop = logBox.scrollHeight;
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
         }
         
         document.getElementById(`el-0`).classList.add('sorted');
@@ -798,7 +804,7 @@ int cautare_binara(int v[], int n, int x) {
                     el.classList.add('range-active');
                 }
             }
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
             let mij = Math.floor((st + dr) / 2);
             const elMij = document.getElementById(`se-${mij}`);
@@ -807,7 +813,7 @@ int cautare_binara(int v[], int n, int x) {
 
             logBox.innerHTML += `🔍 Calcul mijloc: mij = (${st} + ${dr}) / 2 = ${mij}. Elementul v[mij] este ${vectorCautare[mij]}.\n`;
             logBox.scrollTop = logBox.scrollHeight;
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
 
             if (vectorCautare[mij] < x) {
                 logBox.innerHTML += `👉 Deoarece v[mij] (${vectorCautare[mij]}) < ${x}, mutăm limita stângă: st = mij = ${mij}.\n`;
@@ -819,7 +825,7 @@ int cautare_binara(int v[], int n, int x) {
             }
             
             logBox.scrollTop = logBox.scrollHeight;
-            await new Promise(r => setTimeout(r, TIME_PAUSE));
+            await new Promise(r => setTimeout(r, PAUZA_TIMP));
         }
 
         if (dr < vectorCautare.length && vectorCautare[dr] === x) {
