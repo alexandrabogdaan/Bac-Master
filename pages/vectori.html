@@ -5,7 +5,6 @@
     <title>Tablouri Unidimensionale - BAC Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -181,7 +180,7 @@ int n, X[10], m, Y[100];    // Declarare multiplă (variabile simple și vectori
                 <div class="grid-2">
                     <div class="feature-card" style="border-left: 3px solid #f59e0b;">
                         <h3><i class="fa-solid fa-globe icon-yellow"></i> Alocare Globală vs. Locală</h3>
-                        <p style="margin: 0;">Elementele unui tablou declarat <b>global</b> sunt inițializate automat cu <b>0</b>. Dacă tabloul este declarat <b>local</b> (în interiorul <code>main</code>), elementele vor conține inițial <b>valori aleatorii</b> (reziduuri din memorie).</p>
+                        <p style="margin: 0;">Elementele unui tablou declarat <b>global</b> sunt inițializate automat cu <b>0</b>. Dacă tabloul este declarat <b>local</b> (în interiorul "main"), elementele vor conține inițial <b>valori aleatorii</b> (reziduuri din memorie).</p>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid var(--primary);">
                         <h3><i class="fa-solid fa-list-ol icon-primary"></i> Indexare nativă de la 0</h3>
@@ -203,11 +202,11 @@ int n, X[10], m, Y[100];    // Declarare multiplă (variabile simple și vectori
                 <p>Un element referit corect se comportă exact ca o variabilă oarecare din tipul de bază al tabloului:</p>
 <pre>
 int X[10];
-X[0] = 17;
+X[0]=17;
 
-cout &lt;&lt; X[0];     // Afișează valoarea: 17
-cout &lt;&lt; X[0] + 5; // Efectuează calculul: 22
-cout &lt;&lt; X[0] / 5; // Diviziune întreagă: 3
+cout&lt;&lt;X[0];     // Afișează valoarea: 17
+cout&lt;&lt;X[0]+5;   // Efectuează calculul: 22
+cout&lt;&lt;X[0]/5;  // Diviziune întreagă: 3
 </pre>
             </section>
 
@@ -221,10 +220,9 @@ cout &lt;&lt; X[0] / 5; // Diviziune întreagă: 3
                     <h3><i class="fa-solid fa-arrows-repeat icon-primary"></i> Parcurgerea unui vector</h3>
                     <p>Reprezintă vizitarea și/sau modificarea fiecărui element într-o ordine bine stabilită (directă sau inversă), folosind o structură repetitivă:</p>
 <pre>
-int X[100], n; // n reprezintă numărul de elemente utilizate efectiv
-for(int i = 0 ; i &lt; n ; i++) {
-    X[i] = 1;  // Inițializăm toate elementele logice cu valoarea 1
-}
+int X[100], n, i; // n reprezintă numărul de elemente utilizate efectiv
+for (i=0; i&lt;n ; i++) 
+    X[i]=1;  // Inițializăm toate elementele logice cu valoarea 1
 </pre>
                 </div>
             </section>
@@ -246,14 +244,14 @@ for(int i = 0 ; i &lt; n ; i++) {
                         <div style="font-size: 0.95rem;">
                             <b>Citirea element cu element:</b>
 <pre style="margin: 5px 0;">
-cin &gt;&gt; n;
-for(int i = 0 ; i &lt; n ; i++)
-    cin &gt;&gt; X[i];
+cin&gt;&gt;n;
+for (int i=0; i&lt;n; i++)
+     cin&gt;&gt;X[i];
 </pre>
                             <b>Afișarea element cu element:</b>
 <pre style="margin: 5px 0;">
-for(int i = 0 ; i &lt; n ; i++)
-    cout &lt;&lt; X[i] &lt;&lt; " ";
+for (int i=0; i&lt;n; i++)
+    cout&lt;&lt;X[i]&lt;&lt;" ";
 </pre>
                         </div>
                     </div>
