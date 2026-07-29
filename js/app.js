@@ -133,7 +133,7 @@ function initQuizGrille() {
 }
 
 // ==========================================
-// 3. FUNCȚIE GLOBALĂ PENTRU SCROLL LA AN (ARHIVĂ)
+// 2. FUNCȚIE GLOBALĂ PENTRU SCROLL LA AN (ARHIVĂ)
 // ==========================================
 function scrollToYear(year) {
     const sections = document.querySelectorAll('.year-section');
@@ -153,7 +153,48 @@ function scrollToYear(year) {
 }
 
 // ==========================================
-// 5. DOM CONTENT LOADED (EXECUȚIE PRINCIPALĂ)
+// 3. INDEX GLOBAL DE CĂUTARE (PAGINI & ARHIVĂ ANI)
+// ==========================================
+const isInPages = window.location.pathname.includes('/pages/');
+const pathPrefix = isInPages ? "" : "pages/";
+
+const searchableItems = [
+    // Teorie și Concepte
+    { title: "Recursivitate", category: "Teorie", url: pathPrefix + "recursivitate.html", keywords: ["recursivitate", "functie", "apel", "teorie"] },
+    { title: "Arbori", category: "Teorie", url: pathPrefix + "arbori.html", keywords: ["arbori", "binari", "nod", "frunza", "teorie"] },
+    { title: "Grafuri", category: "Teorie", url: pathPrefix + "grafuri.html", keywords: ["grafuri", "muchii", "noduri", "conex", "teorie"] },
+    { title: "Backtracking", category: "Teorie", url: pathPrefix + "backtracking.html", keywords: ["backtracking", "generare", "metoda", "teorie"] },
+    { title: "Greedy", category: "Teorie", url: pathPrefix + "greedy.html", keywords: ["greedy", "metoda", "optimizare", "teorie"] },
+    { title: "Matrice", category: "Teorie", url: pathPrefix + "matrice.html", keywords: ["matrice", "tablou bidimensional", "linii", "coloane"] },
+    { title: "Vectori", category: "Teorie", url: pathPrefix + "vectori.html", keywords: ["vectori", "tablou unidimensional", "sir"] },
+    { title: "Șiruri de caractere", category: "Teorie", url: pathPrefix + "siruri.html", keywords: ["siruri", "caractere", "text", "strcat"] },
+    { title: "Subprograme", category: "Teorie", url: pathPrefix + "subprograme.html", keywords: ["subprograme", "functii", "proceduri"] },
+    { title: "Structuri de date", category: "Teorie", url: pathPrefix + "structuri-date.html", keywords: ["struct", "inregistrari", "date"] },
+    { title: "Structuri de control", category: "Teorie", url: pathPrefix + "structuridecontrol.html", keywords: ["if", "while", "for", "structuri"] },
+    { title: "Variabile și Operatori", category: "Teorie", url: pathPrefix + "variabile.html", keywords: ["variabile", "operatori", "tipuri de date"] },
+    { title: "Algoritmi Elementari", category: "Algoritmi", url: pathPrefix + "algoritmi.html", keywords: ["cifre", "divizibilitate", "euclid", "fibonacci"] },
+
+    // Arhivă Subiecte BAC pe Ani (2015 - 2025)
+    { title: "Arhivă Subiecte BAC", category: "Subiecte", url: pathPrefix + "subiecte.html", keywords: ["subiecte", "arhiva", "bacalaureat", "bac"] },
+    { title: "Subiecte BAC 2025", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2025", keywords: ["2025", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2024", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2024", keywords: ["2024", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2023", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2023", keywords: ["2023", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2022", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2022", keywords: ["2022", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2021", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2021", keywords: ["2021", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2020", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2020", keywords: ["2020", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2019", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2019", keywords: ["2019", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2018", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2018", keywords: ["2018", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2017", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2017", keywords: ["2017", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2016", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2016", keywords: ["2016", "bac", "subiecte", "iunie", "toamna"] },
+    { title: "Subiecte BAC 2015", category: "Subiecte BAC", url: pathPrefix + "subiecte.html?an=2015", keywords: ["2015", "bac", "subiecte", "iunie", "toamna"] },
+
+    // Secțiuni principale
+    { title: "Probleme C++", category: "Probleme", url: pathPrefix + "probleme.html", keywords: ["probleme", "exercitii", "grile"] },
+    { title: "Teste Grilă", category: "Teste", url: pathPrefix + "teste.html", keywords: ["teste", "grila", "verificare"] }
+];
+
+// ==========================================
+// 4. DOM CONTENT LOADED (EXECUȚIE PRINCIPALĂ)
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     // A. SIDEBAR TOGGLE
@@ -178,98 +219,58 @@ document.addEventListener("DOMContentLoaded", () => {
     initChapterDropdowns();
     initQuizGrille();
 
-    // D. SISTEM UNIFICAT DE CĂUTARE (Index & Arhivă Subiecte)
+    // D. SCROLL AUTOMAT LA AN DACĂ ESTE PREZENT ÎN URL (ex: ?an=2025)
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetYear = urlParams.get('an');
+    if (targetYear) {
+        setTimeout(() => {
+            scrollToYear(targetYear);
+        }, 200);
+    }
+
+    // E. SISTEM UNIFICAT DE CĂUTARE
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
-    const yearSections = document.querySelectorAll('.year-section');
-    const yearCards = document.querySelectorAll('.year-card');
-    const noResultsMessage = document.getElementById('noResultsMessage');
-    const homeCards = document.querySelectorAll('.card, .module-card');
 
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.trim().toLowerCase();
+            const query = e.target.value.toLowerCase().trim();
+            if (!searchResults) return;
 
-            // Cazul 1: Suntem pe pagina de Arhivă Subiecte (are .year-section)
-            if (yearSections.length > 0) {
-                let visibleCount = 0;
+            searchResults.innerHTML = '';
 
-                if (query === '') {
-                    if (searchResults) {
-                        searchResults.style.display = 'none';
-                        searchResults.innerHTML = '';
-                    }
-                    yearSections.forEach(section => section.style.display = 'block');
-                    return;
-                }
-
-                let dropdownContent = '';
-
-                yearSections.forEach((section) => {
-                    const yearTitle = section.querySelector('.year-title');
-                    const yearText = yearTitle ? yearTitle.textContent.toLowerCase() : '';
-
-                    if (yearText.includes(query)) {
-                        section.style.display = 'block';
-                        visibleCount++;
-
-                        const yearNumber = yearText.replace(/[^0-9]/g, '');
-                        dropdownContent += `
-                            <div class="search-item" onclick="scrollToYear('${yearNumber}')">
-                                <span>📅 BAC ${yearNumber}</span>
-                                <span class="search-item-badge">Sesiuni Iunie & Toamnă</span>
-                            </div>
-                        `;
-                    } else {
-                        section.style.display = 'none';
-                    }
-                });
-
-                if (searchResults) {
-                    if (dropdownContent !== '') {
-                        searchResults.innerHTML = dropdownContent;
-                        searchResults.style.display = 'block';
-                    } else {
-                        searchResults.innerHTML = '<div class="search-item" style="color: #a0aec0; justify-content: center;">Nu am găsit niciun an</div>';
-                        searchResults.style.display = 'block';
-                    }
-                }
-            } 
-            // Cazul 2: Suntem pe altă pagină (de ex. Arhivă simplă cu .year-card)
-            else if (yearCards.length > 0) {
-                let visibleCount = 0;
-
-                yearCards.forEach((card) => {
-                    const yearAttr = card.getAttribute('data-year') || '';
-                    const cardText = card.textContent.toLowerCase();
-
-                    if (query === '' || yearAttr.includes(query) || cardText.includes(query)) {
-                        card.style.display = '';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                if (noResultsMessage) {
-                    noResultsMessage.style.display = (visibleCount === 0) ? 'block' : 'none';
-                }
+            if (query === '') {
+                searchResults.style.display = 'none';
+                return;
             }
-            // Cazul 3: Suntem pe Pagina Principală (index.html) - filtrează cardurile
-            else if (homeCards.length > 0) {
-                homeCards.forEach((card) => {
-                    const cardText = card.textContent.toLowerCase();
 
-                    if (query === '' || cardText.includes(query)) {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+            // Filtrare globală în funcție de titlu sau cuvinte cheie
+            const filtered = searchableItems.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.keywords.some(keyword => keyword.toLowerCase().includes(query))
+            );
+
+            if (filtered.length === 0) {
+                searchResults.innerHTML = '<div class="search-item" style="color: #a0aec0; justify-content: center; padding: 12px;">Nu am găsit niciun rezultat...</div>';
+                searchResults.style.display = 'block';
+                return;
             }
+
+            let dropdownContent = '';
+            filtered.forEach(item => {
+                dropdownContent += `
+                    <a href="${item.url}" class="search-item" style="text-decoration: none; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; color: var(--text);">
+                        <span>${item.title}</span>
+                        <span class="search-item-badge" style="font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: var(--primary, #10b981); color: #fff;">${item.category}</span>
+                    </a>
+                `;
+            });
+
+            searchResults.innerHTML = dropdownContent;
+            searchResults.style.display = 'block';
         });
 
-        // Ascunde dropdown-ul de căutare dacă utilizatorul dă click în afara lui
+        // Ascunde dropdown-ul la click în afara lui
         document.addEventListener('click', (e) => {
             if (!searchInput.contains(e.target) && searchResults && !searchResults.contains(e.target)) {
                 searchResults.style.display = 'none';
@@ -279,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// 6. ANIMAȚII LA LOAD
+// 5. ANIMAȚII LA LOAD
 // ==========================================
 window.addEventListener("load", () => {
     const elements = document.querySelectorAll(".card, .module-card, .hero");
