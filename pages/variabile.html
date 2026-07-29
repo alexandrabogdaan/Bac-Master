@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <title>Variabile - BAC Master</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
-    </style>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
+
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -46,14 +45,14 @@
             margin-top: 0;
             margin-bottom: 8px;
             font-size: 1.1rem;
-            color: var(--accent);
+            color: var(--text);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .problem-section {
-            background: rgba(37, 99, 235, 0.08);
+            background: rgba(37, 99, 235, 0.08); /* Transparent blue, works in both modes */
             border: 1px solid rgba(37, 99, 235, 0.16);
             border-left: 4px solid var(--primary);
             padding: 20px;
@@ -62,7 +61,7 @@
             color: var(--text);
         }
         .problem-section h3 {
-            color: var(--primary);
+            color: var(--text);
             margin-top: 0;
             margin-bottom: 10px;
             display: flex;
@@ -76,7 +75,7 @@
             margin-top: 15px;
             border: 1px solid var(--border);
             text-align: left;
-            background-color: var(--card);
+            background-color: var(--surface);
             color: var(--text);
             border-radius: 8px;
             overflow: hidden;
@@ -100,11 +99,19 @@
         .dark-table tr:hover {
             background-color: rgba(37, 99, 235, 0.05);
         }
+
+        /* Utilities for cross-theme icons */
+        .icon-primary { color: var(--primary); }
+        .icon-accent { color: var(--accent); }
+        .icon-green { color: #10b981; }
+        .icon-yellow { color: #eab308; }
+        .icon-slate { color: #64748b; }
+        .text-muted { color: var(--text); opacity: 0.8; }
     </style>
 </head>
 
 <body>
-<script src="../js/theme.js"></script>
+    <script src="../js/theme.js"></script>
     <div class="container">
 
         <aside class="sidebar" id="sidebar">
@@ -122,7 +129,6 @@
                     <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
-
                     <a href="setari.html">⚙️ Setări</a>
                 </nav>
             </div>
@@ -132,159 +138,155 @@
             </div>
         </aside>
 
-    <main class="main lesson-page">
+        <main class="main lesson-page">
 
-        <section class="lesson-header">
-            <h1>Variabile și tipuri de date</h1>
-            <p>Noțiuni fundamentale despre memorie, valori și reprezentarea datelor în calculator</p>
-        </section>
+            <section class="lesson-header">
+                <h1>Variabile și tipuri de date</h1>
+                <p>Noțiuni fundamentale despre memorie, valori și reprezentarea datelor în calculator</p>
+            </section>
 
-        <section class="lesson-card">
-            <h2>Definiția variabilei</h2>
-
-            <p>
-                În informatică, gestionarea corectă a datelor pornește de la înțelegerea conceptului de stocare temporară.
-            </p>
-
-            <div class="math-box">
-                <b style="color: #60a5fa;"><i class="fa-solid fa-box-archive"></i> Concept fundamental:</b> 
-                O variabilă este o zonă de memorie identificată printr-un nume, în care se stochează o valoare ce poate fi modificată în timpul execuției programului.
-            </div>
-
-            <p style="color: #a0aec0;">
-                <i class="fa-solid fa-circle-info" style="color: #38bdf8; margin-right: 5px;"></i> 
-                În timp ce numele variabilei (identificatorul) rămâne constant, conținutul acesteia se poate schimba de oricâte ori este necesar.
-            </p>
-        </section>
-
-        <section class="lesson-card">
-            <h2>Memoria și reprezentarea în biți</h2>
-
-            <p>
-                Calculatorul nu înțelege direct numerele zecimale sau literele, ci stochează toate datele sub formă de biți (stări de 0 și 1).
-            </p>
-
-            <div class="grid-2">
-                <div class="feature-card">
-                    <h3 style="color: #38bdf8;"><i class="fa-solid fa-microchip"></i> Bitul</h3>
-                    <p style="margin: 0;">Reprezintă cea mai mică unitate de informație dintr-un sistem de calcul, având valoarea 0 sau 1.</p>
-                </div>
-                <div class="feature-card">
-                    <h3 style="color: #10b981;"><i class="fa-solid fa-database"></i> Octetul (Byte)</h3>
-                    <p style="margin: 0;">Este unitatea principală de măsură. Un grup de <b>8 biți</b> formează 1 byte, capabil să stocheze o valoare între 0 și 255 (sau -128 și 127).</p>
-                </div>
-            </div>
-
-            <div class="math-box" style="border-left-color: #a855f7;">
-                <b style="color: #c084fc;"><i class="fa-solid fa-arrow-down-up-lock"></i> Grila de transformare a unităților:</b>
-                <ul style="margin: 5px 0 0 20px; padding: 0;">
-                    <li>1 Byte = 8 biți</li>
-                    <li>1 KB (Kilobyte) = 1024 Bytes</li>
-                    <li>1 MB (Megabyte) = 1024 KB</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="lesson-card">
-            <h2>Tipuri de date și alocarea în memorie</h2>
-            <p>Fiecare variabilă are nevoie de un anumit spațiu pentru a-și reprezenta valorile în format binar. Structura completă a tipurilor primitive din C++ este următoarea:</p>
-
-            <div style="overflow-x: auto;">
-                <table class="dark-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 20%;">Tip de dată</th>
-                            <th style="width: 30%;">Dimensiune memorie</th>
-                            <th style="width: 50%;">Tipul de valori stocate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>int</b></td>
-                            <td style="color: #38bdf8; font-weight: bold;">4 bytes (32 biți)</td>
-                            <td>Numere întregi (cu sau fără semn)</td>
-                        </tr>
-                        <tr>
-                            <td><b>float</b></td>
-                            <td>4 bytes (32 biți)</td>
-                            <td>Numere reale (cu virgulă, precizie simplă)</td>
-                        </tr>
-                        <tr>
-                            <td><b>double</b></td>
-                            <td style="color: #38bdf8; font-weight: bold;">8 bytes (64 biți)</td>
-                            <td>Numere reale (precizie dublă)</td>
-                        </tr>
-                        <tr>
-                            <td><b>char</b></td>
-                            <td>1 byte (8 biți)</td>
-                            <td>Un singur caracter codificat ASCII</td>
-                        </tr>
-                        <tr>
-                            <td><b>bool</b></td>
-                            <td style="color: #10b981; font-weight: bold;">1 byte</td>
-                            <td>Valori logice (adevărat sau fals)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="lesson-card">
-            <h2>Analiza detaliată a tipurilor de date</h2>
-            <p>Pentru examenul de Bacalaureat, este esențial să înțelegi cum funcționează limitările fiecărui tip în parte:</p>
-
-            <div class="problem-section">
-                <h3><i class="fa-solid fa-arrow-1-9"></i> Tipul int (Numere întregi)</h3>
-                <p>Fiind reprezentat pe 32 de biți, primul bit este utilizat pentru a salva semnul (0 pentru pozitiv, 1 pentru negativ), iar restul de 31 de biți salvează valoarea efectivă.</p>
-                <p><b>Intervalul de valori permise:</b></p>
-                <pre style="margin: 5px 0;">-2,147,483,648 până la 2,147,483,647</pre>
-            </div>
-
-            <div class="problem-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.02);">
-                <h3 style="color: #34d399;"><i class="fa-solid fa-calculator"></i> Tipurile reale (float și double)</h3>
-                <p>Numerele reale sunt salvate în formatul standard cu <b>virgulă mobilă</b> (floating point).</p>
-                <p style="margin-bottom: 0; color: #a0aec0;">
-                    <i class="fa-solid fa-triangle-exclamation" style="color: #f43f5e; margin-right: 5px;"></i>
-                    <i>Important:</i> Aceste tipuri nu stochează întotdeauna valoarea matematică exactă, ci o <b>aproximație extrem de fidelă</b>, generând uneori mici erori de precizie la zecimalele îndepărtate.
+            <section class="lesson-card">
+                <h2>Definiția variabilei</h2>
+                <p>
+                    În informatică, gestionarea corectă a datelor pornește de la înțelegerea conceptului de stocare temporară.
                 </p>
-            </div>
 
-            <div class="problem-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.02);">
-                <h3 style="color: #facc15;"><i class="fa-solid fa-font"></i> Tipul char (Caractere)</h3>
-                <p>Deși reprezintă o literă sau un simbol, în memorie tipul <code>char</code> este salvat sub forma unui număr întreg cuprins între 0 și 255, reprezentând <b>codul ASCII</b> al acelui caracter.</p>
-                <pre style="margin: 5px 0;">'A' = 65  |  'a' = 97  |  '0' = 48</pre>
-            </div>
+                <div class="math-box">
+                    <b><i class="fa-solid fa-box-archive icon-primary"></i> Concept fundamental:</b> 
+                    O variabilă este o zonă de memorie identificată printr-un nume, în care se stochează o valoare ce poate fi modificată în timpul execuției programului.
+                </div>
 
-            <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.02);">
-                <h3 style="color: #94a3b8;"><i class="fa-solid fa-toggle-on"></i> Tipul bool (Valori logice)</h3>
-                <p>Folosit exclusiv în structurile condiționale și decizionale pentru a reține starea unei instrucțiuni. Acceptă doar două stări:</p>
-                <ul style="padding-left: 20px; margin: 5px 0 0 0;">
-                    <li><code>true</code> (reprezentat intern prin valoarea 1 sau orice valoare nenulă)</li>
-                    <li><code>false</code> (reprezentat intern prin valoarea 0)</li>
-                </ul>
-            </div>
-        </section>
+                <p class="text-muted">
+                    <i class="fa-solid fa-circle-info icon-primary" style="margin-right: 5px;"></i> 
+                    În timp ce numele variabilei (identificatorul) rămâne constant, conținutul acesteia se poate schimba de oricâte ori este necesar.
+                </p>
+            </section>
 
-        <section class="lesson-card">
-            <h2>Declararea variabilelor în cod</h2>
-            <p>Înainte de a putea introduce date sau efectua calcule într-o variabilă, compilatorul C++ te obligă să o declari, specificându-i clar tipul:</p>
+            <section class="lesson-card">
+                <h2>Memoria și reprezentarea în biți</h2>
+                <p>
+                    Calculatorul nu înțelege direct numerele zecimale sau literele, ci stochează toate datele sub formă de biți (stări de 0 și 1).
+                </p>
+
+                <div class="grid-2">
+                    <div class="feature-card" style="border-left: 3px solid var(--primary);">
+                        <h3><i class="fa-solid fa-microchip icon-primary"></i> Bitul</h3>
+                        <p style="margin: 0;">Reprezintă cea mai mică unitate de informație dintr-un sistem de calcul, având valoarea 0 sau 1.</p>
+                    </div>
+                    <div class="feature-card" style="border-left: 3px solid #10b981;">
+                        <h3><i class="fa-solid fa-database icon-green"></i> Octetul (Byte)</h3>
+                        <p style="margin: 0;">Este unitatea principală de măsură. Un grup de <b>8 biți</b> formează 1 byte, capabil să stocheze o valoare între 0 și 255 (sau -128 și 127).</p>
+                    </div>
+                </div>
+
+                <div class="math-box" style="border-left-color: var(--accent);">
+                    <b><i class="fa-solid fa-arrow-down-up-lock icon-accent"></i> Grila de transformare a unităților:</b>
+                    <ul style="margin: 5px 0 0 20px; padding: 0;">
+                        <li>1 Byte = 8 biți</li>
+                        <li>1 KB (Kilobyte) = 1024 Bytes</li>
+                        <li>1 MB (Megabyte) = 1024 KB</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lesson-card">
+                <h2>Tipuri de date și alocarea în memorie</h2>
+                <p>Fiecare variabilă are nevoie de un anumit spațiu pentru a-și reprezenta valorile în format binar. Structura completă a tipurilor primitive din C++ este următoarea:</p>
+
+                <div style="overflow-x: auto;">
+                    <table class="dark-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Tip de dată</th>
+                                <th style="width: 30%;">Dimensiune memorie</th>
+                                <th style="width: 50%;">Tipul de valori stocate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>int</b></td>
+                                <td style="font-weight: bold;" class="icon-primary">4 bytes (32 biți)</td>
+                                <td>Numere întregi (cu sau fără semn)</td>
+                            </tr>
+                            <tr>
+                                <td><b>float</b></td>
+                                <td>4 bytes (32 biți)</td>
+                                <td>Numere reale (cu virgulă, precizie simplă)</td>
+                            </tr>
+                            <tr>
+                                <td><b>double</b></td>
+                                <td style="font-weight: bold;" class="icon-primary">8 bytes (64 biți)</td>
+                                <td>Numere reale (precizie dublă)</td>
+                            </tr>
+                            <tr>
+                                <td><b>char</b></td>
+                                <td>1 byte (8 biți)</td>
+                                <td>Un singur caracter codificat ASCII</td>
+                            </tr>
+                            <tr>
+                                <td><b>bool</b></td>
+                                <td style="font-weight: bold;" class="icon-green">1 byte</td>
+                                <td>Valori logice (adevărat sau fals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="lesson-card">
+                <h2>Analiza detaliată a tipurilor de date</h2>
+                <p>Pentru examenul de Bacalaureat, este esențial să înțelegi cum funcționează limitările fiecărui tip în parte:</p>
+
+                <div class="problem-section" style="border-left-color: var(--primary);">
+                    <h3><i class="fa-solid fa-arrow-1-9 icon-primary"></i> Tipul int (Numere întregi)</h3>
+                    <p>Fiind reprezentat pe 32 de biți, primul bit este utilizat pentru a salva semnul (0 pentru pozitiv, 1 pentru negativ), iar restul de 31 de biți salvează valoarea efectivă.</p>
+                    <p><b>Intervalul de valori permise:</b></p>
+                    <pre style="margin: 5px 0;">-2,147,483,648 până la 2,147,483,647</pre>
+                </div>
+
+                <div class="problem-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.05);">
+                    <h3><i class="fa-solid fa-calculator icon-green"></i> Tipurile reale (float și double)</h3>
+                    <p>Numerele reale sunt salvate în formatul standard cu <b>virgulă mobilă</b> (floating point).</p>
+                    <p style="margin-bottom: 0;" class="text-muted">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #f43f5e; margin-right: 5px;"></i>
+                        <i>Important:</i> Aceste tipuri nu stochează întotdeauna valoarea matematică exactă, ci o <b>aproximație extrem de fidelă</b>, generând uneori mici erori de precizie la zecimalele îndepărtate.
+                    </p>
+                </div>
+
+                <div class="problem-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.05);">
+                    <h3><i class="fa-solid fa-font icon-yellow"></i> Tipul char (Caractere)</h3>
+                    <p>Deși reprezintă o literă sau un simbol, în memorie tipul <code>char</code> este salvat sub forma unui număr întreg cuprins între 0 și 255, reprezentând <b>codul ASCII</b> al acelui caracter.</p>
+                    <pre style="margin: 5px 0;">'A' = 65  |  'a' = 97  |  '0' = 48</pre>
+                </div>
+
+                <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.05);">
+                    <h3><i class="fa-solid fa-toggle-on icon-slate"></i> Tipul bool (Valori logice)</h3>
+                    <p>Folosit exclusiv în structurile condiționale și decizionale pentru a reține starea unei instrucțiuni. Acceptă doar două stări:</p>
+                    <ul style="padding-left: 20px; margin: 5px 0 0 0;">
+                        <li><code>true</code> (reprezentat intern prin valoarea 1 sau orice valoare nenulă)</li>
+                        <li><code>false</code> (reprezentat intern prin valoarea 0)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="lesson-card">
+                <h2>Declararea variabilelor în cod</h2>
+                <p>Înainte de a putea introduce date sau efectua calcule într-o variabilă, compilatorul C++ te obligă să o declari, specificându-i clar tipul:</p>
 
 <pre>
-int a = 10;       // Alocă 4 bytes pentru un număr întreg
-float x = 3.5;    // Alocă 4 bytes pentru un număr real
-char c = 'A';     // Alocă 1 byte pentru un caracter (cod ASCII 65)
-bool ok = true;   // Alocă 1 byte pentru un indicator logic
+int a=10;       // Alocă 4 bytes pentru un număr întreg
+float x=3.5;    // Alocă 4 bytes pentru un număr real
+char c='A';     // Alocă 1 byte pentru un caracter (cod ASCII 65)
+bool ok=1;   // Alocă 1 byte pentru un indicator logic
 </pre>
 
-            <div class="math-box" style="border-left-color: #64748b; margin-top: 20px;">
-                <b style="color: #94a3b8;"><i class="fa-solid fa-flag"></i> Concluzie:</b><br>
-                Variabilele constituie fundamentul programării structurate. Alegerea corectă a tipului de dată este vitală pentru a asigura atât utilizarea eficientă a memoriei RAM, cât și prevenirea erorilor de depășire de tip (overflow) la examenele scrise.
-            </div>
-        </section>
+                <div class="math-box" style="border-left-color: #64748b; margin-top: 20px;">
+                    <b><i class="fa-solid fa-flag icon-slate"></i> Concluzie:</b><br>
+                    Variabilele constituie fundamentul programării structurate. Alegerea corectă a tipului de dată este vitală pentru a asigura atât utilizarea eficientă a memoriei RAM, cât și prevenirea erorilor de depășire de tip (overflow) la examenele scrise.
+                </div>
+            </section>
 
-    </main>
-
-</div>
-
+        </main>
+    </div>
 </body>
 </html>
