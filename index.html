@@ -3,224 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAC Master</title>
+    <title>BAC Master - Pregătire Informatică BAC</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 <script src="js/theme.js"></script>
     <div class="container">
 
         <aside class="sidebar" id="sidebar">
-
             <div>
-
                 <div class="logo">
                     <a href="index.html" class="logo-link">
                         <h2>BAC Master</h2>
                         <p>Pregătește BAC-ul inteligent</p>
                     </a>
                 </div>
-
                 <nav>
-
                     <a href="index.html" class="active">🏠 Acasă</a>
-
                     <a href="pages/teorie.html">📘 Teorie</a>
-
                     <a href="pages/algoritmi.html">💻 Algoritmi</a>
-
                     <a href="pages/subiecte.html">🏛️ Subiecte BAC</a>
-
                     <a href="pages/teste.html">📝 Teste</a>
-
                     <a href="pages/probleme.html">🧩 Probleme</a>
-
                     <a href="pages/setari.html">⚙️ Setări</a>
-
                 </nav>
-
             </div>
-
             <div class="sidebar-footer">
-
                 <h4>🎯 Obiectiv</h4>
-
                 <p>Nota 10 la BAC</p>
-
             </div>
-
         </aside>
 
         <main class="main">
-
             <header class="topbar">
-
                 <div class="left-top">
-
                     <h2>Dashboard</h2>
-
                 </div>
-
-               <div class="right-top" style="position: relative;">
-                  <input type="text" id="searchInput" style="width: 400px; box-sizing: border-box;" placeholder="Caută capitole, teste, algoritmi, subiecte...">
-                  <div id="searchResults" class="search-results-dropdown"></div>
-               </div>
+                <div class="right-top" style="position: relative;">
+                    <input type="text" id="searchInput" style="width: 400px; box-sizing: border-box;" placeholder="Caută capitole, teste, algoritmi, subiecte...">
+                    <div id="searchResults" class="search-results-dropdown"></div>
+                </div>
             </header>
 
             <section class="hero">
                 <div class="hero-left">
-
                     <span class="badge">
                         🚀 Platformă completă BAC mate-info
                     </span>
-
                     <h1>
-                        Învață Informatica
-                        pentru BAC mai rapid și mai eficient.
+                        Învață Informatică pentru BAC mai rapid și mai eficient.
                     </h1>
-
                     <p>
-                        Teorie completă, algoritmi vizuali interactivi, probleme, teste grilă și subiecte de BAC (profilul matematică-informatică) explicate pas cu pas — toate reunite într-o platformă web modernă.
+                        Teorie completă, probleme de C++ pentru BAC explicate pas cu pas și algoritmi vizuali interactivi — totul într-un site modern.
                     </p>
-
                     <div class="hero-buttons">
-
                         <a href="pages/teorie.html" class="btn-primary">
                             Începe acum
                         </a>
-
                         <a href="pages/subiecte.html" class="btn-secondary">
                             Arhivă Subiecte
                         </a>
-
                     </div>
-
                 </div>
 
-                <div class="hero-right">
-
-<pre>
-int nota=10;
+                <div class="hero-right" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
+                    <div style="display: flex; gap: 7px; margin-bottom: 14px;">
+                        <span style="width: 11px; height: 11px; background: #ef4444; border-radius: 50%; display: inline-block;"></span>
+                        <span style="width: 11px; height: 11px; background: #f59e0b; border-radius: 50%; display: inline-block;"></span>
+                        <span style="width: 11px; height: 11px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                    </div>
+<pre style="margin: 0; font-family: monospace; color: var(--text); line-height: 1.6; font-size: 0.95rem;">
+int nota = 10;
 if (invata) 
-    nota =10;
-    else 
+    nota = 10;
+else 
     nota--;
 </pre>
-
                 </div>
-
             </section>
 
             <section class="stats">
-
                 <div class="card">
-
                     <h2>10+ Ani</h2>
-
                     <p>Subiecte de BAC</p>
-
                 </div>
-
                 <div class="card">
-
                     <h2>100+</h2>
-
                     <p>Teste Grilă</p>
-
                 </div>
-
                 <div class="card">
-
                     <h2>50+</h2>
-
                     <p>Probleme</p>
-
                 </div>
-
                 <div class="card">
-
                     <h2>4</h2>
-
                     <p>Algoritmi Vizuali</p>
-
                 </div>
-
             </section>
 
             <section class="modules">
-
                 <a class="module-card" href="pages/teorie.html">
-
                     <h3>📘 Teorie</h3>
-
-                    <p>
-                        Toată materia structurată pe clase și capitole.
-                    </p>
-
+                    <p>Toată materia structurată pe clase și capitole.</p>
                     <span class="module-card-link"></span>
-
                 </a>
-
                 <a class="module-card" href="pages/subiecte.html">
-
                     <h3>🏛️ Subiecte BAC</h3>
-
-                    <p>
-                        Arhiva completă de subiecte cu bareme detaliate și explicate.
-                    </p>
-
+                    <p>Arhiva completă de subiecte cu bareme detaliate și explicate.</p>
                     <span class="module-card-link"></span>
-
                 </a>
-
                 <a class="module-card" href="pages/teste.html">
-
                     <h3>📝 Teste</h3>
-
-                    <p>
-                        Verifică-ți cunoștințele cu teste grilă rapide.
-                    </p>
-
+                    <p>Verifică-ți cunoștințele cu teste grilă rapide.</p>
                     <span class="module-card-link"></span>
-
                 </a>
-
                 <a class="module-card" href="pages/probleme.html">
-
                     <h3>🧩 Probleme</h3>
-
-                    <p>
-                        Rezolvă probleme de programare și algoritmi pas cu pas.
-                    </p>
-
+                    <p>Rezolvă probleme de programare și algoritmi pas cu pas.</p>
                     <span class="module-card-link"></span>
-
                 </a>
-
-
             </section>
 
             <footer class="quote-footer">
-
                 <h3>💡 Citatul zilei</h3>
-
                 <p id="quote"></p>
-
             </footer>
-
         </main>
 
     </div>
 
     <script src="js/app.js"></script>
     <script src="js/quotes.js"></script>
-
 </body>
-
 </html>
