@@ -78,9 +78,9 @@ body {
     min-height: 100vh;
 }
 
-/* =======================
+/* 
    SIDEBAR
-======================= */
+ */
 .sidebar {
     width: 260px;
     background: var(--surface);
@@ -90,6 +90,12 @@ body {
     justify-content: space-between;
     border-right: 1px solid var(--border);
     transition: background 0.25s ease, border-color 0.25s ease;
+
+    /*  Proprietăți pentru fixare la scroll  */
+    position: sticky;
+    top: 0;
+    height: 100vh;        /* Ocupă întreaga înălțime a ecranului */
+    overflow-y: auto;     /* Adaugă scrollbar doar în sidebar dacă conținutul său depășește ecranul */
 }
 
 .sidebar .logo h2 { color: var(--primary); font-size: 20px; }
