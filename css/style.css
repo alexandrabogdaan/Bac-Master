@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap');
 
 /* ==========================================================================
-   CONFIGURARE VARIABLE CULORI (DARK MODE IMPLICIT / LIGHT MODE ALTERNATIV)
+   CONFIGURARE VARIABILE CULORI (DARK MODE IMPLICIT / LIGHT MODE ALTERNATIV)
    ========================================================================== */
 :root {
-    /* Nuante implicite - Dark Mode */
+    /* Nuanțe implicite - Dark Mode */
     --bg: #0f1724;
     --surface: #111827;
     --card: #0b1220;
@@ -18,14 +18,14 @@
 
 /* Când JavaScript adaugă clasa .light-mode pe body, culorile se schimbă automat */
 .light-mode {
-    --bg: #f8fafc;                  /* Gri ultra-deschis spre alb */
-    --surface: #f1f5f9;             /* Gri deschis pentru sidebar/TOC */
-    --card: #ffffff;                /* Carduri complet albe */
-    --text: #0f172a;                /* Text închis la culoare */
-    --muted: #64748b;               /* Text secundar gri închis */
-    --primary: #1d4ed8;             /* Albastru ușor mai intens pentru lizibilitate pe alb */
-    --accent: #15803d;              /* Verde adaptat pentru contrast */
-    --border: rgba(0, 0, 0, 0.08);  /* Margini fine închise */
+    --bg: #f8fafc;              /* Gri ultra-deschis spre alb */
+    --surface: #f1f5f9;         /* Gri deschis pentru sidebar/TOC */
+    --card: #ffffff;            /* Carduri complet albe */
+    --text: #0f172a;            /* Text închis la culoare */
+    --muted: #64748b;           /* Text secundar gri închis */
+    --primary: #1d4ed8;         /* Albastru ușor mai intens pentru lizibilitate pe alb */
+    --accent: #15803d;          /* Verde adaptat pentru contrast */
+    --border: rgba(0, 0, 0, 0.08); /* Margini fine închise */
 }
 
 .light-mode .hero,
@@ -64,7 +64,7 @@ input, button, select, textarea {
 
 body {
     background: var(--bg); /* CONECTAT LA VARIABILĂ - Se va schimba dinamic */
-    color: var(--text);     /* CONECTAT LA VARIABILĂ - Se va schimba dinamic */
+    color: var(--text);      /* CONECTAT LA VARIABILĂ - Se va schimba dinamic */
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     transition: background 0.25s ease, color 0.25s ease; /* Tranziție fină la schimbarea temei */
@@ -78,8 +78,7 @@ body {
     min-height: 100vh;
 }
 
-/* 
-   SIDEBAR
+/* SIDEBAR
  */
 .sidebar {
     width: 260px;
@@ -91,19 +90,64 @@ body {
     border-right: 1px solid var(--border);
     transition: background 0.25s ease, border-color 0.25s ease;
 
-    /*  Proprietăți pentru fixare la scroll  */
+    /* Proprietăți pentru fixare la scroll */
     position: sticky;
     top: 0;
     height: 100vh;        /* Ocupă întreaga înălțime a ecranului */
     overflow-y: auto;     /* Adaugă scrollbar doar în sidebar dacă conținutul său depășește ecranul */
 }
 
-.sidebar .logo h2 { color: var(--primary); font-size: 20px; }
-.sidebar .logo p { color: var(--muted); font-size: 13px; margin-top: 6px; }
-.sidebar .logo-link { display: block; text-decoration: none; color: inherit; }
-.sidebar .logo-link:hover h2 { color: var(--primary); }
+/* --- STIL NOU PENTRU LOGO (DARK MODE DEFAULT) --- */
+.sidebar .logo {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
 
-.sidebar nav { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+.sidebar .logo-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar .logo-link:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.sidebar .logo h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+    /* Gradient Cyan-Albastru-Violet (Neon pentru Dark Mode) */
+    background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 3px 10px rgba(56, 189, 248, 0.35));
+    transition: filter 0.3s ease;
+}
+
+.sidebar .logo p {
+    color: var(--muted);
+    font-size: 0.72rem;
+    margin-top: 4px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+/* --- STIL LOGO ADAPTAT PENTRU LIGHT MODE --- */
+.light-mode .sidebar .logo h2 {
+    /* Gradient cu contrast mai ridicat pe fundal alb */
+    background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 50%, #7e22ce 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 6px rgba(29, 78, 216, 0.2));
+}
+
+.sidebar nav { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
 .sidebar nav a { color: var(--muted); text-decoration: none; padding: 10px; border-radius: 8px; transition: all .16s; }
 .sidebar nav a:hover { background: rgba(37, 99, 235, 0.08); color: var(--text); transform: translateX(4px); }
 .sidebar-footer { font-size: 13px; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--border); }
@@ -167,7 +211,7 @@ body {
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
 .feature-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-left: 3px solid var(--accent); padding: 16px; border-radius: 10px; }
 .feature-card h3 { margin-top: 0; margin-bottom: 8px; color: var(--accent); }
-.feature-list { padding-left: 18px; margin-top: 8px; list-style-position: inside; } /* Adăugat inside pentru fix listă */
+.feature-list { padding-left: 18px; margin-top: 8px; list-style-position: inside; }
 .toc { width: 220px; position: sticky; top: 20px; background: var(--surface); padding: 14px; border-radius: 12px; border: 1px solid var(--border); transition: background 0.25s ease; }
 .toc a { display: block; padding: 8px; color: var(--muted); text-decoration: none; border-radius: 6px; }
 .toc a:hover { background: rgba(255, 255, 255, 0.02); color: var(--text); }
@@ -184,15 +228,15 @@ body {
     top: 100%;
     left: 0;
     width: 100%;
-    min-width: 240px; /* Aliniat cu lățimea inputului tău */
-    background: var(--surface); /* Conectat la temă: devine gri deschis pe light mode */
+    min-width: 240px;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     margin-top: 6px;
     max-height: 260px;
     overflow-y: auto;
     z-index: 1000;
-    display: none; /* Controlat prin JS */
+    display: none;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transition: background 0.25s ease;
 }
@@ -200,7 +244,7 @@ body {
 .search-item {
     display: block;
     padding: 11px 14px;
-    color: var(--text); /* Conectat la temă: textul se schimbă automat pe light/dark */
+    color: var(--text);
     text-decoration: none;
     font-size: 13px;
     font-weight: 400;
@@ -213,8 +257,8 @@ body {
 }
 
 .search-item:hover {
-    background: var(--primary); /* Fundalul devine albastrul temei la hover */
-    color: #ffffff !important;   /* Textul devine alb pur pentru contrast maxim */
+    background: var(--primary);
+    color: #ffffff !important;
 }
 
 .search-no-results {
