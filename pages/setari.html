@@ -13,12 +13,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            transition: font-size 0.2s ease;
         }
-
-        /* Dimensiuni Font Custom */
-        body.font-medium { font-size: 17px; }
-        body.font-large { font-size: 19px; }
 
         .settings-container {
             display: flex;
@@ -32,27 +27,27 @@
             background: var(--card, #ffffff);
             border: 1px solid var(--border, #e2e8f0);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
 
         .settings-card-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 16px;
             border-bottom: 1px solid var(--border, #e2e8f0);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .settings-card-header i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary, #3182ce);
         }
 
         .settings-card-header h3 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
         }
 
@@ -60,17 +55,17 @@
         .theme-options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 10px;
+            gap: 14px;
+            margin-top: 15px;
         }
 
         .theme-option-card {
             border: 2px solid var(--border, #e2e8f0);
             border-radius: 10px;
-            padding: 14px;
+            padding: 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
             background: var(--surface, #f8fafc);
@@ -78,6 +73,7 @@
 
         .theme-option-card:hover {
             border-color: var(--primary, #3182ce);
+            transform: translateY(-1px);
         }
 
         .theme-option-card.active {
@@ -86,13 +82,14 @@
         }
 
         .theme-option-icon {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .theme-card-dark .theme-option-icon {
@@ -105,30 +102,42 @@
             color: #3182ce;
         }
 
-        .settings-item {
+        .info-card {
+            background: var(--surface, #f8fafc);
+            border: 1px dashed var(--border, #cbd5e0);
+            border-radius: 12px;
+            padding: 18px 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            justify-content: space-between;
         }
 
-        .settings-select {
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border, #cbd5e0);
-            background: var(--card, #ffffff);
-            color: var(--text, #2d3748);
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            cursor: pointer;
+        .info-card-text h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card-text p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--muted, #718096);
+        }
+
+        .badge-version {
+            background: rgba(49, 130, 206, 0.1);
+            color: var(--primary, #3182ce);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 600px) {
             .theme-options-grid {
                 grid-template-columns: 1fr;
             }
-            .settings-item {
+            .info-card {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
@@ -168,17 +177,17 @@
 
         <main class="main">
 
-            <h1>⚙️ Setări Vizualizare</h1>
+            <h1>⚙️ Setări Interfață</h1>
 
             <section class="settings-container">
 
                 <div class="settings-card">
                     <div class="settings-card-header">
                         <i class="fa-solid fa-palette"></i>
-                        <h3>Tema Interfeței</h3>
+                        <h3>Tema Vizuală</h3>
                     </div>
                     <p style="font-size: 0.88rem; color: var(--muted); margin-top: 0;">
-                        Alege aspectul vizual preferat. Preferința ta va fi salvată automat în browser.
+                        Alege modul de afișare dorit. Preferința ta va fi reținută automat la fiecare vizită.
                     </p>
 
                     <div class="theme-options-grid">
@@ -204,22 +213,12 @@
                     </div>
                 </div>
 
-                <div class="settings-card">
-                    <div class="settings-card-header">
-                        <i class="fa-solid fa-text-height"></i>
-                        <h3>Dimensiune Text</h3>
+                <div class="info-card">
+                    <div class="info-card-text">
+                        <h4>BAC Master</h4>
+                        <p>Platformă de pregătire pentru examenul de BAC la Informatică.</p>
                     </div>
-                    <div class="settings-item">
-                        <div>
-                            <div style="font-weight: 600; font-size: 0.95rem;">Mărime Font Lecții</div>
-                            <div style="font-size: 0.82rem; color: var(--muted);">Reglează dimensiunea textului pentru o citire confortabilă a teoriei și codului.</div>
-                        </div>
-                        <select id="font-size-select" class="settings-select">
-                            <option value="normal">Standard (Normal)</option>
-                            <option value="medium">Mediu (+10%)</option>
-                            <option value="large">Mare (+20%)</option>
-                        </select>
-                    </div>
+                    <span class="badge-version">v1.0</span>
                 </div>
 
             </section>
@@ -232,9 +231,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const darkCard = document.getElementById('theme-card-dark');
             const lightCard = document.getElementById('theme-card-light');
-            const fontSizeSelect = document.getElementById('font-size-select');
 
-            // --- 1. Gestionare Temă ---
             function applyTheme(theme) {
                 if (theme === 'light') {
                     document.body.classList.add('light-mode');
@@ -255,30 +252,13 @@
                 }
             }
 
+            // Inițializare temă salvată
             const savedTheme = localStorage.getItem('theme') || 'dark';
             applyTheme(savedTheme);
 
+            // Evenimente la click pe carduri
             darkCard.addEventListener('click', () => applyTheme('dark'));
             lightCard.addEventListener('click', () => applyTheme('light'));
-
-            // --- 2. Gestionare Dimensiune Font ---
-            function applyFontSize(size) {
-                document.body.classList.remove('font-medium', 'font-large');
-                if (size === 'medium') {
-                    document.body.classList.add('font-medium');
-                } else if (size === 'large') {
-                    document.body.classList.add('font-large');
-                }
-                localStorage.setItem('font_size', size);
-            }
-
-            const savedFontSize = localStorage.getItem('font_size') || 'normal';
-            fontSizeSelect.value = savedFontSize;
-            applyFontSize(savedFontSize);
-
-            fontSizeSelect.addEventListener('change', (e) => {
-                applyFontSize(e.target.value);
-            });
         });
     </script>
     <script src="../js/app.js"></script>
