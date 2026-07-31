@@ -198,9 +198,9 @@ int n, X[10], m, Y[100];
 int X[10];
 X[0]=17;
 
-cout<<X[0];
-cout<<X[0]+5;
-cout<<X[0]/5;
+cout&lt;&lt;X[0];
+cout&lt;&lt;X[0]+5;
+cout&lt;&lt;X[0]/5;
 </pre>
             </section>
 
@@ -215,7 +215,7 @@ cout<<X[0]/5;
                     <p>Reprezintă vizitarea și/sau modificarea fiecărui element într-o ordine bine stabilită (directă sau inversă), folosind o structură repetitivă:</p>
 <pre>
 int X[100],n,i;
-for (i=0; i<n; i++)
+for (i=0; i&lt;n; i++)
     X[i]=1;
 </pre>
                 </div>
@@ -229,8 +229,8 @@ for (i=0; i<n; i++)
                     <div class="feature-card" style="border-left: 3px solid #f43f5e;">
                         <h3><i class="fa-solid fa-triangle-exclamation icon-red"></i> Greșeli Frecvente la Examen</h3>
                         <p style="margin: 0; font-size: 0.95rem;">
-                            <code>cin>>X;</code> &rarr; <b>Eroare de sintaxă</b> (compilatorul nu știe câte elemente să citească).<br><br>
-                            <code>cout<<X;</code> &rarr; <b>Nu dă eroare</b>, nhưng va tipări <b>adresa în hexazecimal</b> a primului element din memorie (ex. <code>0x7ffc9711bcd0</code>).
+                            <code>cin&gt;&gt;X;</code> &rarr; <b>Eroare de sintaxă</b> (compilatorul nu știe câte elemente să citească).<br><br>
+                            <code>cout&lt;&lt;X;</code> &rarr; <b>Nu dă eroare</b>, nhưng va tipări <b>adresa în hexazecimal</b> a primului element din memorie (ex. <code>0x7ffc9711bcd0</code>).
                         </p>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid #10b981;">
@@ -238,14 +238,14 @@ for (i=0; i<n; i++)
                         <div style="font-size: 0.95rem;">
                             <b>Citirea element cu element:</b>
 <pre style="margin: 5px 0;">
-cin>>n;
-for (int i=0; i<n; i++)
-    cin>>X[i];
+cin&gt;&gt;n;
+for (int i=0; i&lt;n; i++)
+    cin&gt;&gt;X[i];
 </pre>
                             <b>Afișarea element cu element:</b>
 <pre style="margin: 5px 0;">
-for (int i=0; i<n; i++)
-    cout<<X[i]<<" ";
+for (int i=0; i&lt;n; i++)
+    cout&lt;&lt;X[i]&lt;&lt;" ";
 </pre>
                         </div>
                     </div>
@@ -259,7 +259,7 @@ for (int i=0; i<n; i++)
                 <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.05);">
                     <h3><i class="fa-solid fa-circle-nodes icon-slate"></i> Cum procedăm dacă vrem indexare de la 1?</h3>
                     <p>1. Celula <code>X[0]</code> va fi lăsată neutilizată în memorie.</p>
-                    <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i=1;i<=n;i++)</code>.</p>
+                    <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i=1;i&lt;=n;i++)</code>.</p>
                     <p>3. <b>Atenție la dimensionare:</b> Dacă enunțul specifică o dimensiune maximă de <b>n &le; 100</b> elemente, tabloul va fi declarat obligatoriu de dimensiune cel puțin <code>101</code> pentru a evita depășirea de memorie (out of bounds) la accesarea lui <code>X[100]</code>.</p>
 <pre>
 int X[101];
@@ -298,24 +298,24 @@ int X[101];
             </section>
 
             <section class="lesson-card">
-                <h2>Algoritmi Elementari Recomandați pentru BAC</h2>
-                <p>Următorii algoritmi esențiali apar frecvent în subiectele de examen și trebuie stăpâniți perfect:</p>
+                <h2>Algoritmi Elementari BAC</h2>
+                <p>Următorii algoritmi esențiali apar frecvent în subiectele de examen:</p>
 
                 <div class="problem-section">
                     <h3>Determinarea maximului dintr-un vector</h3>
 <pre>
 int max=X[1], i;
-for(i=2; i<=n; i++)
-    if(X[i]>max)
+for(i=2; i&lt;=n; i++)
+    if(X[i]&gt;max)
         max=X[i];
 </pre>
                 </div>
 
                 <div class="problem-section" style="margin-top: 15px;">
-                    <h3>Utilizarea unui vector de frecvență (foarte comun la Subiectul III)</h3>
+                    <h3>Utilizarea unui vector de frecvență (comun la Subiectul III)</h3>
 <pre>
 int f[10]={0}, i;
-for (i=1; i<=n; i++)
+for (i=1; i&lt;=n; i++)
     f[X[i]]++;
 </pre>
                 </div>
