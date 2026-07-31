@@ -13,7 +13,12 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            transition: font-size 0.2s ease;
         }
+
+        /* Dimensiuni Font Custom */
+        body.font-medium { font-size: 17px; }
+        body.font-large { font-size: 19px; }
 
         .settings-container {
             display: flex;
@@ -157,7 +162,7 @@
             </div>
             <div class="sidebar-footer">
                 <h4>🎯 Obiectiv</h4>
-                <p id="sidebar-target-text">Nota 10 la BAC</p>
+                <p>Nota 10 la BAC</p>
             </div>
         </aside>
 
@@ -173,7 +178,7 @@
                         <h3>Tema Interfeței</h3>
                     </div>
                     <p style="font-size: 0.88rem; color: var(--muted); margin-top: 0;">
-                        Alege aspectul vizual preferat. Alegerea ta va fi reținută automat în browser.
+                        Alege aspectul vizual preferat. Preferința ta va fi salvată automat în browser.
                     </p>
 
                     <div class="theme-options-grid">
@@ -183,7 +188,7 @@
                             </div>
                             <div>
                                 <div style="font-weight: 600; font-size: 0.95rem;">Dark Mode</div>
-                                <div style="font-size: 0.78rem; color: var(--muted);">Ușor pentru ochi pe timp de noapte</div>
+                                <div style="font-size: 0.78rem; color: var(--muted);">Aspect odihnitor, ideal pe timp de noapte</div>
                             </div>
                         </div>
 
@@ -193,7 +198,7 @@
                             </div>
                             <div>
                                 <div style="font-weight: 600; font-size: 0.95rem;">Light Mode</div>
-                                <div style="font-size: 0.78rem; color: var(--muted);">Aspect luminos și clar</div>
+                                <div style="font-size: 0.78rem; color: var(--muted);">Interfață clară și luminoasă pentru zi</div>
                             </div>
                         </div>
                     </div>
@@ -201,19 +206,18 @@
 
                 <div class="settings-card">
                     <div class="settings-card-header">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <h3>Obiectivul Tău</h3>
+                        <i class="fa-solid fa-text-height"></i>
+                        <h3>Dimensiune Text</h3>
                     </div>
                     <div class="settings-item">
                         <div>
-                            <div style="font-weight: 600; font-size: 0.95rem;">Notă Țintă la BAC</div>
-                            <div style="font-size: 0.82rem; color: var(--muted);">Afișată în meniul din stânga pentru motivare.</div>
+                            <div style="font-weight: 600; font-size: 0.95rem;">Mărime Font Lecții</div>
+                            <div style="font-size: 0.82rem; color: var(--muted);">Reglează dimensiunea textului pentru o citire confortabilă a teoriei și codului.</div>
                         </div>
-                        <select id="target-grade-select" class="settings-select">
-                            <option value="Nota 10 la BAC">🎯 Nota 10</option>
-                            <option value="Nota 9+ la BAC">🚀 Nota 9.00+</option>
-                            <option value="Nota 8+ la BAC">📈 Nota 8.00+</option>
-                            <option value="Promovare BAC">✅ Promovare</option>
+                        <select id="font-size-select" class="settings-select">
+                            <option value="normal">Standard (Normal)</option>
+                            <option value="medium">Mediu (+10%)</option>
+                            <option value="large">Mare (+20%)</option>
                         </select>
                     </div>
                 </div>
@@ -228,10 +232,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const darkCard = document.getElementById('theme-card-dark');
             const lightCard = document.getElementById('theme-card-light');
-            const targetGradeSelect = document.getElementById('target-grade-select');
-            const sidebarTargetText = document.getElementById('sidebar-target-text');
+            const fontSizeSelect = document.getElementById('font-size-select');
 
-            // Funcție schimbare temă
+            // --- 1. Gestionare Temă ---
             function applyTheme(theme) {
                 if (theme === 'light') {
                     document.body.classList.add('light-mode');
@@ -252,24 +255,29 @@
                 }
             }
 
-            // Citire temă salvată
             const savedTheme = localStorage.getItem('theme') || 'dark';
             applyTheme(savedTheme);
 
             darkCard.addEventListener('click', () => applyTheme('dark'));
             lightCard.addEventListener('click', () => applyTheme('light'));
 
-            // Citire și salvare obiectiv
-            const savedTarget = localStorage.getItem('bac_target');
-            if (savedTarget) {
-                targetGradeSelect.value = savedTarget;
-                if (sidebarTargetText) sidebarTargetText.textContent = savedTarget;
+            // --- 2. Gestionare Dimensiune Font ---
+            function applyFontSize(size) {
+                document.body.classList.remove('font-medium', 'font-large');
+                if (size === 'medium') {
+                    document.body.classList.add('font-medium');
+                } else if (size === 'large') {
+                    document.body.classList.add('font-large');
+                }
+                localStorage.setItem('font_size', size);
             }
 
-            targetGradeSelect.addEventListener('change', (e) => {
-                const newTarget = e.target.value;
-                localStorage.setItem('bac_target', newTarget);
-                if (sidebarTargetText) sidebarTargetText.textContent = newTarget;
+            const savedFontSize = localStorage.getItem('font_size') || 'normal';
+            fontSizeSelect.value = savedFontSize;
+            applyFontSize(savedFontSize);
+
+            fontSizeSelect.addEventListener('change', (e) => {
+                applyFontSize(e.target.value);
             });
         });
     </script>
