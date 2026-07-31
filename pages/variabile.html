@@ -8,14 +8,22 @@
     <link rel="stylesheet" href="../css/style.css">
     <style>
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        body {
+            line-height: 1.7 !important; /* Text mai aerisit */
+        }
+
+        p {
+            margin-bottom: 16px;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 15px;
+            gap: 25px; /* Spațiu mai mare între coloane */
+            margin-top: 20px;
         }
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
@@ -27,25 +35,25 @@
             border-top: 1px solid var(--border);
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 18px;
+            padding: 22px; /* Padding crescut pentru un aspect aerisit */
             border-radius: 0 8px 8px 0;
-            margin: 15px 0;
+            margin: 20px 0;
             color: var(--text);
-            line-height: 1.6;
+            font-size: 1.05rem;
         }
 
         .feature-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 18px;
+            padding: 22px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: var(--text);
         }
         .feature-card h3 {
             margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
             color: var(--text);
             display: flex;
             align-items: center;
@@ -56,15 +64,15 @@
             background: rgba(37, 99, 235, 0.08);
             border: 1px solid rgba(37, 99, 235, 0.16);
             border-left: 4px solid var(--primary);
-            padding: 20px;
+            padding: 22px;
             border-radius: 0 8px 8px 0;
-            margin-top: 15px;
+            margin-top: 20px;
             color: var(--text);
         }
         .problem-section h3 {
             color: var(--text);
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -73,7 +81,7 @@
         .dark-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
             border: 1px solid var(--border);
             text-align: left;
             background-color: var(--surface);
@@ -84,15 +92,14 @@
         .dark-table th {
             background-color: var(--surface);
             color: var(--primary);
-            padding: 12px;
+            padding: 16px; /* Spațiere mai mare în tabel */
             font-weight: bold;
             border-bottom: 1px solid var(--border);
         }
         .dark-table td {
-            padding: 12px;
+            padding: 16px;
             border-bottom: 1px solid var(--border);
             border-right: 1px solid var(--border);
-            line-height: 1.5;
         }
         .dark-table tr:last-child td {
             border-bottom: none;
@@ -108,7 +115,15 @@
         .icon-yellow { color: #eab308; }
         .icon-slate { color: #64748b; }
         .icon-purple { color: #8b5cf6; }
-        .text-muted { color: var(--text); opacity: 0.8; }
+        .text-muted { color: var(--text); opacity: 0.8; font-size: 0.95rem; }
+        
+        code {
+            background: rgba(128, 128, 128, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #eab308;
+            font-family: monospace !important;
+        }
     </style>
 </head>
 
@@ -144,44 +159,44 @@
 
             <section class="lesson-header">
                 <h1>Variabile și tipuri de date</h1>
-                <p>Noțiuni fundamentale despre memorie, identificatori, constante și reprezentarea datelor în C++</p>
+                <p>Noțiuni fundamentale despre memorie, identificatori, constante și reprezentarea clară a datelor în C++</p>
             </section>
 
             <section class="lesson-card">
                 <h2>Definiția variabilei</h2>
                 <p>
-                    În informatică, gestionarea corectă a datelor pornește de la înțelegerea conceptului de stocare temporară în memoria RAM.
+                    În informatică, gestionarea corectă a datelor pornește de la înțelegerea conceptului de stocare temporară în memoria RAM a calculatorului.
                 </p>
 
                 <div class="math-box">
                     <b><i class="fa-solid fa-box-archive icon-primary"></i> Concept fundamental:</b> 
-                    O variabilă este o zonă de memorie identificată printr-un nume (identificator), în care se stochează o valoare de un anumit tip, ce poate fi modificată pe parcursul execuției programului.
+                    O variabilă este o zonă precisă de memorie identificată printr-un nume (identificator), în care se stochează o valoare de un anumit tip. Această valoare poate fi modificată oricând pe parcursul execuției programului.
                 </div>
 
                 <p class="text-muted">
                     <i class="fa-solid fa-circle-info icon-primary" style="margin-right: 5px;"></i> 
-                    În timp ce numele variabilei (identificatorul) rămâne constant, conținutul acesteia se poate schimba de oricâte ori este necesar prin atribuiri.
+                    <b>Atenție:</b> În timp ce numele variabilei rămâne întotdeauna neschimbat, conținutul acesteia se poate modifica de oricâte ori este necesar prin operații de atribuire.
                 </p>
             </section>
 
             <section class="lesson-card">
-                <h2>Identificatori (Nume de variabile)</h2>
-                <p>Un identificator este o secvență de caractere care denumește o variabilă, o constantă sau o funcție.</p>
+                <h2>Identificatori (Numele variabilelor)</h2>
+                <p>Un identificator este o secvență de caractere creată de programator pentru a denumi o variabilă, o constantă sau o funcție.</p>
 
                 <div class="grid-2">
                     <div class="feature-card" style="border-left: 3px solid #10b981;">
-                        <h3><i class="fa-solid fa-check icon-green"></i> Reguli de validitate (C++)</h3>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem;">
-                            <li>Poate conține <b>litere</b> (a-z, A-Z), <b>cifre</b> (0-9) și caracterul <b>underscore (_)</b>.</li>
-                            <li><b>OBLIGATORIU:</b> Trebuie să înceapă cu o literă sau cu <code>_</code> (NICIODATĂ cu o cifră!).</li>
-                            <li>Limbajul C++ este <b>case-sensitive</b> (face diferență între litere mari și mici: <code>suma</code> ≠ <code>Suma</code>).</li>
+                        <h3><i class="fa-solid fa-check icon-green"></i> Reguli stricte de validitate în C++</h3>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem;">
+                            <li>Poate conține exclusiv <b>litere</b> (a-z, A-Z), <b>cifre</b> (0-9) și caracterul <b>underscore</b> (_).</li>
+                            <li><b>OBLIGATORIU:</b> Trebuie să înceapă cu o literă sau cu underscore (niciodată cu o cifră).</li>
+                            <li>Limbajul C++ face diferență între literele mari și cele mici (de exemplu, variabila <code>suma</code> este complet diferită de variabila <code>Suma</code>).</li>
                         </ul>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid #f43f5e;">
                         <h3><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Exemple utile pentru BAC</h3>
-                        <p style="margin: 0; font-size: 0.9rem;">
-                            ✅ <b>Valide:</b> <code>n</code>, <code>nr_elemente</code>, <code>_max</code>, <code>suma2</code><br>
-                            ❌ <b>Invalide:</b> <code>2suma</code> (începe cu cifră), <code>nr-elemente</code> (conține minus), <code>int</code> (cuvânt rezervat).
+                        <p style="margin: 0; font-size: 0.95rem;">
+                            ✅ <b>Identificatori corecți:</b> <code>n</code>, <code>nr_elemente</code>, <code>_max</code>, <code>suma2</code><br><br>
+                            ❌ <b>Identificatori greșiți:</b> <code>2suma</code> (începe cu o cifră), <code>nr-elemente</code> (conține minus, care este operator matematic), <code>int</code> (este un cuvânt rezervat al limbajului).
                         </p>
                     </div>
                 </div>
@@ -190,23 +205,23 @@
             <section class="lesson-card">
                 <h2>Memoria și reprezentarea în biți</h2>
                 <p>
-                    Calculatorul stochează toate datele sub formă de biți (stări binare de 0 și 1).
+                    Calculatorul stochează absolut toate datele sub formă de biți, adică stări binare reprezentate strict prin valorile 0 și 1.
                 </p>
 
                 <div class="grid-2">
                     <div class="feature-card" style="border-left: 3px solid var(--primary);">
                         <h3><i class="fa-solid fa-microchip icon-primary"></i> Bitul</h3>
-                        <p style="margin: 0;">Cea mai mică unitate de informație dintr-un sistem de calcul, având starea 0 sau 1.</p>
+                        <p style="margin: 0;">Reprezintă cea mai mică unitate de informație dintr-un sistem de calcul, având exclusiv starea 0 sau starea 1.</p>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid #10b981;">
-                        <h3><i class="fa-solid fa-database icon-green"></i> Octetul (Byte)</h3>
-                        <p style="margin: 0;">Unitatea principală de adresare. Un grup de <b>8 biți</b> formează 1 byte.</p>
+                        <h3><i class="fa-solid fa-database icon-green"></i> Octetul (Byte-ul)</h3>
+                        <p style="margin: 0;">Reprezintă unitatea principală de memorie. Un grup format din exact <b>8 biți</b> formează 1 Byte.</p>
                     </div>
                 </div>
 
                 <div class="math-box" style="border-left-color: var(--accent);">
-                    <b><i class="fa-solid fa-arrow-down-up-lock icon-accent"></i> Grila de transformare a unităților:</b>
-                    <ul style="margin: 5px 0 0 20px; padding: 0;">
+                    <b><i class="fa-solid fa-arrow-down-up-lock icon-accent"></i> Grila de transformare a unităților de memorie:</b>
+                    <ul style="margin: 10px 0 0 25px; padding: 0;">
                         <li>1 Byte = 8 biți</li>
                         <li>1 KB (Kilobyte) = 1024 Bytes (2^10 Bytes)</li>
                         <li>1 MB (Megabyte) = 1024 KB (2^20 Bytes)</li>
@@ -216,52 +231,52 @@
 
             <section class="lesson-card">
                 <h2>Tipuri de date și alocarea în memorie</h2>
-                <p>Structura completă a tipurilor primitive din C++ cerute la BAC:</p>
+                <p>Următorul tabel prezintă structura completă a tipurilor primitive din C++ pe care trebuie să le cunoști perfect pentru examenul de Bacalaureat:</p>
 
                 <div style="overflow-x: auto;">
                     <table class="dark-table">
                         <thead>
                             <tr>
-                                <th style="width: 22%;">Tip de dată</th>
-                                <th style="width: 25%;">Dimensiune memorie</th>
-                                <th style="width: 53%;">Tipul de valori & Interval</th>
+                                <th style="width: 20%;">Tip de dată</th>
+                                <th style="width: 25%;">Dimensiune în memorie</th>
+                                <th style="width: 55%;">Tipul de valori și Intervalul permis</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>int</b></td>
-                                <td style="font-weight: bold;" class="icon-primary">4 bytes (32 biți)</td>
-                                <td>Numere întregi conținând semn: de la -2 * 10^9 la 2 * 10^9</td>
+                                <td><code>int</code></td>
+                                <td style="font-weight: bold;" class="icon-primary">4 bytes (32 de biți)</td>
+                                <td>Numere întregi (cu semn): cuprinse aproximativ între -2 * 10^9 și 2 * 10^9</td>
                             </tr>
                             <tr>
-                                <td><b>long long</b></td>
-                                <td style="font-weight: bold;" class="icon-purple">8 bytes (64 biți)</td>
-                                <td>Numere întregi foarte mari: de la -9 * 10^18 la 9 * 10^18 (Util la Subiectul III)</td>
+                                <td><code>long long</code></td>
+                                <td style="font-weight: bold;" class="icon-purple">8 bytes (64 de biți)</td>
+                                <td>Numere întregi foarte mari: de la -9 * 10^18 la 9 * 10^18 (Esențial pentru calculele mari de la Subiectul III)</td>
                             </tr>
                             <tr>
-                                <td><b>unsigned int</b></td>
-                                <td>4 bytes (32 biți)</td>
-                                <td>Doar numere întregi pozitive: de la 0 la 4.29 * 10^9</td>
+                                <td><code>unsigned int</code></td>
+                                <td>4 bytes (32 de biți)</td>
+                                <td>Strict numere întregi pozitive: de la 0 la 4.29 * 10^9</td>
                             </tr>
                             <tr>
-                                <td><b>float</b></td>
-                                <td>4 bytes (32 biți)</td>
-                                <td>Numere reale (precizie simplă, ~7 zecimale)</td>
+                                <td><code>float</code></td>
+                                <td>4 bytes (32 de biți)</td>
+                                <td>Numere reale (cu virgulă, precizie simplă de aproximativ 7 zecimale)</td>
                             </tr>
                             <tr>
-                                <td><b>double</b></td>
-                                <td style="font-weight: bold;" class="icon-primary">8 bytes (64 biți)</td>
-                                <td>Numere reale (precizie dublă, ~15 zecimale)</td>
+                                <td><code>double</code></td>
+                                <td style="font-weight: bold;" class="icon-primary">8 bytes (64 de biți)</td>
+                                <td>Numere reale (cu virgulă, precizie dublă de aproximativ 15 zecimale)</td>
                             </tr>
                             <tr>
-                                <td><b>char</b></td>
+                                <td><code>char</code></td>
                                 <td>1 byte (8 biți)</td>
-                                <td>Un singur caracter codificat ASCII (valori de la 0 la 255)</td>
+                                <td>Un singur caracter, reprezentat prin codul său ASCII (valori cuprinse între 0 și 255)</td>
                             </tr>
                             <tr>
-                                <td><b>bool</b></td>
+                                <td><code>bool</code></td>
                                 <td style="font-weight: bold;" class="icon-green">1 byte</td>
-                                <td>Valori logice (<code>true</code> / <code>false</code>)</td>
+                                <td>Valori logice de adevăr (poate reține doar <code>true</code> sau <code>false</code>)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -270,35 +285,35 @@
 
             <section class="lesson-card">
                 <h2>Analiza detaliată a tipurilor de date</h2>
-                <p>Detalii specifice despre modul de funcționare și limitările cerute la examen:</p>
+                <p>Pentru a evita greșelile de punctaj la BAC, trebuie să înțelegi perfect cum se comportă fiecare tip de dată în situații limită:</p>
 
                 <div class="problem-section" style="border-left-color: var(--primary);">
-                    <h3><i class="fa-solid fa-arrow-1-9 icon-primary"></i> Tipul int și depășirile de tip (Overflow)</h3>
-                    <p>Primul bit este utilizat pentru semn (0 = pozitiv, 1 = negativ). Dacă o valoare depășește limita maximă (2.14 * 10^9), apare fenomenul de <b>overflow</b> (numărul devine negativ!).</p>
-                    <p><b>Regulă BAC:</b> Dacă în cerință se specifică numere cu până la 18 cifre sau produse mari, folosește întotdeauna <code>long long</code>!</p>
+                    <h3><i class="fa-solid fa-arrow-1-9 icon-primary"></i> Tipul int și depășirea limitei (Overflow)</h3>
+                    <p>Pentru tipurile numerice cu semn, primul bit din memorie este păstrat exclusiv pentru a indica semnul (0 înseamnă pozitiv, 1 înseamnă negativ). Dacă în urma unui calcul valoarea depășește limita maximă permisă (aproximativ 2.14 * 10^9), apare un fenomen critic numit <b>overflow</b>, iar numărul devine brusc negativ!</p>
+                    <p><b>Regulă de aur la BAC:</b> Dacă în cerința problemei se menționează că numerele pot avea până la 18 cifre sau dacă se cere produsul a mai multe numere mari, folosește întotdeauna tipul <code>long long</code>.</p>
                 </div>
 
                 <div class="problem-section" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.05);">
                     <h3><i class="fa-solid fa-calculator icon-green"></i> Tipurile reale (float și double)</h3>
-                    <p>Numerele reale sunt salvate în formatul standard cu <b>virgulă mobilă</b>.</p>
+                    <p>Numerele reale sunt memorate în formatul standard cu <b>virgulă mobilă</b>, o reprezentare adaptată pentru a acoperi un interval vast de valori.</p>
                     <p style="margin-bottom: 0;" class="text-muted">
                         <i class="fa-solid fa-triangle-exclamation" style="color: #f43f5e; margin-right: 5px;"></i>
-                        <i>Atenție:</i> Nu stochează întotdeauna valoarea matematică exactă, ci o <b>aproximație</b>. Pentru precizie maximă la BAC se recomandă <code>double</code>.
+                        <b>Atenție majoră:</b> Aceste tipuri nu stochează întotdeauna valoarea matematică absolut exactă, ci o <b>aproximație</b> foarte apropiată de aceasta. Pentru o precizie maximă a calculelor la examen, se recomandă utilizarea tipului <code>double</code>.
                     </p>
                 </div>
 
                 <div class="problem-section" style="border-left-color: #eab308; background: rgba(234, 179, 8, 0.05);">
                     <h3><i class="fa-solid fa-font icon-yellow"></i> Tipul char și Codul ASCII</h3>
-                    <p>În memorie, tipul <code>char</code> este salvat ca un număr întreg reprezentând codul ASCII al caracterului. Codurile esențiale de memorat pentru BAC:</p>
-                    <pre style="margin: 5px 0;">'0'=48 ... '9'=57  |  'A'=65 ... 'Z'=90  |  'a'=97 ... 'z'=122</pre>
+                    <p>Când declarăm o variabilă de tip <code>char</code>, calculatorul nu stochează litera în sine, ci un număr întreg cuprins între 0 și 255. Acest număr reprezintă codul ASCII asociat caracterului. Iată intervalele pe care trebuie să le știi pe de rost:</p>
+                    <pre style="margin: 10px 0; background: var(--surface);">Cifrele '0'='9': coduri 48-57  |  Litere mari 'A'-'Z': coduri 65-90  |  Litere mici 'a'-'z': coduri 97-122</pre>
                 </div>
 
                 <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.05);">
                     <h3><i class="fa-solid fa-toggle-on icon-slate"></i> Tipul bool (Valori logice)</h3>
-                    <p>Acceptă doar două stări:</p>
-                    <ul style="padding-left: 20px; margin: 5px 0 0 0;">
-                        <li><code>true</code> (reprezentat intern prin 1 sau orice valoare nenulă)</li>
-                        <li><code>false</code> (reprezentat intern prin 0)</li>
+                    <p>Acest tip de dată este esențial pentru condiții și acceptă doar două stări de bază:</p>
+                    <ul style="padding-left: 20px; margin: 10px 0 0 0;">
+                        <li>Valoarea <b>Adevărat</b>: <code>true</code> (reprezentată în memoria calculatorului prin 1 sau prin orice altă valoare diferită de zero).</li>
+                        <li>Valoarea <b>Fals</b>: <code>false</code> (reprezentată în memorie strict prin 0).</li>
                     </ul>
                 </div>
             </section>
@@ -307,33 +322,34 @@
                 <h2>Declarare, Constante și Conversii de Tip (Casting)</h2>
 
                 <h3>1. Declararea și inițializarea variabilelor</h3>
+                <p>O variabilă se creează specificând tipul de dată, urmat de identificator și opțional, atribuindu-i o valoare de pornire.</p>
 <pre>
-int a=10; // Aloca 4 bytes (numar intreg)
-long long p=1000000; // Aloca 8 bytes (numar foarte mare)
-double x=3.14; // Aloca 8 bytes (numar real)
-char c='A'; // Aloca 1 byte (cod ASCII 65)
-bool ok=true; // Aloca 1 byte (valoare logica)
+int a=10; // Aloca 4 bytes (pentru un numar intreg)
+long long p=1000000; // Aloca 8 bytes (pentru un numar foarte mare)
+double x=3.14; // Aloca 8 bytes (pentru un numar real)
+char c='A'; // Aloca 1 byte (pentru a memora codul ASCII 65)
+bool ok=true; // Aloca 1 byte (pentru o valoare de adevar)
 </pre>
 
-                <h3 style="margin-top: 20px;">2. Definirea Constantelor (`const`)</h3>
-                <p>Constantele sunt valori care <b>nu pot fi modificate</b> pe parcursul programului. Orice încercare de a le schimba valoarea va genera eroare de compilare.</p>
+                <h3 style="margin-top: 25px;">2. Definirea Constantelor cu <code>const</code></h3>
+                <p>Constantele sunt spații de memorie protejate, a căror valoare <b>nu mai poate fi modificată</b> sub nicio formă pe parcursul programului. Dacă încerci să schimbi o constantă, programul va genera o eroare la compilare.</p>
 <pre>
 const double PI=3.14159;
 const int MAX_VAL=100;
 </pre>
 
-                <h3 style="margin-top: 20px;">3. Conversia de tip (Typecasting) - Capcană de BAC!</h3>
-                <p>Atunci când împărțim două numere întregi în C++, rezultatul este tot un număr întreg (se taie zecimalele). Pentru a obține un rezultat real, folosim **conversia explicită (casting)**:</p>
+                <h3 style="margin-top: 25px;">3. Conversia de tip (Typecasting) - Capcană frecventă!</h3>
+                <p>În C++, atunci când împărțim două numere întregi, compilatorul returnează exclusiv un rezultat întreg (partea zecimală se pierde instantaneu, fără a face rotunjire). Pentru a forța programul să obțină un rezultat matematic cu virgulă, aplicăm <b>conversia explicită (casting)</b>, adăugând tipul dorit între paranteze:</p>
 <pre>
 int a=5,b=2;
 
-double r1=a/b; // r1 va fi 2.0 (deoarece a/b se calculeaza mai intai ca intreg!)
-double r2=(double)a/b; // r2 va fi 2.5 (a este convertit temporar la double)
+double r1=a/b; // r1 devine 2.0 (impartirea se face ca intre numere intregi, pierzand zecimalele)
+double r2=(double)a/b; // r2 devine 2.5 (variabila 'a' este transformata temporar in real)
 </pre>
 
-                <div class="math-box" style="border-left-color: #64748b; margin-top: 20px;">
-                    <b><i class="fa-solid fa-flag icon-slate"></i> Concluzie pentru BAC:</b><br>
-                    Cunoașterea limitelor de memorie, alegerea corectă a tipului de dată (`int` vs `long long`), atenția la denumirea identificatorilor și conversia explicită la împărțire reprezintă diferența dintre un algoritm parțial corect și unul de nota 10.
+                <div class="math-box" style="border-left-color: #64748b; margin-top: 25px;">
+                    <b><i class="fa-solid fa-flag icon-slate"></i> Concluzie pentru succesul la examen:</b><br>
+                    Cunoașterea perfectă a limitelor de memorie, alegerea tipului corect de dată (precum decizia de a folosi <code>int</code> versus <code>long long</code>), respectarea regulilor pentru identificatori și atenția la împărțirea numerelor întregi prin utilizarea conversiei explicite fac diferența clară între un algoritm parțial punctat și o rezolvare de nota 10.
                 </div>
             </section>
 
