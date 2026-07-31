@@ -11,12 +11,10 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Aplicare font Courier New pentru toate blocurile de cod */
         pre, code {
             font-family: 'Courier New', Courier, monospace !important;
         }
 
-        /* Layout Grid */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -27,7 +25,6 @@
             .grid-2 { grid-template-columns: 1fr; }
         }
 
-        /* Caseta definițiilor matematice și structurilor cheie */
         .math-box {
             background-color: var(--surface);
             border-left: 4px solid var(--primary);
@@ -41,7 +38,6 @@
             line-height: 1.6;
         }
 
-        /* Carduri de caracteristici și observații */
         .feature-card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -60,7 +56,6 @@
             gap: 10px;
         }
 
-        /* Secțiuni speciale pentru operații fundamentale */
         .problem-section {
             background: rgba(37, 99, 235, 0.08);
             border: 1px solid rgba(37, 99, 235, 0.16);
@@ -79,7 +74,6 @@
             gap: 10px;
         }
 
-        /* Tabel comparativ pentru inițializări */
         .dark-table {
             width: 100%; 
             border-collapse: collapse; 
@@ -111,7 +105,6 @@
             background-color: rgba(37, 99, 235, 0.05);
         }
 
-        /* Clase de utilitate pentru pictograme și teme */
         .icon-primary { color: var(--primary); }
         .icon-accent { color: var(--accent); }
         .icon-green { color: #10b981; }
@@ -154,7 +147,7 @@
 
             <section class="lesson-header">
                 <h1>Tablouri unidimensionale; Vectori</h1>
-                <p>Noțiuni fundamentale despre declararea, alocarea și utilizarea vectorilor în C++</p>
+                <p>Noțiuni fundamentale, strategii și algoritmi specifici programei de Bacalaureat</p>
             </section>
 
             <section class="lesson-card">
@@ -165,13 +158,13 @@
                 
                 <div class="math-box">
                     <b><i class="fa-solid fa-code icon-primary"></i> Sintaxa generală:</b><br>
-                    <code>tipDeDate denumire[DimensiuneFizică];</code>
+                    <code>tipDeDate denumire[DimensiuneFizica];</code>
                 </div>
 
                 <p>Exemple de declarări corecte:</p>
 <pre>
-int X[10];                  // Un vector capabil să rețină maxim 10 numere întregi
-int n, X[10], m, Y[100];    // Declarare multiplă (variabile simple și vectori)
+int X[10];
+int n, X[10], m, Y[100];
 </pre>
             </section>
 
@@ -181,11 +174,11 @@ int n, X[10], m, Y[100];    // Declarare multiplă (variabile simple și vectori
                 <div class="grid-2">
                     <div class="feature-card" style="border-left: 3px solid #f59e0b;">
                         <h3><i class="fa-solid fa-globe icon-yellow"></i> Alocare Globală vs. Locală</h3>
-                        <p style="margin: 0;">Elementele unui tablou declarat <b>global</b> sunt inițializate automat cu <b>0</b>. Dacă tabloul este declarat <b>local</b> (în interiorul "main"), elementele vor conține inițial <b>valori aleatorii</b> (reziduuri din memorie).</p>
+                        <p style="margin: 0;">Elementele unui tablou declarat <b>global</b> sunt inițializate automat cu <b>0</b>. Dacă tabloul este declarat <b>local</b> (în interiorul funcției <code>main</code>), elementele vor conține inițial <b>valori aleatorii</b> (reziduuri din memorie).</p>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid var(--primary);">
                         <h3><i class="fa-solid fa-list-ol icon-primary"></i> Indexare nativă de la 0</h3>
-                        <p style="margin: 0;">În limbajul C++, indexarea elementelor se face în mod nativ începând de la poziția <b>0</b>. Un vector cu <code>N</code> elemente va avea indicii cuprinși între <code>0</code> și <code>N - 1</code>.</p>
+                        <p style="margin: 0;">În limbajul C++, indexarea elementelor se face în mod nativ începând de la poziția <b>0</b>. Un vector cu <code>N</code> elemente va avea indicii cuprinși între <code>0</code> și <code>N-1</code>.</p>
                     </div>
                 </div>
             </section>
@@ -205,9 +198,9 @@ int n, X[10], m, Y[100];    // Declarare multiplă (variabile simple și vectori
 int X[10];
 X[0]=17;
 
-cout&lt;&lt;X[0];     // Afișează valoarea: 17
-cout&lt;&lt;X[0]+5;   // Efectuează calculul: 22
-cout&lt;&lt;X[0]/5;  // Diviziune întreagă: 3
+cout<<X[0];
+cout<<X[0]+5;
+cout<<X[0]/5;
 </pre>
             </section>
 
@@ -221,9 +214,9 @@ cout&lt;&lt;X[0]/5;  // Diviziune întreagă: 3
                     <h3><i class="fa-solid fa-arrows-repeat icon-primary"></i> Parcurgerea unui vector</h3>
                     <p>Reprezintă vizitarea și/sau modificarea fiecărui element într-o ordine bine stabilită (directă sau inversă), folosind o structură repetitivă:</p>
 <pre>
-int X[100], n, i; // n reprezintă numărul de elemente utilizate efectiv
-for (i=0; i&lt;n ; i++) 
-    X[i]=1;  // Inițializăm toate elementele logice cu valoarea 1
+int X[100],n,i;
+for (i=0; i<n; i++)
+    X[i]=1;
 </pre>
                 </div>
             </section>
@@ -236,8 +229,8 @@ for (i=0; i&lt;n ; i++)
                     <div class="feature-card" style="border-left: 3px solid #f43f5e;">
                         <h3><i class="fa-solid fa-triangle-exclamation icon-red"></i> Greșeli Frecvente la Examen</h3>
                         <p style="margin: 0; font-size: 0.95rem;">
-                            <code>cin &gt;&gt; X;</code> &rarr; <b>Eroare de sintaxă</b> (compilatorul nu știe câte elemente să citească).<br><br>
-                            <code>cout &lt;&lt; X;</code> &rarr; <b>Nu dă eroare</b>, dar va tipări <b>adresa în hexazecimal</b> a primului element din memorie (ex. <code>0x7ffc9711bcd0</code>).
+                            <code>cin>>X;</code> &rarr; <b>Eroare de sintaxă</b> (compilatorul nu știe câte elemente să citească).<br><br>
+                            <code>cout<<X;</code> &rarr; <b>Nu dă eroare</b>, nhưng va tipări <b>adresa în hexazecimal</b> a primului element din memorie (ex. <code>0x7ffc9711bcd0</code>).
                         </p>
                     </div>
                     <div class="feature-card" style="border-left: 3px solid #10b981;">
@@ -245,14 +238,14 @@ for (i=0; i&lt;n ; i++)
                         <div style="font-size: 0.95rem;">
                             <b>Citirea element cu element:</b>
 <pre style="margin: 5px 0;">
-cin&gt;&gt;n;
-for (int i=0; i&lt;n; i++)
-     cin&gt;&gt;X[i];
+cin>>n;
+for (int i=0; i<n; i++)
+    cin>>X[i];
 </pre>
                             <b>Afișarea element cu element:</b>
 <pre style="margin: 5px 0;">
-for (int i=0; i&lt;n; i++)
-    cout&lt;&lt;X[i]&lt;&lt;" ";
+for (int i=0; i<n; i++)
+    cout<<X[i]<<" ";
 </pre>
                         </div>
                     </div>
@@ -266,10 +259,10 @@ for (int i=0; i&lt;n; i++)
                 <div class="problem-section" style="border-left-color: #64748b; background: rgba(100, 116, 139, 0.05);">
                     <h3><i class="fa-solid fa-circle-nodes icon-slate"></i> Cum procedăm dacă vrem indexare de la 1?</h3>
                     <p>1. Celula <code>X[0]</code> va fi lăsată neutilizată în memorie.</p>
-                    <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i = 1 ; i &lt;= n ; i++)</code>.</p>
+                    <p>2. Structurile repetitive se vor executa în intervalul convenabil: <code>for(int i=1;i<=n;i++)</code>.</p>
                     <p>3. <b>Atenție la dimensionare:</b> Dacă enunțul specifică o dimensiune maximă de <b>n &le; 100</b> elemente, tabloul va fi declarat obligatoriu de dimensiune cel puțin <code>101</code> pentru a evita depășirea de memorie (out of bounds) la accesarea lui <code>X[100]</code>.</p>
 <pre>
-int X[101]; // Alocă celule de la 0 la 100. Celula X[100] devine astfel accesibilă!
+int X[101];
 </pre>
                 </div>
             </section>
@@ -288,11 +281,11 @@ int X[101]; // Alocă celule de la 0 la 100. Celula X[100] devine astfel accesib
                         </thead>
                         <tbody>
                             <tr>
-                                <td><code>int A[]={10, 20, 30, 40};</code></td>
+                                <td><code>int A[]={10,20,30,40};</code></td>
                                 <td>Dimensiunea fizică este determinată automat la <b>4</b> elemente (de la <code>A[0]</code> la <code>A[3]</code>).</td>
                             </tr>
                             <tr>
-                                <td><code>int B[10]={10, 20, 30, 40};</code></td>
+                                <td><code>int B[10]={10,20,30,40};</code></td>
                                 <td>Primele 4 elemente preiau valorile date, iar restul de 6 elemente rămase sunt <b>inițializate automat cu 0</b>.</td>
                             </tr>
                             <tr>
@@ -301,6 +294,30 @@ int X[101]; // Alocă celule de la 0 la 100. Celula X[100] devine astfel accesib
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section class="lesson-card">
+                <h2>Algoritmi Elementari Recomandați pentru BAC</h2>
+                <p>Următorii algoritmi esențiali apar frecvent în subiectele de examen și trebuie stăpâniți perfect:</p>
+
+                <div class="problem-section">
+                    <h3>Determinarea maximului dintr-un vector</h3>
+<pre>
+int max=X[1], i;
+for(i=2; i<=n; i++)
+    if(X[i]>max)
+        max=X[i];
+</pre>
+                </div>
+
+                <div class="problem-section" style="margin-top: 15px;">
+                    <h3>Utilizarea unui vector de frecvență (foarte comun la Subiectul III)</h3>
+<pre>
+int f[10]={0}, i;
+for (i=1; i<=n; i++)
+    f[X[i]]++;
+</pre>
                 </div>
             </section>
 
