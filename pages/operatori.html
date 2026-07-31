@@ -208,9 +208,9 @@
             <p style="margin-top: 15px;">Operatorul <code>%</code> (modulo) se aplică <b>doar numerelor întregi</b>:</p>
 <pre>
 if(n%2==0)
-    cout<<"n este par";
+    cout&lt;&lt;"n este par";
 else
-    cout<<"n este impar";
+    cout&lt;&lt;"n este impar";
 </pre>
         </section>
 
@@ -258,10 +258,10 @@ else
 
 <pre>
 int x=5;
-cout<<++x; // afișează 6 (x devine 6, apoi se afișează)
+cout&lt;&lt;++x; // afișează 6 (x devine 6, apoi se afișează)
 
 int y=5;
-cout<<y++; // afișează 5 (se afișează 5, apoi y devine 6)
+cout&lt;&lt;y++; // afișează 5 (se afișează 5, apoi y devine 6)
 </pre>
         </section>
 
@@ -288,29 +288,6 @@ cout<<y++; // afișează 5 (se afișează 5, apoi y devine 6)
                     </ul>
                 </div>
             </div>
-
-            <div class="note-section">
-                <b>Evaluarea scurtcircuitată (Explicație detaliată):</b><br>
-                La BAC apar adesea condiții compuse în structura <code>if</code>. C++ evaluează aceste expresii logic de la stânga la dreapta și se oprește în momentul în care rezultatul final este bătut în cuie:<br><br>
-                &bull; La <code>&amp;&amp;</code> (ȘI): dacă prima parte este <b>falsă</b>, rezultatul total va fi clar fals, așa că a doua parte <b>nu se mai evaluează deloc</b>.<br>
-                &bull; La <code>||</code> (SAU): dacă prima parte este <b>adevărată</b>, rezultatul total va fi clar adevărat, așa că a doua parte <b>nu se mai evaluează deloc</b>.
-            </div>
-
-<pre>
-int i=10;
-int v[10]={1,2,3,4,5,6,7,8,9,10};
-
-// ANALIZA EXPRESIEI din if: (i<10 && v[i]==0)
-// 1. Prima parte este (i < 10). Înlocuind valoarea devine (10 < 10), adică FALS.
-// 2. Deoarece operatorul dintre ele este && (ȘI), întrucât prima parte este FALSĂ, 
-//    rezultatul final este sigur FALS.
-// 3. C++ aplică SCURTCIRCUITUL: se oprește imediat și NU mai evaluează a doua parte (v[i] == 0).
-// REZULTAT: Am evitat o eroare de accesare în afara vectorului (v[10] nu există, elementele valide sunt 0-9).
-
-if(i<10&&v[i]==0){
-    cout<<"Element gasit";
-}
-</pre>
         </section>
 
         <section class="lesson-card">
@@ -339,7 +316,7 @@ if(i<10&&v[i]==0){
         </section>
 
         <section class="lesson-card">
-            <h2>Ordinea (prioritatea) operatorilor</h2>
+            <h2>Ordinea (prioritatea) operatorilor și Evaluarea Expresiilor</h2>
             <p>
                 Tabelul complet al priorităților pentru programa de Bacalaureat, de la cea mai mare prioritate (1) la cea mai mică:
             </p>
@@ -418,13 +395,25 @@ if(i<10&&v[i]==0){
                 </table>
             </div>
 
-<pre>
-int rezultat=2+3*4;    // 14 (inmultirea are prioritate)
-int rezultat2=(2+3)*4; // 20 (parantezele schimba ordinea)
+            <div class="note-section" style="margin-top: 20px;">
+                <b>Exemplu clar de evaluare a unei expresii unde ordinea contează (Fără scurtcircuitare):</b><br>
+                Să analizăm pas cu pas expresia aritmetică de mai jos:
+            </div>
 
-// Deoarece + are prioritate față de <<, expresia de mai jos 
-// calculează 1<<(2+3), adică 1<<5 = 32
-int shift=1<<2+3;       
+<pre>
+int x=10+5*2-8/4;
+
+// Pasul 1: Înmulțirea (*) și împărțirea (/) au prioritate mai mare (Nivelul 3):
+//    - Se calculează 5*2=10
+//    - Se calculează 8/4=2
+// Expresia parțială devine: 10+10-2
+
+// Pasul 2: Adunarea (+) și scăderea (-) au prioritate mai mică (Nivelul 4) 
+// și se evaluează de la stânga la dreapta:
+//    - Se calculează 10+10=20
+//    - Se calculează 20-2=18
+
+// REZULTAT FINAL: x va primi valoarea 18.
 </pre>
         </section>
 
@@ -441,7 +430,7 @@ int shift=1<<2+3;
 
 <pre>
 int a=7,b=12;
-int maxim=(a>b)?a:b; // maxim va primi 12
+int maxim=(a&gt;b)?a:b; // maxim va primi 12
 </pre>
         </section>
 
@@ -451,9 +440,9 @@ int maxim=(a>b)?a:b; // maxim va primi 12
                 Returnează numărul de octeți (bytes) ocupați în memorie de un tip de date sau de o variabilă.
             </p>
 <pre>
-cout<<sizeof(int); // de regula 4 octeti
+cout&lt;&lt;sizeof(int); // de regulă 4 octeți
 int v[10];
-cout<<sizeof(v);   // 40 (10 elemente x 4 octeti)
+cout&lt;&lt;sizeof(v);   // 40 (10 elemente x 4 octeți)
 </pre>
         </section>
 
