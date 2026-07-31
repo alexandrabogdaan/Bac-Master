@@ -196,7 +196,7 @@
                         <h3><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Exemple utile pentru BAC</h3>
                         <p style="margin: 0; font-size: 0.95rem;">
                             ✅ <b>Identificatori corecți:</b> <code>n</code>, <code>nr_elemente</code>, <code>_max</code>, <code>suma2</code><br><br>
-                            ❌ <b>Identificatori greșiți:</b> <code>2suma</code> (începe cu o cifră), <code>nr-elemente</code> (conține minus, care este operator matematic), <code>int</code> (este un cuvânt rezervat al limbajului).
+                            ❌ <b>Identificatori incorecți:</b> <code>2suma</code> (începe cu o cifră), <code>nr-elemente</code> (conține minus, care este operator matematic), <code>int</code> (este un cuvânt rezervat al limbajului).
                         </p>
                     </div>
                 </div>
@@ -223,8 +223,8 @@
                     <b><i class="fa-solid fa-arrow-down-up-lock icon-accent"></i> Grila de transformare a unităților de memorie:</b>
                     <ul style="margin: 10px 0 0 25px; padding: 0;">
                         <li>1 Byte = 8 biți</li>
-                        <li>1 KB (Kilobyte) = 1024 Bytes (2^10 Bytes)</li>
-                        <li>1 MB (Megabyte) = 1024 KB (2^20 Bytes)</li>
+                        <li>1 KB (Kilobyte) = 1024 Bytes (2<sup>10</sup> Bytes)</li>
+                        <li>1 MB (Megabyte) = 1024 KB (2<sup>20</sup> Bytes)</li>
                     </ul>
                 </div>
             </section>
@@ -246,17 +246,17 @@
                             <tr>
                                 <td><code>int</code></td>
                                 <td style="font-weight: bold;" class="icon-primary">4 bytes (32 de biți)</td>
-                                <td>Numere întregi (cu semn): cuprinse aproximativ între -2 * 10^9 și 2 * 10^9</td>
+                                <td>Numere întregi (cu semn): cuprinse aproximativ între -2 · 10<sup>9</sup> și 2 · 10<sup>9</sup></td>
                             </tr>
                             <tr>
                                 <td><code>long long</code></td>
                                 <td style="font-weight: bold;" class="icon-purple">8 bytes (64 de biți)</td>
-                                <td>Numere întregi foarte mari: de la -9 * 10^18 la 9 * 10^18 (Esențial pentru calculele mari de la Subiectul III)</td>
+                                <td>Numere întregi foarte mari: de la -9 · 10<sup>18</sup> la 9 · 10<sup>18</sup> (Esențial pentru calculele mari de la Subiectul III)</td>
                             </tr>
                             <tr>
                                 <td><code>unsigned int</code></td>
                                 <td>4 bytes (32 de biți)</td>
-                                <td>Strict numere întregi pozitive: de la 0 la 4.29 * 10^9</td>
+                                <td>Strict numere întregi pozitive: de la 0 la 4.29 · 10<sup>9</sup></td>
                             </tr>
                             <tr>
                                 <td><code>float</code></td>
@@ -289,7 +289,7 @@
 
                 <div class="problem-section" style="border-left-color: var(--primary);">
                     <h3><i class="fa-solid fa-arrow-1-9 icon-primary"></i> Tipul int și depășirea limitei (Overflow)</h3>
-                    <p>Pentru tipurile numerice cu semn, primul bit din memorie este păstrat exclusiv pentru a indica semnul (0 înseamnă pozitiv, 1 înseamnă negativ). Dacă în urma unui calcul valoarea depășește limita maximă permisă (aproximativ 2.14 * 10^9), apare un fenomen critic numit <b>overflow</b>, iar numărul devine brusc negativ!</p>
+                    <p>Pentru tipurile numerice cu semn, primul bit din memorie este păstrat exclusiv pentru a indica semnul (0 înseamnă pozitiv, 1 înseamnă negativ). Dacă în urma unui calcul valoarea depășește limita maximă permisă (aproximativ 2.14 · 10<sup>9</sup>), apare un fenomen critic numit <b>overflow</b>.</p>
                     <p><b>Regulă de aur la BAC:</b> Dacă în cerința problemei se menționează că numerele pot avea până la 18 cifre sau dacă se cere produsul a mai multe numere mari, folosește întotdeauna tipul <code>long long</code>.</p>
                 </div>
 
