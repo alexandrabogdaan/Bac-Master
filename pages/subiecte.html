@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="../css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap"
         rel="stylesheet">
         
     <style>
@@ -20,58 +20,18 @@
         }
 
         .year-section {
-            background: #ffffff;
+            background: var(--card, #ffffff);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border, #e2e8f0);
+            transition: opacity 0.2s ease;
         }
-        .search-results-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-    max-height: 250px;
-    overflow-y: auto;
-    display: none; /* Ascuns implicit */
-    margin-top: 5px;
-}
 
-.search-item {
-    padding: 10px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #f1f5f9;
-    color: #2d3748;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.2s;
-}
-
-.search-item:last-child {
-    border-bottom: none;
-}
-
-.search-item:hover {
-    background-color: #edf2f7;
-    color: #2b6cb0;
-}
-
-.search-item-badge {
-    font-size: 0.75rem;
-    background: #e2e8f0;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #4a5568;
-}
         .year-title {
             font-size: 1.5rem;
-            color: #1a365d;
-            border-bottom: 2px solid #e2e8f0;
+            color: var(--text, #1a365d);
+            border-bottom: 2px solid var(--border, #e2e8f0);
             padding-bottom: 8px;
             margin-bottom: 15px;
             display: flex;
@@ -88,10 +48,10 @@
         }
 
         .session-card {
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border, #e2e8f0);
             border-radius: 8px;
             padding: 15px;
-            background: #f8fafc;
+            background: var(--surface, #f8fafc);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
@@ -102,7 +62,7 @@
 
         .session-card h4 {
             margin-top: 0;
-            color: #2b6cb0;
+            color: var(--primary, #2b6cb0);
             font-size: 1.1rem;
             margin-bottom: 10px;
             font-weight: 600;
@@ -129,30 +89,38 @@
         }
 
         .btn-download {
-            background-color: #edf2f7;
-            color: #2d3748;
+            background-color: var(--border, #edf2f7);
+            color: var(--text, #2d3748);
         }
 
         .btn-download:hover {
-            background-color: #e2e8f0;
+            background-color: rgba(37, 99, 235, 0.15);
         }
 
         .btn-explain {
-            background-color: #3182ce;
+            background-color: var(--primary, #3182ce);
             color: white;
         }
 
         .btn-explain:hover {
-            background-color: #2b6cb0;
+            opacity: 0.9;
         }
 
         .btn-interactive {
-            background-color: #48bb78;
+            background-color: var(--accent, #48bb78);
             color: white;
         }
 
         .btn-interactive:hover {
-            background-color: #38a169;
+            opacity: 0.9;
+        }
+
+        .no-results-msg {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: var(--muted);
+            font-size: 1.1rem;
         }
 
         /* Adaptabilitate pentru ecrane mici (telefoane) */
@@ -183,7 +151,6 @@
                     <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
-
                     <a href="setari.html">⚙️ Setări</a>
                 </nav>
             </div>
@@ -208,9 +175,13 @@
 
             <section class="archive-container">
                 
-                <p style="color: #4a5568; margin-bottom: 5px;">
+                <p style="color: var(--muted); margin-bottom: 5px;">
                     Explorează subiectele oficiale din ultimii 11 ani. Antrenează-te interactiv pentru Subiectul I (grilă) sau parcurge rezolvările noastre complete.
                 </p>
+
+                <div id="noResults" class="no-results-msg">
+                    🔍 Nu a fost găsit niciun subiect pentru anul căutat.
+                </div>
 
                 <div class="year-section">
                     <div class="year-title">📅 BAC 2025</div>
@@ -466,6 +437,49 @@
     </div>
 
     <script src="../js/app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const searchResultsDropdown = document.getElementById('searchResults');
+            const yearSections = document.querySelectorAll('.year-section');
+            const noResults = document.getElementById('noResults');
+
+            if (searchInput) {
+                // Ascundem dropdown-ul global când se tastează pe această pagină
+                if (searchResultsDropdown) {
+                    searchResultsDropdown.style.display = 'none';
+                }
+
+                searchInput.addEventListener('input', (e) => {
+                    // Ne asigurăm că dropdown-ul rămâne ascuns
+                    if (searchResultsDropdown) {
+                        searchResultsDropdown.style.display = 'none';
+                    }
+
+                    const query = e.target.value.trim().toLowerCase();
+                    let visibleCount = 0;
+
+                    yearSections.forEach(section => {
+                        const titleText = section.querySelector('.year-title').textContent.toLowerCase();
+                        
+                        // Verifică dacă textul titlului conține anul tastat
+                        if (titleText.includes(query)) {
+                            section.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+
+                    // Afișează un mesaj în caz că nu există rezultate
+                    if (noResults) {
+                        noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
