@@ -1,54 +1,140 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setări - BAC Master</title>
+
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
-    </style>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* Stil simplu pentru butonul de toggle */
-        .theme-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 500;
-            display: inline-flex;
+
+        .settings-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+            max-width: 750px;
+        }
+
+        .settings-card {
+            background: var(--card, #ffffff);
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .settings-card-header {
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border, #e2e8f0);
+            padding-bottom: 10px;
+        }
+
+        .settings-card-header i {
+            font-size: 1.2rem;
+            color: var(--primary, #3182ce);
+        }
+
+        .settings-card-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Selector Vizual de Temă (Dark / Light) */
+        .theme-options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin-top: 10px;
+        }
+
+        .theme-option-card {
+            border: 2px solid var(--border, #e2e8f0);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
             transition: all 0.2s ease;
+            background: var(--surface, #f8fafc);
         }
 
-        .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-1px);
+        .theme-option-card:hover {
+            border-color: var(--primary, #3182ce);
         }
 
-        /* Schimbăm aspectul butonului când suntem în Light Mode */
-        body.light-mode .theme-btn {
-            background: rgba(0, 0, 0, 0.05);
-            border-color: rgba(0, 0, 0, 0.1);
-            color: #1a202c;
+        .theme-option-card.active {
+            border-color: var(--primary, #3182ce);
+            background: rgba(49, 130, 206, 0.08);
         }
-        body.light-mode .theme-btn:hover {
-            background: rgba(0, 0, 0, 0.1);
+
+        .theme-option-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .theme-card-dark .theme-option-icon {
+            background: #1a202c;
+            color: #f6ad55;
+        }
+
+        .theme-card-light .theme-option-icon {
+            background: #edf2f7;
+            color: #3182ce;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .settings-select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border, #cbd5e0);
+            background: var(--card, #ffffff);
+            color: var(--text, #2d3748);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .theme-options-grid {
+                grid-template-columns: 1fr;
+            }
+            .settings-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
     <script src="../js/theme.js"></script>
+
     <div class="container">
 
         <aside class="sidebar" id="sidebar">
@@ -63,85 +149,131 @@
                     <a href="../index.html">🏠 Acasă</a>
                     <a href="teorie.html">📘 Teorie</a>
                     <a href="algoritmi.html">💻 Algoritmi</a>
-                    <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
+                    <a href="subiecte.html">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
-
-                    <a href="setari.html">⚙️ Setări</a>
+                    <a href="setari.html" class="active">⚙️ Setări</a>
                 </nav>
             </div>
             <div class="sidebar-footer">
                 <h4>🎯 Obiectiv</h4>
-                <p>Nota 10 la BAC</p>
+                <p id="sidebar-target-text">Nota 10 la BAC</p>
             </div>
         </aside>
 
-    <main class="main">
+        <main class="main">
 
-        <h1>⚙️ Setări</h1>
+            <h1>⚙️ Setări Vizualizare</h1>
 
-        <div class="module-card">
-            <h3>Tema Interfeței</h3>
-            <p id="theme-status">Dark mode activ</p>
-            <button id="theme-toggle" class="theme-btn">
-                <i class="fa-solid fa-sun"></i> Schimbă Tema
-            </button>
-        </div>
+            <section class="settings-container">
 
-    </main>
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <i class="fa-solid fa-palette"></i>
+                        <h3>Tema Interfeței</h3>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--muted); margin-top: 0;">
+                        Alege aspectul vizual preferat. Alegerea ta va fi reținută automat în browser.
+                    </p>
 
-</div>
+                    <div class="theme-options-grid">
+                        <div class="theme-option-card theme-card-dark" id="theme-card-dark">
+                            <div class="theme-option-icon">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.95rem;">Dark Mode</div>
+                                <div style="font-size: 0.78rem; color: var(--muted);">Ușor pentru ochi pe timp de noapte</div>
+                            </div>
+                        </div>
 
-<script>
-    // Selectăm elementele necesare
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeStatus = document.getElementById('theme-status');
-    const icon = themeToggleBtn.querySelector('i');
+                        <div class="theme-option-card theme-card-light" id="theme-card-light">
+                            <div class="theme-option-icon">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.95rem;">Light Mode</div>
+                                <div style="font-size: 0.78rem; color: var(--muted);">Aspect luminos și clar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    // Funcție pentru a actualiza textul și pictograma în funcție de starea curentă
-    function updateUI(isLight) {
-        if (isLight) {
-            themeStatus.textContent = 'Light mode activ';
-            icon.className = 'fa-solid fa-moon'; // Afișăm luna când ești pe light ca să poți trece pe dark
-        } else {
-            themeStatus.textContent = 'Dark mode activ';
-            icon.className = 'fa-solid fa-sun'; // Afișăm soarele când ești pe dark ca să poți trece pe light
-        }
-    }
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <h3>Obiectivul Tău</h3>
+                    </div>
+                    <div class="settings-item">
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.95rem;">Notă Țintă la BAC</div>
+                            <div style="font-size: 0.82rem; color: var(--muted);">Afișată în meniul din stânga pentru motivare.</div>
+                        </div>
+                        <select id="target-grade-select" class="settings-select">
+                            <option value="Nota 10 la BAC">🎯 Nota 10</option>
+                            <option value="Nota 9+ la BAC">🚀 Nota 9.00+</option>
+                            <option value="Nota 8+ la BAC">📈 Nota 8.00+</option>
+                            <option value="Promovare BAC">✅ Promovare</option>
+                        </select>
+                    </div>
+                </div>
 
-    // Verificăm dacă utilizatorul a salvat anterior o preferință în browser
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'light') {
-        document.body.classList.add('light-mode');
-        document.documentElement.classList.add('light-mode');
-        document.documentElement.setAttribute('data-theme', 'light');
-        updateUI(true);
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        updateUI(false);
-    }
+            </section>
 
-    // Ascultăm evenimentul de click pe buton
-    themeToggleBtn.addEventListener('click', () => {
-        // Schimbăm clasa pe elementul body și pe document
-        document.body.classList.toggle('light-mode');
-        document.documentElement.classList.toggle('light-mode');
-        
-        // Verificăm noua stare
-        const isLightActive = document.body.classList.contains('light-mode');
-        
-        // Salvăm starea în localStorage pentru a fi reținută pe tot site-ul
-        if (isLightActive) {
-            localStorage.setItem('theme', 'light');
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else {
-            localStorage.setItem('theme', 'dark');
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-        
-        // Actualizăm interfața butonului
-        updateUI(isLightActive);
-    });
-</script>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkCard = document.getElementById('theme-card-dark');
+            const lightCard = document.getElementById('theme-card-light');
+            const targetGradeSelect = document.getElementById('target-grade-select');
+            const sidebarTargetText = document.getElementById('sidebar-target-text');
+
+            // Funcție schimbare temă
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    document.body.classList.add('light-mode');
+                    document.documentElement.classList.add('light-mode');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+
+                    lightCard.classList.add('active');
+                    darkCard.classList.remove('active');
+                } else {
+                    document.body.classList.remove('light-mode');
+                    document.documentElement.classList.remove('light-mode');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+
+                    darkCard.classList.add('active');
+                    lightCard.classList.remove('active');
+                }
+            }
+
+            // Citire temă salvată
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+            darkCard.addEventListener('click', () => applyTheme('dark'));
+            lightCard.addEventListener('click', () => applyTheme('light'));
+
+            // Citire și salvare obiectiv
+            const savedTarget = localStorage.getItem('bac_target');
+            if (savedTarget) {
+                targetGradeSelect.value = savedTarget;
+                if (sidebarTargetText) sidebarTargetText.textContent = savedTarget;
+            }
+
+            targetGradeSelect.addEventListener('change', (e) => {
+                const newTarget = e.target.value;
+                localStorage.setItem('bac_target', newTarget);
+                if (sidebarTargetText) sidebarTargetText.textContent = newTarget;
+            });
+        });
+    </script>
+    <script src="../js/app.js"></script>
 </body>
+
 </html>
