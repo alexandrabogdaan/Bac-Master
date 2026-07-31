@@ -68,6 +68,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     transition: background 0.25s ease, color 0.25s ease; /* Tranziție fină la schimbarea temei */
+    font-family: 'Poppins', sans-serif;
 }
 
 /* =======================
