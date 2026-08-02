@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Modificat pentru contrast optim pe Light Mode și Dark Mode */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -23,10 +22,9 @@
             .grid-2 { grid-template-columns: 1fr; }
         }
 
-        /* Caseta introductivă / definiție */
         .info-box {
             background-color: var(--surface);
-            border-left: 5px solid #2563eb; /* Albastru puternic */
+            border-left: 5px solid #2563eb;
             border-top: 1px solid var(--border);
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
@@ -37,14 +35,13 @@
             line-height: 1.6;
         }
 
-        /* Carduri de caracteristici / observații */
         .feature-card {
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
-            border-left: 4px solid #0284c7; /* Albastru vizibil */
+            border-left: 4px solid #0284c7;
             color: var(--text);
         }
         .feature-card h3 {
@@ -56,14 +53,7 @@
             align-items: center;
             gap: 10px;
         }
-        .feature-list {
-            padding-left: 10px;
-            margin: 0;
-            line-height: 1.8;
-            list-style-position: inside;
-        }
 
-        /* Callout special pentru analogii */
         .analogy-box {
             background: var(--surface);
             border: 2px dashed #0284c7;
@@ -74,19 +64,20 @@
             color: var(--text);
         }
 
-        /* Trasarea pas cu pas */
         .step-box {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-left: 4px solid #9333ea; /* Mov puternic */
+            border-left: 4px solid #9333ea;
             padding: 12px 15px;
             margin-bottom: 8px;
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 0.95rem;
             color: var(--text);
         }
 
-        /* Stil pentru blocuri de cod - Adaptabil pe Light/Dark */
+        pre, code {
+            font-family: 'Courier New', Courier, monospace !important;
+        }
         pre {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -94,14 +85,12 @@
             border-radius: 6px;
             color: var(--text);
             overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
             margin: 10px 0;
         }
-        /* Culori keyword pentru vizibilitate maximă pe orice fundal */
         code .comment { color: #64748b; font-style: italic; } 
-        code .keyword { color: #2563eb; font-weight: 700; } /* Albastru închis bold */
-        code .highlight { color: #dc2626; font-weight: bold; } /* Roșu puternic */
-        code .func-name { color: #d97706; font-weight: 600; } /* Portocaliu */
+        code .keyword { color: #2563eb; font-weight: 700; }
+        code .highlight { color: #dc2626; font-weight: bold; }
+        code .func-name { color: #d97706; font-weight: 600; }
     </style>
 </head>
 
@@ -137,7 +126,7 @@
 
         <section class="lesson-header">
             <h1>Recursivitate</h1>
-            <p>De la teorie la trasarea corectă a funcțiilor pentru Subiectul II de la BAC</p>
+            <p>De la teorie la trasarea corectă a funcțiilor pentru Subiectul II și III de la BAC</p>
         </section>
 
         <section class="lesson-card">
@@ -145,13 +134,17 @@
 
             <div class="info-box">
                 <p style="margin: 0 0 10px 0;">
-                    În programare, recursivitatea reprezintă proprietatea unui subprogram (o funcție) de a <b>se apela pe sine însuși</b> din propriul său corp, până la îndeplinirea unei condiții de oprire.
+                    În programare, recursivitatea reprezintă proprietatea unui subprogram de a <b>se apela pe sine însuși</b> din propriul său corp, până la îndeplinirea unei condiții de oprire.
                 </p>
                 <p style="margin: 0;">
                     <b style="color: #2563eb;">Structura obligatorie a oricărei funcții recursive:</b><br>
-                    1. <b>Cazul de bază (Condiția de oprire):</b> O condiție logică `if` care, odată îndeplinită, oprește autoapelul și returnează o valoare simplă, cunoscută.<br>
-                    2. <b>Pasul recursiv (Autoapelul):</b> Funcția se cheamă din nou, dar <b>întotdeauna cu date modificate</b> (ex: `n-1`, `n/10`), pentru a garanta că se îndreaptă spre cazul de bază. Fără această modificare, intrăm într-un ciclu infinit!
+                    1. <b>Cazul de bază (Condiția de oprire):</b> O condiție logică <code>if</code> care, odată îndeplinită, oprește autoapelul și returnează o valoare simplă, cunoscută.<br>
+                    2. <b>Pasul recursiv (Autoapelul):</b> Funcția se cheamă din nou, dar <b>întotdeauna cu date modificate</b> (ex: <code>n-1</code>, <code>n/10</code>), pentru a garanta că se îndreaptă spre cazul de bază. Fără această modificare, intrăm în ciclu infinit!
                 </p>
+            </div>
+
+            <div class="analogy-box">
+                <b>Analogia cu Păpușile Matrioșka:</b> Imaginează-ți că vrei să afli ce se ascunde în cea mai mică păpușă dintr-un set. Deschizi prima păpușă (funcția se apelează prima oară), găsești alta mai mică. O deschizi și pe aceea (autoapel cu date mai mici), și tot așa. Faci asta până ajungi la cea mai mică păpușă care nu se mai poate deschide (<b>cazul de bază</b>). Apoi, începi să le închizi la loc, una câte una, până ajungi înapoi la cea mare (descărcarea stivei).
             </div>
 
             <div class="grid-2">
@@ -176,7 +169,7 @@
 <pre><code><span class="keyword">int</span> <span class="func-name">factorial_iterativ</span>(<span class="keyword">int</span> n)
 {
     <span class="keyword">int</span> p=1;
-    <span class="keyword">for</span> (<span class="keyword">int</span> i=1;i&lt;=n;i++)
+    <span class="keyword">for</span> ( <span class="keyword">int</span> i=1;i&lt;=n;i++ )
     {
         p=p*i;
     }
@@ -187,9 +180,9 @@
                     <h4>2. Forma Recursivă</h4>
 <pre><code><span class="keyword">int</span> <span class="func-name">factorial</span>(<span class="keyword">int</span> n)
 {
-    <span class="keyword">if</span> (n==0) <span class="comment">// Cazul de bază</span>
+    <span class="keyword">if</span> (n==0)
         <span class="keyword">return</span> 1; 
-    <span class="keyword">else</span> <span class="comment">// Autoapelul</span>
+    <span class="keyword">else</span>
         <span class="keyword">return</span> n*factorial(n-1);
 }</code></pre>
                 </div>
@@ -214,40 +207,38 @@
             <div class="grid-2">
                 <div class="feature-card" style="border-left-color: #0284c7;">
                     <h3 style="color: #0284c7;"><i class="fa-solid fa-arrow-up"></i> Acțiunea la URCARE</h3>
-                    <p style="font-size: 0.9rem;">Dacă <code>cout</code> e scris <b>ÎNAINTEA</b> autoapelului, afișarea se face instantaneu. Se afișează de la primul apel spre ultimul.</p>
+                    <p style="font-size: 0.9rem;">Dacă <code>cout</code> este scris <b>ÎNAINTEA</b> autoapelului, afișarea se face instantaneu. Se afișează de la primul apel spre ultimul.</p>
 <pre><code><span class="keyword">void</span> <span class="func-name">afisare</span>(<span class="keyword">int</span> n)
 {
     <span class="keyword">if</span> (n&gt;0)
     {
-        cout&lt;&lt;n&lt;&lt;' '; <span class="comment">// Se execută ACUM</span>
-        afisare(n-1); <span class="comment">// Pauză</span>
+        cout&lt;&lt;n&lt;&lt;' ';
+        afisare(n-1);
     }
 }
-<span class="comment">// Pentru afisare(3), afișează:</span>
-<span class="highlight">3 2 1</span>
+<span class="comment">// Pentru afisare(3): 3 2 1</span>
 </code></pre>
                 </div>
                 
                 <div class="feature-card" style="border-left-color: #16a34a;">
                     <h3 style="color: #16a34a;"><i class="fa-solid fa-arrow-down"></i> Acțiunea la COBORÂRE</h3>
-                    <p style="font-size: 0.9rem;">Dacă <code>cout</code> e <b>DUPĂ</b> autoapel, funcția intră direct pe pauză. Afișarea are loc doar la golirea stivei, în ordine inversă!</p>
+                    <p style="font-size: 0.9rem;">Dacă <code>cout</code> este <b>DUPĂ</b> autoapel, funcția intră direct pe pauză. Afișarea are loc doar la golirea stivei, în ordine inversă!</p>
 <pre><code><span class="keyword">void</span> <span class="func-name">afisare</span>(<span class="keyword">int</span> n)
 {
     <span class="keyword">if</span> (n&gt;0)
     {
-        afisare(n-1); <span class="comment">// Pauză</span>
-        cout&lt;&lt;n&lt;&lt;' '; <span class="comment">// Așteaptă întoarcerea!</span>
+        afisare(n-1);
+        cout&lt;&lt;n&lt;&lt;' ';
     }
 }
-<span class="comment">// Pentru afisare(3), afișează:</span>
-<span class="highlight">1 2 3</span>
+<span class="comment">// Pentru afisare(3): 1 2 3</span>
 </code></pre>
                 </div>
             </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-medal" style="color: #d97706;"></i> 3 Algoritmi Recursivi Fundamentali la BAC</h2>
+            <h2><i class="fa-solid fa-medal" style="color: #d97706;"></i> 4 Algoritmi Recursivi Fundamentali la BAC</h2>
             
             <div class="feature-card" style="border-left-color: #2563eb; margin-bottom: 20px;">
                 <h3 style="color: #2563eb;">1. Suma cifrelor unui număr</h3>
@@ -262,8 +253,8 @@
             </div>
 
             <div class="feature-card" style="border-left-color: #16a34a; margin-bottom: 20px;">
-                <h3 style="color: #16a34a;">2. Cel mai mare divizor comun (CMMDC - Algoritmul lui Euclid)</h3>
-                <p>Cea mai eficientă metodă recursivă se bazează pe împărțiri. Când restul (parametrul <code>b</code>) devine 0, rezultatul este <code>a</code>.</p>
+                <h3 style="color: #16a34a;">2. CMMDC (Algoritmul lui Euclid)</h3>
+                <p>Cea mai eficientă metodă recursivă se bazează pe împărțiri. Când restul devine 0, rezultatul este <code>a</code>.</p>
 <pre><code><span class="keyword">int</span> <span class="func-name">cmmdc</span>(<span class="keyword">int</span> a,<span class="keyword">int</span> b)
 {
     <span class="keyword">if</span> (b==0)
@@ -273,15 +264,32 @@
 }</code></pre>
             </div>
 
-            <div class="feature-card" style="border-left-color: #9333ea;">
+            <div class="feature-card" style="border-left-color: #9333ea; margin-bottom: 20px;">
                 <h3 style="color: #9333ea;">3. Șirul lui Fibonacci (Recursivitate Multiplă)</h3>
-                <p>Orice termen este suma celor doi precedenți. Fiindcă funcția face două apeluri simultane pe același rând "return fib(n-1)+fib(n-2);", ea nu creează o stivă simplă, ci un <b>Arbore de apeluri</b> masiv.</p>
+                <p>Orice termen este suma celor doi precedenți. Folosește două autoapeluri simultane pe același rând.</p>
 <pre><code><span class="keyword">int</span> <span class="func-name">fibonacci</span>(<span class="keyword">int</span> n)
 {
-    <span class="keyword">if</span> (n==1 || n==2) <span class="comment">// Primele două numere sunt 1</span>
+    <span class="keyword">if</span> (n==1 || n==2)
         <span class="keyword">return</span> 1;
     <span class="keyword">else</span>
         <span class="keyword">return</span> fibonacci(n-1)+fibonacci(n-2);
+}</code></pre>
+            </div>
+
+            <div class="feature-card" style="border-left-color: #dc2626;">
+                <h3 style="color: #dc2626;">4. Căutarea binară recursivă într-un vector</h3>
+                <p>O tehnică avansată cerută la Subiectul III pentru a căuta un element într-un vector ordonat.</p>
+<pre><code><span class="keyword">int</span> <span class="func-name">cautare_binara</span>(<span class="keyword">int</span> v[],<span class="keyword">int</span> st,<span class="keyword">int</span> dr,<span class="keyword">int</span> x)
+{
+    <span class="keyword">if</span> (st&gt;dr)
+        <span class="keyword">return</span> -1; <span class="comment">// Nu s-a găsit</span>
+    <span class="keyword">int</span> mij=(st+dr)/2;
+    <span class="keyword">if</span> (v[mij]==x)
+        <span class="keyword">return</span> mij;
+    <span class="keyword">else</span> <span class="keyword">if</span> (v[mij]&gt;x)
+        <span class="keyword">return</span> cautare_binara(v,st,mij-1,x);
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> cautare_binara(v,mij+1,dr,x);
 }</code></pre>
             </div>
         </section>
@@ -293,7 +301,7 @@
                 <li>Nu încerca să deduci din minte! Desenează pe ciornă săgeți în jos pentru fiecare autoapel.</li>
                 <li>Notează valorile variabilelor locale lângă fiecare săgeată.</li>
                 <li>Dacă ai instrucțiuni <b>după autoapel</b>, amintește-ți că ele se rezolvă doar de jos în sus, mergând în sens invers pe săgețile pe care tocmai le-ai desenat pe foaie.</li>
-                <li><b>Eroarea fatală:</b> Dacă observi că <code>n</code> nu își schimbă valoarea între apeluri (ex: apel cu `f(n)` în loc de `f(n-1)`), programul intră în ciclu infinit și dă <b>Stack Overflow</b>.</li>
+                <li><b>Eroarea fatală (Stack Overflow):</b> Dacă observi că <code>n</code> nu își schimbă valoarea între apeluri (ex: apel cu <code>f(n)</code> în loc de <code>f(n-1)</code>), programul intră în ciclu infinit și dă eroare de memorie.</li>
             </ul>
         </section>
 
