@@ -44,7 +44,7 @@
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 12px;
-            color: var (--text);
+            color: var(--text);
         }
         .feature-card h3 {
             margin-top: 0;
@@ -89,12 +89,22 @@
             margin-top: 15px;
         }
         .success-section h3 {
-            color: var(--primary);
+            color: #10b981;
             margin-top: 0;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        /* Callout special pentru analogii */
+        .analogy-box {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px dashed #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
         }
 
         pre b {
@@ -122,7 +132,6 @@
                     <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
                     <a href="teste.html">📝 Teste</a>
                     <a href="probleme.html">🧩 Probleme</a>
-
                     <a href="setari.html">⚙️ Setări</a>
                 </nav>
             </div>
@@ -132,23 +141,19 @@
             </div>
         </aside>
 
-
-    <!-- MAIN -->
     <main class="main lesson-page">
 
-        <!-- HEADER -->
         <section class="lesson-header">
             <h1>Subprograme</h1>
             <p>Noțiuni fundamentale despre declararea și utilizarea subprogramelor</p>
         </section>
 
-        <!-- DEFINITIE -->
         <section class="lesson-card">
             <h2><i class="fa-solid fa-code"></i> Definiția subprogramului</h2>
 
             <div class="info-box">
                 <p style="margin: 0 0 10px 0;">
-                    Un subprogram este o colecție de tipuri de date, variabile, instrucțiuni care îndeplinesc o anumită sarcină (calcule, citiri, afișări), atunci când este apelat (folosit) de un program sau de un alt subprogram.
+                    Un subprogram este o bucată de cod (o colecție de instrucțiuni) separată de programul principal, care îndeplinește o sarcină specifică. În loc să scriem același cod de 10 ori, îl scriem o singură dată într-un subprogram și îl "strigăm" (apelăm) de câte ori avem nevoie.
                 </p>
                 <p style="margin: 0;">
                     <b style="color: #60a5fa;">Un subprogram se declară în C++ astfel:</b>
@@ -161,163 +166,171 @@
             <div class="feature-card">
                 <h3><i class="fa-solid fa-list-check"></i> Exemple</h3>
                 <ul class="feature-list">
-                    <li>Ex1: <code>int suma(int a, int b);</code></li>
+                    <li>Ex1: <code>int suma(int a,int b);</code></li>
                     <li>Ex2: <code>bool estePar(int n);</code></li>
                 </ul>
             </div>
         </section>
 
-
         <section class="lesson-card">
-            <h2>Observație!</h2>
-
-            <p>
-                O funcție trebuie și <b>definită</b>, nu doar declarată!
-                <br><br>
-                Definirea unei funcții se face astfel:
-            </p>
+            <h2><i class="fa-solid fa-people-arrows" style="color: #3b82f6;"></i> Parametri formali vs. Parametri efectivi</h2>
+            <p>Ca funcția să își poată face treaba, adesea trebuie să îi trimitem date pe care să lucreze. Aceste date se numesc parametri.</p>
+            
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3><i class="fa-solid fa-file-signature"></i> Parametrii formali</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">Sunt variabilele "imaginare" declarate sus, în <b>antetul</b> funcției. Reprezintă doar niște reguli: "Când mă vei folosi, va trebui să îmi dai două numere întregi, pe care eu aici, în interiorul meu, le voi numi <i>a</i> și <i>b</i>".</p>
+                </div>
+                <div class="feature-card" style="border-left-color: #10b981;">
+                    <h3 style="color: #34d399;"><i class="fa-solid fa-bullseye"></i> Parametrii efectivi</h3>
+                    <p style="margin: 0; font-size: 0.95rem;">Sunt datele <b>reale</b>, palpabile, pe care le trimitem efectiv din <code>main</code> atunci când apelăm funcția. Pot fi numere directe (ex: 5, 10) sau alte variabile (ex: x, y).</p>
+                </div>
+            </div>
 <pre>
-int suma(int a, int b);
+void adunare(int a, int b) // a și b sunt formali (doar țin locul)
 {
-      return a + b;
+    cout&lt;&lt;a+b&lt;&lt;"\n";
+}
+
+int main()
+{
+    int x=5, y=10;
+    adunare(x,y); // x și y sunt efectivi (datele reale trimise)
+    adunare(3,7); // 3 și 7 sunt tot efectivi
+    return 0;
 }
 </pre>
         </section>
 
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-right-left" style="color: #f59e0b;"></i> Cum transmitem datele? (Esențial pentru BAC)</h2>
+            <p>Când apelăm o funcție din <code>main</code>, compilatorul trebuie să știe cum să trimită acele date reale (parametrii efectivi) către funcție. Avem două moduri mari și late: </p>
+
+            <div class="feature-card" style="border-left-color: #38bdf8;">
+                <h3 style="color: #38bdf8;"><i class="fa-solid fa-copy"></i> 1. Transmiterea prin Valoare (Fără '&')</h3>
+                <p>Când transmiți prin valoare, funcția primește o <b>COPIE</b> a variabilei tale originale.</p>
+                <div class="analogy-box">
+                    <b>Analogia cu rețeta:</b> Ai o rețetă secretă de prăjituri scrisă pe o foaie (variabila din main). Un prieten îți cere rețeta (funcția o cere). Tu îi faci o FOTOCOPIE și i-o dai. Dacă el taie cantitatea de zahăr de pe foaia lui cu pixul, foaia ta originală de acasă rămâne absolut neatinsă!
+                </div>
+                <p><b>Concluzie:</b> Orice modificare face funcția asupra parametrului, se întâmplă DOAR pe copia ei. Variabila originală din <code>main</code> rămâne Neschimbată.</p>
+<pre>
+void incearcaSaModifici(int x) // x este doar o copie
+{
+    x=x+10; // Modificăm copia internă
+}
+
+int main()
+{
+    int numar=5;
+    incearcaSaModifici(numar);
+    cout&lt;&lt;numar; // VA AFIȘA TOT 5! Originalul nu a fost atins.
+    return 0;
+}
+</pre>
+            </div>
+
+            <div class="feature-card" style="border-left-color: #a855f7; margin-top: 20px;">
+                <h3 style="color: #c084fc;"><i class="fa-solid fa-link"></i> 2. Transmiterea prin Referință (Cu '&')</h3>
+                <p>Când pui un <b>&amp;</b> (ampersand) în fața parametrului formal, funcția primește acces direct la <b>ORIGINAL</b>.</p>
+                <div class="analogy-box">
+                    <b>Analogia cu Google Docs:</b> Tu și prietenul tău aveți un singur document partajat pe internet. Amândoi vă uitați la aceeași pagină. Dacă prietenul tău șterge un rând, rândul acela dispare instantaneu și de pe ecranul tău, pentru că lucrați pe <b>același</b> document.
+                </div>
+                <p><b>Concluzie:</b> Subprogramul lucrează direct cu spațiul de memorie din <code>main</code>. Orice modificare făcută în subprogram devine <b>definitivă</b> și vizibilă și în <code>main</code>. Folosim asta când vrem ca funcția să ne calculeze/modifice ceva și să ne returneze "rezultatul" salvându-l direct în variabila noastră.</p>
+<pre>
+void modificaDefinitiv(int &amp;x) // &amp; înseamnă acces la original!
+{
+    x=x+10; // Modificăm direct pe variabila din main
+}
+
+int main()
+{
+    int numar=5;
+    modificaDefinitiv(numar);
+    cout&lt;&lt;numar; // VA AFIȘA 15! Modificarea s-a păstrat.
+    return 0;
+}
+</pre>
+            </div>
+        </section>
 
         <section class="lesson-card">
-            <h2>Folosirea acestora</h2>
+            <h2><i class="fa-solid fa-table-cells-large" style="color: #f43f5e;"></i> Atenție la Capcană: Vectorii și Matricile</h2>
+            
+            <div class="info-box" style="border-left-color: #f43f5e;">
+                <p style="margin: 0;">
+                    <b style="color: #fb7185;">Regulă de aur pentru BAC:</b> Tablourile (vectorii uni-dimensionali și matricile) se transmit <b>ÎNTOTDEAUNA, AUTOMAT prin referință</b>! Nu ai voie și nu trebuie să pui <code>&amp;</code> în fața lor în antet. 
+                    <br><br>
+                    De ce? Pentru că un vector este imens, iar compilatorul refuză să facă o copie la 1000 de elemente ca să nu blocheze memoria. Așa că trimite direct adresa originalului. <b>Orice element modifici într-un vector într-un subprogram, rămâne modificat definitiv!</b>
+                </p>
+            </div>
+<pre>
+// n este transmis prin valoare (doar copie)
+// v este vector, deci este trimis AUTOMAT prin referință!
+void dubleazaElemente(int v[],int n)
+{
+    int i;
+    for (i=1; i&lt;=n; i++)
+    {
+        v[i]=v[i]*2; // Se modifică direct vectorul original din main
+    }
+}
 
-            <p>Exemplu de implementare:</p>
+int main()
+{
+    int v[100]={0,1,2,3}, n=3;
+    dubleazaElemente(v, n);
+    cout&lt;&lt;v[1]; // Va afișa 2, elementul a fost modificat definitiv!
+    return 0;
+}
+</pre>
+        </section>
 
+        <section class="lesson-card">
+            <h2><i class="fa-solid fa-magnifying-glass"></i> Prototipul și definirea funcției</h2>
+
+            <p>O funcție trebuie și <b>definită</b>, nu doar declarată!</p>
             <div class="warning-section">
                 <h3><i class="fa-solid fa-triangle-exclamation"></i> Atenție: eroare de compilare</h3>
-                <p style="margin: 0 0 10px 0;">În acest caz, vom avea o eroare de compilare:</p>
+                <p style="margin: 0 0 10px 0;">În acest caz, vom avea o eroare de compilare, pentru că apelăm funcția înainte ca ea să existe vizual în cod:</p>
 <pre>
 #include &lt;iostream&gt;
 using namespace std;
 
 int main()
-        {
-        suma(5,10);
-        return 0;
-        }
+{
+    suma(5, 10);
+    return 0;
+}
 
 int suma(int a, int b)
-        {
-        return a + b;
-        }
-</pre>
-                <p style="margin: 10px 0 0 0; color: #a0aec0;">
-                    Acest lucru este pentru că noi doar am definit funcția <b>după ce am apelat-o</b>, deci compilatorul nu știe ce este suma(5,10) și va da eroare.
-                </p>
-            </div>
-
-            <div class="success-section">
-                <h3><i class="fa-solid fa-circle-check"></i> Cazul corect</h3>
-<pre>
-#include &lt;iostream&gt;
-using namespace std;
-
-<b>int suma(int a, int b);</b>
-
-int main()
-        {
-        suma(5,10);
-        return 0;
-        }
-
-int suma(int a, int b)
-        {
-        return a + b;
-        }
-</pre>
-            </div>
-        </section>
-
-
-        <section class="lesson-card">
-            <h2>Stocarea funcțiilor în memorie</h2>
-
-            <div class="info-box" style="border-left-color: #a855f7;">
-                <p style="margin: 0;">
-                    Funcțiile folosesc memoria de pe <b style="color: #c084fc;">Stiva (stack)</b>
-                </p>
-            </div>
-        </section>
-
-
-        <section class="lesson-card">
-            <h2>Anatomia unei funcții</h2>
-
-            <p>Antetul acesteia este:</p>
-<pre>
-tipulFunctiei numeleFunctiei(parametrii);
-ex. <b>int suma (int a, int b)</b>
-</pre>
-
-            <p>Corpul unei funcții este:</p>
-<pre>
 {
     return a+b;
 }
 </pre>
-
-            <p>Când folosim o funcție într-un program, spunem: <b>apelăm funcția:</b></p>
-<pre>
-int main()
-        {
-         cout&lt;&lt; suma(5,10); // Afiseaza 15
-        }
-</pre>
-        </section>
-
-
-        <section class="lesson-card">
-            <h2>Particularități</h2>
-
-            <div class="feature-card" style="border-left-color: #f59e0b;">
-                <h3 style="color: #fbbf24;"><i class="fa-solid fa-circle-info"></i> Funcții fără valoare returnată</h3>
-                <p style="margin: 0;">Funcțiile care nu returnează o valoare au tipul de returnare: <b>void</b></p>
             </div>
+
+            <div class="success-section">
+                <h3><i class="fa-solid fa-circle-check"></i> Cazul corect</h3>
+                <p>Spunem programului de la început că "urmează să existe" o funcție numită suma (asta e declararea/prototipul), și o construim propriu-zis după `main`.</p>
 <pre>
-void afisarePar(int a)
+#include &lt;iostream&gt;
+using namespace std;
+
+<b>int suma(int a, int b);</b> // Declararea (prototipul) funcției
+
+int main()
 {
-    if(a % 2 == 0)
-        cout << a << ' ';   
-} //Afișează numărul dacă este par
-</pre>
+    cout&lt;&lt;suma(5,10); // Acum va afișa 15
+    return 0;
+}
 
-            <div class="grid-2" style="margin-top: 20px;">
-                <div class="feature-card" style="border-left-color: #10b981;">
-                    <h3 style="color: #34d399;"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transmiterea prin referință</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Atunci când dorim ca o funcție să poată modifica direct valoarea unei variabile din afara ei (din main sau din altă funcție), folosim transmiterea prin referință.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <h3><i class="fa-solid fa-copy"></i> Diferența față de transmiterea prin valoare</h3>
-                    <p style="margin: 0; font-size: 0.95rem;">
-                        Spre deosebire de transmiterea prin valoare (unde funcția primește doar o copie a datelor), prin referință funcția lucrează direct cu variabila originală. Adăugăm simbolul <b>&amp;</b> (amperand) înaintea numelui parametrului.
-                    </p>
-                </div>
+int suma(int a, int b) // Definirea funcției
+{
+    return a+b;
+}
+</pre>
             </div>
-
-<pre>
-void dubleaza(int &x) // x este transmis prin referință
-    {
-    x = x * 2; // Modificarea afectează direct variabila din apel
-    }
-
-int main()
-    {   
-    int numar = 10;
-    dubleaza(numar);
-    cout << numar; // Va afișa 20, deoarece 'numar' a fost modificat direct!
-    }   
-</pre>
         </section>
-
 
     </main>
 
