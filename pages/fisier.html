@@ -135,14 +135,14 @@
 <pre>
 #include &lt;fstream&gt;
 using namespace std;
-ifstream fin("date.in");
-ofstream fout("date.out");
+<span style="background-color: rgba(59, 130, 246, 0.25); padding: 2px 6px; border-radius: 4px; border-left: 3px solid #3b82f6;">ifstream fin("date.in");</span>   // declarare fișier in
+    <span style="background-color: rgba(16, 185, 129, 0.25); padding: 2px 6px; border-radius: 4px; border-left: 3px solid #10b981;">ofstream fout("date.out");</span> // declarare fișier out
 int main()
 {
     // ... prelucrări ...
 
-    fin.close();
-    fout.close();
+    <span style="background-color: rgba(245, 158, 11, 0.25); padding: 2px 6px; border-radius: 4px; border-left: 3px solid #f59e0b;">fin.close();</span>   // închidere fișier in
+    <span style="background-color: rgba(245, 158, 11, 0.25); padding: 2px 6px; border-radius: 4px; border-left: 3px solid #f59e0b;">fout.close();</span> // închidere fișier out
 
     return 0;
 }
