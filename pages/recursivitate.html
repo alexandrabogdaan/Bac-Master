@@ -87,10 +87,10 @@
             overflow-x: auto;
             margin: 10px 0;
         }
-        code .comment { color: #64748b; font-style: italic; } 
-        code .keyword { color: #2563eb; font-weight: 700; }
-        code .highlight { color: #dc2626; font-weight: bold; }
-        code .func-name { color: #d97706; font-weight: 600; }
+        code .comment { font-family: 'Courier New', Courier, monospace !important; color: #64748b; font-style: italic; } 
+        code .keyword { font-family: 'Courier New', Courier, monospace !important; color: #2563eb; font-weight: 700; }
+        code .highlight { font-family: 'Courier New', Courier, monospace !important; color: #dc2626; font-weight: bold; }
+        code .func-name { font-family: 'Courier New', Courier, monospace !important; color: #d97706; font-weight: 600; }
     </style>
 </head>
 
@@ -154,13 +154,13 @@
                 </div>
                 <div class="feature-card" style="border-left-color: #d97706;">
                     <h3 style="color: #d97706;"><i class="fa-solid fa-code-branch"></i> Recursivitate Multiplă</h3>
-                    <p style="font-size: 0.95rem;">Apare când funcția se autoapelează de <b>două sau mai multe ori</b> la un singur pas. Creează un Arbore de Apeluri complex, nu o simplă linie. (Ex: șirul lui Fibonacci, generarea permutarilor).</p>
+                    <p style="font-size: 0.95rem;">Apare când funcția se autoapelează de <b>două sau mai multe ori</b> la un singur pas. Creează un arbore de apeluri complex, nu o simplă linie. (Ex: șirul lui Fibonacci, generarea permutarilor).</p>
                 </div>
             </div>
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-layer-group" style="color: #9333ea;"></i> Mecanismul Stivei (Stack) - Recursivitatea Liniară</h2>
+            <h2><i class="fa-solid fa-layer-group" style="color: #9333ea;"></i> Mecanismul stivei - Recursivitatea liniară</h2>
             <p>Când o funcție se autoapelează, execuția ei <b>se suspendă (se pune pe pauză)</b>. Se alocă un spațiu nou în memorie, pe stivă, pentru noul apel. Funcția așteaptă ca apelul pe care tocmai l-a făcut să îi întoarcă un rezultat. Doar când se atinge cazul de bază, stiva începe să se golească în ordine inversă.</p>
 
             <div class="grid-2">
@@ -287,17 +287,17 @@
     <span class="keyword">if</span> (v[mij]==x)
         <span class="keyword">return</span> mij;
     <span class="keyword">else</span> <span class="keyword">if</span> (v[mij]&gt;x)
-        <span class="keyword">return</span> cautare_binara(v,st,mij-1,x);
+        <span class="keyword">return</span> cautare_binara(v, st, mij-1, x);
     <span class="keyword">else</span>
-        <span class="keyword">return</span> cautare_binara(v,mij+1,dr,x);
+        <span class="keyword">return</span> cautare_binara(v, mij+1, dr, x);
 }</code></pre>
             </div>
         </section>
 
         <section class="lesson-card" style="border-left: 5px solid #dc2626; padding: 15px; border-radius: 8px;">
             <h2 style="color: #dc2626; margin-top: 0;"><i class="fa-solid fa-pen-nib"></i> Cum să rezolvi perfect Subiectul II (Trasarea)</h2>
-            <p>La Subiectul II vei primi o funcție întortocheată și vei fi întrebat "Ce se afișează pentru f(123)?". Fă asta pe ciornă ca să nu greșești niciodată:</p>
-            <ul style="line-height: 1.8; color: var(--text);">
+            <p>La Subiectul II vei primi o funcție întortocheată și vei fi întrebat, de exemplu, "Ce se afișează pentru f(123)?". Fă asta pe ciornă ca să nu greșești niciodată:</p>
+            <ul style="margin-top: 20px; line-height: 1.8; color: var(--text);"">
                 <li>Nu încerca să deduci din minte! Desenează pe ciornă săgeți în jos pentru fiecare autoapel.</li>
                 <li>Notează valorile variabilelor locale lângă fiecare săgeată.</li>
                 <li>Dacă ai instrucțiuni <b>după autoapel</b>, amintește-ți că ele se rezolvă doar de jos în sus, mergând în sens invers pe săgețile pe care tocmai le-ai desenat pe foaie.</li>
