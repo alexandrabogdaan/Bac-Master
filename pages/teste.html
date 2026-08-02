@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <title>Teste - BAC Master</title>
@@ -114,6 +115,7 @@
     <script src="../js/app.js"></script>
     <div class="container">
 
+<<<<<<< Updated upstream
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="logo">
@@ -1506,11 +1508,85 @@
             <div class="quiz-feedback"></div>
         </div>
 
+=======
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>BAC Master</h2>
+        </div>
+
+        <nav>
+            <a href="../index.html">🏠 Acasă</a>
+            <a href="teorie.html">📘 Teorie</a>
+            <a href="algoritmi.html">💻 Algoritmi</a>
+            <a href="teste.html">📝 Teste</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <h1>🧪 Teste interactive</h1>
+
+        <!-- SETUP PANEL -->
+        <div id="setup" class="module-card">
+
+            <h3>Selectează testul</h3>
+
+            <label>Număr întrebări:</label>
+            <select id="questionCount">
+                <option value="5">5 întrebări</option>
+                <option value="10" selected>10 întrebări</option>
+                <option value="15">15 întrebări</option>
+                <option value="20">20 întrebări</option>
+            </select>
+
+            <br><br>
+
+            <button id="startBtn" class="btn-primary">
+                Începe testul
+            </button>
+
+        </div>
+
+        <!-- TIMER -->
+        <div id="timerBox" class="module-card" style="display:none;">
+            ⏱ Timp rămas: <span id="timer">00:00</span>
+        </div>
+
+        <!-- QUESTION BOX -->
+        <div id="quizBox" class="module-card" style="display:none;">
+
+            <h3 id="questionText"></h3>
+
+            <div id="answers"></div>
+
+            <br>
+
+            <button id="nextBtn" class="btn-primary">
+                Următoarea întrebare
+            </button>
+
+        </div>
+
+        <!-- RESULT -->
+        <div id="resultBox" class="module-card" style="display:none;">
+            <h2>Rezultat final</h2>
+            <p id="resultText"></p>
+            <p id="scoreText"></p>
+
+            <button onclick="location.reload()" class="btn-primary">
+                Reia testul
+            </button>
+>>>>>>> Stashed changes
         </div>
 
     </main>
 </div>
 
+<<<<<<< Updated upstream
 <script>
 /* ===== Mini-examen (mock test) — script auto-conținut =====
    Nu depinde de ../js/app.js: gestionează singur selectarea răspunsurilor
@@ -1683,5 +1759,10 @@ document.addEventListener('DOMContentLoaded', function () {
     cancelBtn.addEventListener('click', cancelMockTest);
 });
 </script>
+=======
+<script src="../js/questions.js"></script>
+<script src="../js/teste.js"></script>
+
+>>>>>>> Stashed changes
 </body>
 </html>

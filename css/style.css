@@ -461,3 +461,67 @@ body {
   .topbar input { width: 150px; }
   .sidebar { width: 200px; }
 }
+<<<<<<< Updated upstream
+=======
+}
+/* =========================
+   QUIZ / TESTE INTERACTIVE
+   ========================= */
+
+#setup, #quizBox, #resultBox, #timerBox {
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+/* butoane răspuns */
+#answers button {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+
+    background: #11172a;
+    color: #fff;
+
+    transition: 0.2s;
+}
+
+#answers button:hover {
+    background: linear-gradient(90deg, #7c5cff, #4cc9f0);
+    transform: translateX(5px);
+}
+
+/* întrebarea */
+#questionText {
+    margin-bottom: 15px;
+}
+
+/* select dropdown */
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #11172a;
+    color: white;
+}
+
+/* timer */
+#timerBox {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #4cc9f0;
+}
+
+/* rezultat final */
+#resultBox {
+    text-align: center;
+}
+
+#resultBox h2 {
+    color: #7c5cff;
+}
+>>>>>>> Stashed changes
