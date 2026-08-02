@@ -258,7 +258,7 @@ int main()
             
             <div class="info-box" style="border-left-color: #f43f5e;">
                 <p style="margin: 0;">
-                    <b style="color: #fb7185;">Regulă de aur pentru BAC:</b> Tablourile (vectorii uni-dimensionali și matricile) se transmit <b>ÎNTOTDEAUNA, AUTOMAT prin referință</b>! Nu ai voie și nu trebuie să pui <code>&amp;</code> în fața lor în antet. 
+                    <b style="color: #fb7185;">Regulă de aur pentru BAC:</b> Tablourile (vectorii și matricile) se transmit <b>ÎNTOTDEAUNA, AUTOMAT prin referință</b>! Nu ai voie și nu trebuie să pui <code>&amp;</code> în fața lor în antet. 
                     <br><br>
                     De ce? Pentru că un vector este imens, iar compilatorul refuză să facă o copie la 1000 de elemente ca să nu blocheze memoria. Așa că trimite direct adresa originalului. <b>Orice element modifici într-un vector într-un subprogram, rămâne modificat definitiv!</b>
                 </p>
