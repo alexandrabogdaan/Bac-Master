@@ -80,10 +80,10 @@
             overflow-x: auto;
             margin: 10px 0;
         }
-        code .comment { color: #64748b; font-style: italic; } 
-        code .keyword { color: #2563eb; font-weight: 700; }
-        code .highlight { color: #dc2626; font-weight: bold; }
-        code .func-name { color: #d97706; font-weight: 600; }
+        code .comment { font-family: 'Courier New', Courier, monospace !important; color: #64748b; font-style: italic; } 
+        code .keyword { font-family: 'Courier New', Courier, monospace !important; color: #2563eb; font-weight: 700; }
+        code .highlight { font-family: 'Courier New', Courier, monospace !important; color: #dc2626; font-weight: bold; }
+        code .func-name { font-family: 'Courier New', Courier, monospace !important; color: #d97706; font-weight: 600; }
     </style>
 </head>
 
@@ -159,7 +159,7 @@
 
 <span class="keyword">char</span> t[] = <span class="highlight">"Salut!"</span>;
 <span class="comment">// dimensiunea tabloului este determinată automat de compilator</span>
-<span class="comment">// (6 caractere + '\0' = 7 elemente)</span>
+<span class="comment">// (6 caractere+'\0' = 7 elemente)</span>
 
 <span class="keyword">char</span> v[6] = {<span class="highlight">'S'</span>, <span class="highlight">'a'</span>, <span class="highlight">'l'</span>, <span class="highlight">'u'</span>, <span class="highlight">'t'</span>, <span class="highlight">'\0'</span>};
 <span class="comment">// inițializare caracter cu caracter</span>
@@ -210,14 +210,14 @@
 {
     <span class="keyword">char</span> nume1[31], nume2[31];
 
-    cout &lt;&lt; <span class="highlight">"Cum te cheamă? (nume și prenume): "</span>;
+    cout&lt;&lt;<span class="highlight">"Cum te cheamă? (nume și prenume):"</span>;
     cin.getline(nume1, 31);
-
-    cout &lt;&lt; <span class="highlight">"Cum îl cheamă pe prietenul tău? "</span>;
+    
+    cout&lt;&lt;<span class="highlight">"Cum îl cheamă pe prietenul tău?"</span>;
     cin.getline(nume2, 31);
 
-    cout &lt;&lt; <span class="highlight">"Te numești "</span> &lt;&lt; nume1 &lt;&lt; endl;
-    cout &lt;&lt; <span class="highlight">"Ești prieten cu "</span> &lt;&lt; nume2 &lt;&lt; endl;
+    cout&lt;&lt;<span class="highlight">"Te numești "</span>&lt;&lt;nume1&lt;&lt;"\n";
+    cout&lt;&lt;<span class="highlight">"Ești prieten cu"</span>&lt;&lt;nume2&lt;&lt;"\n";
 
     <span class="keyword">return</span> 0;
 }</code></pre>
@@ -236,12 +236,12 @@
 
 <pre><code><span class="keyword">char</span> sir[20] = <span class="highlight">"Salut!"</span>;
 
-cout &lt;&lt; sir[0]; <span class="comment">// afișează 'S'</span>
-cout &lt;&lt; sir[1]; <span class="comment">// afișează 'a'</span>
+cout&lt;&lt;sir[0]; <span class="comment">// afișează 'S'</span>
+cout&lt;&lt;sir[1]; <span class="comment">// afișează 'a'</span>
 
-sir[1] = <span class="highlight">'b'</span>;   <span class="comment">// șirul devine "Sblut!"</span>
+sir[1]=<span class="highlight">'b'</span>;   <span class="comment">// șirul devine "Sblut!"</span>
 
-cout &lt;&lt; sir;    <span class="comment">// afișează Sblut!</span></code></pre>
+cout&lt;&lt;sir;    <span class="comment">// afișează Sblut!</span></code></pre>
         </section>
 
         <section class="lesson-card">
@@ -260,7 +260,7 @@ cout &lt;&lt; sir;    <span class="comment">// afișează Sblut!</span></code></
 
 <pre><code>cout &lt;&lt; strlen(<span class="highlight">"Salut!"</span>); <span class="comment">// 6</span>
 
-<span class="keyword">char</span> sir[10] = <span class="highlight">"Acasa"</span>;
+<span class="keyword">char</span> sir[10]=<span class="highlight">"Acasa"</span>;
 
 cout &lt;&lt; strlen(sir);      <span class="comment">// 5</span>
 cout &lt;&lt; strlen(sir + 2);  <span class="comment">// 3</span></code></pre>
