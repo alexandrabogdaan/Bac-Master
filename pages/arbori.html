@@ -304,7 +304,7 @@ void inordine(Nod *r)
     if (r!=NULL) 
     {
         inordine(r->stâng);       // Pasul 1: Vizităm Subarborele Stâng (S)
-        cout<<r->info<<" ";       // Pasul 2: Vizităm Rădăcina (R)
+        cout&lt;&lt;r->info&lt;&lt;" ";       // Pasul 2: Vizităm Rădăcina (R)
         inordine(r->drept);      // Pasul 3: Vizităm Subarborele Drept (D)
     }
 }
