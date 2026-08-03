@@ -221,15 +221,57 @@
         </section>
 
         <section class="lesson-card">
-            <h2><i class="fa-solid fa-code" style="color: #facc15;"></i> Aplicarea cozii în Algoritmul lui Lee (Subiecte BAC)</h2>
+            <h2><i class="fa-solid fa-code" style="color: #facc15;"></i> Aplicarea cozii în Algoritmul lui Lee și BFS (Subiecte BAC)</h2>
             <div class="problem-section">
-                <p style="margin-top: 0;">Sursa de cod analizată utilizează o implementare directă a unei <b>cozi</b> pentru parcurgerea matricei. Corespondența dintre structură și cod este următoarea:</p>
-                <ul style="line-height: 1.8; padding-left: 35px;">
-                    <li><code>p=u=1;</code> &ndash; Se marchează începutul cozii. Ambele variabile indică existența unui singur element inițial.</li>
+                <p style="margin-top: 0;">Mecanismul de lucru cu variabilele <code>p</code> (prim) și <code>u</code> (ultim) <b>nu este specific doar Algoritmului lui Lee</b>. Aceasta este modalitatea clasică de parcurgere în lățime (<b>BFS &ndash; Breadth-First Search</b>) și se aplică în egală măsură la parcurgerea grafurilor, la algoritmul Fill sau la orice simulare de tip "primul venit, primul servit".</p>
+                
+                <p>Corespondența dintre operațiile cozii și codul C++ este următoarea:</p>
+                <ul style="padding-left: 35px; line-height: 1.8;">
+                    <li><code>p=u=1;</code> &ndash; Inițializarea cozii cu elementul de start (starea inițială).</li>
                     <li><code>while(p&lt;=u)</code> &ndash; Structura repetitivă rulează cât timp coada nu este vidă (condiția <code>prim&lt;=ultim</code>).</li>
-                    <li><code>c[++u]=v;</code> &ndash; Operația de inserare. Incrementarea prealabilă a lui <code>u</code> adaugă noua poziție la finalul cozii.</li>
-                    <li><code>poz=c[p++];</code> &ndash; Preluarea elementului curent din capul cozii urmată de incrementarea indexului <code>p</code> (echivalentul operației de eliminare/avansare).</li>
+                    <li><code>poz=c[p++];</code> &ndash; Preluarea elementului din capul cozii și avansarea indexului <code>p</code> (extragere).</li>
+                    <li><code>c[++u]=v;</code> &ndash; Adăugarea unui element nou valid la finalul cozii și incrementarea indexului <code>u</code> (inserare).</li>
                 </ul>
+
+                <h3 style="margin-top: 20px; color: #34d399;">Secvența C++ standard pentru Algoritmul lui Lee (Model BAC)</h3>
+<pre>
+<span class="comment">// Structură pentru reținerea coordonatelor în matrice</span>
+<span class="keyword">struct</span> Pozitie 
+{
+    <span class="keyword">int</span> lin, col;
+};
+
+Pozitie c[200*200]; <span class="comment">// Coada propriu-zisă</span>
+Pozitie poz, v;
+<span class="keyword">int</span> p, u;
+
+<span class="comment">// Vectori de deplasare (Nord, Est, Sud, Vest)</span>
+<span class="keyword">int</span> dl[]={-1, 0, 1, 0};
+<span class="keyword">int</span> dc[]={0, 1, 0, -1};
+
+<span class="comment">// Algoritmul lui Lee</span>
+p=u=1;
+c[1].lin=xi;
+c[1].col=yi;
+b[xi][yi]=1; <span class="comment">// Marcăm poziția de start cu distanța 1</span>
+
+<span class="keyword">while</span>(p&lt;=u) {
+    poz=c[p++]; <span class="comment">// Extragere din coadă</span>
+    int k;
+    <span class="keyword">for</span>(k=0; k&lt;4; k++) 
+    {
+        v.lin=poz.lin+dl[k];
+        v.col=poz.col+dc[k];
+        
+        <span class="comment">// Dacă vecinul este liber și nevizitat</span>
+        <span class="keyword">if</span>(a[v.lin][v.col]==0 && b[v.lin][v.col]==0) 
+        {
+            b[v.lin][v.col]=b[poz.lin][poz.col]+1;
+            c[++u]=v; <span class="comment">// Inserare în coadă</span>
+        }
+    }
+}
+</pre>
             </div>
         </section>
 
