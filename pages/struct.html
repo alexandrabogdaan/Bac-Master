@@ -205,7 +205,7 @@
                 <div class="feature-card" style="border-left-color: #10b981;">
                     <h3 style="color: #34d399;"><i class="fa-solid fa-bullseye"></i> 2. Accesarea cu punct</h3>
                     <p style="margin: 0; font-size: 0.95rem;">Formula este: <b>NumeVariabila.NumeCâmp</b></p>
-                    <pre style="margin-top: 10px; padding: 10px;">e1.varsta = 18;</pre>
+                    <pre style="margin-top: 10px; padding: 10px;">e1.varsta=18;</pre>
                 </div>
             </div>
 
@@ -239,11 +239,11 @@
         <section class="lesson-card">
             <h2><i class="fa-solid fa-copy" style="color: #a855f7;"></i> Ce operații putem face cu structurile întregi?</h2>
             
-            <p>Nu putem aduna sau compara două structuri direct (nu putem scrie <code>e1 > e2</code> sau <code>e1 + e2</code>). Aceste operații trebuie făcute câmp cu câmp (ex: <code>e1.medie > e2.medie</code>).</p>
+            <p>Nu putem aduna sau compara două structuri direct (nu putem scrie <code>e1>e2</code> sau <code>e1+e2</code>). Aceste operații trebuie făcute câmp cu câmp (ex: <code>e1.medie > e2.medie</code>).</p>
             
             <div class="success-section">
                 <h3><i class="fa-solid fa-circle-check"></i> Operația permisă: Atribuirea (=)</h3>
-                <p style="margin: 0;">Singura operație permisă direct între două variabile de <b>același tip struct</b> este atribuirea. Dacă scriem <code>e2 = e1;</code>, compilatorul va copia automat absolut toate câmpurile din <code>e1</code> în <code>e2</code>, scutindu-ne să o facem manual.</p>
+                <p style="margin: 0;">Singura operație permisă direct între două variabile de <b>același tip struct</b> este atribuirea. Dacă scriem <code>e2=e1;</code>, compilatorul va copia automat absolut toate câmpurile din <code>e1</code> în <code>e2</code>, scutindu-ne să o facem manual.</p>
             </div>
 <pre>
 Elev e1, e2;
@@ -278,7 +278,7 @@ cout&lt;&lt;e2.nume; <span class="comment">// Va afișa Ana</span>
   
     
     <span class="comment">// Accesarea primei fracții:</span>
-    cout&lt;&lt;<span class="highlight">"Prima fracție este: "</span> &lt;&lt; v[0].numarator&lt;&lt;<span class="highlight">"/"</span>&lt;&lt;v[0].numitor;
+    cout&lt;&lt;<span class="highlight">"Prima fracție este: "</span>&lt;&lt;v[0].numarator&lt;&lt;<span class="highlight">"/"</span>&lt;&lt;v[0].numitor;
     
     <span class="keyword">return</span> 0;
 }
