@@ -298,7 +298,7 @@
         </section>
 
         <section class="lesson-card">
-            <h2>4. Arbori (Subiect extrem de frecvent)</h2>
+            <h2>4. Arbori </h2>
             <p>
                 Un <b>arbore</b> este un graf neorientat, <b>conex și aciclic</b> (fără niciun ciclu).
             </p>
@@ -365,12 +365,13 @@
 // Citirea unui graf neorientat cu matrice de adiacență
 int n, m, u, v;
 int A[100][100];
-
-cin >> n >> m;
-for(int i = 1; i <= m; i++) {
-    cin >> u >> v;
-    A[u][v] = 1;
-    A[v][u] = 1; // Doar la grafuri neorientate!
+int i;
+cin>>n>>m;
+for (i=1; i<=m; i++) 
+{
+    cin>>u>>v;
+    A[u][v]=1;
+    A[v][u]=1; // Doar la grafuri neorientate!
 }
 </pre>
 
