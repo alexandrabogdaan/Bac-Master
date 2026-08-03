@@ -381,11 +381,12 @@ for(int i = 1; i <= m; i++) {
 using namespace std;
 
 vector&lt;int&gt; L[100]; // Un vector de vectori
-int n, m, u, v;
+int n, m, u, v, i;
 
-cin >> n >> m;
-for(int i = 1; i <= m; i++) {
-    cin >> u >> v;
+cin>>n>>m;
+for (i=1; i<=m; i++) 
+{
+    cin>>u>>v;
     L[u].push_back(v);
     L[v].push_back(u); // Doar la grafuri neorientate!
 }
@@ -399,12 +400,61 @@ for(int i = 1; i <= m; i++) {
                 <h3 style="color: #60a5fa; margin-top: 0;"><i class="fa-solid fa-layer-group"></i> Parcurgerea în lățime (BFS - Breadth-First Search)</h3>
                 <p><b>Mecanism:</b> Se folosește o structură de date de tip <b>coadă (queue)</b>. Se vizitează nodul de start, apoi vecinii lui direct adiacenți, apoi vecinii vecinilor și așa mai departe, nivel cu nivel.</p>
                 <p style="margin-bottom: 0; color: #34d399;"><b>Aplicație cheie la BAC:</b> Este algoritmul ideal pentru determinarea exactă a <b>drumului minim</b> (ca număr de muchii) de la un nod la altul.</p>
+                <pre style="margin-top: 15px;">
+// Variabile globale: 
+// A - matricea de adiacență, viz - vector de vizitați, c - coada
+int A[100][100], viz[100], c[100], n;
+
+void bfs (int start) 
+{
+    int inc=1, sf=1;
+    c[inc]=start;
+    viz[start]=1; // marcăm nodul de start ca vizitat
+
+    while (inc <= sf) 
+    {
+        int nod=c[inc]; // preluăm primul element din coadă
+        inc++;            // avansăm începutul cozii
+        
+        cout<<nod<< " "; // prelucrăm/afișăm nodul
+        int i;
+        // Căutăm toți vecinii nevizitați ai nodului curent
+        for (i=1; i<=n; i++) 
+        {
+            if (A[nod][i]==1 && viz[i]==0) 
+            {
+                sf++;          // creștem dimensiunea cozii
+                c[sf]=i;     // adăugăm vecinul la finalul cozii
+                viz[i]=1;    // îl marcăm vizitat pentru a nu-l adăuga de 2 ori
+            }
+        }
+    }
+}
+</pre>
             </div>
 
             <div class="algo-section" style="border-left: 4px solid #10b981;">
                 <h3 style="color: #34d399; margin-top: 0;"><i class="fa-solid fa-magnifying-glass-location"></i> Parcurgerea în adâncime (DFS - Depth-First Search)</h3>
                 <p><b>Mecanism:</b> Se folosește o abordare <b>recursivă (care folosește implicit stiva sistemului)</b>. Se înaintează pe o cale legată de muchii cât mai adânc posibil până când se lovește un nod fără vecini nevizitați, moment în care se întoarce (backtrack).</p>
                 <p style="margin-bottom: 0; color: #34d399;"><b>Aplicație cheie la BAC:</b> Determinarea componentelor conexe, verificarea conexității globale a grafului sau detectarea prezenței ciclurilor.</p>
+                <pre style="margin-top: 15px;">
+// Variabile globale: 
+// A - matricea de adiacență, viz - vector de vizitați
+int A[100][100], viz[100], n;
+
+void dfs(int nod) 
+{
+    viz[nod]=1; // marcăm nodul curent ca vizitat
+    cout<<nod<< " "; // prelucrăm/afișăm nodul
+    int i;
+    // Căutăm primul vecin direct care nu a fost încă vizitat
+    for (i=1; i<=n; i++) 
+    {
+        if (A[nod][i]==1 && viz[i]==0) 
+            dfs(i); // apelăm recursiv funcția pentru acel vecin
+    }
+}
+</pre>
             </div>
         </section>
 
