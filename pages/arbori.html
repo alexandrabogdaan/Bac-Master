@@ -291,17 +291,20 @@
             <h2>5. Cum se declară un Arbore Binar în C++</h2>
             <p>Dacă ai nevoie de o alocare dinamică la Subiectul al III-lea, structura se bazează pe pointeri autoreferențiabili:</p>
 <pre>
-struct Nod {
+struct Nod 
+{
     int info;
     Nod *stâng;  // Pointer către fiul stâng
     Nod *drept;  // Pointer către fiul drept
 };
 
 // Implementarea recursivă a parcurgerii în INORDINE (SRD)
-void inordine(Nod *r) {
-    if (r != NULL) {
+void inordine(Nod *r) 
+{
+    if (r!=NULL) 
+    {
         inordine(r->stâng);       // Pasul 1: Vizităm Subarborele Stâng (S)
-        cout << r->info << " ";  // Pasul 2: Vizităm Rădăcina (R)
+        cout<<r->info<<" ";       // Pasul 2: Vizităm Rădăcina (R)
         inordine(r->drept);      // Pasul 3: Vizităm Subarborele Drept (D)
     }
 }
