@@ -32,9 +32,9 @@
         .dark-table td { padding: 12px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); line-height: 1.5; }
         
         pre { background: var(--surface); border: 1px solid var(--border); padding: 15px; border-radius: 6px; color: var(--text); overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Courier, monospace !important; line-height: 1.5;}
-        .comment { color: #64748b; font-style: italic; }
-        .keyword { color: #2563eb; font-weight: 700; }
-        .highlight { color: #dc2626; font-weight: bold; }
+        .comment { font-family: 'Courier New', Courier, monospace !important; color: #64748b; font-style: italic; }
+        .keyword { font-family: 'Courier New', Courier, monospace !important; color: #2563eb; font-weight: 700; }
+        .highlight { font-family: 'Courier New', Courier, monospace !important; color: #dc2626; font-weight: bold; }
     </style>
 </head>
 
@@ -91,7 +91,7 @@
             </div>
 
             <p>Stiva funcționează pe baza principiului <b>LIFO</b> (<i>Last In, First Out</i> &ndash; ultimul element introdus este primul eliminat). Pentru implementarea clasică sunt necesare:</p>
-            <ul>
+            <ul style="padding-left: 35px;">
                 <li>Un vector pentru stocarea elementelor: <code>int st[100];</code></li>
                 <li>O variabilă ce indică poziția vârfului stivei: <code>int varf=0;</code></li>
             </ul>
@@ -103,24 +103,28 @@
 <span class="keyword">int</span> varf=0; <span class="comment">// Valoarea 0 indică o stivă vidă</span>
 
 <span class="comment">// 1. Inserarea unui element (Push)</span>
-<span class="keyword">void</span> adauga(<span class="keyword">int</span> x) {
+<span class="keyword">void</span> adauga(<span class="keyword">int</span> x) 
+{
     varf++;
     st[varf]=x;
 }
 
 <span class="comment">// 2. Eliminarea elementului din vârf (Pop)</span>
-<span class="keyword">void</span> elimina() {
+<span class="keyword">void</span> elimina() 
+{
     <span class="keyword">if</span>(varf&gt;0)
         varf--;
 }
 
 <span class="comment">// 3. Accesarea elementului din vârf (Top)</span>
-<span class="keyword">int</span> varf_stiva() {
+<span class="keyword">int</span> varf_stiva() 
+{
     <span class="keyword">return</span> st[varf];
 }
 
 <span class="comment">// 4. Verificarea stării de stivă vidă (Empty)</span>
-<span class="keyword">bool</span> este_vida() {
+<span class="keyword">bool</span> este_vida() 
+{
     <span class="keyword">return</span> varf==0;
 }
 </pre>
@@ -135,7 +139,7 @@
             </div>
 
             <p>Coada funcționează pe baza principiului <b>FIFO</b> (<i>First In, First Out</i> &ndash; primul element introdus este primul eliminat). Se gestionează prin intermediul a două capete:</p>
-            <ul>
+            <ul style="padding-left: 35px;">
                 <li>Un vector pentru stocarea datelor: <code>int c[100];</code></li>
                 <li>Indexul primului element (capul cozii): <code>int prim=1;</code></li>
                 <li>Indexul ultimului element (sfârșitul cozii): <code>int ultim=0;</code></li>
@@ -151,24 +155,28 @@
 <span class="keyword">int</span> ultim=0;
 
 <span class="comment">// 1. Inserarea unui element la sfârșitul cozii (Enqueue)</span>
-<span class="keyword">void</span> adauga(<span class="keyword">int</span> x) {
+<span class="keyword">void</span> adauga(<span class="keyword">int</span> x) 
+{
     ultim++;
     c[ultim]=x;
 }
 
 <span class="comment">// 2. Eliminarea primului element din coadă (Dequeue)</span>
-<span class="keyword">void</span> elimina() {
+<span class="keyword">void</span> elimina() 
+{
     <span class="keyword">if</span>(prim&lt;=ultim)
         prim++;
 }
 
 <span class="comment">// 3. Accesarea primului element (Front)</span>
-<span class="keyword">int</span> primul_element() {
+<span class="keyword">int</span> primul_element() 
+{
     <span class="keyword">return</span> c[prim];
 }
 
 <span class="comment">// 4. Verificarea stării de coadă vidă (Empty)</span>
-<span class="keyword">bool</span> este_vida() {
+<span class="keyword">bool</span> este_vida() 
+{
     <span class="keyword">return</span> prim&gt;ultim;
 }
 </pre>
@@ -216,7 +224,7 @@
             <h2><i class="fa-solid fa-code" style="color: #facc15;"></i> Aplicarea cozii în Algoritmul lui Lee (Subiecte BAC)</h2>
             <div class="problem-section">
                 <p style="margin-top: 0;">Sursa de cod analizată utilizează o implementare directă a unei <b>cozi</b> pentru parcurgerea matricei. Corespondența dintre structură și cod este următoarea:</p>
-                <ul style="line-height: 1.8;">
+                <ul style="line-height: 1.8; padding-left: 35px;">
                     <li><code>p=u=1;</code> &ndash; Se marchează începutul cozii. Ambele variabile indică existența unui singur element inițial.</li>
                     <li><code>while(p&lt;=u)</code> &ndash; Structura repetitivă rulează cât timp coada nu este vidă (condiția <code>prim&lt;=ultim</code>).</li>
                     <li><code>c[++u]=v;</code> &ndash; Operația de inserare. Incrementarea prealabilă a lui <code>u</code> adaugă noua poziție la finalul cozii.</li>
