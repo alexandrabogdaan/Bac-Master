@@ -97,8 +97,8 @@
             font-family: 'Courier New', Courier, monospace !important; 
             line-height: 1.5;
         }
-        .comment { color: #64748b; font-style: italic; }
-        .keyword { color: #2563eb; font-weight: 700; }
+        .comment { font-family: 'Courier New', Courier, monospace !important;  color: #64748b; font-style: italic; }
+        .keyword { font-family: 'Courier New', Courier, monospace !important;  color: #2563eb; font-weight: 700; }
     </style>
 </head>
 
@@ -190,11 +190,6 @@
                             <td>Se folosesc doar <i>k</i> elemente, <b>ORDINEA NU CONTEAZĂ</b> (sunt mereu în ordine strict crescătoare).</td>
                             <td style="color: #10b981; font-weight: bold;">De câte 2: (1,2), (1,3), (2,3)</td>
                         </tr>
-                        <tr>
-                            <td><b>Produs Cartezian / Aranjamente cu repetiție</b></td>
-                            <td>Se folosesc <i>k</i> elemente, contează ordinea, <b>ELEMENTELE SE POT REPETA</b>.</td>
-                            <td style="color: #facc15;">De câte 2: (1,1), (1,2), (1,3), (2,1)...</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -203,14 +198,17 @@
         <section class="lesson-card">
             <h2>Schemă generală (Implementare recursivă)</h2>
 <pre>
-<span class="keyword">void</span> back(<span class="keyword">int</span> k) {
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=A; i&lt;=B; i++) {
-        x[k]=i; <span class="comment">// Se selectează o valoare din mulțimea Sk</span>
-        <span class="keyword">if</span>(ok(k)) { <span class="comment">// Verificăm condiția de validitate (continuare)</span>
+<span class="keyword">void</span> bkt(<span class="keyword">int</span> k) 
+    {
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=A; i&lt;=B; i++) 
+    {
+        x[k]=i; <span class="comment">// Se selectează o valoare din mulțimea S<sub>k</sub>sub></span>
+        <span class="keyword">if</span>(ok(k))  <span class="comment">// Verificăm condiția de validitate (continuare)</span>
+        {
             <span class="keyword">if</span>(k==n) <span class="comment">// Verificăm dacă s-a obținut o soluție finală</span>
                 afis();
             <span class="keyword">else</span>
-                back(k+1); <span class="comment">// Trecem la pasul următor</span>
+                bkt(k+1); <span class="comment">// Trecem la pasul următor</span>
         }
     }
 }
