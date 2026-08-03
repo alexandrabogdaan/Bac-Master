@@ -425,17 +425,17 @@ cout&lt;&lt;strcmp(s3, s1); <span class="comment">// pozitiv</span></code></pre>
             </div>
 
 <pre><code><span class="keyword">char</span> s[20]=<span class="highlight">"informatica"</span>;
-<span class="keyword">int</span> x=3;
+<span class="keyword">int</span> x=3, i;
 
-<span class="keyword">for</span>(<span class="keyword">int</span> i=x; i&lt;strlen(s); i++)
+<span class="keyword">for</span>(i=x; i&lt;strlen(s); i++)
     s[i]=s[i+1];
 
 cout&lt;&lt;s;</code></pre>
 
 <pre><code><span class="keyword">char</span> s[30]=<span class="highlight">"infoatica"</span>;
-<span class="keyword">int</span> x=4;
+<span class="keyword">int</span> x=4, i;
 
-<span class="keyword">for</span>(<span class="keyword">int</span> i=strlen(s); i&gt;=x; i--)
+<span class="keyword">for</span>(i=strlen(s); i&gt;=x; i--)
     s[i+1]=s[i];
 
 s[x]=<span class="highlight">'r'</span>;
