@@ -426,16 +426,16 @@ cout&lt;&lt;strcmp(s3, s1); <span class="comment">// pozitiv</span></code></pre>
 
 <pre><code><span class="keyword">char</span> s[20]=<span class="highlight">"informatica"</span>;
 <span class="keyword">int</span> x=3, i;
-
-<span class="keyword">for</span>(i=x; i&lt;strlen(s); i++)
+<span class="keyword">int</span>  lg=strlen(s);
+<span class="keyword">for</span>(i=x; i&lt;lg; i++)
     s[i]=s[i+1];
 
 cout&lt;&lt;s;</code></pre>
 
 <pre><code><span class="keyword">char</span> s[30]=<span class="highlight">"infoatica"</span>;
 <span class="keyword">int</span> x=4, i;
-
-<span class="keyword">for</span>(i=strlen(s); i&gt;=x; i--)
+<span class="keyword">int</span>  lg=strlen(s);
+<span class="keyword">for</span>(i=lg; i&gt;=x; i--)
     s[i+1]=s[i];
 
 s[x]=<span class="highlight">'r'</span>;
