@@ -411,12 +411,12 @@ void bfs (int start)
     c[inc]=start;
     viz[start]=1; // marcăm nodul de start ca vizitat
 
-    while (inc <= sf) 
+    while (inc<=sf) 
     {
         int nod=c[inc]; // preluăm primul element din coadă
         inc++;            // avansăm începutul cozii
         
-        cout<<nod<< " "; // prelucrăm/afișăm nodul
+        cout&lt;&lt;nod&lt;&lt;" "; // prelucrăm/afișăm nodul
         int i;
         // Căutăm toți vecinii nevizitați ai nodului curent
         for (i=1; i<=n; i++) 
@@ -445,7 +445,7 @@ int A[100][100], viz[100], n;
 void dfs(int nod) 
 {
     viz[nod]=1; // marcăm nodul curent ca vizitat
-    cout<<nod<< " "; // prelucrăm/afișăm nodul
+    cout&lt;&lt;nod&lt;&lt;" "; // prelucrăm/afișăm nodul
     int i;
     // Căutăm primul vecin direct care nu a fost încă vizitat
     for (i=1; i<=n; i++) 
