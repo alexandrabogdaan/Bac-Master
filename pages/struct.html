@@ -115,8 +115,8 @@
         pre b {
             color: #38bdf8;
         }
-        .comment { color: #64748b; font-style: italic; }
-        .keyword { color: #2563eb; font-weight: 700; }
+        .comment { font-family: 'Courier New', Courier, monospace !important; color: #64748b; font-style: italic; }
+        .keyword { font-family: 'Courier New', Courier, monospace !important; color: #2563eb; font-weight: 700; }
     </style>
 </head>
 
@@ -160,7 +160,7 @@
 
             <div class="info-box">
                 <p style="margin: 0 0 10px 0;">
-                    Până acum, am folosit vectori pentru a stoca mai multe elemente de <b>același tip</b> (ex: un vector doar cu numere întregi). Dar ce ne facem când vrem să descriem un obiect complex din lumea reală, care are caracteristici diferite?
+                    Până acum, am folosit vectori pentru a stoca mai multe elemente de <b>același tip</b> (ex: un vector doar cu numere întregi). Dar ce ne facem când dorim să descriem un obiect complex din lumea reală, care are caracteristici diferite?
                 </p>
                 <p style="margin: 0;">
                     Tipul <b>struct</b> ne permite să creăm propriul nostru tip de date, grupând la un loc variabile de tipuri diferite (numere, șiruri de caractere, etc.). Aceste variabile grupate se numesc <b>câmpuri</b>.
@@ -175,7 +175,7 @@
         <section class="lesson-card">
             <h2><i class="fa-solid fa-pen-ruler"></i> Cum declarăm o structură?</h2>
             
-            <p>Declarația se face de obicei global (înainte de <code>int main</code>), pentru a putea fi recunoscută oriunde în program. Creăm mai întâi șablonul, apoi putem crea câte variabile vrem pe baza lui.</p>
+            <p>Declarația se face de obicei global (înainte de <code>int main</code>), pentru a putea fi recunoscută oriunde în program. Creăm mai întâi șablonul, apoi putem crea câte variabile dorim pe baza lui.</p>
 
 <pre>
 <span class="keyword">struct</span> Elev {
