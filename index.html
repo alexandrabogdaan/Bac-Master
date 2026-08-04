@@ -10,8 +10,10 @@
     
     <style>
         /* =========================================
-           STILURI PENTRU SFATUL ZILEI
+           STILURI OPTIMIZATE PENTRU DARK & LIGHT MODE
            ========================================= */
+        
+        /* 1. SFATUL ZILEI */
         .quick-fact {
             margin: 2rem 0;
         }
@@ -20,17 +22,19 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background-color: var(--surface, #1e1e2f);
+            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%);
+            border: 1px solid var(--border, #2a2a40);
             border-left: 4px solid var(--accent, #6366f1);
             border-radius: 12px;
             padding: 1.5rem 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .fact-card:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
         }
 
         .fact-icon {
@@ -39,11 +43,11 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            background-color: rgba(99, 102, 241, 0.15);
+            background-color: rgba(99, 102, 241, 0.2);
             border-radius: 50%;
             font-size: 1.8rem;
             flex-shrink: 0;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
         }
 
         .fact-label {
@@ -51,7 +55,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #a855f7;
+            color: #c084fc; /* Mov vizibil pe fundal închis */
             display: block;
             margin-bottom: 0.3rem;
         }
@@ -59,7 +63,7 @@
         .fact-content h3 {
             margin: 0 0 0.5rem 0;
             font-size: 1.2rem;
-            color: var(--text-main, #f8fafc);
+            color: var(--text, #f8fafc);
         }
 
         .fact-content p {
@@ -70,17 +74,16 @@
         }
 
         .fact-content code {
-            background-color: rgba(0,0,0,0.3);
+            background-color: rgba(255, 255, 255, 0.08);
             padding: 2px 6px;
             border-radius: 4px;
             font-family: monospace;
             color: #fbbf24;
             font-size: 0.9em;
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
-        /* =========================================
-           STILURI PENTRU CITATUL ZILEI FANCY
-           ========================================= */
+        /* 2. CITATUL ZILEI (FOOTER) */
         .fancy-quote-container {
             margin-top: 3rem;
             padding: 2rem;
@@ -88,7 +91,7 @@
             border: 1px solid var(--border, #2a2a40);
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             margin-bottom: 2rem;
         }
 
@@ -105,39 +108,59 @@
             color: var(--accent, #6366f1);
             line-height: 0.8;
             margin-bottom: -5px;
+            opacity: 0.9;
         }
 
         #quote {
             font-style: italic;
             font-size: 1.15rem;
-            color: var(--text-main, #cbd5e1);
+            color: var(--text, #f8fafc);
             font-weight: 400;
             margin: 0;
+            line-height: 1.6;
         }
 
-        /* =========================================
-           SUPORT PENTRU LIGHT MODE
-           ========================================= */
-        @media (prefers-color-scheme: light) {
-            body:not(.dark-mode) .fancy-quote-container {
-                background-color: #f8fafc;
-                border-color: #e2e8f0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            }
-            body:not(.dark-mode) #quote,
-            body:not(.dark-mode) .fact-content h3 {
-                color: #0f172a;
-            }
-            body:not(.dark-mode) .fact-content p {
-                color: #475569;
-            }
-            body:not(.dark-mode) .fact-content code {
-                background-color: rgba(0,0,0,0.06);
-                color: #d97706;
-            }
-            body:not(.dark-mode) .fact-card {
-                background: linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
-            }
+        /* 3. ADAPTARE AUTOMATĂ PENTRU LIGHT MODE */
+        body.light-mode .fact-card,
+        body:not(.dark-mode) .fact-card {
+            background-color: #ffffff;
+            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border-color: #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .fact-label,
+        body:not(.dark-mode) .fact-label {
+            color: #8b5cf6;
+        }
+
+        body.light-mode .fact-content h3,
+        body:not(.dark-mode) .fact-content h3 {
+            color: #0f172a;
+        }
+
+        body.light-mode .fact-content p,
+        body:not(.dark-mode) .fact-content p {
+            color: #475569;
+        }
+
+        body.light-mode .fact-content code,
+        body:not(.dark-mode) .fact-content code {
+            background-color: rgba(0, 0, 0, 0.06);
+            color: #d97706;
+            border-color: rgba(217, 119, 6, 0.2);
+        }
+
+        body.light-mode .fancy-quote-container,
+        body:not(.dark-mode) .fancy-quote-container {
+            background-color: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode #quote,
+        body:not(.dark-mode) #quote {
+            color: #1e293b;
         }
     </style>
 </head>
@@ -217,7 +240,6 @@ else
                 </div>
             </section>
 
-
             <section class="modules">
                 <a class="module-card" href="pages/teorie.html">
                     <h3>📘 Teorie</h3>
@@ -240,7 +262,8 @@ else
                     <span class="module-card-link"></span>
                 </a>
             </section>
-              <section class="quick-fact">
+
+            <section class="quick-fact">
                 <div class="fact-card">
                     <div class="fact-icon">💡</div>
                     <div class="fact-content">
@@ -254,7 +277,8 @@ else
             <footer class="fancy-quote-container">
                 <blockquote class="fancy-quote">
                     <span class="quote-icon">❝</span>
-                    <p id="quote"></p> </blockquote>
+                    <p id="quote"></p>
+                </blockquote>
             </footer>
         </main>
 
@@ -287,7 +311,7 @@ else
             },
             {
                 title: "Nu subestima Subiectul I (Grila)",
-                content: "Grila pare simplă, dar are multe capcane teoretice. Fii atent la Teoria Grafurilor și execută pas cu pas pseudo-codul pe ciornă înainte de a trece răspunsul final."
+                content: "Grila pare simplă, dar are multe capcane teoretice. Fii atent la Teoria Grafurilor și execută pas cu pas pseudocodul pe ciornă înainte de a trece răspunsul final."
             },
             {
                 title: "Scrie un algoritm funcțional chiar dacă nu e optim",
@@ -295,7 +319,6 @@ else
             }
         ];
 
-        // Alege un sfat random când se încarcă pagina
         document.addEventListener("DOMContentLoaded", function() {
             const randomTip = bacTips[Math.floor(Math.random() * bacTips.length)];
             
