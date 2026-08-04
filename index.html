@@ -7,6 +7,139 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           STILURI PENTRU SFATUL ZILEI
+           ========================================= */
+        .quick-fact {
+            margin: 2rem 0;
+        }
+
+        .fact-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-left: 4px solid var(--accent, #6366f1);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .fact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(99, 102, 241, 0.15);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        .fact-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a855f7;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .fact-content h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: var(--text-main, #f8fafc);
+        }
+
+        .fact-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-muted, #cbd5e1);
+            line-height: 1.5;
+        }
+
+        .fact-content code {
+            background-color: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #fbbf24;
+            font-size: 0.9em;
+        }
+
+        /* =========================================
+           STILURI PENTRU CITATUL ZILEI FANCY
+           ========================================= */
+        .fancy-quote-container {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--surface, #1e1e2f);
+            border: 1px solid var(--border, #2a2a40);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .fancy-quote {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--accent, #6366f1);
+            line-height: 0.8;
+            margin-bottom: -5px;
+        }
+
+        #quote {
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text-main, #cbd5e1);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        /* =========================================
+           SUPORT PENTRU LIGHT MODE
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            body:not(.dark-mode) .fancy-quote-container {
+                background-color: #f8fafc;
+                border-color: #e2e8f0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+            body:not(.dark-mode) #quote,
+            body:not(.dark-mode) .fact-content h3 {
+                color: #0f172a;
+            }
+            body:not(.dark-mode) .fact-content p {
+                color: #475569;
+            }
+            body:not(.dark-mode) .fact-content code {
+                background-color: rgba(0,0,0,0.06);
+                color: #d97706;
+            }
+            body:not(.dark-mode) .fact-card {
+                background: linear-gradient(135deg, rgba(99, 102, 241, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
+            }
+        }
+    </style>
 </head>
 <body>
 <script src="js/theme.js"></script>
@@ -103,6 +236,17 @@ else
                 </div>
             </section>
 
+            <section class="quick-fact">
+                <div class="fact-card">
+                    <div class="fact-icon">💡</div>
+                    <div class="fact-content">
+                        <span class="fact-label">Sfatul zilei pentru BAC</span>
+                        <h3 id="tip-title">Atenție la depășirea memoriei!</h3>
+                        <p id="tip-content">Se încarcă sfatul...</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="modules">
                 <a class="module-card" href="pages/teorie.html">
                     <h3>📘 Teorie</h3>
@@ -126,9 +270,10 @@ else
                 </a>
             </section>
 
-            <footer class="quote-footer">
-                <h3>💡 Citatul zilei</h3>
-                <p id="quote"></p>
+            <footer class="fancy-quote-container">
+                <blockquote class="fancy-quote">
+                    <span class="quote-icon">❝</span>
+                    <p id="quote"></p> </blockquote>
             </footer>
         </main>
 
@@ -136,5 +281,51 @@ else
 
     <script src="js/app.js"></script>
     <script src="js/quotes.js"></script>
+
+    <script>
+        const bacTips = [
+            {
+                title: "Atenție la depășirea memoriei!",
+                content: "Când lucrezi cu numere mari și faci înmulțiri sau sume, tipul <code>int</code> stochează doar până la aprox. 2 miliarde. Folosește <code>long long</code> la Subiectul III ca să nu pierzi puncte pe teste ascunse."
+            },
+            {
+                title: "Nu te bloca la o singură problemă",
+                content: "Timpul trece repede! Dacă o problemă de la Subiectul III nu îți iese din prima, scrie rezolvarea brută (chiar dacă nu e optimă) ca să iei o parte din punctaj, apoi treci mai departe."
+            },
+            {
+                title: "Atenție la șirurile de caractere",
+                content: "Funcțiile din <code>&lt;cstring&gt;</code> (precum <code>strcpy</code>, <code>strtok</code>, <code>strlen</code>) sunt prezente la aproape fiecare examen. Repetă-le perfect sintaxa înainte de BAC!"
+            },
+            {
+                title: "Emoțiile sunt normale, controlează-le!",
+                content: "Dacă simți că intri în panică când citești cerința, lasă pixul jos 10 secunde, trage aer în piept și recitește subliniind cuvintele cheie (ex: <em>strict crescător</em>, <em>distincte</em>)."
+            },
+            {
+                title: "Inițializează variabilele mereu",
+                content: "Nu uita să inițializezi suma cu <code>0</code> sau produsul cu <code>1</code>. În C++, variabilele declarate local neinițializate iau valori din memorie și îți compromit tot algoritmul."
+            },
+            {
+                title: "Nu subestima Subiectul I (Grila)",
+                content: "Grila pare simplă, dar are multe capcane teoretice. Fii atent la Teoria Grafurilor și execută pas cu pas pseudo-codul pe ciornă înainte de a trece răspunsul final."
+            },
+            {
+                title: "Scrie un algoritm funcțional chiar dacă nu e optim",
+                content: "La Subiectul III, problema 3 (de eficiență), dacă nu îți vine în minte algoritmul de timp <code>O(n)</code>, scrie varianta clasică <code>O(n^2)</code>! Vei primi majoritatea punctelor pentru corectitudine."
+            }
+        ];
+
+        // Alege un sfat random când se încarcă pagina
+        document.addEventListener("DOMContentLoaded", function() {
+            const randomTip = bacTips[Math.floor(Math.random() * bacTips.length)];
+            
+            const titleElement = document.getElementById('tip-title');
+            const contentElement = document.getElementById('tip-content');
+            
+            if (titleElement && contentElement) {
+                titleElement.innerHTML = randomTip.title;
+                contentElement.innerHTML = randomTip.content;
+            }
+        });
+    </script>
 </body>
 </html>
