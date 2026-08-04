@@ -10,7 +10,7 @@
     
     <style>
         /* =========================================
-           STILURI OPTIMIZATE PENTRU DARK & LIGHT MODE
+           STILURI FIXATE (FOLOSESC VARIABILELE TALE)
            ========================================= */
         
         /* 1. SFATUL ZILEI */
@@ -22,19 +22,18 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            background-color: var(--surface, #1e1e2f);
-            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%);
-            border: 1px solid var(--border, #2a2a40);
+            background-color: var(--surface);
+            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border: 1px solid var(--border);
             border-left: 4px solid var(--accent, #6366f1);
             border-radius: 12px;
             padding: 1.5rem 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .fact-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
         }
 
         .fact-icon {
@@ -43,11 +42,10 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            background-color: rgba(99, 102, 241, 0.2);
+            background-color: rgba(99, 102, 241, 0.15);
             border-radius: 50%;
             font-size: 1.8rem;
             flex-shrink: 0;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
         }
 
         .fact-label {
@@ -55,7 +53,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #c084fc; /* Mov vizibil pe fundal închis */
+            color: #a855f7;
             display: block;
             margin-bottom: 0.3rem;
         }
@@ -63,35 +61,35 @@
         .fact-content h3 {
             margin: 0 0 0.5rem 0;
             font-size: 1.2rem;
-            color: var(--text, #f8fafc);
+            color: var(--text);
         }
 
         .fact-content p {
             margin: 0;
             font-size: 0.95rem;
-            color: var(--text-muted, #cbd5e1);
+            color: var(--text-muted, var(--text));
             line-height: 1.5;
+            opacity: 0.9;
         }
 
         .fact-content code {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(0, 0, 0, 0.25);
             padding: 2px 6px;
             border-radius: 4px;
             font-family: monospace;
             color: #fbbf24;
             font-size: 0.9em;
-            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         /* 2. CITATUL ZILEI (FOOTER) */
         .fancy-quote-container {
             margin-top: 3rem;
             padding: 2rem;
-            background-color: var(--surface, #1e1e2f);
-            border: 1px solid var(--border, #2a2a40);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
         }
 
@@ -108,59 +106,15 @@
             color: var(--accent, #6366f1);
             line-height: 0.8;
             margin-bottom: -5px;
-            opacity: 0.9;
         }
 
         #quote {
             font-style: italic;
             font-size: 1.15rem;
-            color: var(--text, #f8fafc);
+            color: var(--text);
             font-weight: 400;
             margin: 0;
             line-height: 1.6;
-        }
-
-        /* 3. ADAPTARE AUTOMATĂ PENTRU LIGHT MODE */
-        body.light-mode .fact-card,
-        body:not(.dark-mode) .fact-card {
-            background-color: #ffffff;
-            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-            border-color: #e2e8f0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-mode .fact-label,
-        body:not(.dark-mode) .fact-label {
-            color: #8b5cf6;
-        }
-
-        body.light-mode .fact-content h3,
-        body:not(.dark-mode) .fact-content h3 {
-            color: #0f172a;
-        }
-
-        body.light-mode .fact-content p,
-        body:not(.dark-mode) .fact-content p {
-            color: #475569;
-        }
-
-        body.light-mode .fact-content code,
-        body:not(.dark-mode) .fact-content code {
-            background-color: rgba(0, 0, 0, 0.06);
-            color: #d97706;
-            border-color: rgba(217, 119, 6, 0.2);
-        }
-
-        body.light-mode .fancy-quote-container,
-        body:not(.dark-mode) .fancy-quote-container {
-            background-color: #ffffff;
-            border-color: #e2e8f0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-mode #quote,
-        body:not(.dark-mode) #quote {
-            color: #1e293b;
         }
     </style>
 </head>
@@ -311,7 +265,7 @@ else
             },
             {
                 title: "Nu subestima Subiectul I (Grila)",
-                content: "Grila pare simplă, dar are multe capcane teoretice. Fii atent la Teoria Grafurilor și execută pas cu pas pseudocodul pe ciornă înainte de a trece răspunsul final."
+                content: "Grila pare simplă, dar are multe capcane teoretice. Fii atent la Teoria Grafurilor și execută pas cu pas pseudo-codul pe ciornă înainte de a trece răspunsul final."
             },
             {
                 title: "Scrie un algoritm funcțional chiar dacă nu e optim",
