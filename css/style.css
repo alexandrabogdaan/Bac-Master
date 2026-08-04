@@ -81,62 +81,121 @@ body {
 
 /* SIDEBAR
  */
+/* =======================
+   SIDEBAR PREMIUM
+======================= */
 .sidebar {
     width: 260px;
     background: var(--surface);
-    padding: 20px;
+    padding: 24px 20px; /* Padding un pic mai mare sus/jos */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid var(--border);
     transition: background 0.25s ease, border-color 0.25s ease;
-
-    /* Proprietăți pentru fixare la scroll */
+    
     position: sticky;
     top: 0;
-    height: 100vh;        /* Ocupă întreaga înălțime a ecranului */
-    overflow-y: auto;     /* Adaugă scrollbar doar în sidebar dacă conținutul său depășește ecranul */
+    height: 100vh;
+    overflow-y: auto;
+    
+    /* Umbră subtilă spre dreapta pentru a-l separa de conținut */
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.02);
 }
 
-/* --- STIL NOU PENTRU LOGO (DARK MODE DEFAULT) --- */
+/* Custom Scrollbar doar pentru Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(154, 164, 178, 0.2);
+    border-radius: 10px;
+}
+.sidebar:hover::-webkit-scrollbar-thumb {
+    background: rgba(154, 164, 178, 0.4);
+}
+
+/* Logo */
 .sidebar .logo {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed var(--border); /* Margine punctată pentru un look mai tehnic */
 }
 
-.sidebar .logo-link {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* ... Păstrează restul stilurilor tale pentru .logo h2 și p ... */
+
+/* Navigație */
+.sidebar nav { 
+    margin-top: 10px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; /* Spațiu un pic mai strâns între linkuri */
 }
 
-.sidebar .logo-link:hover {
-    transform: translateY(-2px) scale(1.02);
+.sidebar nav a { 
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Spațiu clar între iconiță și text */
+    color: var(--muted); 
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none; 
+    padding: 12px 14px; 
+    border-radius: 10px; /* Colțuri ceva mai rotunjite */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
+    border: 1px solid transparent;
 }
 
-.sidebar .logo h2 {
-    font-size: 1.55rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin: 0;
-    /* Gradient Cyan-Albastru-Violet (Neon pentru Dark Mode) */
-    background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #c084fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0px 3px 10px rgba(56, 189, 248, 0.35));
-    transition: filter 0.3s ease;
+/* Efect de Hover îmbunătățit */
+.sidebar nav a:hover { 
+    background: rgba(37, 99, 235, 0.08); 
+    color: var(--text); 
+    transform: translateX(4px); 
+    border-color: rgba(37, 99, 235, 0.1);
 }
 
-.sidebar .logo p {
-    color: var(--muted);
-    font-size: 0.72rem;
-    margin-top: 4px;
+/* Starea Activă (Pagina curentă) */
+.sidebar nav a.active {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     font-weight: 600;
-    letter-spacing: 0.8px;
+    transform: translateX(4px);
+}
+
+.light-mode .sidebar nav a.active {
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.3);
+}
+
+/* Footer Sidebar (Obiectiv) */
+.sidebar-footer { 
+    margin-top: auto; /* Împinge footer-ul jos de tot dacă e spațiu */
+    padding-top: 20px; 
+    border-top: 1px solid var(--border); 
+}
+
+.sidebar-footer h4 {
+    font-size: 0.75rem;
     text-transform: uppercase;
-    opacity: 0.85;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.sidebar-footer p {
+    background: rgba(22, 163, 74, 0.15); /* Folosim verdele de la --accent */
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(22, 163, 74, 0.2);
 }
 
 /* --- STIL LOGO ADAPTAT PENTRU LIGHT MODE --- */
