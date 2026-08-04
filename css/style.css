@@ -461,6 +461,7 @@ body {
   .topbar input { width: 150px; }
   .sidebar { width: 200px; }
 }
+<<<<<<< Updated upstream
 =======
 }
 /* =========================
@@ -523,3 +524,4 @@ select {
 #resultBox h2 {
     color: #7c5cff;
 }
+>>>>>>> Stashed changes 
