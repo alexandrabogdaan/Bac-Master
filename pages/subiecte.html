@@ -2,477 +2,486 @@
 <html lang="ro">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arhivă Subiecte BAC - BAC Master</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .archive-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 20px;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arhivă Subiecte BAC - BAC Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .archive-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 20px;
+        }
 
-        .year-section {
-            background: var(--card, #ffffff);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border, #e2e8f0);
-            transition: opacity 0.2s ease;
-        }
+        .year-section {
+            background: var(--card, #ffffff);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border, #e2e8f0);
+            transition: opacity 0.2s ease;
+        }
 
-        .year-title {
-            font-size: 1.5rem;
-            color: var(--text, #1a365d);
-            border-bottom: 2px solid var(--border, #e2e8f0);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
+        .year-title {
+            font-size: 1.5rem;
+            color: var(--text, #1a365d);
+            border-bottom: 2px solid var(--border, #e2e8f0);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
 
-        /* Grid setat pe exact 2 coloane egale pentru Iunie și Toamnă */
-        .sessions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+        /* Grid setat pe exact 2 coloane egale pentru Iunie și Toamnă */
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
 
-        .session-card {
-            border: 1px solid var(--border, #e2e8f0);
-            border-radius: 8px;
-            padding: 15px;
-            background: var(--surface, #f8fafc);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+        .session-card {
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 8px;
+            padding: 15px;
+            background: var(--surface, #f8fafc);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-        .session-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
+        .session-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
-        .session-card h4 {
-            margin-top: 0;
-            color: var(--primary, #2b6cb0);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
+        .session-card h4 {
+            margin-top: 0;
+            color: var(--primary, #2b6cb0);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-        .action-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 12px;
-        }
+        .action-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
 
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
 
-        .btn-download {
-            background-color: var(--border, #edf2f7);
-            color: var(--text, #2d3748);
-        }
+        .btn-download {
+            background-color: var(--border, #edf2f7);
+            color: var(--text, #2d3748);
+        }
 
-        .btn-download:hover {
-            background-color: rgba(37, 99, 235, 0.15);
-        }
+        .btn-download:hover {
+            background-color: rgba(37, 99, 235, 0.15);
+        }
 
-        .btn-interactive {
-            background-color: var(--accent, #48bb78);
-            color: white;
-        }
+        .btn-explain {
+            background-color: var(--primary, #3182ce);
+            color: white;
+        }
 
-        .btn-interactive:hover {
-            opacity: 0.9;
-        }
+        .btn-explain:hover {
+            opacity: 0.9;
+        }
 
-        .no-results-msg {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            color: var(--muted);
-            font-size: 1.1rem;
-        }
+        .btn-interactive {
+            background-color: var(--accent, #48bb78);
+            color: white;
+        }
 
-        /* Adaptabilitate pentru ecrane mici (telefoane) */
-        @media (max-width: 768px) {
-            .sessions-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+        .btn-interactive:hover {
+            opacity: 0.9;
+        }
+
+        .no-results-msg {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* Adaptabilitate pentru ecrane mici (telefoane) */
+        @media (max-width: 768px) {
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 <script src="../js/theme.js"></script>
-    <div class="container">
+    <div class="container">
 
-        <aside class="sidebar" id="sidebar">
-            <div>
-                <div class="logo">
-                    <a href="../index.html" class="logo-link">
-                        <h2>BAC Master</h2>
-                        <p>Pregătește BAC-ul inteligent</p>
-                    </a>
-                </div>
-                <nav>
-                    <a href="../index.html">🏠 Acasă</a>
-                    <a href="teorie.html">📘 Teorie</a>
-                    <a href="algoritmi.html">💻 Algoritmi</a>
-                    <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
-                    <a href="teste.html">📝 Teste</a>
-                    <a href="probleme.html">🧩 Probleme</a>
-                    <a href="setari.html">⚙️ Setări</a>
-                </nav>
-            </div>
-            <div class="sidebar-footer">
-                <h4>🎯 Obiectiv</h4>
-                <p>Nota 10 la BAC</p>
-            </div>
-        </aside>
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <h2>BAC Master</h2>
+                        <p>Pregătește BAC-ul inteligent</p>
+                    </a>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html" class="active">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html">🧩 Probleme</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
 
-        <main class="main">
+        <main class="main">
 
-            <header class="topbar">
-                <div class="left-top">
-                    <button id="menuToggle" class="menu-btn">☰</button>
-                    <h2>Arhivă Subiecte BAC</h2>
-                </div>
-                <div class="right-top" style="position: relative;">
-                    <input type="text" id="searchInput" placeholder="Caută un an (ex: 2022)...">
-                    <div id="searchResults" class="search-results-dropdown"></div>
-                </div>
-            </header>
+            <header class="topbar">
+                <div class="left-top">
+                    <button id="menuToggle" class="menu-btn">☰</button>
+                    <h2>Arhivă Subiecte BAC</h2>
+                </div>
+                <div class="right-top" style="position: relative;">
+                    <input type="text" id="searchInput" placeholder="Caută un an (ex: 2022)...">
+                    <div id="searchResults" class="search-results-dropdown"></div>
+                </div>
+            </header>
 
-            <section class="archive-container">
-                
-                <p style="color: var(--muted); margin-bottom: 5px;">
-                    Explorează subiectele oficiale din ultimii 11 ani. Antrenează-te interactiv pentru Subiectul I (grilă) sau consultă baremele oficiale de evaluare.
-                </p>
+            <section class="archive-container">
+                
+                <p style="color: var(--muted); margin-bottom: 5px;">
+                    Explorează subiectele oficiale din ultimii 11 ani. Antrenează-te interactiv pentru Subiectul I (grilă) sau parcurge rezolvările noastre complete.
+                </p>
 
-                <div id="noResults" class="no-results-msg">
-                    🔍 Nu a fost găsit niciun subiect pentru anul căutat.
-                </div>
+                <div id="noResults" class="no-results-msg">
+                    🔍 Nu a fost găsit niciun subiect pentru anul căutat.
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2025</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2025_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2025_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2025&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2025_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2025_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2025&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2025</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2025_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2025&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2025&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2025_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2025&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2025&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2024</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2024_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2024_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2024&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2024_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2024_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2024&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2024</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2024_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2024&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2024&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2024_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2024&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2024&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2023</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2023_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2023_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2023&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2023_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2023_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2023&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2023</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2023_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2023&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2023&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2023_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2023&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2023&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2022</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2022_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2022_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2022&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2022_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2022_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2022&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2022</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2022_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2022&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2022&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2022_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2022&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2022&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2021</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2021_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2021_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2021&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2021_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2021_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2021&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2021</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2021_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2021&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2021&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2021_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2021&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2021&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2020</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2020_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2020_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2020&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2020_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2020_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2020&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2020</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2020_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2020&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2020&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2020_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2020&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2020&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2019</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2019_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2019_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2019&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2019_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2019_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2019&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2019</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2019_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2019&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2019&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2019_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2019&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2019&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2018</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2018_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2018_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2018&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2018_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2018_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2018&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2018</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2018_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2018&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2018&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2018_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2018&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2018&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2017</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2017_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2017_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2017&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2017_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2017_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2017&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2017</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2017_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2017&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2017&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2017_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2017&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2017&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2016</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2016_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2016_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2016&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2016_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2016_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2016&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2016</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2016_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2016&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2016&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2016_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2016&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2016&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="year-section">
-                    <div class="year-title">📅 BAC 2015</div>
-                    <div class="sessions-grid">
-                        <div class="session-card">
-                            <h4>Sesiunea Iunie</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2015_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2015_iunie_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2015&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                        <div class="session-card">
-                            <h4>Sesiunea Toamnă</h4>
-                            <div class="action-links">
-                                <a href="../assets/docs/2015_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
-                                <a href="../assets/docs/2015_toamna_barem.pdf" class="action-btn btn-download" download>📋 Barem (PDF)</a>
-                                <a href="quiz_subiect1.html?an=2015&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="year-section">
+                    <div class="year-title">📅 BAC 2015</div>
+                    <div class="sessions-grid">
+                        <div class="session-card">
+                            <h4>Sesiunea Iunie</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2015_iunie_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2015&ses=iunie" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2015&ses=iunie" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                        <div class="session-card">
+                            <h4>Sesiunea Toamnă</h4>
+                            <div class="action-links">
+                                <a href="../assets/docs/2015_toamna_subiect.pdf" class="action-btn btn-download" download>📥 Subiect (PDF)</a>
+                                <a href="rezolvare.html?an=2015&ses=toamna" class="action-btn btn-explain">💡 Barem (PDF)</a>
+                                <a href="quiz_subiect1.html?an=2015&ses=toamna" class="action-btn btn-interactive">⚡ Antrenează Subiectul I</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            </section>
+            </section>
 
-            <footer class="quote-footer">
-                <h3>💡 Sfatul Profesorului</h3>
-                <p>Consecvența bate talentul. Dacă rezolvi constant variante din această arhivă, algoritmul succesului tău este garantat!</p>
-            </footer>
+            <footer class="quote-footer">
+                <h3>💡 Sfatul Profesorului</h3>
+                <p>Consecvența bate talentul. Dacă rezolvi constant variante din această arhivă, algoritmul succesului tău este garantat!</p>
+            </footer>
 
-        </main>
+        </main>
 
-    </div>
+    </div>
 
-    <script src="../js/app.js"></script>
+    <script src="../js/app.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const searchResultsDropdown = document.getElementById('searchResults');
-            const yearSections = document.querySelectorAll('.year-section');
-            const noResults = document.getElementById('noResults');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const searchResultsDropdown = document.getElementById('searchResults');
+            const yearSections = document.querySelectorAll('.year-section');
+            const noResults = document.getElementById('noResults');
 
-            if (searchInput) {
-                // Ascundem dropdown-ul global când se tastează pe această pagină
-                if (searchResultsDropdown) {
-                    searchResultsDropdown.style.display = 'none';
-                }
+            if (searchInput) {
+                // Ascundem dropdown-ul global când se tastează pe această pagină
+                if (searchResultsDropdown) {
+                    searchResultsDropdown.style.display = 'none';
+                }
 
-                searchInput.addEventListener('input', (e) => {
-                    // Ne asigurăm că dropdown-ul rămâne ascuns
-                    if (searchResultsDropdown) {
-                        searchResultsDropdown.style.display = 'none';
-                    }
+                searchInput.addEventListener('input', (e) => {
+                    // Ne asigurăm că dropdown-ul rămâne ascuns
+                    if (searchResultsDropdown) {
+                        searchResultsDropdown.style.display = 'none';
+                    }
 
-                    const query = e.target.value.trim().toLowerCase();
-                    let visibleCount = 0;
+                    const query = e.target.value.trim().toLowerCase();
+                    let visibleCount = 0;
 
-                    yearSections.forEach(section => {
-                        const titleText = section.querySelector('.year-title').textContent.toLowerCase();
-                        
-                        // Verifică dacă textul titlului conține anul tastat
-                        if (titleText.includes(query)) {
-                            section.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            section.style.display = 'none';
-                        }
-                    });
+                    yearSections.forEach(section => {
+                        const titleText = section.querySelector('.year-title').textContent.toLowerCase();
+                        
+                        // Verifică dacă textul titlului conține anul tastat
+                        if (titleText.includes(query)) {
+                            section.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
 
-                    // Afișează un mesaj în caz că nu există rezultate
-                    if (noResults) {
-                        noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
-                    }
-                });
-            }
-        });
-    </script>
+                    // Afișează un mesaj în caz că nu există rezultate
+                    if (noResults) {
+                        noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
-</html>
+</html> 
