@@ -10,7 +10,7 @@
     
     <style>
         /* =========================================
-           STILURI FIXATE (FOLOSESC VARIABILELE TALE)
+           STILURI PENTRU SFATUL ZILEI & CITAT
            ========================================= */
         
         /* 1. SFATUL ZILEI */
@@ -72,13 +72,30 @@
             opacity: 0.9;
         }
 
+        /* -----------------------------------------
+           ETICHETE CODE (C++ / cstring etc.) 
+           ----------------------------------------- */
+        /* Implicit / Dark Mode */
         .fact-content code {
-            background-color: rgba(0, 0, 0, 0.25);
-            padding: 2px 6px;
-            border-radius: 4px;
+            background-color: rgba(99, 102, 241, 0.18);
+            color: #a5b4fc; /* Indigo luminos pentru Dark Mode */
+            padding: 3px 7px;
+            border-radius: 6px;
             font-family: monospace;
-            color: #fbbf24;
             font-size: 0.9em;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Adaptare automată Light Mode */
+        body.light-mode .fact-content code,
+        body[data-theme="light"] .fact-content code,
+        @media (prefers-color-scheme: light) {
+            body:not(.dark-mode) .fact-content code {
+                background-color: rgba(99, 102, 241, 0.1);
+                color: #4338ca; /* Indigo închis cu contrast mare pentru Light Mode */
+                border-color: rgba(99, 102, 241, 0.25);
+            }
         }
 
         /* 2. CITATUL ZILEI (FOOTER) */
@@ -269,7 +286,7 @@ else
             },
             {
                 title: "Scrie un algoritm funcțional chiar dacă nu e optim",
-                content: "La Subiectul III, problema 3 (de eficiență), dacă nu îți vine în minte algoritmul de timp <code>O(n)</code>, scrie varianta clasică <code>O(n<sup>2</sup>)</code>! Vei primi majoritatea punctelor pentru corectitudine."
+                content: "La Subiectul III, problema 3 (de eficiență), dacă nu îți vine în minte algoritmul de timp <code>O(n)</code>, scrie varianta clasică <code>O(n^2)</code>! Vei primi majoritatea punctelor pentru corectitudine."
             }
         ];
 
