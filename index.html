@@ -75,10 +75,11 @@
         /* -----------------------------------------
            ETICHETE CODE (C++ / cstring etc.) 
            ----------------------------------------- */
-        /* Implicit / Dark Mode */
+        
+        /* Dark Mode (Implicit) */
         .fact-content code {
             background-color: rgba(99, 102, 241, 0.18);
-            color: #a5b4fc; /* Indigo luminos pentru Dark Mode */
+            color: #a5b4fc; /* Indigo luminos pe Dark Mode */
             padding: 3px 7px;
             border-radius: 6px;
             font-family: monospace;
@@ -87,14 +88,23 @@
             border: 1px solid rgba(99, 102, 241, 0.3);
         }
 
-        /* Adaptare automată Light Mode */
+        /* Light Mode - Selectori clari pe HTML/BODY */
         body.light-mode .fact-content code,
+        html.light-mode .fact-content code,
         body[data-theme="light"] .fact-content code,
+        html[data-theme="light"] .fact-content code,
+        body:not(.dark-mode) .fact-content code {
+            background-color: rgba(239, 68, 68, 0.1) !important;
+            color: #ca3838 !important; /* Roșu vizibil pe Light Mode */
+            border-color: rgba(239, 68, 68, 0.25) !important;
+        }
+
+        /* Fallback pentru preferințele de sistem pe Light Mode */
         @media (prefers-color-scheme: light) {
             body:not(.dark-mode) .fact-content code {
-                background-color: rgba(99, 102, 241, 0.1);
-                color: #ca3838; 
-                border-color: rgba(99, 102, 241, 0.25);
+                background-color: rgba(239, 68, 68, 0.1);
+                color: #ca3838;
+                border-color: rgba(239, 68, 68, 0.25);
             }
         }
 
