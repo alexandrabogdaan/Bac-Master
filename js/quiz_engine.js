@@ -1089,6 +1089,8 @@ function loadQuestion() {
 
     const q = currentQuestions[currentQuestionIndex];
 
+  if (!q) return;
+
     
 
     document.getElementById("question-counter").innerText = `Exercițiul ${currentQuestionIndex + 1} din ${currentQuestions.length}`;
@@ -1100,6 +1102,8 @@ function loadQuestion() {
     document.getElementById("next-btn").style.display = "none";
 
     document.getElementById("submit-btn").style.display = "block";
+
+    document.getElementById("next-btn").disabled = false;
 
     selectedOptionIndex = null;
 
@@ -1218,6 +1222,12 @@ function checkAnswer() {
 // 6. Trecerea la următorul exercițiu
 
 function nextQuestion() {
+
+  const nextButton = document.getElementById("next-btn");
+
+  if (nextButton.disabled) return;
+
+  nextButton.disabled = true;
 
     currentQuestionIndex++;
 

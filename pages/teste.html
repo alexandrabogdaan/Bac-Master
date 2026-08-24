@@ -72,6 +72,7 @@
     font-size: 2.5rem;
     font-weight: 700;
     background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -922,19 +923,19 @@
             <p class="quiz-question">Numărul maxim de noduri de pe nivelul k al unui arbore binar (rădăcina = nivelul 0) este:</p>
             <div class="quiz-options">
                 <label class="quiz-option" data-letter="A">
-                    <input type="radio" name="q28">
+                    <input type="radio" name="q28b">
                     <span>A) 2^k</span>
                 </label>
                 <label class="quiz-option" data-letter="B">
-                    <input type="radio" name="q28">
+                    <input type="radio" name="q28b">
                     <span>B) k^2</span>
                 </label>
                 <label class="quiz-option" data-letter="C">
-                    <input type="radio" name="q28">
+                    <input type="radio" name="q28b">
                     <span>C) 2k</span>
                 </label>
                 <label class="quiz-option" data-letter="D">
-                    <input type="radio" name="q28">
+                    <input type="radio" name="q28b">
                     <span>D) k+1</span>
                 </label>
             </div>
@@ -1516,82 +1517,6 @@
             <div class="quiz-feedback"></div>
         </div>
 
-<div class="container">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>BAC Master</h2>
-        </div>
-
-        <nav>
-            <a href="../index.html">🏠 Acasă</a>
-            <a href="teorie.html">📘 Teorie</a>
-            <a href="algoritmi.html">💻 Algoritmi</a>
-            <a href="teste.html">📝 Teste</a>
-        </nav>
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-
-        <h1>🧪 Teste interactive</h1>
-
-        <!-- SETUP PANEL -->
-        <div id="setup" class="module-card">
-
-            <h3>Selectează testul</h3>
-
-            <label>Număr întrebări:</label>
-            <select id="questionCount">
-                <option value="5">5 întrebări</option>
-                <option value="10" selected>10 întrebări</option>
-                <option value="15">15 întrebări</option>
-                <option value="20">20 întrebări</option>
-            </select>
-
-            <br><br>
-
-            <button id="startBtn" class="btn-primary">
-                Începe testul
-            </button>
-
-        </div>
-
-        <!-- TIMER -->
-        <div id="timerBox" class="module-card" style="display:none;">
-            ⏱ Timp rămas: <span id="timer">00:00</span>
-        </div>
-
-        <!-- QUESTION BOX -->
-        <div id="quizBox" class="module-card" style="display:none;">
-
-            <h3 id="questionText"></h3>
-
-            <div id="answers"></div>
-
-            <br>
-
-            <button id="nextBtn" class="btn-primary">
-                Următoarea întrebare
-            </button>
-
-        </div>
-
-        <!-- RESULT -->
-        <div id="resultBox" class="module-card" style="display:none;">
-            <h2>Rezultat final</h2>
-            <p id="resultText"></p>
-            <p id="scoreText"></p>
-
-            <button onclick="location.reload()" class="btn-primary">
-                Reia testul
-            </button>
-        </div>
-
-    </main>
-</div>
-
 <script>
 /* ===== Mini-examen (mock test) — script auto-conținut =====
    Nu depinde de ../js/app.js: gestionează singur selectarea răspunsurilor
@@ -1705,6 +1630,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function startMockTest() {
+        if (!fullList || !mockList || !mockBar || !activeBar || !scoreEl) return;
+
         // grupează întrebările originale după capitol
         var groups = {};
         var order = [];
@@ -1733,6 +1660,8 @@ document.addEventListener('DOMContentLoaded', function () {
             selected[j] = tmp;
         }
 
+        if (!selected.length) return;
+
         mockTotal = selected.length;
         mockAnswered = 0;
         mockCorrect = 0;
@@ -1740,24 +1669,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         mockList.innerHTML = '';
         selected.forEach(function (block, idx) {
-            setupMockBlock(block, idx, selected.length);
             mockList.appendChild(block);
+            setupMockBlock(block, idx, selected.length);
+        });
+
+        mockList.querySelectorAll('.mock-question-number').forEach(function (badge, idx) {
+            badge.textContent = 'Întrebarea ' + (idx + 1) + ' / ' + mockTotal;
         });
 
         fullList.style.display = 'none';
         mockList.style.display = 'block';
         mockBar.style.display = 'none';
         activeBar.style.display = 'flex';
-        activeBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo(0, Math.max(0, activeBar.offsetTop - 10));
     }
 
     function cancelMockTest() {
+        mockAnswered = 0;
+        mockCorrect = 0;
+        mockTotal = 0;
+        updateScore();
         mockList.innerHTML = '';
         mockList.style.display = 'none';
         fullList.style.display = '';
         activeBar.style.display = 'none';
         mockBar.style.display = 'flex';
-        mockBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo(0, Math.max(0, mockBar.offsetTop - 10));
     }
 
     startBtn.addEventListener('click', startMockTest);
@@ -1765,7 +1702,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script src="../js/questions.js"></script>
-<script src="../js/teste.js"></script>
 
 </body>
 </html>
