@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Subiectul III - 3: Scara de cote maximă - BAC Master</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            color: var(--text-color, #2d3748);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .problem-statement-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content-section {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .problem-statement-box pre, .problem-statement-box code {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+        .btn-fancy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+            border: none;
+        }
+        .btn-fancy-back:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+        .btn-fancy-back svg { transition: transform 0.3s ease; }
+        .btn-fancy-back:hover svg { transform: translateX(-4px); }
+    </style>
+</head>
+<body>
+<script src="../js/theme.js"></script>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <h2>BAC Master</h2>
+                        <p>Pregătește BAC-ul inteligent</p>
+                    </a>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html" class="active">🧩 Probleme</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+        <main class="main">
+            <div class="teorie-header">
+                <span class="quiz-chapter-tag" style="background-color: #3182ce; color: white;">BAC Iunie 2024</span>
+                <h1>Subiectul III - 3: Scara de cote maximă</h1>
+                <p>Algoritm eficient pentru găsirea celei mai lungi secvențe de marcaje cu cote consecutive strict crescătoare.</p>
+            </div>
+            <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <span>📜</span> Enunțul problemei
+                </h3>
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>Enunț:</strong> De-a lungul unui traseu montan este utilizată o succesiune de marcaje turistice, care trebuie urmate în acea ordine. Pentru fiecare marcaj se cunoaște cota (înălțimea, măsurată în metri) la care este plasat. Numim scară într-un traseu o secvență de marcaje aflate pe poziții consecutive în cadrul traseului, care au drept cote numere consecutive, ordonate strict crescător. O scară este formată din cel puțin două marcaje, iar lungimea acesteia este egală cu numărul de marcaje care o compun. Fișierul bac.txt conține un șir de cel mult 10<sup>6</sup> numere naturale din intervalul [10,10<sup>4</sup>], separate prin câte un spațiu, reprezentând cotele marcajelor turistice din cadrul unui traseu, în ordinea în care se succed în acesta. Se cere să se afișeze pe ecran, separate prin câte un spațiu, în ordine strict crescătoare, cotele corespunzătoare marcajelor unei scări de lungime maximă pe acest traseu. Dacă în cadrul traseului există mai multe astfel de scări, se afișează doar cotele corespunzătoare marcajelor uneia dintre ele, iar dacă nu există nicio scară, pe ecran se afișează mesajul nu exista. Proiectați un algoritm eficient din punctul de vedere al timpului de executare și al spațiului de memorie utilizat. a) Descrieți în limbaj natural algoritmul proiectat, justificând eficiența acestuia. (2p.) b) Scrieți programul C/C++ corespunzător algoritmului proiectat. (8p.)</p>
+                    <p style="margin: 0; line-height: 1.6;"><strong>Exemplu:</strong> dacă fișierul conține numerele 500 600 601 405 569 570 700 701 625 626 627 520, atunci pe ecran se afișează 625 626 627.</p>
+                </div>
+            </div>
+            <div style="margin-top: 25px; padding-bottom: 20px;">
+                <a href="probleme.html" class="btn-fancy-back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Înapoi la lista de probleme
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Subiectul III - 3: Toamna - BAC Master</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            color: var(--text-color, #2d3748);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .problem-statement-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content-section {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .problem-statement-box pre, .problem-statement-box code {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+        .btn-fancy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+            border: none;
+        }
+        .btn-fancy-back:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+        .btn-fancy-back svg { transition: transform 0.3s ease; }
+        .btn-fancy-back:hover svg { transform: translateX(-4px); }
+    </style>
+</head>
+<body>
+<script src="../js/theme.js"></script>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <h2>BAC Master</h2>
+                        <p>Pregătește BAC-ul inteligent</p>
+                    </a>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html" class="active">🧩 Probleme</a>
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+        <main class="main">
+            <div class="teorie-header">
+                <span class="quiz-chapter-tag" style="background-color: #e53e3e; color: white;">BAC Toamna 2024</span>
+                <h1>Subiectul III - 3</h1>
+                <p>Șirul 0, 0, 1, 4, 13 , 38 , 105 , 280 , 729 ....</p>
+            </div>
+            <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <span>📜</span> Enunțul problemei
+                </h3>
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 15px; line-height: 1.6;">Șirul 0, 0, 1, 4, 13 , 38 , 105 , 280 , 729 .... este definit astfel: f1=f 2=0 , f3=1 , fn=4 ∙fn-1-3∙fn-2-2∙fn-3 (unde n este un num ăr natural n≥4). Se citesc de la tastatur ă trei numere naturale x, y și z (x≤y<z≤10 9), valorile a trei termeni afla ți pe pozi ții consecutive în şirul dat, şi se cere s ă se scrie în fi şierul bac.txt , în ordine descresc ătoare, separa ți prin câte un spa țiu, to ţi termenii şirului care sunt mai mici sau egali cu z. Proiecta ți un algoritm eficient din punctul de vedere al timpului de executare și al spa țiului de memorie utilizat. Exemplu: dac ă se citesc numerele 38 105 280 fi şierul con ţine numerele 280 105 38 13 4 1 0 0 a. Descrie ți în limbaj natural algoritmul proiectat, justificând eficien ța acestuia. (2p.) b. Scrie ți programul C/C++ corespunz ător algoritmului proiectat. (8p.)</p>
+                </div>
+            </div>
+            <div style="margin-top: 25px; padding-bottom: 20px;">
+                <a href="probleme.html" class="btn-fancy-back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Înapoi la lista de probleme
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
