@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Subiectul III - 3: Toamna - BAC Master</title>
+    <title>Perechi de valori egale - BAC Toamna 2023 | BAC Master</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -87,15 +87,17 @@
         <main class="main">
             <div class="teorie-header">
                 <span class="quiz-chapter-tag" style="background-color: #e53e3e; color: white;">BAC Toamna 2023</span>
-                <h1>Subiectul III - 3</h1>
-                <p>Fi șierul date.in con ține pe prima linie dou ă numere naturale din intervalul [1,10 6], m și n, iar pe urm ătoarele dou ă linii numere natu...</p>
+                <h1>Subiectul III - 3: Perechi de valori egale</h1>
+                <p>Numărarea eficientă a numărului maxim de perechi de termeni egali din două șiruri.</p>
             </div>
             <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
                 <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
                     <span>📜</span> Enunțul problemei
                 </h3>
                 <div class="problem-statement-box">
-                    <p style="margin-bottom: 15px; line-height: 1.6;">Fi șierul date.in con ține pe prima linie dou ă numere naturale din intervalul [1,10 6], m și n, iar pe urm ătoarele dou ă linii numere naturale din intervalul [0,10 2): pe a doua linie un șir A, de m numere, iar pe a treia linie un șir B, de n numere. Numerele aflate pe aceea și linie sunt separate prin câte un spa țiu. Se cere s ă se afi șeze pe ecran numărul maxim de perechi de forma (pa,pb) (pa ∈[1,m] , pb ∈[1,n] ), cu proprietatea c ă termenul de pe pozi ția pa din șirul A are aceea și valoare cu termenul de pe pozi ția pb din șirul B și c ă fiecare pozi ție, corespunz ătoare șirului A, respectiv șirului B, apare în cel mult o pereche , ca în exemplu . Proiecta ți un algoritm eficient din punctul de vedere al timpului de executare. Exemplu : dac ă fi șierul con ține numerele al ăturate, se afi șeaz ă pe ecran 6 (de exemplu, pentru perechile (1,1), (2,9), (4,2), (5,5), (6,6), (7,7) sau pentru perechile (1,2) , (2,9), (4,1) , (5,7) , (6,8) , (8,5) ). 8 9 1 0 4 1 5 3 5 5 1 1 1 7 5 3 5 3 0 a. Descrie ți în limbaj natural algoritmul proiectat, justificând eficien ța acestuia. (2p.) b. Scrie ți programul C/C++ corespunz ător algoritmului proiectat. (8p.)</p>
+                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>Enunț:</strong></p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">Fișierul <code>date.in</code> conține pe prima linie două numere naturale din intervalul [1, 10<sup>6</sup>], <code>m</code> și <code>n</code>, iar pe următoarele două linii numere naturale din intervalul [0, 100): pe a doua linie un șir <code>A</code>, de <code>m</code> numere, iar pe a treia linie un șir <code>B</code>, de <code>n</code> numere. Se cere să se afișeze pe ecran numărul maxim de perechi de forma (p<sub>a</sub>, p<sub>b</sub>) cu proprietatea că termenul de pe poziția p<sub>a</sub> din șirul <code>A</code> are aceeași valoare cu termenul de pe poziția p<sub>b</sub> din șirul <code>B</code>, iar fiecare poziție apare în cel mult o pereche. Proiectați un algoritm eficient din punctul de vedere al timpului de executare.</p>
+                    <p style="margin: 0; line-height: 1.6;"><strong>Exemplu:</strong> pentru datele din fișierul din enunț, se afișează pe ecran valoarea <code>6</code>.</p>
                 </div>
             </div>
             <div style="margin-top: 25px; padding-bottom: 20px;">

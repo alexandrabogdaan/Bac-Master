@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Subiectul III - 2: Toamna - BAC Master</title>
+    <title>Pătratul de valoare maximă - BAC Toamna 2023 | BAC Master</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -87,15 +87,17 @@
         <main class="main">
             <div class="teorie-header">
                 <span class="quiz-chapter-tag" style="background-color: #e53e3e; color: white;">BAC Toamna 2023</span>
-                <h1>Subiectul III - 2</h1>
-                <p>Un joc folose ște o tabl ă dreptunghiular ă, pe care sunt reprezentate celule de dimensiune eg al ă, dispuse pe m linii și pe n coloane.</p>
+                <h1>Subiectul III - 2: Pătratul de valoare maximă</h1>
+                <p>Determinarea celor patru celule consecutive cu suma maximă dintr-o tablă dreptunghiulară.</p>
             </div>
             <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
                 <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
                     <span>📜</span> Enunțul problemei
                 </h3>
                 <div class="problem-statement-box">
-                    <p style="margin-bottom: 15px; line-height: 1.6;">Un joc folose ște o tabl ă dreptunghiular ă, pe care sunt reprezentate celule de dimensiune eg al ă, dispuse pe m linii și pe n coloane. În fiecare celul ă este înscris un num ăr natural. Numim pătrat de valoare p patru celule ale tablei, situate pe dou ă linii consecutive și pe dou ă coloane consecutive, cu proprietatea c ă suma valorilor înscrise în aceste celule este egal ă cu p. Scopul jocului este determinarea unui p ătrat de valoare maxim ă. Scrie ți un program C/C++ care cite ște de la tastatur ă dou ă numere naturale din intervalul [2,20] , m și n, apoi elementele unui tablou bidimensional cu m linii și n coloane, numere naturale din intervalul [0,10 4], reprezentând numerele înscrise pe tabla de joc, î n ordinea dispunerii celulelor corespunz ătoare. Programul determin ă un p ătrat de valoare maxim ă al tablei și afi șeaz ă pe ecran aceast ă valoare. 1 1 2 30 3 10 1 2 1 13 12 1 1 2 3 1 7 1 20 1 Exemplu: pentru m=5 , n=4 și tabloul al ăturat, se afi șeaz ă pe ecran valoarea 36 , corespunz ătoare pătratului eviden țiat în figur ă. (10p.)</p>
+                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>Enunț:</strong></p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">Un joc folosește o tablă dreptunghiulară, pe care sunt reprezentate celule de dimensiune egală, dispuse pe <code>m</code> linii și pe <code>n</code> coloane. În fiecare celulă este înscris un număr natural. Numim pătrat de valoare <code>p</code> patru celule ale tablei, situate pe două linii consecutive și pe două coloane consecutive, cu proprietatea că suma valorilor înscrise în aceste celule este egală cu <code>p</code>. Scopul jocului este determinarea unui pătrat de valoare maximă. Scrieți un program C/C++ care citește de la tastatură două numere naturale din intervalul [2, 20], <code>m</code> și <code>n</code>, apoi elementele unui tablou bidimensional cu <code>m</code> linii și <code>n</code> coloane, numere naturale din intervalul [0, 10<sup>4</sup>], reprezentând numerele înscrise pe tabla de joc. Programul determină un pătrat de valoare maximă al tablei și afișează pe ecran această valoare.</p>
+                    <p style="margin: 0; line-height: 1.6;"><strong>Exemplu:</strong> pentru <code>m = 5</code>, <code>n = 4</code> și tabloul din enunț, se afișează pe ecran valoarea <code>36</code>.</p>
                 </div>
             </div>
             <div style="margin-top: 25px; padding-bottom: 20px;">

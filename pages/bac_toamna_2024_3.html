@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Subiectul III - 3: Toamna - BAC Master</title>
+    <title>Șir recurent - BAC Toamna 2024 | BAC Master</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -87,15 +87,17 @@
         <main class="main">
             <div class="teorie-header">
                 <span class="quiz-chapter-tag" style="background-color: #e53e3e; color: white;">BAC Toamna 2024</span>
-                <h1>Subiectul III - 3</h1>
-                <p>Șirul 0, 0, 1, 4, 13 , 38 , 105 , 280 , 729 ....</p>
+                <h1>Subiectul III - 3: Șir recurent</h1>
+                <p>Generarea termenilor unui șir definit prin recurență și afișarea lor în ordine descrescătoare.</p>
             </div>
             <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
                 <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
                     <span>📜</span> Enunțul problemei
                 </h3>
                 <div class="problem-statement-box">
-                    <p style="margin-bottom: 15px; line-height: 1.6;">Șirul 0, 0, 1, 4, 13 , 38 , 105 , 280 , 729 .... este definit astfel: f1=f 2=0 , f3=1 , fn=4 ∙fn-1-3∙fn-2-2∙fn-3 (unde n este un num ăr natural n≥4). Se citesc de la tastatur ă trei numere naturale x, y și z (x≤y<z≤10 9), valorile a trei termeni afla ți pe pozi ții consecutive în şirul dat, şi se cere s ă se scrie în fi şierul bac.txt , în ordine descresc ătoare, separa ți prin câte un spa țiu, to ţi termenii şirului care sunt mai mici sau egali cu z. Proiecta ți un algoritm eficient din punctul de vedere al timpului de executare și al spa țiului de memorie utilizat. Exemplu: dac ă se citesc numerele 38 105 280 fi şierul con ţine numerele 280 105 38 13 4 1 0 0 a. Descrie ți în limbaj natural algoritmul proiectat, justificând eficien ța acestuia. (2p.) b. Scrie ți programul C/C++ corespunz ător algoritmului proiectat. (8p.)</p>
+                    <p style="margin-bottom: 12px; line-height: 1.6;"><strong>Enunț:</strong></p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">Șirul <code>0, 0, 1, 4, 13, 38, 105, 280, 729...</code> este definit prin f<sub>1</sub>=f<sub>2</sub>=0, f<sub>3</sub>=1 și f<sub>n</sub> = 4·f<sub>n-1</sub> - 3·f<sub>n-2</sub> - 2·f<sub>n-3</sub>. Se citesc trei valori consecutive <code>x</code>, <code>y</code>, <code>z</code> și se cere scrierea în fișierul <code>bac.txt</code>, în ordine descrescătoare, a tuturor termenilor din șir mai mici sau egali cu <code>z</code>. Proiectați un algoritm eficient ca timp și spațiu.</p>
+                    <p style="margin: 0; line-height: 1.6;"><strong>Exemplu:</strong> pentru <code>x = 38</code>, <code>y = 105</code> și <code>z = 280</code>, fișierul va conține <code>280 105 38 13 4 1 0 0</code>.</p>
                 </div>
             </div>
             <div style="margin-top: 25px; padding-bottom: 20px;">
