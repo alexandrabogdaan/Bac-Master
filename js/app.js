@@ -46,6 +46,7 @@ function initChapterDropdowns() {
             panel.id = panelId;
 
             blocks.forEach(function (block) {
+                block.setAttribute('data-original-class', title.textContent.trim());
                 panel.appendChild(block);
             });
 

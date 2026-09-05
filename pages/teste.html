@@ -120,6 +120,126 @@
             font-size: 1.05rem;
         }
     </style>
+
+    <style>
+        /* ===== Capitole compacte + afișare rapidă ===== */
+        #full-quiz-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .quiz-class-group {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-class-group .quiz-class-title {
+            margin: 6px 0 2px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+        }
+
+        .quiz-chapter-group {
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .quiz-chapter-toggle {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 13px 16px;
+            text-align: left;
+            font: inherit;
+        }
+
+        .quiz-chapter-toggle:hover {
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .quiz-chapter-name {
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .quiz-chapter-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+            font-size: 0.8rem;
+            opacity: 0.72;
+        }
+
+        .quiz-chapter-arrow {
+            display: inline-block;
+            transition: transform 0.16s ease;
+        }
+
+        .quiz-chapter-group.is-open .quiz-chapter-arrow {
+            transform: rotate(180deg);
+        }
+
+        .quiz-chapter-content {
+            display: none;
+            padding: 0 12px 12px;
+        }
+
+        .quiz-chapter-group.is-open .quiz-chapter-content {
+            display: grid;
+            gap: 10px;
+        }
+
+        /* Elimină întârzierile vechi/cascada globală. Animația pornește local,
+           numai de la întrebările capitolului tocmai deschis. */
+        .quiz-chapter-content > .quiz-question-block {
+            margin: 0 !important;
+            animation: none !important;
+            transition-delay: 0s !important;
+        }
+
+        .quiz-chapter-group.is-opening .quiz-chapter-content > .quiz-question-block {
+            animation: chapterQuestionIn 0.18s ease both !important;
+            animation-delay: var(--chapter-delay, 0ms) !important;
+        }
+
+        @keyframes chapterQuestionIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* În lista pe capitole, tagul repetat pe fiecare întrebare nu mai este necesar. */
+        .quiz-chapter-content .quiz-chapter-tag {
+            display: none;
+        }
+
+        #mock-quiz-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        #mock-quiz-list .quiz-question-block {
+            margin: 0 !important;
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+            transition-delay: 0s !important;
+        }
+
+        @media (max-width: 700px) {
+            .quiz-chapter-toggle { padding: 12px 13px; }
+            .quiz-chapter-content { padding: 0 8px 8px; }
+        }
+    </style>
+
 </head>
 <body>
     <script src="../js/theme.js"></script>
@@ -177,7 +297,7 @@
         -->
 
         <div class="mock-test-bar" id="mockTestBar">
-            <p>🎯 Vrei un test rapid de antrenament? Generează un mini-examen cu câte o întrebare din fiecare capitol, în ordine aleatorie.</p>
+            <p>🎯 Vrei un test rapid de antrenament? Generează un mini-examen cu câte o întrebare din fiecare capitol, în ordine aleatorie. Funcționează chiar dacă nu ai deschis niciun capitol.</p>
             <button class="mock-test-btn" id="startMockTestBtn">Generează Mini-Examen</button>
         </div>
 
@@ -1639,10 +1759,14 @@
             <button class="quiz-check-btn">Verifică</button><div class="quiz-feedback"></div>
         </div>
 
+</div><!-- /#full-quiz-list -->
+
 <script>
-/* ===== Mini-examen (mock test) — script auto-conținut =====
-   Nu depinde de ../js/app.js: gestionează singur selectarea răspunsurilor
-   și verificarea, doar pentru întrebările generate în mini-examen. */
+/* ===== Întrebări pe capitole + mini-examen robust =====
+   - lista completă este reorganizată compact pe capitole;
+   - animația pornește numai din capitolul apăsat și are întârzieri foarte mici;
+   - mini-examenul folosește o copie "master" făcută înainte de orice filtrare/afișare,
+     deci include întotdeauna câte o întrebare din fiecare capitol. */
 document.addEventListener('DOMContentLoaded', function () {
     var startBtn = document.getElementById('startMockTestBtn');
     var cancelBtn = document.getElementById('cancelMockTestBtn');
@@ -1652,45 +1776,74 @@ document.addEventListener('DOMContentLoaded', function () {
     var activeBar = document.getElementById('mockActiveBar');
     var scoreEl = document.getElementById('mockTestScore');
 
-    if (!startBtn) return;
+    if (!fullList) return;
 
-    var mockAnswered = 0;
-    var mockCorrect = 0;
-    var mockTotal = 0;
+    /* Snapshot independent de starea vizuală. Este sursa unică pentru mini-examen. */
+    var originalBlocks = Array.from(fullList.querySelectorAll('.quiz-question-block'));
 
-    function updateScore() {
-        scoreEl.textContent = 'Scor: ' + mockCorrect + ' / ' + mockAnswered + ' răspunsuri (din ' + mockTotal + ' întrebări)';
+    /* Reține împărțirea originală pe clase înainte de reorganizarea pe capitole. */
+    var currentClass = 'Întrebări suplimentare';
+    Array.from(fullList.children).forEach(function (node) {
+        if (node.classList && node.classList.contains('quiz-class-title')) {
+            currentClass = node.textContent.trim();
+        } else if (node.classList && node.classList.contains('quiz-question-block')) {
+            node.setAttribute('data-original-class', currentClass);
+        }
+    });
+
+    var masterQuestions = originalBlocks.map(function (block) {
+        return block.cloneNode(true);
+    });
+
+    function getChapter(block) {
+        var tag = block.querySelector('.quiz-chapter-tag');
+        return tag ? tag.textContent.trim() : 'General';
     }
 
-    function setupMockBlock(block, index, total) {
-        // curăță orice stare moștenită din clonă
-        var options = block.querySelectorAll('.quiz-option');
-        options.forEach(function (o) {
-            o.classList.remove('selected', 'disabled', 'correct-answer', 'wrong-answer');
-            o.style.pointerEvents = '';
+    function resetVisualState(block) {
+        block.classList.remove('selected', 'disabled', 'correct-answer', 'wrong-answer');
+        block.removeAttribute('style');
+        block.querySelectorAll('*').forEach(function (el) {
+            /* Curățăm numai stilurile inline care pot ascunde/întârzia elemente.
+               Nu atingem stilizarea din CSS. */
+            if (el.style) {
+                el.style.removeProperty('display');
+                el.style.removeProperty('opacity');
+                el.style.removeProperty('transform');
+                el.style.removeProperty('animation');
+                el.style.removeProperty('animation-delay');
+                el.style.removeProperty('transition-delay');
+                el.style.removeProperty('visibility');
+                el.style.removeProperty('pointer-events');
+                if (!el.getAttribute('style')) el.removeAttribute('style');
+            }
         });
+    }
+
+    function setupQuestionBlock(block, uniqueName, onAnswered) {
+        resetVisualState(block);
+
+        var options = Array.from(block.querySelectorAll('.quiz-option'));
         var feedback = block.querySelector('.quiz-feedback');
-        feedback.textContent = '';
-        feedback.className = 'quiz-feedback';
         var checkBtn = block.querySelector('.quiz-check-btn');
-        checkBtn.disabled = false;
-
-        // renumește radio-urile ca să nu se suprapună cu lista completă (ascunsă)
-        block.querySelectorAll('input[type="radio"]').forEach(function (r, i) {
-            r.name = 'mock-q' + index + '-' + i;
-            r.checked = false;
-        });
-
-        // badge cu numărul întrebării
-        var oldBadge = block.querySelector('.mock-question-number');
-        if (oldBadge) oldBadge.remove();
-        var badge = document.createElement('div');
-        badge.className = 'mock-question-number';
-        badge.textContent = 'Întrebarea ' + (index + 1) + ' / ' + total;
-        block.insertBefore(badge, block.firstChild);
-
         var correctLetter = block.getAttribute('data-correct');
         var answered = false;
+
+        if (!feedback || !checkBtn) return;
+
+        options.forEach(function (option) {
+            option.classList.remove('selected', 'disabled', 'correct-answer', 'wrong-answer');
+        });
+
+        feedback.textContent = '';
+        feedback.className = 'quiz-feedback';
+        checkBtn.disabled = false;
+
+        /* Toate radio-urile ACELEIAȘI întrebări trebuie să aibă același name. */
+        block.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+            radio.name = uniqueName;
+            radio.checked = false;
+        });
 
         options.forEach(function (option) {
             option.addEventListener('click', function () {
@@ -1704,8 +1857,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkBtn.addEventListener('click', function () {
             if (answered) return;
-            var selected = block.querySelector('.quiz-option.selected');
 
+            var selected = block.querySelector('.quiz-option.selected');
             if (!selected) {
                 feedback.textContent = 'Selectează o variantă înainte de a verifica.';
                 feedback.className = 'quiz-feedback incorrect';
@@ -1720,25 +1873,123 @@ document.addEventListener('DOMContentLoaded', function () {
                 option.classList.add('disabled');
                 option.style.pointerEvents = 'none';
                 var letter = option.getAttribute('data-letter');
-                if (letter === correctLetter) {
-                    option.classList.add('correct-answer');
-                } else if (option === selected) {
-                    option.classList.add('wrong-answer');
-                }
+                if (letter === correctLetter) option.classList.add('correct-answer');
+                else if (option === selected) option.classList.add('wrong-answer');
             });
 
-            feedback.textContent = isCorrect ? '✔ Corect!' : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
+            feedback.textContent = isCorrect
+                ? '✔ Corect!'
+                : '✘ Greșit. Răspunsul corect era: ' + correctLetter;
             feedback.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
             checkBtn.disabled = true;
 
-            mockAnswered++;
-            if (isCorrect) mockCorrect++;
-            updateScore();
-
-            if (mockAnswered === mockTotal) {
-                showSummary();
-            }
+            if (typeof onAnswered === 'function') onAnswered(isCorrect);
         });
+    }
+
+    /* ===== Gruparea compactă pe clase și capitole ===== */
+    function getClassName(block) {
+        var originalClass = block.getAttribute('data-original-class');
+        if (originalClass) return originalClass;
+
+        var accordion = block.closest('.quiz-chapter-accordion');
+        if (accordion && accordion.previousElementSibling && accordion.previousElementSibling.classList && accordion.previousElementSibling.classList.contains('quiz-class-title')) {
+            return accordion.previousElementSibling.textContent.trim();
+        }
+
+        return 'Întrebări suplimentare';
+    }
+
+    function buildChapterGroups() {
+        /* Păstrează ordinea și împărțirea originală pe clase. */
+        var classGroups = new Map();
+
+        originalBlocks.forEach(function (block) {
+            var className = getClassName(block);
+            var chapter = getChapter(block);
+
+            if (!classGroups.has(className)) classGroups.set(className, new Map());
+            var chapters = classGroups.get(className);
+            if (!chapters.has(chapter)) chapters.set(chapter, []);
+            chapters.get(chapter).push(block);
+        });
+
+        fullList.innerHTML = '';
+
+        classGroups.forEach(function (chapters, className) {
+            var classSection = document.createElement('section');
+            classSection.className = 'quiz-class-group';
+
+            var classTitle = document.createElement('h2');
+            classTitle.className = 'quiz-class-title';
+            classTitle.textContent = className;
+            classSection.appendChild(classTitle);
+
+            chapters.forEach(function (blocks, chapter) {
+                var section = document.createElement('section');
+                section.className = 'quiz-chapter-group';
+
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'quiz-chapter-toggle';
+                button.setAttribute('aria-expanded', 'false');
+
+                var name = document.createElement('span');
+                name.className = 'quiz-chapter-name';
+                name.textContent = chapter;
+
+                var meta = document.createElement('span');
+                meta.className = 'quiz-chapter-meta';
+                meta.innerHTML = '<span>' + blocks.length + (blocks.length === 1 ? ' întrebare' : ' întrebări') + '</span><span class="quiz-chapter-arrow">⌄</span>';
+
+                button.appendChild(name);
+                button.appendChild(meta);
+
+                var content = document.createElement('div');
+                content.className = 'quiz-chapter-content';
+
+                blocks.forEach(function (block, index) {
+                    /* delay local: 0, 25, 50... max 150 ms */
+                    block.style.setProperty('--chapter-delay', Math.min(index * 25, 150) + 'ms');
+                    setupQuestionBlock(block, 'full-' + className.replace(/\W+/g, '-') + '-' + chapter.replace(/\W+/g, '-') + '-' + index);
+                    content.appendChild(block);
+                });
+
+                button.addEventListener('click', function () {
+                    var opening = !section.classList.contains('is-open');
+                    section.classList.toggle('is-open', opening);
+                    button.setAttribute('aria-expanded', opening ? 'true' : 'false');
+
+                    if (opening) {
+                        section.classList.remove('is-opening');
+                        void section.offsetWidth;
+                        section.classList.add('is-opening');
+                        window.setTimeout(function () {
+                            section.classList.remove('is-opening');
+                        }, 350);
+                    }
+                });
+
+                section.appendChild(button);
+                section.appendChild(content);
+                classSection.appendChild(section);
+            });
+
+            fullList.appendChild(classSection);
+        });
+    }
+
+    buildChapterGroups();
+
+    /* ===== Mini-examen ===== */
+    var mockAnswered = 0;
+    var mockCorrect = 0;
+    var mockTotal = 0;
+
+    function updateScore() {
+        if (!scoreEl) return;
+        scoreEl.textContent = 'Scor: ' + mockCorrect + ' / ' + mockAnswered +
+            ' răspunsuri (din ' + mockTotal + ' întrebări)';
     }
 
     function showSummary() {
@@ -1747,42 +1998,53 @@ document.addEventListener('DOMContentLoaded', function () {
         var summary = document.createElement('div');
         summary.className = 'mock-test-summary';
         var pct = mockTotal ? Math.round((mockCorrect / mockTotal) * 100) : 0;
-        summary.textContent = '🏁 Test finalizat! Ai obținut ' + mockCorrect + ' din ' + mockTotal + ' (' + pct + '%). Apasă "Anulează testul" pentru a reveni la lista completă sau generează un nou mini-examen.';
+        summary.textContent = '🏁 Test finalizat! Ai obținut ' + mockCorrect +
+            ' din ' + mockTotal + ' (' + pct + '%).';
         mockList.appendChild(summary);
     }
 
+    function setupMockBlock(block, index, total) {
+        resetVisualState(block);
+
+        var oldBadge = block.querySelector('.mock-question-number');
+        if (oldBadge) oldBadge.remove();
+        var badge = document.createElement('div');
+        badge.className = 'mock-question-number';
+        badge.textContent = 'Întrebarea ' + (index + 1) + ' / ' + total;
+        block.insertBefore(badge, block.firstChild);
+
+        setupQuestionBlock(block, 'mock-q-' + index, function (isCorrect) {
+            mockAnswered++;
+            if (isCorrect) mockCorrect++;
+            updateScore();
+            if (mockAnswered === mockTotal) showSummary();
+        });
+    }
+
     function startMockTest() {
-        if (!fullList || !mockList || !mockBar || !activeBar || !scoreEl) return;
+        if (!startBtn || !mockList || !mockBar || !activeBar || !scoreEl) return;
 
-        // grupează întrebările originale după capitol
-        var groups = {};
-        var order = [];
-        fullList.querySelectorAll('.quiz-question-block').forEach(function (block) {
-            var tagEl = block.querySelector('.quiz-chapter-tag');
-            var chapter = tagEl ? tagEl.textContent.trim() : 'General';
-            if (!groups[chapter]) {
-                groups[chapter] = [];
-                order.push(chapter);
-            }
-            groups[chapter].push(block);
+        /* IMPORTANT: grupăm snapshot-ul master, nu elementele deschise/vizibile din pagină. */
+        var groups = new Map();
+        masterQuestions.forEach(function (block) {
+            var chapter = getChapter(block);
+            if (!groups.has(chapter)) groups.set(chapter, []);
+            groups.get(chapter).push(block);
         });
 
-        // alege o întrebare random din fiecare capitol
-        var selected = order.map(function (chapter) {
-            var arr = groups[chapter];
+        var selected = [];
+        groups.forEach(function (arr) {
             var pick = arr[Math.floor(Math.random() * arr.length)];
-            return pick.cloneNode(true);
+            selected.push(pick.cloneNode(true));
         });
 
-        // amestecă ordinea întrebărilor
+        /* Fisher-Yates */
         for (var i = selected.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
-            var tmp = selected[i];
+            var temp = selected[i];
             selected[i] = selected[j];
-            selected[j] = tmp;
+            selected[j] = temp;
         }
-
-        if (!selected.length) return;
 
         mockTotal = selected.length;
         mockAnswered = 0;
@@ -1790,20 +2052,16 @@ document.addEventListener('DOMContentLoaded', function () {
         updateScore();
 
         mockList.innerHTML = '';
-        selected.forEach(function (block, idx) {
+        selected.forEach(function (block, index) {
+            setupMockBlock(block, index, mockTotal);
             mockList.appendChild(block);
-            setupMockBlock(block, idx, selected.length);
-        });
-
-        mockList.querySelectorAll('.mock-question-number').forEach(function (badge, idx) {
-            badge.textContent = 'Întrebarea ' + (idx + 1) + ' / ' + mockTotal;
         });
 
         fullList.style.display = 'none';
-        mockList.style.display = 'block';
+        mockList.style.display = 'grid';
         mockBar.style.display = 'none';
         activeBar.style.display = 'flex';
-        window.scrollTo(0, Math.max(0, activeBar.offsetTop - 10));
+        window.scrollTo({ top: Math.max(0, activeBar.offsetTop - 10), behavior: 'smooth' });
     }
 
     function cancelMockTest() {
@@ -1813,17 +2071,16 @@ document.addEventListener('DOMContentLoaded', function () {
         updateScore();
         mockList.innerHTML = '';
         mockList.style.display = 'none';
-        fullList.style.display = '';
+        fullList.style.display = 'grid';
         activeBar.style.display = 'none';
         mockBar.style.display = 'flex';
-        window.scrollTo(0, Math.max(0, mockBar.offsetTop - 10));
+        window.scrollTo({ top: Math.max(0, mockBar.offsetTop - 10), behavior: 'smooth' });
     }
 
-    startBtn.addEventListener('click', startMockTest);
-    cancelBtn.addEventListener('click', cancelMockTest);
+    if (startBtn) startBtn.addEventListener('click', startMockTest);
+    if (cancelBtn) cancelBtn.addEventListener('click', cancelMockTest);
 });
 </script>
-<script src="../js/questions.js"></script>
 
 </body>
 </html>
