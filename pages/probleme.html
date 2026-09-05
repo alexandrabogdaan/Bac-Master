@@ -65,7 +65,8 @@
 
         <div class="teorie-header">
             <h1>🧩 Probleme</h1>
-            <p>Probleme fundamentale de antrenament și colecție de probleme extrase din subiectele oficiale de BAC. Înainte de a le rezolva, parcurge teoria, îți va fi de mare folos!</p>
+            <p>Probleme fundamentale de antrenament și colecție de probleme extrase din subiectele oficiale de BAC. </br>
+               Înainte de a le rezolva, parcurge teoria, îți va fi de mare folos!</p>
         </div>
 
         <h2 class="section-title">📌 Probleme de bază (1 - 20)</h2>
@@ -607,6 +608,22 @@
     </main>
 
 </div>
+<script>
+    // Salvează poziția de scroll când utilizatorul dă click pe orice card de problemă
+    document.querySelectorAll('.module-card').forEach(card => {
+        card.addEventListener('click', () => {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+    });
 
+    // La încărcarea paginii, dacă există o poziție salvată, derulează până acolo
+    window.addEventListener('load', () => {
+        const savedPosition = sessionStorage.getItem('scrollPosition');
+        if (savedPosition !== null) {
+            window.scrollTo(0, parseInt(savedPosition, 10));
+            sessionStorage.removeItem('scrollPosition'); // Șterge poziția salvată pentru curățare
+        }
+    });
+</script>
 </body>
 </html>
