@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Subiectul III - 4: Secvențe pare de lungime maximă - BAC Master</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            color: var(--text-color, #2d3748);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .problem-statement-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content-section {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .problem-statement-box pre, .problem-statement-box code {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 0.95em;
+            display: block;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .problem-statement-box code:not(pre code) {
+            display: inline;
+            padding: 2px 6px;
+        }
+        .btn-fancy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+            border: none;
+        }
+        .btn-fancy-back:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+        .btn-fancy-back svg { transition: transform 0.3s ease; }
+        .btn-fancy-back:hover svg { transform: translateX(-4px); }
+    </style>
+</head>
+<body>
+<script src="../js/theme.js"></script>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <h2>BAC Master</h2>
+                        <p>Pregătește BAC-ul inteligent</p>
+                    </a>
+                </div>
+                <nav>
+                    <a href="../index.html">🏠 Acasă</a>
+                    <a href="teorie.html">📘 Teorie</a>
+                    <a href="algoritmi.html">💻 Algoritmi</a>
+                    <a href="subiecte.html">🏛️ Subiecte BAC</a>
+                    <a href="teste.html">📝 Teste</a>
+                    <a href="probleme.html" class="active">🧩 Probleme</a>
+
+                    <a href="setari.html">⚙️ Setări</a>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <h4>🎯 Obiectiv</h4>
+                <p>Nota 10 la BAC</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="teorie-header">
+                <span class="quiz-chapter-tag" style="background-color: #3182ce; color: white;">BAC Iunie 2017</span>
+                <h1>Subiectul III - 4: Secvențe pare de lungime maximă</h1>
+                <p>Determinarea eficientă a numărului de secvențe pare de lungime maximă dintr-un șir.</p>
+            </div>
+
+            <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <span>📜</span> Enunțul problemei
+                </h3>
+
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Numim <strong>secvență pară</strong> într-un șir o succesiune de termeni ai șirului cu proprietatea că sunt numere pare și că se află pe poziții consecutive în șir; orice secvență are cel puțin doi termeni și este maximală în raport cu proprietatea precizată (dacă i se adaugă un alt termen, secvența își pierde această proprietate). Lungimea secvenței este egală cu numărul termenilor săi.
+                    </p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Fişierul <code>bac.txt</code> conţine un şir de cel mult 10<sup>6</sup> numere naturale din intervalul [0,10<sup>9</sup>]. Numerele din şir sunt separate prin câte un spaţiu.
+                    </p>
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Se cere să se afişeze pe ecran numărul de secvențe pare de lungime maximă din șir. Proiectați un algoritm eficient din punctul de vedere al spațiului de memorie utilizat şi al timpului de executare.
+                    </p>
+
+                    <p style="margin-bottom: 5px; line-height: 1.6;">
+                        <strong>Exemplu:</strong> dacă fişierul <code>bac.txt</code> conţine valorile
+                    </p>
+                    <pre>1 2 3 4 6 10 2 8 5 7 9 4 6 10 121 20 4 11 10 2 5 2 6 8 10 16</pre>
+                    <p style="margin-top: 10px; margin-bottom: 5px; line-height: 1.6;">
+                        se afișează pe ecran:
+                    </p>
+                    <pre>2</pre>
+
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; padding-bottom: 20px;">
+                <a href="probleme.html" class="btn-fancy-back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Înapoi la lista de probleme
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
