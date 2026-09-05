@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Stilizare casetă problemă cu interactivitate */
+        body { font-family: 'Poppins', sans-serif; }
         .problem-statement-box {
             background-color: var(--bg-color, #f8fafc);
             border-left: 5px solid #3182ce;
@@ -22,20 +18,16 @@
             color: var(--text-color, #2d3748);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .problem-statement-box:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
-
         .content-section {
             background-color: var(--card-background);
             color: var(--text-color);
             transition: all 0.3s ease;
         }
-
-        .problem-statement-box pre, 
-        .problem-statement-box code {
+        .problem-statement-box pre, .problem-statement-box code {
             background-color: var(--bg-color) !important;
             color: var(--text-color) !important;
             border-radius: 4px;
@@ -43,8 +35,17 @@
             font-family: monospace;
             font-size: 0.95em;
         }
-
-        /* Stilizare buton "Înapoi" mai fancy */
+        .example-box {
+            background-color: var(--bg-color, #edf2f7);
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+        }
+        .example-column { flex: 1; }
+        .example-column h4 { margin-bottom: 8px; font-weight: 600; }
+        .example-column pre { margin: 0; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 4px; }
         .btn-fancy-back {
             display: inline-flex;
             align-items: center;
@@ -60,20 +61,13 @@
             box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
             border: none;
         }
-
         .btn-fancy-back:hover {
             background: linear-gradient(135deg, #2b6cb0, #2c5282);
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
         }
-
-        .btn-fancy-back svg {
-            transition: transform 0.3s ease;
-        }
-
-        .btn-fancy-back:hover svg {
-            transform: translateX(-4px);
-        }
+        .btn-fancy-back svg { transition: transform 0.3s ease; }
+        .btn-fancy-back:hover svg { transform: translateX(-4px); }
     </style>
 </head>
 <body>
@@ -119,10 +113,20 @@
                     <p style="margin-bottom: 15px; line-height: 1.6;">
                         Se citesc de la tastatură două numere întregi <code>a</code> și <code>b</code>.
                     </p>
-
-                    <p style="margin-bottom: 0; line-height: 1.6;">
-                        Scrieți un program în C/C++ care să calculeze și să afișeze pe ecran <strong>suma</strong> celor două numere.
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Să se calculeze și să se afișeze pe ecran <strong>suma</strong> celor două numere.
                     </p>
+
+                    <div class="example-box">
+                        <div class="example-column">
+                            <h4>Intrare</h4>
+                            <pre>5 7</pre>
+                        </div>
+                        <div class="example-column">
+                            <h4>Ieșire</h4>
+                            <pre>12</pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
