@@ -2,20 +2,90 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Problema 11 – Descompunere în factori primi | BAC Master</title>
+    <title>Problema 11: Descompunere în factori primi - BAC Master</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Stilizare casetă problemă cu interactivitate */
+        .problem-statement-box {
+            background-color: var(--bg-color, #f8fafc);
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            color: var(--text-color, #2d3748);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .problem-statement-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .problem-statement-box pre, 
+        .problem-statement-box code {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+
+        /* Stilizare buton "Înapoi" mai fancy */
+        .btn-fancy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+            border: none;
+        }
+
+        .btn-fancy-back:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c5282);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+
+        .btn-fancy-back svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-fancy-back:hover svg {
+            transform: translateX(-4px);
+        }
+    </style>
+</head>
 <body>
 <script src="../js/theme.js"></script>
     <div class="container">
-
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="logo">
-                    <h2>BAC Master</h2>
-                    <p>Pregătește BAC-ul inteligent</p>
+                    <a href="../index.html" class="logo-link">
+                        <h2>BAC Master</h2>
+                        <p>Pregătește BAC-ul inteligent</p>
+                    </a>
                 </div>
                 <nav>
                     <a href="../index.html">🏠 Acasă</a>
@@ -24,8 +94,7 @@
                     <a href="../pages/subiecte.html">🏛️ Subiecte BAC</a>
                     <a href="../pages/teste.html">📝 Teste</a>
                     <a href="../pages/probleme.html" class="active">🧩 Probleme</a>
-
-                    <a href="setari.html">⚙️ Setări</a>
+                    <a href="../pages/setari.html">⚙️ Setări</a>
                 </nav>
             </div>
             <div class="sidebar-footer">
@@ -33,34 +102,40 @@
                 <p>Nota 10 la BAC</p>
             </div>
         </aside>
-
-    <main class="main">
-
-        <div class="lesson-layout">
-            <div class="lesson-page">
-
-                <div class="lesson-header">
-                    <span class="quiz-chapter-tag">Problema 11 · Divizibilitate</span>
-                    <h1>Descompunere în factori primi</h1>
-                    <p>Enunțul problemei, așa cum apare la BAC. Citește cerința cu atenție înainte de a scrie rezolvarea.</p>
-                </div>
-
-                <div class="lesson-card">
-                    <h2>📋 Cerință</h2>
-                    <p>Afișați factorii primi ai unui număr.</p>
-                </div>
-
-                <div class="lesson-nav">
-                    <a href="../pages/probleme.html">← Înapoi la Probleme</a>
-                    <a href="problema12.html">Problema următoare →</a>
-                </div>
-
+        
+        <main class="main">
+            <div class="teorie-header">
+                <span class="quiz-chapter-tag" style="background-color: #3182ce; color: white;">Problema 11 · Divizibilitate</span>
+                <h1>Descompunere în factori primi</h1>
+                <p>Enunțul problemei. Citește cerința cu atenție înainte de a scrie rezolvarea.</p>
             </div>
-        </div>
 
-    </main>
+            <div class="content-section" style="padding: 25px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <span>📜</span> Enunțul problemei
+                </h3>
+                
+                <div class="problem-statement-box">
+                    <p style="margin-bottom: 15px; line-height: 1.6;">
+                        Se citește de la tastatură un număr natural <code>n</code> (<code>n &gt; 1</code>).
+                    </p>
 
-</div>
+                    <p style="margin-bottom: 0; line-height: 1.6;">
+                        Să se descompună numărul <code>n</code> în <strong>factori primi</strong> și să se afișeze fiecare factor prim alături de puterea la care apare în descompunere.
+                    </p>
+                </div>
+            </div>
 
+            <div style="margin-top: 25px; padding-bottom: 20px; display: flex; gap: 15px; align-items: center;">
+                <a href="../pages/probleme.html" class="btn-fancy-back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Înapoi la lista de probleme
+                </a>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
