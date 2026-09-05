@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Problema 15: Eliminarea valorilor pare - BAC Master</title>
+    <title>Problema 15: Căutare binară - BAC Master</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@
         <main class="main">
             <div class="teorie-header">
                 <span class="quiz-chapter-tag" style="background-color: #3182ce; color: white;">Problema 15 · Vectori</span>
-                <h1>Eliminarea valorilor pare</h1>
+                <h1>Căutare binară</h1>
                 <p>Enunțul problemei. Citește cerința cu atenție înainte de a scrie rezolvarea.</p>
             </div>
 
@@ -125,22 +125,23 @@
                 
                 <div class="problem-statement-box">
                     <p style="margin-bottom: 15px; line-height: 1.6;">
-                        Se citește un vector cu <code>n</code> elemente întregi.
+                        Se citește un vector cu <code>n</code> elemente întregi <strong>sortate crescător</strong> și o valoare de căutat <code>x</code>.
                     </p>
 
                     <p style="margin-bottom: 15px; line-height: 1.6;">
-                        Să se <strong>elimine</strong> din vector toate elementele pare și să se afișeze noul vector rezultat.
+                        Folosind algoritmul de <strong>căutare binară</strong>, să se verifice dacă valoarea <code>x</code> se află în vector. Se va afișa <code>DA</code> în caz afirmativ sau <code>NU</code> în caz contrar.
                     </p>
 
                     <div class="example-box">
                         <div class="example-column">
                             <h4>Intrare</h4>
                             <pre>6
-2 5 8 7 10 3</pre>
+3 7 12 18 25 30
+18</pre>
                         </div>
                         <div class="example-column">
                             <h4>Ieșire</h4>
-                            <pre>5 7 3</pre>
+                            <pre>DA</pre>
                         </div>
                     </div>
                 </div>
