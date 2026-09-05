@@ -44,8 +44,18 @@
             gap: 20px;
         }
         .example-column { flex: 1; }
-        .example-column h4 { margin-bottom: 8px; font-weight: 600; }
-        .example-column pre { margin: 0; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 4px; }
+        .example-column h4 { margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-color); }
+        .example-column pre { 
+            margin: 0; 
+            padding: 12px 15px; 
+            background-color: var(--bg-color, #ffffff); 
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px; 
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            color: var(--text-color, #1e293b);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
         .btn-fancy-back {
             display: inline-flex;
             align-items: center;
