@@ -15,7 +15,7 @@
             margin-bottom: 20px;
             font-size: 1.4rem;
             font-weight: 600;
-            color: var(--text-color);
+            color: var(--text);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -28,6 +28,21 @@
         .module-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Textul etichetelor de capitol, al titlurilor si al descrierilor urmeaza tema:
+           negru pe light, alb pe dark. Fundalul colorat al etichetelor ramane neschimbat. */
+        .quiz-chapter-tag {
+            color: var(--text) !important;
+        }
+
+        .module-card h3 {
+            color: var(--text) !important;
+        }
+
+        .module-card p {
+            color: var(--text) !important;
+            opacity: 0.75;
         }
     </style>
 </head>
